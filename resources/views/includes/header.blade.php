@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-md-3">
             <a class="navbar-brand" href="index.html">
-              <img src="./assets/images/header/ampdesktop.png" alt="">
+              <img src="{{url('/')}}/public/assets/images/header/ampdesktop.png" alt="">
             </a>
           </div>
           <div class="col-md-5 col-6 pe-0">
@@ -37,7 +37,7 @@
                 <div class="main-cart-item">
                   <div class="cart-item">
                     <div class="cart-item-img">
-                      <img src="./assets/images/header/01.jpg" alt="">
+                      <img src="{{url('/')}}/public/assets/images/header/01.jpg" alt="">
                     </div>
                     <div class="cart-item-content">
                       <a class="dropdown-item" href="#">Women color block</a>
@@ -46,7 +46,7 @@
                   </div>
                   <div class="cart-item">
                     <div class="cart-item-img">
-                      <img src="./assets/images/header/02.jpg" alt="">
+                      <img src="{{url('/')}}/public/assets/images/header/02.jpg" alt="">
                     </div>
                     <div class="cart-item-content">
                       <a class="dropdown-item" href="#">Women color block</a>

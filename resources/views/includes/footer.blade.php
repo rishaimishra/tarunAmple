@@ -45,7 +45,7 @@
         </div>
         <div class="col-md-4 col-sm-6 col-12">
           <div class="footer-logo">
-            <img src="./assets/images/header/ampdesktop.png" alt="" class="img-fluid">
+            <img src="{{url('/')}}/public/assets/images/header/ampdesktop.png" alt="" class="img-fluid">
           </div>
           <div class="widget pb-2 mb-4 mt-4">
             <h3 class="widget-title text-light pb-1">NEWSLETTER</h3>
@@ -101,22 +101,22 @@
             <h3 class="widget-title text-light">AMPLEPOINTS ACCEPTS</h3>
             <div class="footer-cards">
               <div class="footer-card">
-                <img src="./assets/images/footer/amplepoints_visa.png" alt="" class="img-fluid">
+                <img src="{{url('/')}}/public/assets/images/footer/amplepoints_visa.png" alt="" class="img-fluid">
               </div>
               <div class="footer-card">
-                <img src="./assets/images/footer/amplepoints_master.png" alt="" class="img-fluid">
+                <img src="{{url('/')}}/public/assets/images/footer/amplepoints_master.png" alt="" class="img-fluid">
               </div>
               <div class="footer-card">
-                <img src="./assets/images/footer/amplepoints_american.png" alt="" class="img-fluid">
+                <img src="{{url('/')}}/public/assets/images/footer/amplepoints_american.png" alt="" class="img-fluid">
               </div>
               <div class="footer-card">
-                <img src="./assets/images/footer/amplepoints_paypal.png" alt="" class="img-fluid">
+                <img src="{{url('/')}}/public/assets/images/footer/amplepoints_paypal.png" alt="" class="img-fluid">
               </div>
               <div class="footer-card">
-                <img src="./assets/images/footer/amplepoints_discover.png" alt="" class="img-fluid">
+                <img src="{{url('/')}}/public/assets/images/footer/amplepoints_discover.png" alt="" class="img-fluid">
               </div>
               <div class="footer-card">
-                <img src="./assets/images/footer/amplepoints_authorize.png" alt="" class="img-fluid">
+                <img src="{{url('/')}}/public/assets/images/footer/amplepoints_authorize.png" alt="" class="img-fluid">
               </div>
             </div>
           </div>

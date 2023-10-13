@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/header/favicon.ico')}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{asset('public/assets/images/header/favicon.ico')}}">
   <title>Ample Points</title>
   <!-- -- bootstrap --  -->
-  <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.css')}}">
+  <link rel="stylesheet" href="{{asset('public/assets/bootstrap/css/bootstrap.css')}}">
   <!-- Icons -->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <!-- css  -->
-  <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
+  <link rel="stylesheet" href="{{asset('public/assets/css/main.css')}}">
+  <link rel="stylesheet" href="{{asset('public/assets/css/styles.css')}}">
 </head>
 
 <body>
@@ -125,9 +125,9 @@
 
   <!-- -- script --  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('assets/bootstrap/js/bootstrap.bundle.js')}}"></script>
-  <script src="{{asset('assets/js/index.js')}}"></script>
+  <script src="{{asset('public/assets/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('public/assets/bootstrap/js/bootstrap.bundle.js')}}"></script>
+  <script src="{{asset('public/assets/js/index.js')}}"></script>
 </body>
 
 </html>
