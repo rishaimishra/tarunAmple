@@ -42,6 +42,40 @@ li {
   word-spacing: 4px;
 }
 
+/* Dropdown Button */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.custom-dropdown-content .dropdown-item {
+  font-weight: 600;
+}
+
+.custom-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.custom-dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.custom-dropdown:hover .custom-dropdown-content {
+  display: block;
+}
+
 .navbar {
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -61,6 +95,8 @@ li {
   cursor: pointer;
   margin-right: 20px;
   font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 .cart-sec {
@@ -70,7 +106,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .cart-sec sup {
@@ -91,7 +127,8 @@ li {
 }
 
 .wishlist i {
-  font-size: 22px;
+  font-size: 18px;
+  color: #6a6a6a;
 }
 
 .navbar-toggler {
@@ -105,8 +142,14 @@ li {
 }
 
 .nav-item {
-  font-size: 17px;
+  font-size: 14px;
   margin-right: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.nav-item .nav-link{
+ color: rgb(33 37 41); 
 }
 
 .nav-item:hover {
@@ -262,14 +305,61 @@ li {
   color: #fff;
 }
 
+.nav-item.dropdown a i {
+  font-size: 17px;
+}
+
+.dropdown-menu.custom-search[data-bs-popper] {
+  top: 35px;
+  right: 0;
+  left: unset;
+  width: 250px;
+}
+
+input.searching {
+  width: 100%;
+  border: none;
+  padding: 0 10px;
+}
+
+input.searching:focus-visible {
+  outline: none;
+}
+
 /* ----- media query -----  */
+@media (min-width: 1201px) { 
+  .mobile-menu-links {
+    display: none;
+  }
+}
+@media (max-width: 1200px) {
+  .navbar-expand-lg .navbar-toggler {
+    display: block !important;
+  }
+
+  .collapse:not(.show) {
+    display: none !important;
+  }
+
+  .open-menu-login-account {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 800px) {
   .navbar-brand img {
     width: 150px;
   }
 
-  .open-menu-login-account span {
+  /* .open-menu-login-account span {
     display: none;
+  } */
+  .nav-item {
+    width: fit-content;
   }
 }
 
@@ -278,12 +368,24 @@ li {
     padding: 0;
   }
 
-  .open-menu-login-account {
+  /* .open-menu-login-account {
     margin-right: 10px;
-  }
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  } */
 
   .cart-sec {
     margin-right: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .open-menu-login-account span {
+    display: none;
+  }
+  .open-menu-login-account {
+    display: block  ;
   }
 }
 
@@ -304,10 +406,11 @@ li {
 }
 
 .footer .widget-light .widget-list-link {
-  color: rgba(255,255,255,.65);
+  color: rgba(255, 255, 255, .65);
   transition: 0.5s ease;
   margin: 10px 0;
 }
+
 .footer .widget-light .widget-list-link:hover {
   color: #fff;
 }
@@ -324,16 +427,31 @@ li {
 .footer .footer-cards {
   display: flex;
   align-items: center;
-  justify-content: end;
 }
 
 .footer .footer-card {
-  margin-left: 10px;
+  margin-right: 10px;
   transition: 0.6s ease;
   cursor: pointer;
 }
+
 .footer .footer-card:hover {
- transform: translateY(-5px);
+  transform: translateY(-5px);
+}
+
+.copy-right {
+  margin-top: 40px;
+}
+
+.copy-right h4 {
+  color: rgba(255, 255, 255, .65);
+  font-size: 14px;
+}
+
+.copy-right p {
+  color: rgba(255, 255, 255, .65);
+  font-size: 14px;
+  margin-top: 16px;
 }
 
 .footer .social-icon {
@@ -348,6 +466,7 @@ li {
   cursor: pointer;
   transition: 0.6s ease;
 }
+
 .footer .social-icon:hover {
   transform: translateY(-5px);
 }
@@ -360,19 +479,27 @@ li {
   display: flex;
   align-items: center;
 }
+
 .footer .footer-logo {
   margin-top: -20px;
 }
+
 .footer .footer-logo img {
   width: 100%;
+}
+
+.input-group.flex-nowrap .btn.btn-primary {
+  background: var(--bs-red);
+  border: 1px solid var(--bs-red);
 }
 
 /* ----- media query -----  */
 @media (max-width: 500px) {
   .footer .social-icons {
     justify-content: center;
-}
-.footer .footer-cards {
-  justify-content: center;
-}
+  }
+
+  .footer .footer-cards {
+    justify-content: center;
+  }
 }
