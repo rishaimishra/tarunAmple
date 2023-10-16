@@ -64,38 +64,57 @@
             </a>
 
             <!-- cart  -->
-            <div class="nav-item dropdown m-0">
-              <a class="nav-link cart-sec" href="#" id="navbarDropdownCart" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
+            <div class="nav-item m-0">
+              <a class="nav-link cart-sec" href="#" id="sidebarCart-toggle" onclick="toggleSidebarCart()">
                 <i class="fas fa-shopping-cart"></i><sup>4</sup>
               </a>
-              <ul class="dropdown-menu cart-item-div" aria-labelledby="navbarDropdownCart">
-                <div class="main-cart-item">
-                  <div class="cart-item">
-                    <div class="cart-item-img">
-                      <img src="./assets/images/header/01.jpg" alt="">
+              <div class="sidebarCart" id="sidebarCart">
+                <div class="sidebar-header">
+                  <h4>Shopping Cart</h4>
+                  <button class="sidebarCart-close" onclick="toggleSidebarCart()">✕</button>
+                </div>
+
+                <div class="cart-contents cart-item-div">
+                  <div class="main-cart-item">
+                    <div class="cart-item">
+                      <div class="cart-item-img">
+                        <img src="./assets/images/header/01.jpg" alt="">
+                      </div>
+                      <div class="cart-item-content">
+                        <a class="dropdown-item" href="#">Women color block</a>
+                        <div class="cart-item-content-price">
+                          <p>$150.00</p>
+                          <span>Qty: 1</span>
+                        </div>
+                      </div>
+                      <div class="cross">
+                        ✕
+                      </div>
                     </div>
-                    <div class="cart-item-content">
-                      <a class="dropdown-item" href="#">Women color block</a>
-                      <p>$150.<sub>00 </sub> × 1</p>
+                    <div class="cart-item">
+                      <div class="cart-item-img">
+                        <img src="./assets/images/header/02.jpg" alt="">
+                      </div>
+                      <div class="cart-item-content">
+                        <a class="dropdown-item" href="#">Women color block</a>
+                        <div class="cart-item-content-price">
+                          <p>$150.00</p>
+                          <span>Qty: 2</span>
+                        </div>
+                      </div>
+                      <div class="cross">
+                        ✕
+                      </div>
                     </div>
                   </div>
-                  <div class="cart-item">
-                    <div class="cart-item-img">
-                      <img src="./assets/images/header/02.jpg" alt="">
-                    </div>
-                    <div class="cart-item-content">
-                      <a class="dropdown-item" href="#">Women color block</a>
-                      <p>$150.<sub>00 </sub> × 1</p>
-                    </div>
+
+                  <div class="sub-total">
+                    <p>Total:</p>
+                    <span>$265.00</span>
                   </div>
+                  <button class="checkout">Checkout</button>
                 </div>
-                <div class="sub-total">
-                  <p>Subtotal: <span>$265.00</span></p>
-                  <button>Expend cart ></button>
-                </div>
-                <button class="checkout">Checkout</button>
-              </ul>
+              </div>
             </div>
 
             <!-- wishlist -->

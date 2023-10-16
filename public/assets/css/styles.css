@@ -134,31 +134,40 @@
   object-fit: cover;
 }
 
-.shopping-products {}
+.shopping-products .fashion {
+  width: 100%;
+  background: var(--bs-red);
+  padding: 12px 5px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 10px;
+}
 
-.shopping-products {}
+.shopping-products .fashion span {
+  position: absolute;
+  right: 10px;
+}
 
-.shopping-products {}
+.shopping-products .sideTab-button {
+  background-color: var(--bs-white);
+  border: 2px solid var(--bs-white);
+  font-size: 16px;
+  font-weight: 600;
+  margin: auto;
+  display: flex;
+  padding: 5px;
+  transition: var(--bs-transition);
+}
+.shopping-products .sideTab-button:hover {
+ color: var(--bs-red);
+}
 
-.shopping-products {}
-
-.shopping-products {}
-
-.shopping-products {}
-
-.shopping-products {}
-
-.shopping-products {}
-
-.shopping-products {}
-
-.shopping-products {}
-
-.shopping-products {}
-
-.shopping-products {}
-
-.shopping-products {}
+.shopping-products .card-side-menu {
+ box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
 
 
 
