@@ -1,5 +1,14 @@
-@extends('layouts.home')
+@extends('Layouts.app')
+@section('title')
+<title>Amplepoints | Vendor Registration</title>
+@endsection
+
+@include('includes.head')
+@include('includes.header')
+
+
 @section('content')
+
     <div class="user-login-sec">
         <h4 class="modal-heading">Vendor Sign Up</h4>
         <div class="sign-up" id="memberSignUpContent">
@@ -46,4 +55,6 @@
             </form>
         </div>
     </div>
+@include('includes.footer')
+@include('includes.script')
 @endsection

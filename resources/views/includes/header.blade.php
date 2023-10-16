@@ -168,4 +168,45 @@
     </div>
   </div>
 </nav>
+
+
+
+
+<!-- Member & Vendor Login Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#f6f9fc">
+        <h4 class="modal-heading text-center">Ample Points</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="signup-btn">
+          <button onclick="window.location.href='memberSignup.html'" class="btn checkout"> Sign Up As A
+          Member</button>
+          <button onclick="window.location.href='vendorSignup.html'" class="btn checkout mt-3"> Sign Up As A
+          Vendor</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Member & Vendor Register Modal -->
+<div class="modal fade" id="vendorModal" tabindex="-1" aria-labelledby="vendorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#f6f9fc">
+        <h4 class="modal-heading text-center">Ample Points</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="signup-btn">
+          <button onclick="window.location.href='memberLogin.html'" class="btn checkout"> Login As A Member</button>
+          <button onclick="window.location.href='vendorLogin.html'" class="btn checkout mt-3"> Login As A
+          Vendor</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- -- end header --  -->

@@ -1,6 +1,13 @@
-@extends('layouts.home')
+@extends('Layouts.app')
+@section('title')
+<title>Amplepoints | Member Login</title>
+@endsection
+
+@include('includes.head')
+@include('includes.header')
+
+
 @section('content')
-    
   <div class="user-login-sec">
     <h4 class="modal-heading">Member Login</h4>
     <div class="sign-in" id="memberSignInContent">
@@ -24,4 +31,8 @@
       </form>
     </div>
   </div>
+
+
+@include('includes.footer')
+@include('includes.script')
 @endsection

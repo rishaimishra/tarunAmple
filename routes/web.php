@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerWeb\CustomerAuthController;
+use App\Http\Controllers\VendorWeb\VendorAuthController;
+use App\Http\Controllers\AdminWeb\AdminAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Layouts.home');
-});
-Route::get('/member-login', function () {
-    return view('member.login');
-});
-Route::get('/member-signup', function () {
-    return view('member.signup');
-});
-Route::get('/vendor-signup', function () {
-    return view('vendor.signup');
-});
-Route::get('/vendor-login', function () {
-    return view('vendor.login');
-});
+Route::get('/',[CustomerAuthController::class, 'indexPage'])->name('index.page');
+
+
+
+// =========================== Customer Routes Start =============================================//
+
+Route::get('/member-login',[CustomerAuthController::class, 'memberLogin'])->name('member.login.page');
+Route::get('/member-signup',[CustomerAuthController::class, 'memberSignup'])->name('member.signup.page');
+
+// =========================== Customer Routes End =============================================//
+
+
+
+
+// =========================== Vendor Routes Start =============================================//
+Route::get('/vendor-signup',[VendorAuthController::class, 'vendorSignup'])->name('vendor.signup.page');
+Route::get('/vendor-login',[VendorAuthController::class, 'vendorLogin'])->name('vendor.login.page');
+
+// =========================== Vendor Routes Start =============================================//
