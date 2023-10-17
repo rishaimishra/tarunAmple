@@ -49,7 +49,7 @@
                 <div class="row p-0 m-0">
                   <div class="col-md-4 col-12 p-0">
                     <div class="product-single-img">
-                      <img src="./assets/images/products/amplifyon_home_jewelry.jpg" alt="" class="img-fluid">
+                      <img src="{{url('/')}}/public/assets/images/products/amplifyon_home_jewelry.jpg" alt="" class="img-fluid">
                     </div>
                   </div>
                   <div class="col-md-8 col-12 p-0">
@@ -65,11 +65,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/locket.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/locket.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/locket.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/locket.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -114,11 +114,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry1.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry1.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry1.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry1.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -163,11 +163,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry2.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry2.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry2.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry2.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -212,11 +212,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry3.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry3.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry3.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry3.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -261,11 +261,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry4.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry4.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry4.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry4.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -310,11 +310,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry5.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry5.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry5.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry5.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -365,11 +365,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry6.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry6.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry6.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry6.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -414,11 +414,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry7.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry7.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry7.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry7.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -463,11 +463,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry8.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry8.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry8.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry8.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -512,11 +512,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry8.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry8.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry8.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry8.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -561,11 +561,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry9.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry9.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry9.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry9.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -610,11 +610,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry10.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry10.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry10.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry10.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -665,11 +665,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry11.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry11.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry11.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry11.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -714,11 +714,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry12.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry12.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry12.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry12.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -763,11 +763,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry13.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry13.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry13.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry13.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -812,11 +812,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry14.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry14.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry14.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry14.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -861,11 +861,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry15.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry15.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry15.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry15.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
@@ -910,11 +910,11 @@
                                 </div>
                                 <div class="product-img">
                                   <div class="first-view">
-                                    <img src="./assets/images/products/jewelry16.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry16.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                   <div class="hover-view">
-                                    <img src="./assets/images/products/jewelry16.jpg" alt="logo" class="img-fluid"
+                                    <img src="{{url('/')}}/public/assets/images/products/jewelry16.jpg" alt="logo" class="img-fluid"
                                       onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                                   </div>
                                 </div>
