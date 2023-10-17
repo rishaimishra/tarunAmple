@@ -5,7 +5,7 @@
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-2">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{route('index.page')}}">
               <img src="{{asset('public/assets/images/header/ampdesktop.png')}}" alt="">
             </a>
           </div>
@@ -63,6 +63,10 @@
               <i class="far fa-user"></i> <span>Login</span>
             </a>
 
+
+
+
+
             <!-- cart  -->
             <div class="nav-item m-0">
               <a class="nav-link cart-sec" href="#" id="sidebarCart-toggle" onclick="toggleSidebarCart()">
@@ -78,7 +82,7 @@
                   <div class="main-cart-item">
                     <div class="cart-item">
                       <div class="cart-item-img">
-                        <img src="./assets/images/header/01.jpg" alt="">
+                        <img src="{{url('/')}}/public/assets/images/header/01.jpg" alt="">
                       </div>
                       <div class="cart-item-content">
                         <a class="dropdown-item" href="#">Women color block</a>
@@ -93,7 +97,7 @@
                     </div>
                     <div class="cart-item">
                       <div class="cart-item-img">
-                        <img src="./assets/images/header/02.jpg" alt="">
+                        <img src="{{url('/')}}/public/assets/images/header/02.jpg" alt="">
                       </div>
                       <div class="cart-item-content">
                         <a class="dropdown-item" href="#">Women color block</a>
@@ -116,6 +120,8 @@
                 </div>
               </div>
             </div>
+
+
 
             <!-- wishlist -->
             <a class="wishlist" href="#"><i class="fas fa-heart"></i></a>
