@@ -9,7 +9,7 @@
               <img src="{{asset('public/assets/images/header/ampdesktop.png')}}" alt="">
             </a>
           </div>
-          <div class="col-md-6 col-6 pe-0">
+          <div class="col-md-6 col-6 pe-0 ps-5">
             <div class="collapse navbar-collapse">
               <!-- <div> -->
               <ul class="navbar-nav me-auto mb-lg-0 mt-1">
