@@ -1,9 +1,38 @@
-// $("#memberSignIn").click(function () {
-//   $("#memberSignUpContent").hide();
-//   $("#memberSignInContent").show();
-//   $("#memberSignUp").removeClass('active');
-//   $("#memberSignIn").addClass('active');
-// });
+// Cart right slide code 
+function toggleSidebarCart() {
+  var sidebarCart = document.getElementById("sidebarCart");
+  sidebarCart.style.right = sidebarCart.style.right === "0px" ? "-350px" : "0px"; /* Change left to right */
+}
+
+// card sidebar design
+$("#sideTab1").click(function () {
+  $("#sideTab-content1").show();
+  $("#sideTab-content2").hide();
+  $("#sideTab-content3").hide();
+  $("#sideTab1").addClass('active');
+  $("#sideTab2").removeClass('active');
+  $("#sideTab3").removeClass('active');
+});
+$("#sideTab2").click(function () {
+  $("#sideTab-content2").show();
+  $("#sideTab-content1").hide();
+  $("#sideTab-content3").hide();
+  $("#sideTab1").removeClass('active');
+  $("#sideTab2").addClass('active');
+  $("#sideTab3").removeClass('active');
+});
+$("#sideTab3").click(function () {
+  $("#sideTab-content3").show();
+  $("#sideTab-content1").hide();
+  $("#sideTab-content2").hide();
+  $("#sideTab1").removeClass('active');
+  $("#sideTab2").removeClass('active');
+  $("#sideTab3").addClass('active');
+});
+
+
+
+
 // $("#memberSignUp").click(function () {
 //   $("#memberSignInContent").hide();
 //   $("#memberSignUpContent").show();
@@ -61,9 +90,6 @@ function openTab(tabId) {
 // }
 // // Open the default tab when the page loads
 // window.onload = openDefaultTab;
-
-
-
 
 
 
