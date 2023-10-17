@@ -8,6 +8,11 @@
 
 
 @section('content')
+
+
+@include('includes.message')
+
+
     <div class="hero-sec">
         <video class="background" autoplay muted loop>
             <source src="https://amplepoints.com/home_banners/aboutamplepoints.mp4" type="video/mp4">

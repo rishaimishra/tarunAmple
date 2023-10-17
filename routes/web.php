@@ -22,8 +22,13 @@ Route::get('/',[CustomerAuthController::class, 'indexPage'])->name('index.page')
 
 // =========================== Customer Routes Start =============================================//
 
-Route::get('/member-login',[CustomerAuthController::class, 'memberLogin'])->name('member.login.page');
 Route::get('/member-signup',[CustomerAuthController::class, 'memberSignup'])->name('member.signup.page');
+Route::post('/member-register',[CustomerAuthController::class, 'memberRegister'])->name('member.register.post');
+Route::get('member-verification/{id}/{link}',[CustomerAuthController::class, 'memberVerification'])->name('member.verification.email');
+
+
+Route::get('/member-login',[CustomerAuthController::class, 'memberLogin'])->name('member.login.page');
+Route::post('/member-login/post',[CustomerAuthController::class, 'memberLoginPost'])->name('member.login.post');
 
 // =========================== Customer Routes End =============================================//
 
