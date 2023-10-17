@@ -207,9 +207,9 @@
       </div>
       <div class="modal-body">
         <div class="signup-btn">
-          <button onclick="window.location.href='memberSignup.html'" class="btn checkout"> Sign Up As A
+          <button onclick="window.location.href='{{route('member.signup.page')}}'" class="btn checkout"> Sign Up As A
           Member</button>
-          <button onclick="window.location.href='vendorSignup.html'" class="btn checkout mt-3"> Sign Up As A
+          <button onclick="window.location.href='{{route('vendor.signup.page')}}'" class="btn checkout mt-3"> Sign Up As A
           Vendor</button>
         </div>
       </div>
@@ -226,8 +226,8 @@
       </div>
       <div class="modal-body">
         <div class="signup-btn">
-          <button onclick="window.location.href='memberLogin.html'" class="btn checkout"> Login As A Member</button>
-          <button onclick="window.location.href='vendorLogin.html'" class="btn checkout mt-3"> Login As A
+          <button onclick="window.location.href='{{route('member.login.page')}}'" class="btn checkout"> Login As A Member</button>
+          <button onclick="window.location.href='{{route('vendor.login.page')}}'" class="btn checkout mt-3"> Login As A
           Vendor</button>
         </div>
       </div>
