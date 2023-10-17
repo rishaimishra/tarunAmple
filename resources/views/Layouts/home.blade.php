@@ -15,7 +15,7 @@
 </div>
 
 <!-- -- start carousel sopping product --  -->
-
+    @include('includes.message')
 
    <div class="sec-padding">
     <div class="shopping-products">
