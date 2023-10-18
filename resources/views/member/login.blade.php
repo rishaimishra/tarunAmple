@@ -45,7 +45,7 @@ $(document).ready(function() {
             email: {
                 required: true,
                 email: true
-            }
+            },
             password: {
                 required: true,
                 minlength: 6

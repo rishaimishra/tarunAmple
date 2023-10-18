@@ -62,8 +62,8 @@ function openTab(tabId) {
   var tabContents = document.getElementsByClassName("tab-content");
   // Remove the 'active' class from all tab buttons and content
   for (var i = 0; i < tabButtons.length; i++) {
-      tabButtons[i].classList.remove("tab-active");
-      tabContents[i].classList.remove("tab-active");
+    tabButtons[i].classList.remove("tab-active");
+    tabContents[i].classList.remove("tab-active");
   }
   // Add the 'active' class to the clicked tab button and content
   document.getElementById(tabId).classList.add("tab-active");
@@ -71,25 +71,6 @@ function openTab(tabId) {
 }
 
 
-
-
-// // Function to open the default tab
-// function openDefaultTab() {
-//   var defaultTab = document.getElementById("sideTab1");
-//   defaultTab.style.display = "block";
-// }
-// // Function to open a specific tab
-// function openTab(tabId) {
-//   // Get all elements with class "tab-content" and hide them
-//   var tabContents = document.getElementsByClassName("tab-content2");
-//   for (var i = 0; i < tabContents.length; i++) {
-//       tabContents[i].style.display = "none";
-//   }
-//   // Show the clicked tab content
-//   document.getElementById(tabId).style.display = "block";
-// }
-// // Open the default tab when the page loads
-// window.onload = openDefaultTab;
 
 
 
@@ -103,7 +84,7 @@ function openTab(tabId) {
   // Get all elements with class "tab-content" and hide them
   var tabContents = document.getElementsByClassName("tab-content");
   for (var i = 0; i < tabContents.length; i++) {
-      tabContents[i].style.display = "none";
+    tabContents[i].style.display = "none";
   }
   // Show the clicked tab content
   document.getElementById(tabId).style.display = "block";
