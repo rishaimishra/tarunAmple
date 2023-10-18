@@ -1,4 +1,9 @@
 @extends('Layouts.app')
+
+@section('meta')
+{{-- all meta tags --}}
+@endsection
+
 @section('title')
 <title>Amplepoints | Vendor Login</title>
 @endsection
