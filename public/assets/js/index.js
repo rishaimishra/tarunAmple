@@ -1,7 +1,7 @@
 // Cart right slide code 
 function toggleSidebarCart() {
   var sidebarCart = document.getElementById("sidebarCart");
-  sidebarCart.style.right = sidebarCart.style.right === "0px" ? "-350px" : "0px"; /* Change left to right */
+  sidebarCart.style.right = sidebarCart.style.right === "0px" ? "-400px" : "0px"; /* Change left to right */
 }
 
 // card sidebar design
