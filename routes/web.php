@@ -20,6 +20,8 @@ Route::get('/',[CustomerAuthController::class, 'indexPage'])->name('index.page')
 
 
 
+
+
 // =========================== Customer Routes Start =============================================//
 
 Route::get('/member-signup',[CustomerAuthController::class, 'memberSignup'])->name('member.signup.page');
@@ -35,8 +37,16 @@ Route::post('/member-login/post',[CustomerAuthController::class, 'memberLoginPos
 
 
 
+
+
+
+
+
 // =========================== Vendor Routes Start =============================================//
 Route::get('/vendor-signup',[VendorAuthController::class, 'vendorSignup'])->name('vendor.signup.page');
+Route::post('/vendor-register',[VendorAuthController::class, 'vendorRegister'])->name('vendor.register.post');
+
+
 Route::get('/vendor-login',[VendorAuthController::class, 'vendorLogin'])->name('vendor.login.page');
 
 // =========================== Vendor Routes Start =============================================//

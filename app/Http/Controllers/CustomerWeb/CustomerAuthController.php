@@ -211,7 +211,7 @@ public function userUniqueNo($len = 5)
                         $cfollow = '';
 
                     } else {
-                        $Custdata = User::where('referral_no', $customerkey)->where('status', '!=', '0')->get();
+                        $Custdata = User::where('referral_no', $cfollow)->where('status', '!=', '0')->get();
 
                         if (!empty($Custdata)) {
                             $cfollow = $Custdata[0]['email'];
