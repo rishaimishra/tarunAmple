@@ -30,6 +30,36 @@ class VendorAuthController extends Controller
 
 
 
+
+
+/*
+ Vendor Login Post
+ Jeet
+ utype=2 means vendor and 1 means admin
+*/
+    public function vendorLoginPost(Request $request){
+
+        $vendorDataEmail=AdminModel::where('uemail',$request->email)->where('utype',2)->where('ustatus','!=',2)->with('vendorDetails')->first();
+            if ($vendorDataEmail) {
+               if (!\Hash::check($request->password, $vendorDataEmail->upwd)) {
+                    return redirect()->back()->with('error','Incorrect Password');
+                }
+
+                dd('successful vendor Login',$vendorDataEmail);
+                // Auth::login($vendorDataEmail);
+                 // return redirect()->route('cust.dashboard');
+            }else{
+                 return back()->with("error","Vendor Credential is wrong.");
+            }
+    }
+
+
+
+
+
+
+
+
 /*
  Vendor Registration Page
  Jeet
@@ -89,7 +119,7 @@ public function userUniqueNo($len = 5){
             //chk that email exist or not. 
             //vendor reg linked with admin and vendor table both.
 
-           $result = AdminModel::where('email', $email)->count();
+           $result = AdminModel::where('uemail', $email)->count();
                 if ($result > 0 ) {
                    return back()->with("error","This Email already exists");
                 }
@@ -129,6 +159,8 @@ public function userUniqueNo($len = 5){
                 'utype' => @$utype,
                 'ustatus' => @$ustatus,
                 'created' => @$ucreated,
+                'isdeleted' => 0,
+                'reset'=>0,
             ];
 
             $admin = new AdminModel($insertVendorToAdminTable);
@@ -170,7 +202,9 @@ public function userUniqueNo($len = 5){
             Mail::to($request->email)->send(new VendorRegMail($mailData));
                      
 
-           dd('Registration Done');
+           // dd('Vendor Registration Done');
+             return redirect()->route('index.page')->with('success', 'Vendor Registration Done Successfully.');
+
 
             
 
