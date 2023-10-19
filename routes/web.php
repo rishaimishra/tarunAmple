@@ -48,5 +48,6 @@ Route::post('/vendor-register',[VendorAuthController::class, 'vendorRegister'])-
 
 
 Route::get('/vendor-login',[VendorAuthController::class, 'vendorLogin'])->name('vendor.login.page');
+Route::post('/vendor-login/post',[VendorAuthController::class, 'vendorLoginPost'])->name('vendor.login.post');
 
 // =========================== Vendor Routes Start =============================================//

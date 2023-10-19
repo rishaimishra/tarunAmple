@@ -59,7 +59,7 @@ class CustomerAuthController extends Controller
                 }
 
 
-                dd('successful Login',$userDataEmail);
+                dd('successful Customer Login',$userDataEmail);
                 // Auth::login($userDataEmail);
                  // return redirect()->route('cust.dashboard');
             }else{
@@ -292,10 +292,10 @@ public function userUniqueNo($len = 5)
 
                   return redirect()->route('index.page')->with('success', 'Registration Done Successfully, Kindly Verify the link given to email.');
 
-                } else {
-
-                   dd(1);
-
+                } 
+                else {
+                   // dd(1);
+                return redirect()->route('index.page')->with('error', 'Registration process gone wrong.');
                 }
 
     }

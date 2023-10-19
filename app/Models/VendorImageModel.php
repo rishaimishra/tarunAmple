@@ -11,4 +11,5 @@ class VendorImageModel extends Model
 
     protected $table = 'tbl_vendor_images';
     protected $primaryKey = 'tbl_vndr_img_id'; 
+
 }
