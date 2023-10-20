@@ -308,9 +308,11 @@ li {
   margin-bottom: 22px;
   overflow: hidden;
 }
+
 .empty-message svg g {
   fill: var(--bs-red);
 }
+
 .empty-message h4 {
   font-size: 18px;
   font-weight: 400;
@@ -331,10 +333,10 @@ li {
 
 .sidebar-cart-actions button {
   width: fit-content;
-    padding: 8px 20px;
-    text-transform: uppercase;
-    font-size: 16px;
-    font-weight: 700;
+  padding: 8px 20px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .cart-item {
@@ -492,9 +494,6 @@ input.searching:focus-visible {
     width: 150px;
   }
 
-  /* .open-menu-login-account span {
-    display: none;
-  } */
   .nav-item {
     width: fit-content;
   }
@@ -504,13 +503,6 @@ input.searching:focus-visible {
   .header-icons {
     padding: 0;
   }
-
-  /* .open-menu-login-account {
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  } */
 
   .cart-sec {
     margin-right: 10px;
