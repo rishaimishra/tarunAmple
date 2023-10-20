@@ -1,14 +1,10 @@
 @extends('Layouts.app')
 @section('title')
-    <title>Amplepoint</title>
+    <title>Amplepoint - Store</title>
 @endsection
 
 @include('includes.head')
 @include('includes.header')
-
-<!-- slick CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css" />
 
 
 
@@ -402,6 +398,4 @@
     @include('includes.footer')
     @include('includes.script')
 
-    <!-- slick -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
 @endsection

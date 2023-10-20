@@ -21,6 +21,9 @@ class CustomerAuthController extends Controller
     public function indexPage(){
         return view('Layouts.home');
     }
+    public function StorePage(){
+        return view('Layouts.store');
+    }
 
 
 
