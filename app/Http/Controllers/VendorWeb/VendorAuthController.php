@@ -27,6 +27,16 @@ class VendorAuthController extends Controller
     }
 
 
+ public function passwordHashVendor(){
+         AdminModel::orderBy('u_id','desc')
+            ->chunk(200, function ($users) {
+                foreach ($users as $user) {
+                    $user->upwd = Hash::make($user->upwd);
+                    $user->save();
+                }
+            });
+        return 'Passwords encrypted successfully for vendor.';
+    }
 
 
 

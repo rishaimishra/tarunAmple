@@ -22,6 +22,8 @@ Route::get('/stores',[StoreCategoryController::class, 'StorePage'])->name('store
 Route::get('/category',[StoreCategoryController::class, 'CategoryPage'])->name('category.page');
 
 
+Route::get('/password-hash-member',[CustomerAuthController::class, 'passwordHashMember']);
+Route::get('/password-hash-vendor',[VendorAuthController::class, 'passwordHashVendor']);
 
 
 
