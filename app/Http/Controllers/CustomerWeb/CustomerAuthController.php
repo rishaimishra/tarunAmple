@@ -37,6 +37,19 @@ class CustomerAuthController extends Controller
 
 
 
+    public function passwordHashMember(){
+         User::orderBy('user_id','desc')
+            ->chunk(200, function ($users) {
+                foreach ($users as $user) {
+                    $user->password = Hash::make($user->password);
+                    $user->save();
+                }
+            });
+        return 'Passwords encrypted successfully for member.';
+    }
+
+
+
 
 
 
