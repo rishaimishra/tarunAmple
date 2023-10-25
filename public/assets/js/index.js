@@ -60,3 +60,75 @@ function showSidebar() {
   }
 }
 
+
+
+
+
+// -- slick carosule  
+$(document).ready(function () {
+
+  const responsive = [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 770,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 500,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ];
+
+  $('#slick-slider-1').slick({
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    dots: false,
+    responsive: responsive
+  });
+
+  setTimeout(() => {
+    $('.slick-init').css('opacity', 1)
+  }, 100);
+});
+
+
+
+
+// -- image pagination 
+$(document).ready(function() {
+  const itemsPerPage = 5;
+  const $vendorDivs = $('.store-pagination .vendor-div-box');
+  const $paginationLinks = $('#pagination span');
+
+  showPage(1);
+
+  $paginationLinks.click(function(event) {
+    event.preventDefault();
+    const pageNumber = parseInt($(this).attr('id').replace('page', ''));
+    showPage(pageNumber);
+  });
+
+  function showPage(pageNumber) {
+    const minItem = (pageNumber - 1) * itemsPerPage;
+    const maxItem = pageNumber * itemsPerPage;
+
+    $vendorDivs.hide().slice(minItem, maxItem).show();
+
+    $paginationLinks.removeClass('active');
+    $('#page' + pageNumber).addClass('active');
+  }
+});
