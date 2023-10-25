@@ -252,7 +252,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-3">
 
                         <li class="nav-item custom-dropdown">
-                            <a class="nav-link" href="#">Stores</a>
+                            <a class="nav-link" href="{{route('store.page')}}">Stores</a>
                             <div class="custom-dropdown-content">
                                 <a class="dropdown-item" href="#"> Brands</a>
                                 <hr class="m-0 p-0">

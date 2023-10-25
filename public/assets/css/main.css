@@ -41,6 +41,21 @@ img {
   width: 100%;
 }
 
+h4.heading {
+  font-size: 20px;
+  font-weight: 500;
+  color: #5e5e5e;
+}
+
+.banner-sec {
+  min-height: 60vh;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  width: 100%;
+  position: relative;
+}
+
 li {
   list-style: none;
 }
