@@ -836,10 +836,14 @@ a {
   margin-top: 120px;
 }
 
+.slick-slide {
+  height: auto !important;
+}
+
 .slick-next:before,
 .slick-prev:before {
-  color: var(--bs-dark-red);
-  font-size: 24px;
+  color: var(--bs-dark-red) !important;
+  font-size: 24px !important;
 }
 
 .slick-initialized .slick-slide {

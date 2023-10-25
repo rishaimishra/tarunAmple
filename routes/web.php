@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminWeb\AdminAuthController;
 
 Route::get('/',[CustomerAuthController::class, 'indexPage'])->name('index.page');
 Route::get('/stores',[CustomerAuthController::class, 'StorePage'])->name('store.page');
+Route::get('/category',[CustomerAuthController::class, 'CategoryPage'])->name('category.page');
 
 
 
