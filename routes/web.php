@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerWeb\CustomerAuthController;
 use App\Http\Controllers\VendorWeb\VendorAuthController;
 use App\Http\Controllers\AdminWeb\AdminAuthController;
+use App\Http\Controllers\CustomerWeb\StoreCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,8 @@ use App\Http\Controllers\AdminWeb\AdminAuthController;
 */
 
 Route::get('/',[CustomerAuthController::class, 'indexPage'])->name('index.page');
-Route::get('/stores',[CustomerAuthController::class, 'StorePage'])->name('store.page');
-Route::get('/category',[CustomerAuthController::class, 'CategoryPage'])->name('category.page');
+Route::get('/stores',[StoreCategoryController::class, 'StorePage'])->name('store.page');
+Route::get('/category',[StoreCategoryController::class, 'CategoryPage'])->name('category.page');
 
 
 
