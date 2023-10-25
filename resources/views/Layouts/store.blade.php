@@ -15,7 +15,7 @@
             <div id="slick-slider-1" class="slick-init">
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1595664013_t_las-vegas-mall.png"
                                     alt="1595664013_t_las-vegas-mall.png">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1595963020_t_luxury-logo (2).png"
                                     alt="1595963020_t_luxury-logo (2).png">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1660945234_t_TAOGROUP-LOGO-Social-Icon_150x150.jpg"
                                     alt="1660945234_t_TAOGROUP-LOGO-Social-Icon_150x150.jpg">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/mall21.jpg" alt="mall21.jpg">
                             </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1687357111_t_ffnn150.jpg"
                                     alt="1687357111_t_ffnn150.jpg">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1688023887_t_New Project(3).jpg"
                                     alt="1688023887_t_New Project(3).jpg">
@@ -98,7 +98,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1687208689_t_Screenshot 2023-06-19 at 2.02.42 PM.png"
                                     alt="1687208689_t_Screenshot 2023-06-19 at 2.02.42 PM.png">
@@ -112,7 +112,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1694857392_t_cmlogo.jpg"
                                     alt="1694857392_t_cmlogo.jpg">
@@ -126,7 +126,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/hnw150.jpg" alt="hnw150.jpg">
                             </div>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="#">
+                        <a href="{{route('category.page')}}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/mtd150.jpg" alt="mtd150.jpg">
                             </div>
