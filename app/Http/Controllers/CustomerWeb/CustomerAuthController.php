@@ -32,7 +32,7 @@ class CustomerAuthController extends Controller
  Jeet
 */
     public function memberLogin(){
-       return view('member.login');
+       return view('member.auth.login');
     }
 
 
@@ -92,7 +92,7 @@ class CustomerAuthController extends Controller
  Jeet
 */
     public function memberSignup(){
-      return view('member.signup');
+      return view('member.auth.signup');
     }
 
 

@@ -47,6 +47,9 @@ Route::post('/member-login/post',[CustomerAuthController::class, 'memberLoginPos
 
 
 
+
+
+
 // =========================== Vendor Routes Start =============================================//
 Route::get('/vendor-signup',[VendorAuthController::class, 'vendorSignup'])->name('vendor.signup.page');
 Route::post('/vendor-register',[VendorAuthController::class, 'vendorRegister'])->name('vendor.register.post');
@@ -56,3 +59,19 @@ Route::get('/vendor-login',[VendorAuthController::class, 'vendorLogin'])->name('
 Route::post('/vendor-login/post',[VendorAuthController::class, 'vendorLoginPost'])->name('vendor.login.post');
 
 // =========================== Vendor Routes Start =============================================//
+
+
+
+
+
+
+
+
+
+
+
+// =========================== Admin Routes Start =============================================//
+Route::get('/admin-login',[AdminAuthController::class, 'adminLogin'])->name('admin.login.page');
+Route::post('/admin-login/post',[AdminAuthController::class, 'adminLoginPost'])->name('admin.login.post');
+
+// =========================== Admin Routes End =============================================//

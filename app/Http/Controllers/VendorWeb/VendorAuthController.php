@@ -23,7 +23,7 @@ class VendorAuthController extends Controller
  Jeet
 */
     public function vendorLogin(){
-     return view('vendor.login');
+     return view('vendor.auth.login');
     }
 
 
@@ -45,7 +45,7 @@ class VendorAuthController extends Controller
 /*
  Vendor Login Post
  Jeet
- utype=2 means vendor and 1 means admin
+ utype=2 and ustatus !=2 means vendor and utype=1 means admin
 */
     public function vendorLoginPost(Request $request){
 
@@ -75,7 +75,7 @@ class VendorAuthController extends Controller
  Jeet
 */
     public function vendorSignup(){
-       return view('vendor.signup');
+       return view('vendor.auth.signup');
     }
 
 
