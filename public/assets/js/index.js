@@ -107,16 +107,75 @@ $(document).ready(function () {
 
 
 
+// -- testimonials products --  
+$(document).ready(function () {
+
+  const responsive = [
+    {
+      breakpoint: 2560,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 770,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 500,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    }
+  ];
+  // -- testimonials products -- 
+  $('#slick-slider-2').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,  
+    prevArrow: false,
+    nextArrow: false,
+    responsive: responsive
+  });
+
+  setTimeout(() => {
+    $('.slick-init').css('opacity', 1)
+  }, 100);
+
+
+});
+
+
+
 
 // -- image pagination 
-$(document).ready(function() {
+$(document).ready(function () {
   const itemsPerPage = 5;
   const $vendorDivs = $('.store-pagination .vendor-div-box');
   const $paginationLinks = $('#pagination span');
 
   showPage(1);
 
-  $paginationLinks.click(function(event) {
+  $paginationLinks.click(function (event) {
     event.preventDefault();
     const pageNumber = parseInt($(this).attr('id').replace('page', ''));
     showPage(pageNumber);
@@ -132,3 +191,65 @@ $(document).ready(function() {
     $('#page' + pageNumber).addClass('active');
   }
 });
+
+
+
+
+
+
+
+
+// ---------- PRODUCTS PAGE ----------------
+
+
+function showTab(tabIndex) {
+  var tabs = document.querySelectorAll('.products-tab');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove('active-products-tab');
+  }
+
+  tabs[tabIndex].classList.add('active-products-tab');
+}
+
+// Show the initial tab
+showTab(0);
+
+
+
+
+
+// -- price filter -- 
+
+var lowerSlider = document.querySelector('#lower');
+var upperSlider = document.querySelector('#upper');
+
+document.querySelector('#two').value = upperSlider.value;
+document.querySelector('#one').value = lowerSlider.value;
+
+var lowerVal = parseInt(lowerSlider.value);
+var upperVal = parseInt(upperSlider.value);
+
+upperSlider.oninput = function () {
+  lowerVal = parseInt(lowerSlider.value);
+  upperVal = parseInt(upperSlider.value);
+
+  if (upperVal < lowerVal + 4) {
+    lowerSlider.value = upperVal - 4;
+    if (lowerVal == lowerSlider.min) {
+      upperSlider.value = 4;
+    }
+  }
+  document.querySelector('#two').value = this.value
+};
+
+lowerSlider.oninput = function () {
+  lowerVal = parseInt(lowerSlider.value);
+  upperVal = parseInt(upperSlider.value);
+  if (lowerVal > upperVal - 4) {
+    upperSlider.value = lowerVal + 4;
+    if (upperVal == upperSlider.max) {
+      lowerSlider.value = parseInt(upperSlider.max) - 4;
+    }
+  }
+  document.querySelector('#one').value = this.value
+};
