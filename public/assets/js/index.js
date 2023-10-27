@@ -151,7 +151,7 @@ $(document).ready(function () {
   // -- testimonials products -- 
   $('#slick-slider-2').slick({
     slidesToShow: 1,
-    slidesToScroll: 1,  
+    slidesToScroll: 1,
     prevArrow: false,
     nextArrow: false,
     responsive: responsive
@@ -253,3 +253,4 @@ lowerSlider.oninput = function () {
   }
   document.querySelector('#one').value = this.value
 };
+

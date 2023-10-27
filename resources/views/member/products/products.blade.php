@@ -187,6 +187,7 @@
                       <div class="product-discount">
                         50% OFF
                       </div>
+                      <a href="{{route('member.product.details.page')}}">
                       <div class="product-img">
                         <div class="first-view">
                           <img src="{{ url('/') }}/public/assets/images/products/watch18.jpg"
@@ -199,6 +200,7 @@
                             onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                         </div>
                       </div>
+                      </a>
                       <div class="sideicons">
                         <button class="sideicons-btn">
                         <i class="far fa-heart"></i>
@@ -239,6 +241,7 @@
                       <div class="product-discount">
                         50% OFF
                       </div>
+                      <a href="{{route('member.product.details.page')}}">
                       <div class="product-img">
                         <div class="first-view">
                           <img src="{{ url('/') }}/public/assets/images/products/watch16.jpg"
@@ -251,6 +254,7 @@
                             onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                         </div>
                       </div>
+                    </a>
                       <div class="sideicons">
                         <button class="sideicons-btn">
                         <i class="far fa-heart"></i>
@@ -291,6 +295,7 @@
                       <div class="product-discount">
                         50% OFF
                       </div>
+                      <a href="{{route('member.product.details.page')}}">
                       <div class="product-img">
                         <div class="first-view">
                           <img src="{{ url('/') }}/public/assets/images/products/watch15.jpg"
@@ -303,6 +308,7 @@
                             onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                         </div>
                       </div>
+                    </a>
                       <div class="sideicons">
                         <button class="sideicons-btn">
                         <i class="far fa-heart"></i>
@@ -343,6 +349,7 @@
                       <div class="product-discount">
                         50% OFF
                       </div>
+                      <a href="{{route('member.product.details.page')}}">
                       <div class="product-img">
                         <div class="first-view">
                           <img src="{{ url('/') }}/public/assets/images/products/watch14.jpg"
@@ -355,6 +362,7 @@
                             onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                         </div>
                       </div>
+                    </a>
                       <div class="sideicons">
                         <button class="sideicons-btn">
                         <i class="far fa-heart"></i>
@@ -399,6 +407,7 @@
                       <div class="product-discount">
                         50% OFF
                       </div>
+                      <a href="{{route('member.product.details.page')}}">
                       <div class="product-img">
                         <div class="first-view">
                           <img src="{{ url('/') }}/public/assets/images/products/watch13.jpg"
@@ -411,6 +420,7 @@
                             onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                         </div>
                       </div>
+                    </a>
                       <div class="sideicons">
                         <button class="sideicons-btn">
                         <i class="far fa-heart"></i>
@@ -451,6 +461,7 @@
                       <div class="product-discount">
                         50% OFF
                       </div>
+                      <a href="{{route('member.product.details.page')}}">
                       <div class="product-img">
                         <div class="first-view">
                           <img src="{{ url('/') }}/public/assets/images/products/watch18.jpg"
@@ -463,6 +474,7 @@
                             onerror="this.src='https://i.ibb.co/qpB9ZCZ/placeholder.png'">
                         </div>
                       </div>
+                    </a>
                       <div class="sideicons">
                         <button class="sideicons-btn">
                         <i class="far fa-heart"></i>
