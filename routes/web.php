@@ -6,7 +6,7 @@ use App\Http\Controllers\VendorWeb\VendorAuthController;
 use App\Http\Controllers\AdminWeb\AdminAuthController;
 use App\Http\Controllers\CustomerWeb\StoreCategoryController;
 use App\Http\Controllers\CustomerWeb\ProductsController;
-
+use App\Http\Controllers\CustomerWeb\StaticPageController;
 
 /*
 |--------------------------------------------------------------------------

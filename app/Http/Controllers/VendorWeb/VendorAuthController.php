@@ -45,7 +45,12 @@ class VendorAuthController extends Controller
 /*
  Vendor Login Post
  Jeet
- utype=2 and ustatus !=2 means vendor and utype=1 means admin
+ utype=2 vendor. 
+ utype=1 admin
+
+ ustatus=0 deleted 
+ ustatus=1 active 
+ ustatus=2 deactive 
 */
     public function vendorLoginPost(Request $request){
 
