@@ -10,10 +10,6 @@ use App\Http\Controllers\CustomerWeb\StaticPageController;
 
 
 
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
