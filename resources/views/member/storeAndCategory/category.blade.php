@@ -37,7 +37,7 @@
         <hr>
         <div class="category-content">
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/845/profile/1661293710_t_logo_150x150.jpg"
                   alt="Jewel Nightclub">
@@ -56,7 +56,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/291/profile/1581149418_t_hakk01.jpg"
                   alt="Hakkasan ">
@@ -75,7 +75,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/292/profile/1580374646_t_omnia.jpg"
                   alt="OMNIA NIGHTC">
@@ -94,7 +94,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/838/profile/1660814239_t_logo_150x150.jpg"
                   alt="TAO Nightclu">
@@ -113,7 +113,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/847/profile/1660889479_t_nightclub.jpg"
                   alt="Marquee Nigh">
@@ -132,7 +132,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/845/profile/1661293710_t_logo_150x150.jpg"
                   alt="Jewel Nightclub">
@@ -161,7 +161,7 @@
         <hr>
         <div class="category-content">
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/217/profile/1516218091_t_12_original.gif" alt="FLASH SALE">
               </div>
@@ -179,7 +179,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/1096/profile/1687601354_t_logo_150x150.png" alt="R.A.D Custom">
               </div>
@@ -197,7 +197,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/1112/profile/1689393897_t_royaltylogo.jpg" alt="ROYALTY">
               </div>
@@ -227,7 +227,7 @@
         <hr>
         <div class="category-content">
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/189/profile/1503594989_t_images_150x150.jpg" alt="TRUE RELIGIO">
               </div>
@@ -245,7 +245,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/199/profile/1673067368_t_tf.jpg" alt="TOM FORD">
               </div>
@@ -263,7 +263,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/203/profile/1511777754_t__150x150.jpg" alt="MONTBLANC">
               </div>
@@ -281,7 +281,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/206/profile/1512481335_t_Gucci-Logo1_150x150.jpg" alt="GUCCI">
               </div>
@@ -299,7 +299,7 @@
             </a>
           </div>
           <div class="vendor-div-box">
-            <a href="#">
+            <a href="{{route('member.products.page')}}">
               <div class="vendor-divimg">
                 <img src="https://amplepoints.com/vendor-data/209/profile/1581151083_t_toryb.png" alt="TORY BURCH">
               </div>
