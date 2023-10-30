@@ -17,7 +17,7 @@
          @include('includes.message')
         <h4 class="modal-heading">Admin Login</h4>
         <div class="sign-in" id="memberSignInContent">
-            <form id="frm" method="post" action="{{route('vendor.login.post')}}">
+            <form id="frm" method="post" action="{{route('admin.login.post')}}">
               @csrf
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Email address</label>
