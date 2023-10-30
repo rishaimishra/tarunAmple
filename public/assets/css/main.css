@@ -56,6 +56,23 @@ h4.heading {
   position: relative;
 }
 
+.page-heading {
+  border-bottom: 2px solid #e8e8e8;
+  margin-bottom: 20px;
+}
+
+.page-heading .page-heading-name {
+  border-bottom: 3px solid var(--bs-red);
+  width: fit-content;
+  margin-bottom: -2px;
+}
+
+.page-heading .page-heading-name h4 {
+  font-weight: 700;
+  font-size: 24px;
+  color: #474747;
+}
+
 li {
   list-style: none;
 }

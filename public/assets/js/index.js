@@ -100,6 +100,13 @@ $(document).ready(function () {
     responsive: responsive
   });
 
+  $('#product-details-slider').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    dots: false,
+    responsive: responsive
+  });
+
   setTimeout(() => {
     $('.slick-init').css('opacity', 1)
   }, 100);
@@ -253,4 +260,8 @@ lowerSlider.oninput = function () {
   }
   document.querySelector('#one').value = this.value
 };
+
+
+
+// product details image zoom 
 
