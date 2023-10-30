@@ -1504,7 +1504,288 @@ a {
   margin-top: 100px;
 }
 
-.product-details {}
+.card-wrapper{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+img{
+  width: 100%;
+  display: block;
+}
+.img-display{
+  overflow: hidden;
+}
+.img-showcase{
+  display: flex;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+.img-showcase img{
+  min-width: 100%;
+}
+.img-select{
+  display: flex;
+}
+.img-item{
+  margin: 0.3rem;
+}
+.img-item:nth-child(1),
+.img-item:nth-child(2),
+.img-item:nth-child(3){
+  margin-right: 0;
+}
+.img-item:hover{
+  opacity: 0.8;
+}
+.product-content{
+  padding: 2rem 1rem;
+}
+.product-title{
+  font-size: 3rem;
+  text-transform: capitalize;
+  font-weight: 700;
+  position: relative;
+  color: #12263a;
+  margin: 1rem 0;
+}
+.product-title::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 80px;
+  background: #12263a;
+}
+.product-link{
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  background: #256eff;
+  color: #fff;
+  padding: 0 0.3rem;
+  transition: all 0.5s ease;
+}
+.product-link:hover{
+  opacity: 0.9;
+}
+.product-rating{
+  color: #ffc107;
+}
+.product-rating span{
+  font-weight: 600;
+  color: #252525;
+}
+.product-price{
+  margin: 1rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.product-price span{
+  font-weight: 400;
+}
+.last-price span{
+  color: #f64749;
+  text-decoration: line-through;
+}
+.new-price span{
+  color: #256eff;
+}
+.product-detail h2{
+  text-transform: capitalize;
+  color: #12263a;
+  padding-bottom: 0.6rem;
+}
+.product-detail p{
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  opacity: 0.8;
+}
+.product-detail ul{
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.product-detail ul li{
+  margin: 0;
+  list-style: none;
+  background: url(https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png) left center no-repeat;
+  background-size: 18px;
+  padding-left: 1.7rem;
+  margin: 0.4rem 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+.product-detail ul li span{
+  font-weight: 400;
+}
+.purchase-info{
+  margin: 1.5rem 0;
+}
+.purchase-info input,
+.purchase-info .btn{
+  border: 1.5px solid #ddd;
+  border-radius: 25px;
+  text-align: center;
+  padding: 0.45rem 0.8rem;
+  outline: 0;
+  margin-right: 0.2rem;
+  margin-bottom: 1rem;
+}
+.purchase-info input{
+  width: 60px;
+}
+.purchase-info .btn{
+  cursor: pointer;
+  color: #fff;
+}
+.purchase-info .btn:first-of-type{
+  background: #256eff;
+}
+.purchase-info .btn:last-of-type{
+  background: #f64749;
+}
+.purchase-info .btn:hover{
+  opacity: 0.9;
+}
+.social-links{
+  display: flex;
+  align-items: center;
+}
+.social-links a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #000;
+  border: 1px solid #000;
+  margin: 0 0.2rem;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.5s ease;
+}
+.social-links a:hover{
+  background: #000;
+  border-color: transparent;
+  color: #fff;
+}
+
+@media screen and (min-width: 992px){
+  .product-imgs{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  .product-content{
+      padding-top: 0;
+  }
+}
+
+.product-details .shipping {
+  background: #ff9800;
+  margin-top: 12px;
+  border-radius: 5px;
+  padding: 8px;
+}
+.product-details .form-check.first-check {
+  background: #14008e;
+  color: var(--bs-white);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  padding: 6px 37px;
+  gap: 10px;
+  width: fit-content;
+}
+.product-details .form-check {
+  color: var(--bs-white);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  padding: 6px 37px;
+  gap: 10px;
+  width: fit-content;
+}
+.product-details .shipping .add-cart-submit button {
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  background: var(--bs-dark-red);
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--bs-white);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: var(--bs-transition);
+  border: 0;
+  margin-top: 10px;
+  width: 100%;
+}
+.product-details .shipping .add-cart-submit button:hover {
+  box-shadow: none
+}
+.product-details .shipping-price {
+  background: whitesmoke;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.product-details .shipping-price .price-heading {
+  background: #525252;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+}
+.product-details .shipping-price .price-heading h4 {
+  font-size: 16px;
+  margin: 0;
+  text-align: center;
+}
+.product-details .shipping-price .social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 10px 5px;
+}
+.product-details .shipping-price .social-icons div {
+  padding: 10px;
+  font-size: 20px;
+  color: var(--bs-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--bs-transition);
+}
+.product-details .shipping-price .social-icons div:hover {
+ transform: translateY(-2px);
+}
+.product-details .shipping-price .social-icons .face {
+  background: #4267B2;
+}
+.product-details .shipping-price .social-icons .twit {
+  background: black;
+}
+.product-details .shipping-price .social-icons .link {
+  background: #4267B2;
+}
+.product-details .shipping-price .social-icons .wtsp {
+  background: #25d366;
+}
+.product-details .shipping-price .para {
+  background: #fff;
+  margin: 0 10px 10px;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.product-details .shipping-price .para p{
+  margin: 0;
+}
 
 .product-details .product-name {
   font-size: 24px;
@@ -1855,4 +2136,267 @@ a {
 
 .product-details .pro-det-content .pull-left div i {
   font-size: 12px;
+}
+
+
+
+
+
+
+
+
+/* ============================================================================= */
+/* ************************ GIVE - AWAYS ************************* */
+/* ============================================================================= */
+
+.give-aways {
+  padding: 100px 0 20px;
+}
+.product-card {
+  box-shadow: 0 2px 7px #dfdfdf;
+}
+
+
+.product-tumb {
+  padding: 10px;
+  background: #f0f0f0;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-tumb img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.product-details {
+  padding: 10px 10px 30px;
+  text-align: center;
+}
+
+.product-details h4 a {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  color: #363636;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 18px;
+}
+
+.product-details h4 a:hover {
+  color: var(--bs-red);
+}
+
+.product-details p {
+  font-size: 14px;
+  color: #999;
+  border-top: 1px solid #eeeeee;
+  padding: 5px 0;
+  margin: 0;
+}
+.product-details p span{
+  color: var(--bs-red)
+}
+
+.product-bottom-details {
+  overflow: hidden;
+  border-top: 1px solid #eee;
+  padding-top: 5px;
+}
+
+.product-bottom-details div {
+  width: 50%;
+}
+
+.product-price {
+  font-size: 18px;
+  color: #fbb72c;
+  font-weight: 600;
+}
+
+.product-price small {
+  font-size: 80%;
+  font-weight: 400;
+  text-decoration: line-through;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.product-links {
+  text-align: right;
+}
+
+.product-links a {
+  display: inline-block;
+  margin-left: 5px;
+  color: #e1e1e1;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.product-links a:hover {
+  color: #fbb72c;
+}
+.product-bottom-details button {
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  background: var(--bs-red);
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--bs-white);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: var(--bs-transition);
+  border: 0;
+  margin-top: 10px;
+  width: 100%;
+}
+.product-bottom-details button:hover {
+  background: var(--bs-dark-red);
+}
+.give-aways .last-para {
+  color: #6f6f6f;
+  font-size: 20px;
+  margin-top: 20px;
+}
+.give-aways .pagination {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 20px;
+}
+.give-aways .pagination ul {
+  display: inline;
+  padding: 0;
+}
+.give-aways .pagination li {
+  display: inline;
+  margin: 0 5px;
+}
+.give-aways .pagination span {
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.give-aways .pagination span.active {
+  background-color: #eee;
+}
+
+
+
+
+
+
+
+/* ============================================================================= */
+/* ************************ ABOUT US ************************* */
+/* ============================================================================= */
+
+.about-sec {
+  background: url('https://amplepoints.com/img/dashboard/abouts-img.jpg') 50% 0 no-repeat fixed;
+  min-height: 100vh;
+  background-size: cover;
+  width: 100%;
+}
+
+.about-sec .about-us {
+  width: 50%;
+  margin: auto;
+  padding: 20px 0;
+}
+
+.about-para p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #525151;
+  text-align: justify;
+  line-height: 24px;
+}
+
+@media (max-width: 800px) {
+  .about-sec .about-us {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .about-sec .about-us {
+    width: 95%;
+    margin: auto;
+  }
+}
+
+
+
+
+
+
+
+/* ============================================================================= */
+/* ************************ CONTACT US ************************* */
+/* ============================================================================= */
+
+.contact-sec .contact-us {
+  position: relative;
+  padding: 70px 0;
+}
+
+.contact-sec .contact-us .form-img {
+  position: absolute;
+  z-index: -17;
+}
+
+.contact-sec .contact-us .form-label {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.contact-sec .contact-us .submit {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.contact-sec .contact-us .submit button {
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  background: var(--bs-red);
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--bs-white);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: var(--bs-transition);
+  border: 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.contact-sec .contact-us .submit button:hover {
+  box-shadow: none;
+}
+
+.contact-sec .contact-us .address span {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  color: #2c2a2a;
+  margin: 10px 0;
+}
+
+.contact-sec .contact-us .map iframe {
+  width: 100%;
 }

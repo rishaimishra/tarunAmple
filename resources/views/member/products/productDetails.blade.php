@@ -23,7 +23,47 @@
         <div class="row">
 
           <div class="col-md-7 col-12 my-2">
-            <div class="product-img"></div>
+            <div class="product-img">
+
+              <div class = "card-wrapper">
+                <div class = "card">
+                  <!-- card left -->
+                  <div class = "product-imgs">
+                    <div class = "img-display">
+                      <div class = "img-showcase">
+                        <img src = "https://amplepoints.com/product_images/33958/amplepoints_product_1689808373_img3.png" alt = "shoe image">
+                        <img src = "https://amplepoints.com/product_images/33958/amplepoints_product_1689808373_img4.png" alt = "shoe image">
+                        <img src = "https://amplepoints.com/product_images/33958/amplepoints_product_1689808373_img6.png" alt = "shoe image">
+                        <img src = "https://amplepoints.com/product_images/33958/amplepoints_product_1689808373_img2.png" alt = "shoe image">
+                      </div>
+                    </div>
+
+                    <div class = "img-select">
+                      <div class = "img-item">
+                        <a href = "#" data-id = "1">
+                          <img src = "https://amplepoints.com/product_images/33958/amplepoints_product_1689808373_img3.png" alt = "shoe image">
+                        </a>
+                      </div>
+                      <div class = "img-item">
+                        <a href = "#" data-id = "2">
+                          <img src = "https://amplepoints.com/product_images/33958/amplepoints_product_1689808373_img4.png" alt = "shoe image">
+                        </a>
+                      </div>
+                      <div class = "img-item">
+                        <a href = "#" data-id = "3">
+                          <img src = "https://amplepoints.com/product_images/33958/amplepoints_product_1689808373_img6.png" alt = "shoe image">
+                        </a>
+                      </div>
+                      <div class = "img-item">
+                        <a href = "#" data-id = "4">
+                          <img src = "https://amplepoints.com/product_images/33958/amplepoints_product_1689808373_img2.png" alt = "shoe image">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="col-md-5 col-12 my-2">
@@ -77,6 +117,50 @@
                 <a class="btn btn-large btn-success" style="background:#fe696a;color:#fff;font-weight:bold;border-color:#f75d00;width:auto;" href="#"><i class="fa fa-cog fa-spin fa-1x fa-fw"></i> Show Me How To Buy ?
                     <i class="fa fa-cog fa-spin fa-1x fa-fw"></i></a>
               </div></div>
+
+              <div class="shipping">
+                <div class="form-check first-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Shipping
+                  </label>
+                </div>
+                <div class="show-shipping">
+                  <div class="form-check mt-2">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Shipping
+                    </label>
+                  </div>
+                  <div class="add-cart-submit">
+                    <button id="applyamples" type="button">SUBMIT</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="shipping-price">
+                <div class="price-heading">
+                  <h4>Shipping Price: $</h4>
+                </div>
+                <div class="social-icons">
+                  <div class="face">
+                    <i class="fab fa-facebook"></i>
+                  </div>
+                  <div class="twit">
+                    <i class="fab fa-twitter"></i>
+                  </div>
+                  <div class="link">
+                    <i class="fab fa-linkedin"></i>
+                  </div>
+                  <div class="wtsp">
+                    <i class="fab fa-whatsapp"></i>
+                  </div>
+                </div>
+                <div class="para">
+                  <p>Earn 1 Ample Point every time you share your favorite finds!</p>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -754,7 +838,30 @@
 
 
 
+<script>
+  const imgs = document.querySelectorAll('.img-select a');
+const imgBtns = [...imgs];
+let imgId = 1;
+
+imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
+        event.preventDefault();
+        imgId = imgItem.dataset.id;
+        slideImage();
+    });
+});
+
+function slideImage(){
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+}
+
+window.addEventListener('resize', slideImage);
+</script>
+
 
 @include('includes.footer')
 @include('includes.script')
+
 @endsection
