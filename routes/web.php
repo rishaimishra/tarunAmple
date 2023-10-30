@@ -8,6 +8,9 @@ use App\Http\Controllers\CustomerWeb\StoreCategoryController;
 use App\Http\Controllers\CustomerWeb\ProductsController;
 use App\Http\Controllers\CustomerWeb\StaticPageController;
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
