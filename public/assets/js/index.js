@@ -263,5 +263,17 @@ lowerSlider.oninput = function () {
 
 
 
-// product details image zoom 
+//************************************************ */ faq 
 
+function showTab(tabIndex) {
+  var tabs = document.querySelectorAll('.faq-tab');
+  var buttons = document.querySelectorAll('.faq-tab-button');
+  for (var i = 0; i < tabs.length; i++) {
+      tabs[i].classList.remove('active-faq-tab');
+      buttons[i].classList.remove('active-faq-button');
+  }
+  tabs[tabIndex - 1].classList.add('active-faq-tab');
+  buttons[tabIndex - 1].classList.add('active-faq-button');
+}
+// Show the initial tab
+showTab(1);
