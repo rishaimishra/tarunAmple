@@ -29,6 +29,10 @@ Route::get('/admin/dashboard', function () {
     return view('member.static.adminPannel');
 });
 
+Route::get('/faq', function () {
+    return view('member.static.faq');
+});
+
 Route::get('/',[CustomerAuthController::class, 'indexPage'])->name('index.page');
 
 
