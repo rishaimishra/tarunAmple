@@ -21,6 +21,14 @@ use App\Http\Controllers\CustomerWeb\StaticPageController;
 |
 */
 
+Route::get('/admin/login', function () {
+    return view('admin.auth.login');
+});
+
+Route::get('/admin/dashboard', function () {
+    return view('member.static.adminPannel');
+});
+
 Route::get('/',[CustomerAuthController::class, 'indexPage'])->name('index.page');
 
 

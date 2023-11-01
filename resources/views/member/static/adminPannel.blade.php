@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-  <link rel="stylesheet" href="./assets/css/dashboard.css">
+  <link rel="stylesheet" href="{{asset('public/assets/css/dashboard.css')}}">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <div id="sidebar" class="sidebar">
       <div class="logo">
         <a href="#" class="simple-text logo-mini">
-          <img src="./assets/images/sidebar/logo.png" width="30">
+          <img src="{{asset('public/assets/images/sidebar/logo.png')}}" width="30">
         </a>
         <a href="#" class="simple-text logo-normal hide-content-collapsed">
           AMPLE POINTS
@@ -51,7 +51,7 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="./assets/bootstrap/js/bootstrap.bundle.js"></script>
+  <script src="{{asset('public/assets/bootstrap/js/bootstrap.bundle.js')}}"></script>
 
   <script>
     var sidebar = document.getElementById('sidebar');
