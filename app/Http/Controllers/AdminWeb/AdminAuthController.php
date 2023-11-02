@@ -26,6 +26,14 @@ Jeet
 
 
 
+public function adminDashboard(){
+  $admin = Auth::guard('admin')->user();
+    // dd($admin);
+   return view('admin.dashboard.dashboard');
+}
+
+
+
 
 
 
@@ -52,13 +60,28 @@ utype=1 admin
             return redirect()->back()->with('error','Incorrect Password');
         }
 
-        dd('successful admin Login',$adminDataEmail);
-        // Auth::login($adminDataEmail);
-         // return redirect()->route('cust.dashboard');
+        // dd('successful admin Login',$adminDataEmail);
+       
+       // Authenticate the admin using the 'admin' guard
+        Auth::guard('admin')->login($adminDataEmail);
+
+        // Access the authenticated admin user
+        $admin = Auth::guard('admin')->user();
+
+        return redirect()->route('admin.dashboard');
     }else{
          return back()->with("error","Admin Credential is wrong.");
     }
 }
+
+
+
+
+
+ public function logout(Request $request) {
+  Auth::logout();
+  return redirect()->route('admin.login.page');
+ }
 
 
 

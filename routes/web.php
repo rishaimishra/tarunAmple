@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminWeb\AdminAuthController;
 use App\Http\Controllers\CustomerWeb\StoreCategoryController;
 use App\Http\Controllers\CustomerWeb\ProductsController;
 use App\Http\Controllers\CustomerWeb\StaticPageController;
-
+use App\Http\Controllers\AdminWeb\AdminCrudController;
 
 
 /*
@@ -83,8 +83,16 @@ Route::post('/vendor-login/post',[VendorAuthController::class, 'vendorLoginPost'
 
 
 
-// =========================== Admin Routes Start =============================================//
+// ===================== Super Admin and Admin Routes Start =============================================//
 Route::get('/admin-login',[AdminAuthController::class, 'adminLogin'])->name('admin.login.page');
 Route::post('/admin-login/post',[AdminAuthController::class, 'adminLoginPost'])->name('admin.login.post');
+Route::any('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+//dashboard
+Route::get('/admin-dashboard',[AdminAuthController::class, 'adminDashboard'])->name('admin.dashboard');
+
+//admin crud
+Route::get('/admin-add', [AdminCrudController::class, 'admin_add_page'])->name('admin.add.page');
+Route::post('/different-types-admin-add', [AdminCrudController::class, 'different_type_admin_add'])->name('different.types.admin.add');
 
 // =========================== Admin Routes End =============================================//
