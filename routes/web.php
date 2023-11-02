@@ -21,6 +21,18 @@ use App\Http\Controllers\AdminWeb\AdminCrudController;
 |
 */
 
+Route::get('/admin/login', function () {
+    return view('admin.auth.login');
+});
+
+Route::get('/admin/dashboard', function () {
+    return view('member.static.adminPannel');
+});
+
+Route::get('/faq', function () {
+    return view('member.static.faq');
+});
+
 Route::get('/',[CustomerAuthController::class, 'indexPage'])->name('index.page');
 
 

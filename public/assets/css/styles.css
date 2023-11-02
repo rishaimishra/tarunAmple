@@ -2157,7 +2157,7 @@ img{
 }
 
 
-.product-tumb {
+.give-aways .product-tumb {
   padding: 10px;
   background: #f0f0f0;
   height: 200px;
@@ -2166,18 +2166,18 @@ img{
   justify-content: center;
 }
 
-.product-tumb img {
+.give-aways .product-tumb img {
   max-width: 100%;
   max-height: 100%;
   object-fit: cover;
 }
 
-.product-details {
+.give-aways .product-details {
   padding: 10px 10px 30px;
   text-align: center;
 }
 
-.product-details h4 a {
+.give-aways .product-details h4 a {
   font-weight: 500;
   display: block;
   margin-bottom: 18px;
@@ -2188,38 +2188,38 @@ img{
   font-size: 18px;
 }
 
-.product-details h4 a:hover {
+.give-aways .product-details h4 a:hover {
   color: var(--bs-red);
 }
 
-.product-details p {
+.give-aways .product-details p {
   font-size: 14px;
   color: #999;
   border-top: 1px solid #eeeeee;
   padding: 5px 0;
   margin: 0;
 }
-.product-details p span{
+.give-aways .product-details p span{
   color: var(--bs-red)
 }
 
-.product-bottom-details {
+.give-aways .product-bottom-details {
   overflow: hidden;
   border-top: 1px solid #eee;
   padding-top: 5px;
 }
 
-.product-bottom-details div {
+.give-aways .product-bottom-details div {
   width: 50%;
 }
 
-.product-price {
+.give-aways .product-price {
   font-size: 18px;
   color: #fbb72c;
   font-weight: 600;
 }
 
-.product-price small {
+.give-aways .product-price small {
   font-size: 80%;
   font-weight: 400;
   text-decoration: line-through;
@@ -2227,11 +2227,11 @@ img{
   margin-right: 5px;
 }
 
-.product-links {
+.give-aways .product-links {
   text-align: right;
 }
 
-.product-links a {
+.give-aways .product-links a {
   display: inline-block;
   margin-left: 5px;
   color: #e1e1e1;
@@ -2239,10 +2239,10 @@ img{
   font-size: 17px;
 }
 
-.product-links a:hover {
+.give-aways .product-links a:hover {
   color: #fbb72c;
 }
-.product-bottom-details button {
+.give-aways .product-bottom-details button {
   display: inline-block;
   text-align: center;
   font-size: 14px;
@@ -2258,7 +2258,7 @@ img{
   margin-top: 10px;
   width: 100%;
 }
-.product-bottom-details button:hover {
+.give-aways .product-bottom-details button:hover {
   background: var(--bs-dark-red);
 }
 .give-aways .last-para {
@@ -2399,4 +2399,110 @@ img{
 
 .contact-sec .contact-us .map iframe {
   width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================================================= */
+/* ************************ FAQ SECTION ************************* */
+/* ============================================================================= */
+
+.faq-sec {
+  padding: 100px 0 20px;
+}
+
+.faq-sec .faq {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 10px;
+}
+
+.faq-sec .faq .faq-tab-buttons {
+  display: flex;
+  margin-top: 20px;
+}
+
+.faq-sec .faq .faq-tab-buttons button {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #c9c9c9;
+  border-top: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #8e8d8d;
+  padding: 7px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  transition: var(--bs-transition);
+}
+
+.faq-sec .faq .faq-tab-buttons button:hover {
+  background: var(--bs-red);
+  color: #fff;
+  box-shadow: none;
+}
+
+.faq-sec .faq .faq-content {
+  margin-top: 12px;
+}
+
+.faq-sec .faq .faq-heading {
+  font-size: 22px;
+  border-bottom: 1px solid var(--bs-red);
+  padding-bottom: 5px;
+  color: var(--bs-red);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.faq-sec .faq .accordion-button:focus {
+  border-color: none;
+  box-shadow: none;
+}
+
+.faq-sec .faq .accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: var(--bs-red);
+  box-shadow: none;
+}
+
+.faq-sec .faq .accordion-button {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.faq-sec .faq .accordion-body {
+  color: #7c7c7c;
+  font-weight: 500;
+}
+
+.faq-sec .faq .accordion-body a {
+  color: var(--bs-red);
+}
+
+.faq-tab {
+  display: none;
+}
+
+.active-faq-tab {
+  display: block;
+}
+
+.active-faq-button {
+  background: var(--bs-red) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 500px) {
+  .faq-sec .faq .faq-tab-buttons {
+    display: block;
+  }
 }
