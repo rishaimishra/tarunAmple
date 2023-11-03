@@ -1,0 +1,17 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="{{asset('public/assets/bootstrap/js/bootstrap.bundle.js')}}"></script>
+
+  <script>
+    var sidebar = document.getElementById('sidebar');
+    var menuToggle = document.getElementById('menu-toggle');
+    var logoText = document.querySelector('.hide-content-collapsed');
+    var menuHide = document.querySelector('.hide-menu');
+
+    menuToggle.addEventListener('click', function () {
+      var isCollapsed = sidebar.classList.toggle('collapsed');
+      menuToggle.innerText = isCollapsed ? '✕' : '☰'; // Change the text here
+      logoText.style.display = isCollapsed ? 'none' : 'block';
+      menuHide.style.display = isCollapsed ? 'none' : 'block';
+    });
+  </script>
+ 

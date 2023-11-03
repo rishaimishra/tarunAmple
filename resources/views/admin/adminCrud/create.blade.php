@@ -1,8 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Registration Form</title>
+@extends('admin.admin_includes.layout')
+
+{{-- head section --}}
+@section('head')
+@include('admin.admin_includes.admin_head') 
+@endsection
+
+{{-- title section --}}
+@section('title')
+<title>Amplepoint | Admin Add</title>
+@endsection
+
+{{-- sidebar section --}}
+@section('sideber')
+   @include('admin.admin_includes.admin_sideber')
+@endsection
      <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,8 +72,10 @@
 		    display: none;
 		}
     </style>
-</head>
-<body>
+
+
+
+@section('content')
     <div class="container">
         <h2>Add Admin</h2>
         <form id="registration-form" action="{{route('different.types.admin.add')}}" method="post" enctype="multipart/form-data">
@@ -112,9 +125,16 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+@endsection
 
 
-@include('includes.script')
+
+
+{{-- footer and script section --}}
+@section('footerAndScript')
+   @include('admin.admin_includes.admin_footer')
+   @include('admin.admin_includes.admin_script')
+
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script>
         $(document).ready(function() {
@@ -179,8 +199,4 @@
             });
         });
     </script>
-
-
- 
-</body>
-</html>
+@endsection
