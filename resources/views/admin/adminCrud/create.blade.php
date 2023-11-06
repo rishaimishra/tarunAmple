@@ -130,11 +130,7 @@
 
 
 
-{{-- footer and script section --}}
-@section('footerAndScript')
-   @include('admin.admin_includes.admin_footer')
-   @include('admin.admin_includes.admin_script')
-
+@include('admin.admin_includes.admin_script')
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script>
         $(document).ready(function() {
@@ -199,4 +195,3 @@
             });
         });
     </script>
-@endsection

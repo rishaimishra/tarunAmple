@@ -129,6 +129,70 @@ class AdminCrudController extends Controller
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+/*
+  admin list page
+  Jeet
+  here admin roll is utype
+  admin id is u_id
+*/
+
+    public function admin_list_page(){
+        $userLID= Auth::guard('admin')->user()->u_id;
+        // dd($userLID);
+
+    $result = AdminModel::select([
+            'tbl_admin.*',
+            'tbl_vendor.tbl_vndr_store_status as store_status',
+            'tbl_vendor.allow_booking as allow_booking'
+        ])
+        ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_admin_uid', '=', 'tbl_admin.u_id')
+        ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_vendor.tbl_vndr_id')
+        ->leftJoin('tbl_charity_stores', 'tbl_charity_stores.tbl_admin_uid', '=', 'tbl_admin.u_id')
+        ->where('tbl_admin.u_id', $userLID)
+        ->where('tbl_admin.ustatus', 1)
+        ->where('tbl_admin.isdeleted', 0)
+        ->get();
+        $data['result']= $result;
+
+    // return $result;
+
+       if ($result->count() > 0 && $result[0]['u_id'] != 1) {
+          return redirect()->route('admin.dashboard');
+       }
+
+        $admintype = @Auth::guard('admin')->user()->utype;
+        $store_status = $result[0]['store_status'];
+
+        if ($admintype == 1) {
+            view()->share('store_status', 1);
+        } else {
+            view()->share('store_status', $store_status);
+        }
+
+        $data['adminlistdata']= AdminModel::where(function ($query) {
+                            $query->where('utype', 1)
+                                  ->orWhere('utype', 4)
+                                  ->orWhere('utype', 5)
+                                  ->orWhere('utype', 9);
+                            })
+                            ->where('ustatus', '!=', 0)
+                            ->where('isdeleted', 0)->orderBy('u_id','desc')
+                            ->get();
+    
+      return view('admin.adminCrud.list')->with($data);
+
+    }
+
         
 
 

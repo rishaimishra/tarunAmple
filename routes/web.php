@@ -8,7 +8,7 @@ use App\Http\Controllers\CustomerWeb\StoreCategoryController;
 use App\Http\Controllers\CustomerWeb\ProductsController;
 use App\Http\Controllers\CustomerWeb\StaticPageController;
 use App\Http\Controllers\AdminWeb\AdminCrudController;
-
+use App\Http\Controllers\AdminWeb\AdminBannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +95,8 @@ Route::post('/vendor-login/post',[VendorAuthController::class, 'vendorLoginPost'
 
 
 
+
+
 // ===================== Super Admin and Admin Routes Start =============================================//
 Route::get('/admin-login',[AdminAuthController::class, 'adminLogin'])->name('admin.login.page');
 Route::post('/admin-login/post',[AdminAuthController::class, 'adminLoginPost'])->name('admin.login.post');
@@ -103,8 +105,17 @@ Route::any('/logout', [AdminAuthController::class, 'logout'])->name('admin.logou
 //dashboard
 Route::get('/admin-dashboard',[AdminAuthController::class, 'adminDashboard'])->name('admin.dashboard');
 
+
 //admin crud
 Route::get('/admin-add', [AdminCrudController::class, 'admin_add_page'])->name('admin.add.page');
 Route::post('/different-types-admin-add', [AdminCrudController::class, 'different_type_admin_add'])->name('different.types.admin.add');
+Route::get('/admin-list', [AdminCrudController::class, 'admin_list_page'])->name('admin.list.page');
+Route::get('/admin-edit', [AdminCrudController::class, 'admin_edit_page'])->name('admin.edit.page');
+
+
+//banner crud
+Route::get('/admin-banner-list', [AdminBannerController::class, 'admin_banner_list'])->name('admin.banner.list');
+Route::get('/admin-banner-add', [AdminBannerController::class, 'admin_banner_add_page'])->name('admin.banner.add.page');
+Route::post('/admin-banner-add/post', [AdminBannerController::class, 'admin_banner_add_post'])->name('admin.banner.add.post');
 
 // =========================== Admin Routes End =============================================//

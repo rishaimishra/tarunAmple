@@ -6,25 +6,14 @@
     <body>
         <div id="wrapper">
             @yield('sideber')
-            <div id="content">
-                <div id="header" class="header">
-                    <div class="header-menu">
-                        <div class="toggle">
-                            <button id="menu-toggle">☰</button>
-                            {{-- <p>Dashboard</p> --}}
-                        </div>
-                        <div class="user">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                </div>
-                <div id="main-content" class="main-content">
-                    @yield('content') <!-- Main content section -->
-                </div>
+            
+            <div class="content">
+                @yield('content') <!-- Main content section -->
             </div>
+            @include('admin.admin_includes.admin_footer')
         </div>
-        @yield('footerAndScript')
-    </body>
-
+      @yield('script') 
     
+</body>
+
 </html>
