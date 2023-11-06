@@ -301,9 +301,9 @@
 <!-- Member & Vendor Login Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content" style="position: fixed;top: 10px;max-width: 470px;left: 50%;transform: translate(-50%, 0);">
             <div class="modal-header" style="background:#f6f9fc">
-                <h4 class="modal-heading text-center">Ample Points</h4>
+                <h4 style="width: 100%;" class="modal-heading text-center">Ample Points</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -322,9 +322,9 @@
 <!--Member & Vendor Register Modal -->
 <div class="modal fade" id="vendorModal" tabindex="-1" aria-labelledby="vendorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content" style="position: fixed;top: 10px;max-width: 470px;left: 50%;transform: translate(-50%, 0);">
             <div class="modal-header" style="background:#f6f9fc">
-                <h4 class="modal-heading text-center">Ample Points</h4>
+                <h4 style="width: 100%;" class="modal-heading text-center">Ample Points</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
