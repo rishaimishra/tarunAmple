@@ -15,7 +15,7 @@
             <div id="slick-slider-1" class="slick-init">
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1595664013_t_las-vegas-mall.png"
                                     alt="1595664013_t_las-vegas-mall.png">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1595963020_t_luxury-logo (2).png"
                                     alt="1595963020_t_luxury-logo (2).png">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1660945234_t_TAOGROUP-LOGO-Social-Icon_150x150.jpg"
                                     alt="1660945234_t_TAOGROUP-LOGO-Social-Icon_150x150.jpg">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/mall21.jpg" alt="mall21.jpg">
                             </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1687357111_t_ffnn150.jpg"
                                     alt="1687357111_t_ffnn150.jpg">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1688023887_t_New Project(3).jpg"
                                     alt="1688023887_t_New Project(3).jpg">
@@ -98,7 +98,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1687208689_t_Screenshot 2023-06-19 at 2.02.42 PM.png"
                                     alt="1687208689_t_Screenshot 2023-06-19 at 2.02.42 PM.png">
@@ -112,7 +112,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/1694857392_t_cmlogo.jpg"
                                     alt="1694857392_t_cmlogo.jpg">
@@ -126,7 +126,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/hnw150.jpg" alt="hnw150.jpg">
                             </div>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="slick-img-div">
                     <div class="vendor-div-box">
-                        <a href="{{route('category.page')}}">
+                        <a href="{{ route('category.page') }}">
                             <div class="vendor-divimg">
                                 <img src="https://amplepoints.com/mall/logo/mtd150.jpg" alt="mtd150.jpg">
                             </div>
@@ -200,9 +200,13 @@
                                     <img src="https://amplepoints.com/vendor-data/845/profile/1661293710_t_logo_150x150.jpg"
                                         alt="Jewel Nightclub">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -214,9 +218,13 @@
                                     <img src="https://amplepoints.com/vendor-data/290/profile/1580272168_t_jimmy-choo-logo.png"
                                         alt="Jimmy Choo">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -228,9 +236,13 @@
                                     <img src="https://amplepoints.com/vendor-data/952/profile/1670928347_t_LOGO_150x150.jpg"
                                         alt="John Padilla Plumbing">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -242,9 +254,13 @@
                                     <img src="https://amplepoints.com/vendor-data/1111/profile/1689332717_t_lloog_150x150.jpg"
                                         alt="Joyful Living Services">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -256,9 +272,13 @@
                                     <img src="https://amplepoints.com/vendor-data/942/profile/1670822941_t_logo_150x150 (1).jpg"
                                         alt="Jurewitz Law Group Injury &amp; Accident Lawyers">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -270,9 +290,13 @@
                                     <img src="https://amplepoints.com/vendor-data/1102/profile/1688140483_t_logo_150x150.jpg"
                                         alt="KoKo Eko">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -284,9 +308,13 @@
                                     <img src="https://amplepoints.com/vendor-data/946/profile/1670832383_t_LOGO_150x150.jpg"
                                         alt="Krasner Jewelers">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -298,9 +326,13 @@
                                     <img src="https://amplepoints.com/vendor-data/972/profile/1677659284_t_logo_150x150.jpg"
                                         alt="Ladah Law Firm, PLLC">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -312,9 +344,13 @@
                                     <img src="https://amplepoints.com/vendor-data/1001/profile/1682979200_t_llogo_150x150.jpg"
                                         alt="LARRY FLYNT'S HUSTLER CLUB">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -326,9 +362,13 @@
                                     <img src="https://amplepoints.com/vendor-data/1100/profile/1688014992_t_LOGO_150x150.jpg"
                                         alt="Le Sorelle Restaurant">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -340,9 +380,13 @@
                                     <img src="https://amplepoints.com/vendor-data/1061/profile/1686998819_t_log_150x150.jpg"
                                         alt="LEAN DOG FITNESS">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -354,9 +398,13 @@
                                     <img src="https://amplepoints.com/vendor-data/830/profile/1659592761_t_nuera.png"
                                         alt="LIFESTYLE REALTY">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -368,9 +416,13 @@
                                     <img src="https://amplepoints.com/vendor-data/937/profile/1670667759_t_G_150x150.jpg"
                                         alt="Lottery Window Cleaning">
                                 </div>
-                                <div class="vendor-detail">
-                                    <h4><span><i class="fa fa-user"></i></span>
-                                        LAS VEGAS MALL </h4>
+                                <div class="vendor-detail text-light" style="font-size: 14px; font-weight: 300;">
+                                    <span style="display: block; font-weight: 700; padding-bottom: 5px;"><i
+                                            class="fa fa-user"></i>The Mob Museum</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-marker"
+                                            aria-hidden="true"></i> LAS VEGAS MALL</span>
+                                    <span style="display: block; padding-bottom: 5px;"><i class="fa fa-map-pin"
+                                            aria-hidden="true"></i> 89101</span>
                                 </div>
                             </a>
                         </div>
@@ -397,5 +449,4 @@
 
     @include('includes.footer')
     @include('includes.script')
-
 @endsection
