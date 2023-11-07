@@ -180,7 +180,7 @@
 
 
     {{-- -- start two box images --  --}}
-    <div class="two-imgs-box">
+    {{-- <div class="two-imgs-box">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-12 my-2">
@@ -201,12 +201,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     {{-- -- end two box images --  --}}
 
 
     <!-- -- start sopping product --  -->
-    <div class="sec-padding">
+    {{-- <div class="sec-padding">
       <div class="shopping-products">
         <div class="container">
           <div class="row">
@@ -3139,7 +3139,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     <!-- -- end sopping product --  -->
 
 
