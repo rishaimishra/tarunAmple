@@ -121,5 +121,6 @@ Route::get('/admin-banner-show-status', [AdminBannerController::class, 'admin_ba
 Route::get('/admin-video-add-status', [AdminBannerController::class, 'admin_video_show_status'])->name('admin.show.video');
 Route::get('/admin-banner-edit/{id}', [AdminBannerController::class, 'admin_banner_edit_page'])->name('admin.banner.edit.page');
 Route::post('/admin-banner-update', [AdminBannerController::class, 'admin_banner_update'])->name('admin.banner.update');
+Route::get('/admin-banner-delete/{id}', [AdminBannerController::class, 'admin_banner_delete'])->name('admin.banner.delete');
 
 // =========================== Admin Routes End =============================================//

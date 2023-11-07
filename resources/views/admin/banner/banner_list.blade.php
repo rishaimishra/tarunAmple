@@ -85,7 +85,7 @@
                                                 <td class="text-center">{{ ucfirst($val->create_date) }}</td>
                                                 <td class="td-actions text-center">
                                                     <a class="btn btn-success" href="{{ route('admin.banner.edit.page',$val->id) }}"><i class="fas fa-edit"></i></a>
-                                                    <a class="btn btn-danger" href="javascript:void(0);" onclick="vndrdel('{{ $val->id }}');"> <i class="fas fa-trash-alt"></i> </a>
+                                                    <a class="btn btn-danger" href="{{ route('admin.banner.delete',$val->id) }}" onclick="return confirm('are you sure want to delete?')"> <i class="fas fa-trash-alt"></i> </a>
                                                 </td>
                                             </tr>
                                         @endforeach

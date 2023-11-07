@@ -191,12 +191,23 @@ public function admin_banner_add_post(Request $request)
 
 
 
+
+/*
+banner image active 
+Jeet
+*/
 public function admin_banner_show_status(){
   $updt=BannerShowStatus::where('id',1)->update(['video'=>'N', 'image'=>'Y']);
   return back()->with('success','Banner now set to image');
 }
 
 
+
+
+/*
+banner video active
+Jeet
+*/
 public function admin_video_show_status(){
   $updt=BannerShowStatus::where('id',1)->update(['video'=>'Y', 'image'=>'N']);
   return back()->with('success','Banner now set to video');
@@ -206,7 +217,10 @@ public function admin_video_show_status(){
 
 
 
-
+/*
+banner edit page
+Jeet
+*/
 public function admin_banner_edit_page($id){
      $chk=BannerModel::where('id',$id)->where('banner_status',1)->where('banner_isdeleted',0)->first();
         if(!$chk){
@@ -220,7 +234,10 @@ public function admin_banner_edit_page($id){
 
 
 
-
+/*
+banner update
+Jeet
+*/
 public function admin_banner_update(Request $request){
       $customMessages = [
         'banner_title.required' => 'The banner title field is required.',
@@ -275,6 +292,26 @@ public function admin_banner_update(Request $request){
     return redirect()->back()->with('success', 'Banner updated successfully');
 }
 
+
+
+
+
+
+/*
+banner delete
+Jeet
+*/
+public function admin_banner_delete($id){
+     $chk=BannerModel::where('id',$id)->where('banner_status',1)->where('banner_isdeleted',0)->first();
+        if(!$chk){
+            return back()->with('error','id not found.');
+        }
+        $upd['banner_status']=0;
+        $upd['banner_isdeleted']=1;
+
+         $updt=BannerModel::where('id',$id)->update($upd);
+         return redirect()->back()->with('success', 'Banner image deleted successfully');
+}
 
 
 
