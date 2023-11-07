@@ -27,7 +27,7 @@
 
 
 @section('content')
-
+   @include('includes.message')
     <div class="container mt-5">
        <h2>Upload Images and a Video</h2>
     <form id="uploadForm" action="{{route('admin.banner.add.post')}}" method="post" enctype="multipart/form-data">
