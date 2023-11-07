@@ -15,6 +15,9 @@
   <link href="{{url('/')}}/public/adminassets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{url('/')}}/public/adminassets/demo/demo.css" rel="stylesheet" />
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="">
 <div class="wrapper ">

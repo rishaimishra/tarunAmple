@@ -6,6 +6,7 @@
     <body>
         <div id="wrapper">
             @yield('sideber')
+            <br>
             
             <div class="content">
                 @yield('content') <!-- Main content section -->

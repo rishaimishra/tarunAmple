@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\BannerModel;
+use App\Models\BannerShowStatus;
+use Illuminate\Support\Facades\File;
 
 
 class AdminBannerController extends Controller
@@ -17,7 +19,10 @@ banner list page
 Jeet
 */   
     public function admin_banner_list(){
-     return view('admin.banner.banner_list');
+        $data['banners']=BannerModel::where('banner_status','!=',0)->where('type','image')->orderBy('id','desc')->get();
+          $data['video']=BannerModel::where('banner_status','!=',0)->where('type','video')->orderBy('id','desc')->first();
+          $data['banner_show_status']=BannerShowStatus::first();
+        return view('admin.banner.banner_list')->with($data);
     }
 
 
@@ -183,6 +188,92 @@ public function admin_banner_add_post(Request $request)
 }
 
 
+
+
+
+public function admin_banner_show_status(){
+  $updt=BannerShowStatus::where('id',1)->update(['video'=>'N', 'image'=>'Y']);
+  return back()->with('success','Banner now set to image');
+}
+
+
+public function admin_video_show_status(){
+  $updt=BannerShowStatus::where('id',1)->update(['video'=>'Y', 'image'=>'N']);
+  return back()->with('success','Banner now set to video');
+}
+
+
+
+
+
+
+public function admin_banner_edit_page($id){
+     $chk=BannerModel::where('id',$id)->where('banner_status',1)->where('banner_isdeleted',0)->first();
+        if(!$chk){
+            return back()->with('error','id not found.');
+        }
+        $data['banner']=$chk;
+        return view('admin.banner.banner_edit')->with($data);
+}
+
+
+
+
+
+
+public function admin_banner_update(Request $request){
+      $customMessages = [
+        'banner_title.required' => 'The banner title field is required.',
+        'tag_line.required' => 'The tag line field is required.',
+        'image.image' => 'Each uploaded file must be an image (jpg, jpeg, png, or gif).',
+        'image.mimes' => 'Each image must be in one of the following formats: jpg, jpeg, png, or gif.',
+        'image.max' => 'Each image must not exceed 5MB in size.',
+    ];
+        
+        
+
+    $request->validate([
+        'banner_title' => 'required',
+        'tag_line' => 'required',
+        'image' => 'image|mimes:jpg,jpeg,png,gif|max:5242880',
+    ], $customMessages);
+
+    $banner = BannerModel::find($request->id);
+
+    if (!$banner) {
+        return redirect()->back()->with('error', 'Banner not found');
+    }
+
+    $oldImage = $banner->banner_image;
+    $upd=[];
+
+    // Check if a new image is uploaded
+    if ($request->hasFile('image')) {
+        // Upload the new image
+        $newImage = $request->file('image');
+        $filename = time() . '_' . $newImage->getClientOriginalName();
+        $newImage->move(storage_path('app/public/banner_image'), $filename);
+        
+       $upd['banner_image'] = $filename;
+
+       // Unlink the old image
+           if (isset($oldImage)) {
+                $oldImagePath = storage_path('app/public/banner_image') . '/' . $oldImage;
+                
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+    }
+
+   $upd['banner_title'] = $request->banner_title;
+   $upd['tag_line'] = $request->tag_line;
+   $updt=BannerModel::where('id',$request->id)->update($upd);
+
+
+    return redirect()->back()->with('success', 'Banner updated successfully');
+}
 
 
 
