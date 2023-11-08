@@ -25,10 +25,10 @@ width: 0;
 margin-right: auto;
 margin-left: auto;
 border: 12px solid transparent;
-border-bottom-color: #fe696a;
+border-bottom-color: #f75d00;
 }
 .login-header {
-background: #fe696a;
+background: #f75d00;
 padding: 20px;
 font-size: 1.4em;
 font-weight: normal;
@@ -63,10 +63,10 @@ color: #555;
 }
 .login input[type="email"]:focus,
 .login input[type="password"]:focus {
-border-color: #fe696a;
+border-color: #f75d00;
 }
 .login input[type="submit"] {
-background: #fe696a;
+background: #f75d00;
 border-color: transparent;
 color: #fff;
 cursor: pointer;
@@ -92,7 +92,7 @@ font-size: 14px;
 color: #3F51B5;
 }
 .copy-right {
-border-top: 1px solid #fe696a;
+border-top: 1px solid #f75d00;
 margin-top: 18px;
 }
 .copy-right p {
