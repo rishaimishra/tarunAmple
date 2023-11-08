@@ -114,7 +114,7 @@
                   </div>
               </div>
               <div class="attributes mt-3">
-                <a class="btn btn-large btn-success" style="background:#fe696a;color:#fff;font-weight:bold;border-color:#f75d00;width:auto;" href="#"><i class="fa fa-cog fa-spin fa-1x fa-fw"></i> Show Me How To Buy ?
+                <a class="btn btn-large btn-success" style="background:#f75d00;color:#fff;font-weight:bold;border-color:#f75d00;width:auto;" href="#"><i class="fa fa-cog fa-spin fa-1x fa-fw"></i> Show Me How To Buy ?
                     <i class="fa fa-cog fa-spin fa-1x fa-fw"></i></a>
               </div></div>
 
