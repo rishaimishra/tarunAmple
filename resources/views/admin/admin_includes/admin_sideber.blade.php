@@ -84,6 +84,9 @@
       </li>
 
 
+
+
+{{-- home / banner/ --}}
        <li class="nav-item ">
         <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
           <i class="material-icons">apps</i>
@@ -128,6 +131,87 @@
           </ul>
         </div>
       </li>
+
+
+
+
+
+      {{-- store/ category/ product --}}
+
+        <li class="nav-item ">
+        <a class="nav-link" data-toggle="collapse" href="#componentsExamples2">
+          <i class="material-icons">apps</i>
+          <p> Store /Brand
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="componentsExamples2">
+          <ul class="nav">
+            <li class="nav-item ">
+              <a class="nav-link" data-toggle="collapse" href="#componentsCollapse2">
+                {{-- <span class="sidebar-mini"> M-C </span> --}}
+                <span class="sidebar-normal">Manage Category
+                  <b class="caret"></b>
+                </span>
+              </a>
+              <div class="collapse" id="componentsCollapse2">
+                <ul class="nav">
+                  <li class="nav-item ">
+                    <a class="nav-link" href="{{route('admin.category.add')}}">
+                      <span class="sidebar-normal"> Add Category </span>
+                    </a>
+                  </li>
+
+                  <li class="nav-item ">
+                    <a class="nav-link" href="{{route('admin.category.list')}}">
+                      <span class="sidebar-normal"> View Category  </span>
+                    </a>
+                  </li>
+
+                  <li class="nav-item ">
+                    <a class="nav-link" href="{{-- {{route('admin.banner.list')}} --}}">
+                      <span class="sidebar-normal"> View Sub Category  </span>
+                    </a>
+                  </li>
+
+                  <li class="nav-item ">
+                    <a class="nav-link" href="{{-- {{route('admin.banner.list')}} --}}">
+                      <span class="sidebar-normal"> View Sub2 Category  </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+           {{--  <li class="nav-item ">
+              <a class="nav-link" href="../examples/components/buttons.html">
+                <span class="sidebar-mini"> B </span>
+                <span class="sidebar-normal"> Buttons </span>
+              </a>
+            </li> --}}
+          
+          </ul>
+        </div>
+      </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      
 
      {{-- <li class="nav-item ">

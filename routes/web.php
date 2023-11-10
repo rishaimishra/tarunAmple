@@ -9,6 +9,8 @@ use App\Http\Controllers\CustomerWeb\ProductsController;
 use App\Http\Controllers\CustomerWeb\StaticPageController;
 use App\Http\Controllers\AdminWeb\AdminCrudController;
 use App\Http\Controllers\AdminWeb\AdminBannerController;
+use App\Http\Controllers\AdminWeb\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -122,5 +124,20 @@ Route::get('/admin-video-add-status', [AdminBannerController::class, 'admin_vide
 Route::get('/admin-banner-edit/{id}', [AdminBannerController::class, 'admin_banner_edit_page'])->name('admin.banner.edit.page');
 Route::post('/admin-banner-update', [AdminBannerController::class, 'admin_banner_update'])->name('admin.banner.update');
 Route::get('/admin-banner-delete/{id}', [AdminBannerController::class, 'admin_banner_delete'])->name('admin.banner.delete');
+
+
+
+// category crud
+// Add Category
+Route::get('admin/category-management/add', [CategoryController::class, 'create'])->name('admin.category.add');
+Route::post('admin/category-management/add', [CategoryController::class, 'store'])->name('admin.category.store');
+
+// List Categories
+Route::get('admin/category-management/list', [CategoryController::class, 'index'])->name('admin.category.list');
+
+// Update Category
+Route::get('admin/category-management/update/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+Route::put('admin/category-management/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+
 
 // =========================== Admin Routes End =============================================//
