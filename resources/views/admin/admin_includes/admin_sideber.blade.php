@@ -150,7 +150,7 @@
             <li class="nav-item ">
               <a class="nav-link" data-toggle="collapse" href="#componentsCollapse2">
                 {{-- <span class="sidebar-mini"> M-C </span> --}}
-                <span class="sidebar-normal">Manage Category
+                <span class="sidebar-normal"> &nbsp; Manage Category
                   <b class="caret"></b>
                 </span>
               </a>
@@ -169,13 +169,13 @@
                   </li>
 
                   <li class="nav-item ">
-                    <a class="nav-link" href="{{-- {{route('admin.banner.list')}} --}}">
+                    <a class="nav-link" href="{{route('admin.sub.category.list')}}">
                       <span class="sidebar-normal"> View Sub Category  </span>
                     </a>
                   </li>
 
                   <li class="nav-item ">
-                    <a class="nav-link" href="{{-- {{route('admin.banner.list')}} --}}">
+                    <a class="nav-link" href="{{route('admin.sub2.category.list')}}">
                       <span class="sidebar-normal"> View Sub2 Category  </span>
                     </a>
                   </li>

@@ -137,6 +137,7 @@ public function admin_banner_add_post(Request $request)
         'images' => 'max:6',
         'video' => 'file|mimes:mp4,avi,mov',
     ], $customMessages);
+    
     if ($request->hasFile('images')) {
         $images = $request->file('images');
         
