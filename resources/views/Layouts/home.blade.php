@@ -76,7 +76,133 @@
   
 
 
-
+ {{-- -- start price --  --}}
+    <div class="price-sec">
+      <div class="how-it">
+        <h4>HOW IT WORKS</h4>
+        <div class="container">
+          <div class="row">
+            <div class="outer-box">
+              <div class="row">
+                <!-- Pricing Block -->
+                <div class="pricing-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+                  <div class="inner-box">
+                    <div class="icon-box">
+                      <div class="icon-outer">
+                        <img src="{{ url('/') }}/public/assets/images/price/how-1.png"
+                          alt="">
+                      </div>
+                    </div>
+                    <div class="price-box">
+                      <h4 class="price">JOIN FOR FREE</h4>
+                    </div>
+                    <div class="features">
+                      <p>Sign Up For A Free AmplePoints
+                        Membership and Receive
+                        42 Free Ample Points
+                        (Cash-Value: $5.00)
+                      </p>
+                    </div>
+                    <div class="btn-box">
+                      <a href="#" class="theme-btn">1 AmplePoint = 12 cents</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Pricing Block -->
+                <div class="pricing-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
+                  <div class="inner-box">
+                    <div class="icon-box">
+                      <div class="icon-outer">
+                        <img src="{{ url('/') }}/public/assets/images/price/how-2.png"
+                          alt="">
+                      </div>
+                    </div>
+                    <div class="price-box">
+                      <h4 class="price">EARN FOR FREE</h4>
+                    </div>
+                    <div class="features">
+                      <p>Earn Ample Points For
+                        Shopping, Sharing Links and
+                        Watching Personalized Ads
+                      </p>
+                    </div>
+                    <div class="btn-box">
+                      <a href="#" class="theme-btn">60 min = 60 AmplePoints = $7.20</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Pricing Block -->
+                <div class="pricing-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="800ms">
+                  <div class="inner-box">
+                    <div class="icon-box">
+                      <div class="icon-outer">
+                        <img src="{{ url('/') }}/public/assets/images/price/how-3.png"
+                          alt="">
+                      </div>
+                    </div>
+                    <div class="price-box">
+                      <h4 class="price">REDEEM AMPLES</h4>
+                    </div>
+                    <div class="features">
+                      <p>Redeem Your Ample Points
+                        To Receive Free Products, Services,
+                        and Discounts!
+                      </p>
+                    </div>
+                    <div class="btn-box">
+                      <a href="#" class="theme-btn">100 AmplePoints = $12.00</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-12 my-2">
+              <div class="video-card">
+                <a href="" class="play-btn" data-bs-toggle="modal" data-bs-target="#videoModal1">
+                <img src="{{ url('/') }}/public/assets/images/price/play-btn.png" alt="">
+                </a>
+                <img src="https://amplepoints.com/amplepoints_videos/big_idea.png" alt=""
+                  class="img-fluid">
+                <span class="ampl_video_time">01:15</span>
+              </div>
+            </div>
+            <div class="col-md-3 col-12 my-2">
+              <div class="video-card">
+                <a href="" class="play-btn" data-bs-toggle="modal" data-bs-target="#videoModal2">
+                <img src="{{ url('/') }}/public/assets/images/price/play-btn.png" alt="">
+                </a>
+                <img src="https://amplepoints.com/amplepoints_videos/how_to_signup.png" alt=""
+                  class="img-fluid">
+                <span class="ampl_video_time">00:44</span>
+              </div>
+            </div>
+            <div class="col-md-3 col-12 my-2">
+              <div class="video-card">
+                <a href="" class="play-btn" data-bs-toggle="modal" data-bs-target="#videoModal3">
+                <img src="{{ url('/') }}/public/assets/images/price/play-btn.png" alt="">
+                </a>
+                <img src="https://amplepoints.com/amplepoints_videos/how_to_shop_with_amplepoints.png"
+                  alt="" class="img-fluid">
+                <span class="ampl_video_time">01:30</span>
+              </div>
+            </div>
+            <div class="col-md-3 col-12 my-2">
+              <div class="video-card">
+                <a href="" class="play-btn" data-bs-toggle="modal" data-bs-target="#videoModal4">
+                <img src="{{ url('/') }}/public/assets/images/price/play-btn.png" alt="">
+                </a>
+                <img src="https://amplepoints.com/amplepoints_videos/how_to_watch_ads_and_earn_amplepoints.png"
+                  alt="" class="img-fluid">
+                <span class="ampl_video_time">01:54</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{-- -- end price --  --}}
 
 
 
