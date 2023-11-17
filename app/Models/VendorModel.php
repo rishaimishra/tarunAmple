@@ -21,4 +21,9 @@ class VendorModel extends Model
         'ref_user_id',
         'vendor_register_date',
     ];
+
+
+    public function adminDetails(){
+      return $this->hasOne('App\Models\AdminModel','u_id','tbl_admin_uid');
+    }
 }

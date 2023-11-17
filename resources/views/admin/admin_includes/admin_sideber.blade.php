@@ -192,7 +192,16 @@
           </ul>
         </div>
       </li>
+     
 
+
+
+     <li class="nav-item ">
+        <a class="nav-link" href="{{route('admin.home.brand.slider')}}">
+          <i class="material-icons">Slider</i>
+          <p> Home Brand Slider </p>
+        </a>
+      </li>
 
 
 

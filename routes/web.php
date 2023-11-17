@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerWeb\StaticPageController;
 use App\Http\Controllers\AdminWeb\AdminCrudController;
 use App\Http\Controllers\AdminWeb\AdminBannerController;
 use App\Http\Controllers\AdminWeb\CategoryController;
+use App\Http\Controllers\AdminWeb\BrandController;
 
 
 /*
@@ -31,44 +32,7 @@ Route::get('/admin/login', function () {
 //     return view('member.static.adminPannel');
 // });
 
-use Illuminate\Support\Facades\DB;
-Route::get('/admin/all-brands', function () {
-    // $countryCode = $this->getUserRemoteData();
 
-    $query = DB::table('tbl_admin')
-        ->select(
-            'tbl_admin.ufullname as vendor_name',
-            'tbl_admin.uemail as vendor_email',
-            'tbl_admin.ustatus as vendor_status',
-            'tbl_vendor.tbl_vndr_phone as vendor_phone',
-            'tbl_vendor.tbl_vndr_adr as vendor_address',
-            'tbl_vendor.tbl_vndr_city as vendor_city',
-            'tbl_vendor.tbl_vndr_state as vendor_state',
-            'tbl_vendor.tbl_vndr_country as vendor_country',
-            'tbl_vendor.tbl_vndr_comp as vendor_company',
-            'tbl_vendor.tbl_vndr_dispname as vendor_displayname',
-            'tbl_vendor_images.tbl_vndr_img_pro as vendor_profileimage'
-        )
-        ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_admin_uid', '=', 'tbl_admin.u_id')
-        ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_vendor.tbl_vndr_id')
-        ->where('tbl_vndr_comp', 'LIKE', @$letter . '%')
-        ->where('tbl_admin.ustatus', '!=', 0)
-        ->where('tbl_admin.utype', '=', 2)
-        ->where('tbl_admin.isdeleted', '=', 0)
-        ->where('tbl_vendor.tbl_vndr_brand_status', '=', 0)
-        ->where('tbl_vendor.tbl_vndr_store_status', '=', 1);
-
-    // if (!empty($countryCode) && $countryCode['is_enable'] == 1) {
-    //     $codeCountry = $countryCode['country_code'];
-    //     $query->where('tbl_vendor.vendor_country', '=', $codeCountry);
-    // }
-
-    $query->orderBy('tbl_vendor.tbl_vndr_id');
-
-    $result = $query->get();
-    
-    return $result;
-});
 
 
 Route::get('/faq', function () {
@@ -202,5 +166,13 @@ Route::get('admin/sub2-category-management/delete/{id}', [CategoryController::cl
 Route::get('admin/sub2-category-management/active/{id}', [CategoryController::class, 'sub2_active'])->name('admin.sub2.category.active');
 Route::get('admin/sub2-category-management/deactive/{id}', [CategoryController::class, 'sub2_deactive'])->name('admin.sub2.category.deactive');
 
+
+
+
+//home brand banner
+Route::get('admin/home-brand-banner/list', [BrandController::class, 'index'])->name('admin.home.brand.slider');
+Route::post('admin/home-brand-banner/add', [BrandController::class, 'addBrandSlider'])->name('admin.home.brand.slider.add');
+Route::post('admin/home-brand-banner/update', [BrandController::class, 'updateBrandSlider'])->name('admin.home.brand.slider.update');
+Route::get('admin/home-brand-banner/delete/{id}', [BrandController::class, 'deleteBrandSlider'])->name('admin.home.brand.slider.delete');
 
 // =========================== Admin Routes End =============================================//

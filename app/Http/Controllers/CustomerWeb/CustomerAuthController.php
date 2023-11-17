@@ -9,6 +9,10 @@ use Hash;
 use Mail;
 use Auth;
 use App\Mail\EmpRegisterMail;
+use App\Models\HomeBrandSliderModel;
+use App\Models\AdminModel;
+use App\Models\VendorModel;
+use DB;
 
 class CustomerAuthController extends Controller
 {
@@ -19,7 +23,61 @@ class CustomerAuthController extends Controller
   Jeet
 */
     public function indexPage(){
-        return view('Layouts.home');
+        $allSlider=HomeBrandSliderModel::with('vendorDetails')->get();
+        foreach($allSlider as $key=> $val){
+
+            $tableName = 'products';
+            // $condition='feature';
+
+            // if ($condition == 'feature') {
+            //     $whereCondition = 'is_featured';
+            //     $whereValue = '1';
+            // } elseif ($condition == 'hotdeal') {
+            //     $whereCondition = 'is_featured';
+            //     $whereValue = '0';
+            // } else {
+            //     $whereCondition = 'deal_type';
+            //     $whereValue = '0';
+            // }
+
+            $products_under_a_brand = DB::table($tableName)
+                ->select([
+                    'id as pid',
+                    'vendor_uid as vendor_key',
+                    'product_type_key',
+                    'product_name as pname',
+                    'single_price as pprice',
+                    'image as img_name',
+                    'prod_front_fromdate as pfrmdate',
+                    'prod_front_todate as ptodate',
+                    'stock_availability as pstock',
+                    'quantity',
+                    'min_order_quantity as pminqty',
+                    'deal_type as pdltype',
+                    'product_discount as pdiscount',
+                    'no_of_amples as pamples',
+                    'free_with_amples as pfwamples',
+                    'supplier_name as pvendor',
+                    'discount_price as pdiscountprice',
+                ])
+                ->orderBy('single_price','asc')
+                ->where('status', '=', "1")
+                ->where('is_free_product', '=', "0")
+                ->where('vendor_uid', '=', $val->vendor_id)
+                // ->where($whereCondition, '=', $whereValue)
+                ->skip(0)->take($val->slider_no*5)
+                ->get();
+
+                if(count($products_under_a_brand)<1){
+                  $allSlider[$key]['productAvailable']=false;
+                }else{
+                   $allSlider[$key]['productAvailable']=true;
+                }
+                $allSlider[$key]['products_under_a_brand']=$products_under_a_brand;
+        }
+         // return $allSlider;
+         $data['datas']=$allSlider;
+        return view('Layouts.home')->with($data);
     }
    
 
