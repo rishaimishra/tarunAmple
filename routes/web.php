@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminWeb\AdminCrudController;
 use App\Http\Controllers\AdminWeb\AdminBannerController;
 use App\Http\Controllers\AdminWeb\CategoryController;
 use App\Http\Controllers\AdminWeb\BrandController;
+use App\Http\Controllers\AdminWeb\ProductController;
 
 
 /*
@@ -103,7 +104,7 @@ Route::post('/vendor-login/post',[VendorAuthController::class, 'vendorLoginPost'
 
 
 
-// ===================== Super Admin and Admin Routes Start =============================================//
+// ===================== Super Admin and Admin Routes Start ========================================//
 Route::get('/admin-login',[AdminAuthController::class, 'adminLogin'])->name('admin.login.page');
 Route::post('/admin-login/post',[AdminAuthController::class, 'adminLoginPost'])->name('admin.login.post');
 Route::any('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
@@ -174,5 +175,15 @@ Route::get('admin/home-brand-banner/list', [BrandController::class, 'index'])->n
 Route::post('admin/home-brand-banner/add', [BrandController::class, 'addBrandSlider'])->name('admin.home.brand.slider.add');
 Route::post('admin/home-brand-banner/update', [BrandController::class, 'updateBrandSlider'])->name('admin.home.brand.slider.update');
 Route::get('admin/home-brand-banner/delete/{id}', [BrandController::class, 'deleteBrandSlider'])->name('admin.home.brand.slider.delete');
+
+
+
+
+//product crud
+Route::get('admin/product-management/add', [ProductController::class, 'product_add_page'])->name('admin.product.add.page');
+Route::get('/load-states/{country_id}', [ProductController::class, 'getStates']);
+Route::get('/load-cities/{state_id}', [ProductController::class, 'getCity']);
+
+
 
 // =========================== Admin Routes End =============================================//

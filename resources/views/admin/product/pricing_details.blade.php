@@ -1,0 +1,1 @@
+pricing_details.blade.php

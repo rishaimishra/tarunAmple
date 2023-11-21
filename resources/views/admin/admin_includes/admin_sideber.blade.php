@@ -145,7 +145,31 @@
             <b class="caret"></b>
           </p>
         </a>
+
+
         <div class="collapse" id="componentsExamples2">
+           <ul class="nav">
+            <li class="nav-item ">
+              <a class="nav-link" data-toggle="collapse" href="#componentsCollapse3">
+                {{-- <span class="sidebar-mini"> M-C </span> --}}
+                <span class="sidebar-normal"> &nbsp; Manage Product
+                  <b class="caret"></b>
+                </span>
+              </a>
+              <div class="collapse" id="componentsCollapse3">
+                <ul class="nav">
+                  <li class="nav-item ">
+                    <a class="nav-link" href="{{route('admin.product.add.page')}}">
+                      <span class="sidebar-normal"> Add Product </span>
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </li>
+          
+          </ul>
+          
           <ul class="nav">
             <li class="nav-item ">
               <a class="nav-link" data-toggle="collapse" href="#componentsCollapse2">

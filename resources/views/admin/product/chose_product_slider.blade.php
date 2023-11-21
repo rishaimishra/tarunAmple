@@ -1,0 +1,1 @@
+chose_product_slider.blade.php
