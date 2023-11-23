@@ -5,12 +5,11 @@
 
 @include('includes.head')
 @include('includes.header')
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-    .slick-slide img {
-        width: 301px;
-        display: block;
+    html,body{
+        overflow-x: hidden;
     }
-
     .slick-prev,
     .slick-next {
         font-size: 18px;
@@ -26,13 +25,16 @@
     }
 
     .slick-prev {
-        left: 50px;
+        left: 10px;
     }
 
     .slick-next {
-        right: 10px;
+        right: 30px;
     }
-
+    .slick-prev, .slick-next {
+        background: none;
+        border: none;
+    }
     /* home banner slider */
     .p-wrapper {
         border: 2px solid #afaeae;
@@ -48,7 +50,15 @@
     }
 
     .p-title {
-        line-height: 40px;
+        font-size: 18px;
+        color: #000;
+        font-weight: bold;
+        height: 21px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     .p-a-tag {
@@ -57,11 +67,13 @@
 
     .p-slide {
         padding: 6px;
+        font-family: sans-serif;
     }
 
     .p-img {
-      height: 200px;
-      object-fit: cover
+        min-height: 325px;
+        object-fit: cover;
+        vertical-align: middle;
     }
 
     .p-name {
@@ -74,9 +86,10 @@
 
     .p-price {
         color: #4177e2;
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 500;
         outline: 0;
+        font-family: "Bebas Neue", sans-serif;
     }
 
     .p-off-back {
@@ -93,6 +106,10 @@
 
     .p-ample-offer {
         font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 5px;
     }
 
     .p-ample-offer b {
@@ -133,9 +150,11 @@
     .p-ample-offer {
         padding-left: 10px;
     }
-    .slick-next, .slick-prev{
-      display: none !important;
+
+    .p-img {
+        object-fit: contain;
     }
+
     /* home banner slider */
 </style>
 
@@ -321,9 +340,9 @@
     <br>
     @foreach ($datas as $key => $val)
         @if ($val->productAvailable == true)
-            <div class="slider-info" style="text-align: right;" id="sliderInfo{{ $val->id }}">
+            {{-- <div class="slider-info" style="text-align: right;" id="sliderInfo{{ $val->id }}">
                 Group 1 of {{ $val->slider_no }}
-            </div>
+            </div> --}}
 
 
             <h1 class="text-center">{{ $val->vendorDetails->tbl_vndr_dispname }}</h1>
@@ -345,18 +364,18 @@
 
                     <div class="product-slide p-slide">
                         <div class="p-wrapper">
-                            <div class="p-title">{{$val2->pname}}</div>
+                            <div class="p-title">{{ $val2->pname }}</div>
                             <a href="#" class="p-a-tag"><img class="p-img"
                                     src="https://amplepoints.com/product_images/{{ $val2->pid }}/{{ $val2->img_name }}"></a>
-                            <div class="p-name">{{$val->vendorDetails->tbl_vndr_dispname}}</div>
+                            <div class="p-name">{{ $val->vendorDetails->tbl_vndr_dispname }}</div>
                             <div class="p-price-main">
-                                <span class="p-price">${{$val2->pprice}}</span>
-                                <span class="p-off-back">{{$val2->pdiscount}}% Back</span>
+                                <span class="p-price">${{ $val2->pprice }}</span>
+                                <span class="p-off-back">{{ $val2->pdiscount }}% Back</span>
                             </div>
                             <div class="p-ample-offer">
-                                Get <b>{{$val2->pamples}}</b> AmplePoints (<b>${{$val2->pdiscountprice}}</b>)
+                                Get <b>{{ $val2->pamples }}</b> AmplePoints (<b>${{ $val2->pdiscountprice }}</b>)
                                 <br>
-                                or get it <b>FREE</b> with <b>{{$val2->pfwamples}}</b> points
+                                or get it <b>FREE</b> with <b>{{ $val2->pfwamples }}</b> points
                             </div>
                             <button type="button" class="p-btn">Add to Cart</button>
                         </div>
@@ -374,7 +393,7 @@
                     $('#slider{{ $val->id }}').slick({
                         slidesToShow: 5,
                         slidesToScroll: 5,
-                        autoplay: true,
+                        // autoplay: true,
                         autoplaySpeed: 5000,
                         // dots: true,
                         infinite: true,
