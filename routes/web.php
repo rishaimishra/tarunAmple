@@ -181,9 +181,9 @@ Route::get('admin/home-brand-banner/delete/{id}', [BrandController::class, 'dele
 
 //product crud
 Route::get('admin/product-management/add', [ProductController::class, 'product_add_page'])->name('admin.product.add.page');
-Route::get('/load-states/{country_id}', [ProductController::class, 'getStates']);
-Route::get('/load-cities/{state_id}', [ProductController::class, 'getCity']);
-
+Route::any('/load-states/{id}', [ProductController::class, 'getStates']);
+Route::any('/load-cities/{state_id}', [ProductController::class, 'getCity']);
+Route::post('/filterviewproductsnew', [ProductController::class, 'filterviewproductsnew'])->name('filterviewproductsnew');
 
 
 // =========================== Admin Routes End =============================================//
