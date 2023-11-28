@@ -693,7 +693,7 @@
 
                                                                 <select name="country[]"
                                                                         class="selectpicker searchdropdown"
-                                                                        onchange="shipcoutrychange(this);"
+                                                                        onchange="shipcountrychange(this);"
                                                                         id="shipcount_1"
                                                                         data-style="btn btn-primary btn-round"
                                                                         data-live-search="true" data-size="7"
@@ -996,10 +996,13 @@
                                                         <label for="movie_id" class="bmd-label-floating">Select
                                                             Movie</label>
 
-                                                        <select class="selectpicker searchdropdown" id="rel_id"
+                                                        <select class="selectpicker searchdropdown"   id="rel_id"
                                                                 name="rel_id" data-style="btn btn-primary btn-round"
-                                                                data-live-search="true" title="Select Movie">
-                                                            <!--<option value="0">Select Movie</option>-->
+                                                                data-live-search="true" title="Select Movie" >
+                                                        
+                                                            @foreach($movies as $mv)
+                                                            <option value="{{$mv->id}}">{{$mv->name}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
 
@@ -1011,3 +1014,5 @@
 
                                     </div>
                                 </div>
+
+

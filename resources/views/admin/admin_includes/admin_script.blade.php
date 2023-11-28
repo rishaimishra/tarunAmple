@@ -189,5 +189,152 @@ md.initDashboardPageCharts();
 md.initVectorMap();
 });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- coomon script --}}
+{{-- 
+<script type="text/javascript">
+    //<![CDATA[
+    bkLib.onDomLoaded(function () {
+        /*new nicEditor({maxHeight : 200}).panelInstance('area');*/
+        new nicEditor({fullPanel: true, maxHeight: 300}).panelInstance('area1');
+    });
+    //]]>
+
+    // Get the modal
+
+
+    function showImagePopup(ImgElem) {
+
+        var modal = document.getElementById("myImgcontainerModal");
+
+        var modalImg = document.getElementById("mymodelimg");
+
+        modal.style.display = "block";
+        modalImg.src = ImgElem.src;
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+    }
+
+</script>
+ --}}
+
+
+
+
+
+
+{{-- <?php if ($this->is_vendor) {
+
+    $latestOrderID = $admin_model_obj->GetVendorLatestOrderInMinute($this->vendor_id);
+
+    if (empty($latestOrderID)) {
+
+        $latestOrderID = 'amplepoints';
+    }
+
+    ?>
+
+    <audio id="chaching">
+        <source src="https://amplepoints.com/img/notification_sound.ogg" type="audio/ogg">
+        <source src="https://amplepoints.com/img/notification_sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script type="text/javascript">
+
+        function DisplayOrderPopup() {
+
+            var x = document.getElementById("chaching");
+            x.play();
+
+            swal({
+                title: "You Have New Order",
+                text: "Please Check You Received New Order",
+                type: "success",
+            });
+        }
+
+
+        $(document).ready(function () {
+
+            setTimeout(function () {
+                CheckNewVendorOrder('<?php echo $latestOrderID; ?>');
+            }, 1000);
+
+        });
+
+        function CheckNewVendorOrder(latestOrderID) {
+
+            var checkvendorid = "<?php echo $this->vendor_id; ?>";
+
+            $.ajax({
+                url: "<?php echo $this->baseUrl('admin/index/checkvendorneworder'); ?>",
+                data: {vendor_id: checkvendorid, order_id: latestOrderID},
+                type: 'POST',
+                dataType: "json"
+            }).done(function (data) {
+                if (data) {
+
+                    if (data['status'] == 1) {
+
+                        DisplayOrderPopup();
+
+                        setTimeout(function () {
+                            CheckNewVendorOrder(data['latestOrderID']);
+                        }, 1000);
+
+                        //setInterval(function(){CheckNewVendorOrder(data['latestOrderID']);},1000);
+                    } else {
+
+                        setTimeout(function () {
+                            CheckNewVendorOrder(data['latestOrderID']);
+                        }, 1000);
+
+                    }
+                }
+            });
+        }
+
+    </script>
+
+<?php } ?> --}}
+
+
+
+
+
+
+
+
+
 </body>
 </html>

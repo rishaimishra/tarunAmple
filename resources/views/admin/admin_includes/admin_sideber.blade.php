@@ -164,6 +164,12 @@
                     </a>
                   </li>
 
+                   <li class="nav-item ">
+                    <a class="nav-link" href="{{route('admin.product.list')}}">
+                      <span class="sidebar-normal"> View Product </span>
+                    </a>
+                  </li>
+
                 </ul>
               </div>
             </li>

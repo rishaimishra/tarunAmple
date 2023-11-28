@@ -52,6 +52,12 @@ class ProductController extends Controller
         // dd(@$data['allow_free_products']);
         $data['categories'] = CategoryModel::where('isdeleted', '!=', 1)->orderBy('id')->get();
 
+        // movies
+        $data['movies'] = DB::table('theater_videos')
+            ->select('video_id as id', 'video_title as name')
+            // ->where('video_title', 'LIKE', '%' . $q . '%');
+        ->get();
+
        return view('admin.product.product_main_add')->with($data);
     }
 
@@ -212,6 +218,143 @@ class ProductController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+public function product_insert(Request $request){
+    dd($request->all());
+}
+
+
+
+
+
+
+
+
+public function product_list(Request $request){
+   
+    if($request->all()){
+      // dd($request->all());
+        $data['cat_list']=$request->cat_list;
+        $data['vendor_list']=$request->vendor_list;
+        $data['search_term']=$request->search_term;
+        
+       $filter = array();
+        $filter['cat_list'] = $request->cat_list;
+        $filter['vendor_list'] = $request->vendor_list;
+        $filter['search_term'] = $request->search_term;
+
+        $query = ProductModel::select(
+            'products.*',
+            'products.id as pid',
+            'products.product_type_key',
+            'products.status as product_status',
+            'main_category.category_name as category_name',
+            'products.image as image'
+        )
+        ->leftJoin('main_category', 'main_category.id', '=', 'products.product_type_id')
+        ->where(function ($query) {
+            $query->where('products.status', '=', 1)
+                ->orWhere('products.status', '=', 2);
+        })
+        ->where('products.is_deleted', '=', 0);
+
+            if (isset($filter['cat_list']) && $filter['cat_list']) {
+                $query->where('products.product_type_id', '=', $filter['cat_list']);
+            }
+
+            if (isset($filter['vendor_list']) && $filter['vendor_list']) {
+                $query->where('products.vendor_uid', '=', $filter['vendor_list']);
+            }
+
+            if (isset($filter['search_term']) && $filter['search_term']) {
+                $searchTerm = $filter['search_term'];
+                $query->where(function ($query) use ($searchTerm) {
+                    $query->where('products.id', '=', $searchTerm)
+                        ->orWhere('products.product_name', '=', $searchTerm)
+                        ->orWhere('products.product_sku', '=', $searchTerm);
+                });
+            }
+
+            $query->orderBy('products.id');
+
+            $results = $query->paginate(10);
+            $data['paginator']=$results;
+
+            // dd($data);
+    }
+
+
+    else{
+      $vndrid = AdminModel::select('tbl_vendor.tbl_vndr_id as vdrid')
+        ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_admin_uid', '=', 'tbl_admin.u_id')
+        ->where('tbl_admin.u_id', '=', Auth::guard('admin')->user()->u_id)
+        ->where('tbl_admin.ustatus', '=', '1')
+        ->where('tbl_admin.isdeleted', '=', '0')
+        ->first();
+
+       // dd($vndrid->vdrid);
+        if($vndrid->vdrid){
+              $results = ProductModel::select('products.*', 'products.id as pid', 'products.product_type_key', 'products.status as product_status', 'main_category.category_name as category_name', 'products.image as image')
+                ->leftJoin('main_category', 'main_category.id', '=', 'products.product_type_id')
+                ->where('products.vendor_uid', '=', $vndrid->vndrid)
+                ->where(function ($query) {
+                    $query->where('products.status', '=', '1')
+                          ->orWhere('products.status', '=', '2');
+                })
+                ->where('products.is_deleted', '=', '0')
+                ->orderBy('products.id')
+                ->paginate(10);
+                // dd($results);
+
+        }else{
+              $results = ProductModel::select('products.*', 'products.id as pid', 'products.product_type_key', 'products.status as product_status', 'main_category.category_name as category_name', 'products.image as image')
+                ->leftJoin('main_category', 'main_category.id', '=', 'products.product_type_id')
+                // ->where('products.vendor_uid', '=', $vndrid->vndrid)
+                ->where(function ($query) {
+                    $query->where('products.status', '=', '1')
+                          ->orWhere('products.status', '=', '2');
+                })
+                ->where('products.is_deleted', '=', '0')
+                ->orderBy('products.id')
+                ->paginate(10);
+                // dd($results);
+
+        }
+      $data['paginator']=$results;
+    // dd($data['paginator']);
+    }
+
+
+
+
+    // vendor list
+    $query = AdminModel::leftJoin('tbl_vendor', 'tbl_vendor.tbl_admin_uid', '=', 'tbl_admin.u_id')
+        ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_vendor.tbl_vndr_id')
+        ->where('tbl_admin.ustatus', 1)
+        ->where('tbl_admin.utype', '=', 2)
+        ->where('tbl_admin.isdeleted', '=', 0)
+        // ->where('tbl_vendor.tbl_vndr_brand_status', '=', 0)
+        ->where('tbl_vendor.tbl_vndr_store_status', '=', 1)
+        ->orderBy('tbl_vendor.tbl_vndr_id');
+        $result = $query->get();
+        $data['vendordata']= $result;
+        // dd($data['vendordata']);
+
+
+    // category list
+     $categorys = CategoryModel::where('isdeleted', '!=', 1)->orderBy('id')->get();
+     $data['allmainCategory']= $categorys;
+
+    
+    return view('admin.product_list.product_list')->with($data);
+}
 
 
 

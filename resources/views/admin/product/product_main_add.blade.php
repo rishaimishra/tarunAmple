@@ -12,7 +12,6 @@
 @section('sideber')
 @include('admin.admin_includes.admin_sideber')
 @endsection
-
 @section('content')
 @include('includes.message')
 <?php
@@ -43,42 +42,34 @@ foreach ($timeArray as $key => $value) {
 $timedata = $value;
 $TimeValueOption .= '<option value=' . '"' . "$timedata" . '"' . '>' . $timedata . '</option>';
 }
-
 $baseurl=url('/');
 ?>
-
-   <div class="content resp_nopadding">
+<div class="content resp_nopadding">
     <div class="container-fluid resp_nopadding">
-
-
         <div class="col-md-12 col-12 mr-auto ml-auto">
             <!--      Wizard container        -->
             <div class="wizard-container">
                 <div class="card card-wizard active" data-color="rose" id="wizardProfile">
-                    <form method="POST" action="" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('admin.product.insert')}}" enctype="multipart/form-data">
+                        @csrf
                         <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-
                         <div class="row">
-
                             <div class="col-sm-12">
-
                                 @include('includes.message')
-
                             </div>
                         </div>
-
                         <div class="card-header text-center">
                             <h3 class="card-title">
-                                Add Your Store Product
+                            Add Your Store Product
                             </h3>
                             <h5 class="card-description">This information will let us know more about Your
-                                Products.</h5>
+                            Products.</h5>
                         </div>
                         <div class="wizard-navigation">
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
                                     <a class="nav-link active" href="#product_basic_details" data-toggle="tab"
-                                       role="tab">
+                                        role="tab">
                                         Basic Details
                                     </a>
                                 </li>
@@ -108,176 +99,27 @@ $baseurl=url('/');
                             <div class="tab-content">
 
 
+                                @include('admin.product.basic_details')
 
+                                @include('admin.product.chose_category')
 
-
-
-
-
-
-
-
-
-
-
-
-@include('admin.product.basic_details')
-
-
-
-{{-- 
-
-
-@include('admin.product.chose_category')
-
-
-
-
-
-
-
-
-@include('admin.product.pricing_details')
-
-
-
-
-    
-
-
-
-@include('admin.product.chose_product_slider')    --}} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- 
-                                <div class="tab-pane" id="product_images_details">
-                                    <h5 class="info-text"> Let's start with the Images Details</h5>
-                                    <div class="row">
-
-                                        <div class="col-sm-12" style="margin-bottom: 20px;">
-                                            <hr>
-                                            <span>Product Main Images (size=700*850 pixel)</span>
-                                        </div>
-
-                                        <div class="col-sm-12">
-
-                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                                <div class="fileinput-new thumbnail">
-                                                    <img src="<?php echo $baseurl; ?>/admin_dir/material/img/image_placeholder.jpg"
-                                                         alt="...">
-                                                </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                                                <div>
-                                                    <span class="btn btn-rose btn-round btn-file expect_dark_gradiant_bg">
-                                                        <span class="fileinput-new">Select image</span>
-                                                        <span class="fileinput-exists">Change</span>
-                                                        <input type="file" id="file" name="filemain" required/>
-                                                    </span>
-                                                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists"
-                                                       data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-12" style="margin-bottom: 20px;">
-                                            <hr>
-                                            <span>Product Detail Images (size=700*850 pixel)</span>
-                                        </div>
-
-                                        <div class="multi-field-wrapper-files col-sm-12">
-
-                                            <div class="row multi-fields">
-
-                                                <div class="col-md-4 multi-field">
-
-                                                    <div class="fileinput fileinput-new text-center"
-                                                         data-provides="fileinput">
-                                                        <div class="fileinput-new thumbnail">
-                                                            <img src="<?php echo $baseurl; ?>/admin_dir/material/img/image_placeholder.jpg"
-                                                                 alt="...">
-                                                        </div>
-                                                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                                                        <div>
-                                                            <span class="btn btn-rose btn-round btn-file expect_dark_gradiant_bg">
-                                                                <span class="fileinput-new">Select image</span>
-                                                                <span class="fileinput-exists">Change</span>
-                                                                <input type="file" id="file_1" name="file[]"/>
-                                                            </span>
-                                                            <a href="#pablo"
-                                                               class="btn btn-danger btn-round fileinput-exists"
-                                                               data-dismiss="fileinput"><i class="fa fa-times"></i>
-                                                                Remove</a>
-                                                        </div>
-                                                    </div>
-
-                                                    <button type="button" class="btn btn-danger btn-round remove-field"
-                                                            style="float: right;padding: 11px 11px;margin: -15px 0px 0px 25px;position: absolute;left: 215px;">
-                                                        <i class="material-icons">clear</i>
-                                                        <div class="ripple-container"></div>
-                                                    </button>
-
-                                                </div>
-
-                                            </div>
-
-                                            <button type="button" class="btn btn-primary btn-round add-field">
-                                                <i class="material-icons">add</i> Add Another Image
-                                                <div class="ripple-container"></div>
-                                            </button>
-
-                                        </div>
-
-                                    </div>
-                                </div>
- --}}
-
-
-
-
-
+                                @include('admin.product.pricing_details')
+                                
                             </div>
                         </div>
                         <div class="card-footer">
                             <div class="mr-auto">
                                 <input type="button"
-                                       class="btn btn-previous btn-fill btn-default btn-wd disabled expect_dark_gradiant_bg"
-                                       name="previous" value="Previous">
+                                class="btn btn-previous btn-fill btn-default btn-wd disabled expect_dark_gradiant_bg"
+                                name="previous" value="Previous">
                             </div>
                             <div class="ml-auto">
                                 <input type="button"
-                                       class="btn btn-next btn-fill btn-rose btn-wd expect_dark_gradiant_bg" name="next"
-                                       value="Next">
+                                class="btn btn-next btn-fill btn-rose btn-wd expect_dark_gradiant_bg" name="next"
+                                value="Next">
                                 <input type="submit"
-                                       class="btn btn-finish btn-fill btn-rose btn-wd expect_dark_gradiant_bg"
-                                       name="finish" value="Finish" style="display: none;">
+                                class="btn btn-finish btn-fill btn-rose btn-wd expect_dark_gradiant_bg"
+                                name="finish" value="Finish" style="display: none;">
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -289,9 +131,8 @@ $baseurl=url('/');
     </div>
 </div>
 @endsection
-
 @section('script')
-    @include('admin.admin_includes.admin_script')
-    @include('admin.product.customJavaScript')
-     @include('admin.product.multiSelectFieldsJavascript')
+@include('admin.admin_includes.admin_script')
+@include('admin.product.customJavaScript')
+@include('admin.product.multiSelectFieldsJavascript')
 @endsection

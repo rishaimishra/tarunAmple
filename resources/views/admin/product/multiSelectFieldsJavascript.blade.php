@@ -903,7 +903,7 @@ alert(2)
 
             //alert('hehe');
 
-            var imgUrl = '<?php echo $baseurl; ?>/admin_dir/material/img/image_placeholder.jpg';
+            var imgUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFLwDkTYFPJCZVh9iRZ7mu8zjxu6QoiIg_8NnC0ka-fA&s';
 
             var htmltoadd = '<div class="col-md-4 multi-field">';
 
@@ -923,7 +923,7 @@ alert(2)
 
             htmltoadd += '<span class="fileinput-new">Select image</span>';
             htmltoadd += '<span class="fileinput-exists">Change</span>';
-            htmltoadd += '<input type="file" id="file_' + CustCount + '"" name="file[]" /> ';
+            htmltoadd += '<input accept="image/*" type="file" id="file_' + CustCount + '"" name="file[]" /> ';
 
             htmltoadd += '</span>';
 
