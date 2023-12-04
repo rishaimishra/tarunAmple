@@ -186,5 +186,7 @@ Route::any('/load-cities/{state_id}', [ProductController::class, 'getCity']);
 Route::post('/filterviewproductsnew', [ProductController::class, 'filterviewproductsnew'])->name('filterviewproductsnew');
 Route::post('/admin/product-management/insert', [ProductController::class, 'product_insert'])->name('admin.product.insert');
 Route::any('/admin/product-management/list', [ProductController::class, 'product_list'])->name('admin.product.list');
+Route::post('/remproduct', [ProductController::class, 'remproduct'])->name('remproduct');
+
 
 // =========================== Admin Routes End =============================================//

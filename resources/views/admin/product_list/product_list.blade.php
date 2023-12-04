@@ -283,14 +283,16 @@
                     type: 'POST'
                 })
                 .done(function(data){
-                    //alert(data);
+                    // console.log(data.length);
 
-                    if(data == "done"){
+                    if(data.length == 7){
+                        // console.log(22222222);
 
                         window.setTimeout(function(){location.reload()},1000);
                         //alert(data);
 
                     }else{
+                        // console.log(3333333)
 
                         alert("somthing Wrong Try Again");
                     }
@@ -334,24 +336,37 @@
 
     function productdel(prodid)
     {
+         $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': "{{csrf_token()}}"
+                }
+                });
+
         var check = confirm('Are you want to sure to delete?');
         if(check){
-            var baseurl = '<?PHP echo $baseurl;?>';
-            var SITEROOT = baseurl;
-            createXMLHttpRequest();
-            var url = SITEROOT+'/admin/index/remproduct/';
+          
+                $.ajax({
+                    url: "{{route('remproduct')}}",
+                    type: 'post',
+                    data: {
+                        prodid: prodid,
+                    },
+                    beforeSend: function () {
+                        $(".loadcustmore").text("Loading...");
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        if(response==1){
+                            alert('successfully deleted');
+                            window.setTimeout(function(){location.reload()},1000);
+                        }else{
+                            alert("something went wrong")
+                        }
 
-            var strURL = url;
-            if(prodid != ''){
-                var query ="proid="+prodid;
 
-                if (xmlHttpRequest != null){
-                    xmlHttpRequest.open("post", strURL, true);
-                    xmlHttpRequest.onreadystatechange = deleteproductresponse;
-                    xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xmlHttpRequest.send(query);
-                }
-            }
+
+                    }
+                });
 
         }
 

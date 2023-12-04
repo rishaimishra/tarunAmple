@@ -366,6 +366,32 @@ public function product_list(Request $request){
 
 
 
+//delete product
+ public function remproduct(Request $request)
+    {
+        $proid = $request->prodid;
+
+        $is_active = 0;
+        $is_deleted = 1;
+
+        $data = [];
+        $data['status'] = 0;
+        $data['is_deleted'] = $is_deleted;
+
+
+        $find = ProductModel::where('id',$proid)->first();
+        // return $find;
+        if(!$find){
+              return 0;
+        }
+        $up=ProductModel::where('id',$proid)->update($data);
+        return 1;
+
+    
+        }
+
+
+
 
 
 
