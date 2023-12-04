@@ -104,6 +104,11 @@ $baseurl=url('/');
                                 @include('admin.product.chose_category')
 
                                 @include('admin.product.pricing_details')
+                                
+                                @include('admin.product.chose_product_slider')
+                                
+                                @include('admin.product.chose_product_images')
+                                
                             </div>
                         </div>
                         <div class="card-footer">
