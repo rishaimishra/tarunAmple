@@ -187,6 +187,8 @@ Route::post('/filterviewproductsnew', [ProductController::class, 'filterviewprod
 Route::post('/admin/product-management/insert', [ProductController::class, 'product_insert'])->name('admin.product.insert');
 Route::any('/admin/product-management/list', [ProductController::class, 'product_list'])->name('admin.product.list');
 Route::post('/remproduct', [ProductController::class, 'remproduct'])->name('remproduct');
-
+Route::get('admin/product-edit/{id}', [ProductController::class, 'product_edit'])->name('product_edit');
+Route::get('admin/deletedetailproimg/{id}', [ProductController::class, 'deletedetailproimg'])->name('deletedetailproimg');
+Route::get('admin/deleteproattributes/{id}', [ProductController::class, 'deleteproattributes'])->name('deleteproattributes');
 
 // =========================== Admin Routes End =============================================//

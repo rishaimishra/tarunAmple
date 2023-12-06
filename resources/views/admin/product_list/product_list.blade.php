@@ -218,7 +218,7 @@
                                                     </select>
                                                 </td>
                                                 <td class="td-actions text-center">
-                                                    <a class="btn btn-success" href="{{-- {{ $this->baseUrl('admin/index/viewproduct/pdkey/'.$key->pid) }} --}}" rel="tooltip" title="Edit {{ $key->product_name }}">
+                                                    <a class="btn btn-success" href="{{route('product_edit',$key->pid) }}" rel="tooltip" title="Edit {{ $key->product_name }}">
                                                         <i class="material-icons">edit</i>
                                                     </a>
                                                     <a class="btn btn-danger" href="javascript:void(0);" onclick="productdel('{{ $key->pid }}');" rel="tooltip" title="Delete {{ $key->product_name }}">

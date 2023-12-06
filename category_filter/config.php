@@ -1,22 +1,43 @@
 <?php
     /////// Update your database login details here /////
-    $dbhost_name = "localhost"; // Your host name 
-    $database = "amplepoi_main_db";       // Your database name
-    $username = "amplepoi_main_db";            // Your login userid 
-    $password = "amplepoi_main_db";            // Your password 
+
+$db_host = 'localhost';
+$db_user = 'root';
+$db_password = '';  
+$db_name = 'amplepoint_new';
+$db_port = '3307';          
     //////// End of database details of your server //////
+
+
+
+
+
+
+    //////// Do not Edit below /////////
+    $dbhost_name = "localhost"; // Your host name 
+    $database = "amplepoint_new";       // Your database name
+    $username = "root";            // Your login userid 
+    $password = "";            // Your password 
+    //////// End of database details of your server //////
+
+
+
+    
 
     //////// Do not Edit below /////////
     try {
-        $dbo = new PDO('mysql:host='.$dbhost_name.';dbname='.$database, $username, $password);
+        $dbo = new PDO('mysql:host='.$dbhost_name.';port=3307;dbname='.$database, $username, $password);
+        // Output the connection string
+        // echo 'Connected using the following connection string: ' . $dbo->getAttribute(PDO::ATTR_CONNECTION_STATUS);
+    
+    // die();
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . "<br/>";
         die();
     }
-
     function Get_Options($option_name){
 
-        $connew = mysqli_connect("localhost","amplepoi_main_db","amplepoi_main_db","amplepoi_main_db");
+        $connew = mysqli_connect($db_host, $db_user, $db_password, $db_name, $db_port);
         $sql = "SELECT option_value FROM `tbl_options` WHERE `option_name` = '$option_name'";
         $query = mysqli_query($connew,$sql);
         $result = mysqli_fetch_array($query);

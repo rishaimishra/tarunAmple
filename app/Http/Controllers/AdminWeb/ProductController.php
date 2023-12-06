@@ -387,8 +387,154 @@ public function product_list(Request $request){
         $up=ProductModel::where('id',$proid)->update($data);
         return 1;
 
-    
+    }
+
+
+
+
+
+
+
+
+    public function product_edit($id){
+        $find = ProductModel::where('id',$id)->first();
+        if(!$find){
+              return back()->with('error','Id not matching');
         }
+        // $data['data']=$find;
+
+
+        $productDetails = ProductModel::select(
+            'products.*',
+            'products.product_type_key',
+            'products.status as prdt_status',
+            'products.color as productcolor',
+            'products.size as productsize',
+            'tbl_brands.brand as brand_name',
+            'main_category.category_name as category_name',
+            'sub_category.subcategory_name as subcategory_name',
+            'sub_category2.subcategory2_name as subcategory2_name',
+            'product_images.image_name as pimg_name'
+            )
+            ->leftJoin('tbl_brands', 'tbl_brands.id', '=', 'products.brand')
+            ->leftJoin('pro_filter', 'pro_filter.pro_id', '=', 'products.id')
+            ->leftJoin('main_category', 'main_category.id', '=', 'products.product_type_id')
+            ->leftJoin('sub_category', 'sub_category.id', '=', 'products.category_id')
+            ->leftJoin('sub_category2', 'sub_category2.id', '=', 'products.subcategory_id')
+            ->leftJoin('product_images', 'product_images.product_id', '=', 'products.id')
+            ->where('products.id', '=', $id)
+            ->where('products.status', '!=', '3')
+            ->where('products.is_deleted', '=', '0')
+            ->first();
+
+        // return $result;
+            $data['productDetails']=$productDetails;
+            // dd($data['productDetails']);
+
+
+
+
+        $query = AdminModel::leftJoin('tbl_vendor', 'tbl_vendor.tbl_admin_uid', '=', 'tbl_admin.u_id')
+        ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_vendor.tbl_vndr_id')
+        ->where('tbl_admin.ustatus', '!=', 0)
+        ->where('tbl_admin.utype', '=', 2)
+        ->where('tbl_admin.isdeleted', '=', 0)
+        ->where('tbl_vendor.tbl_vndr_brand_status', '=', 0)
+        ->where('tbl_vendor.tbl_vndr_store_status', '=', 1)
+        ->orderBy('tbl_vendor.tbl_vndr_id');
+        $result = $query->get();
+        $data['vendor_data']= $result;
+        // dd($data['vendor_data']);
+
+        
+        $filters = DB::table('tbl_filter_type')->where('status', 1)
+        ->orderBy('id')
+        ->get();
+        $data['filters']=$filters;
+
+       // Auth::guard('admin')->user()->u_id //876
+        $allow_free_products = AdminModel::where('u_id', Auth::guard('admin')->user()->u_id)
+        ->where('ustatus', '1')
+        ->where('isdeleted', '0')
+        ->join('tbl_vendor', 'tbl_vendor.tbl_admin_uid', '=', 'tbl_admin.u_id')
+        ->first();
+        if($allow_free_products){
+            //for vendor
+            $data['allow_free_products']=@$allow_free_products->allow_free_products;
+        }else{
+            //for admin
+            $data['allow_free_products']=1;
+        }
+        // dd(@$data['allow_free_products']);
+        $data['categories'] = CategoryModel::where('isdeleted', '!=', 1)->orderBy('id')->get();
+        $data['sub_categories'] = SubCategoryModel::where('isdeleted', '!=', 1)->where('maincategory_id',@$productDetails->product_type_id)->orderBy('id')->get();
+        $data['sub2_categories'] = Sub2CategoryModel::where('isdeleted', '!=', 1)->where('ssubcategory_id',@$productDetails->category_id)->orderBy('id')->get();
+
+        // movies
+        $data['movies'] = DB::table('theater_videos')
+            ->select('video_id as id', 'video_title as name')
+            // ->where('video_title', 'LIKE', '%' . $q . '%');
+        ->get();
+
+
+        // FILTER TYPES
+         $data['filters'] = DB::table('tbl_filter_type')->where('status', 1)->orderBy('id')->get();
+
+
+        
+        return view('admin.product_edit.product_edit_main')->with($data);
+    }
+
+
+
+
+
+
+
+
+//delete product image
+public function deletedetailproimg($id){
+    $images = DB::table('pro_detail_images')->where('id', $id)->first();
+     if($images){
+        //unlink code from folder
+        //$d= DB::table('pro_detail_images')->where('id', $id)->delete();
+         return 1;
+     }else{
+        return 0;
+     }
+}
+
+
+
+
+
+
+// delete deleteproattributes
+public function deleteproattributes($id){
+ $images = DB::table('tbl_product_attributes')->where('id', $id)->first();
+ if($images){
+    //unlink code from folder
+    // $d=DB::table('tbl_product_attributes')->where('id', $usrcid)->delete();
+      return 1;
+ }else{
+     return 0;
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
