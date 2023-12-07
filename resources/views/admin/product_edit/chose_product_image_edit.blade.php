@@ -8,14 +8,14 @@
                                         <span>Available Product Images</span>
                                     </div>
 
-                                    <?php foreach ($this->resultdata as $key) { ?>
+                                    <?php foreach ($product_images as $key) { ?>
 
-                                        <div class="col-md-4" id="removeimage_<?php echo $key['id']; ?>">
+                                        <div class="col-md-4" id="removeimage_<?php echo $key->id; ?>">
 
                                             <div class="fileinput fileinput-new text-center">
                                                 <div class="fileinput-new thumbnail">
                                                     <img class="myImg" onclick="showImagePopup(this);"
-                                                         src="<?php echo $this->baseUrl('product_images/' . $key['product_id'] . '/' . $key['pimg_name']); ?>"
+                                                         src="https://amplepoints.com/product_images/{{$key->product_id}}/{{$key->image_name}}"
                                                          alt="...">
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists thumbnail"></div>
@@ -24,7 +24,7 @@
 
                                             <button type="button" class="btn btn-danger btn-round"
                                                     style="float: right;padding: 11px 11px;margin: -15px 0px 0px 25px;position: absolute;left: 215px;"
-                                                    onclick="deletepimg('<?php echo $key['id']; ?>');">
+                                                    onclick="deletepimg('<?php echo $key->id; ?>');">
                                                 <i class="material-icons">clear</i>
                                                 <div class="ripple-container"></div>
                                             </button>

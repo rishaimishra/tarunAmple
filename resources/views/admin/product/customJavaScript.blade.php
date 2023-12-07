@@ -1462,7 +1462,7 @@ function load_options(id, index) {
             var baseurl = '<?PHP echo $baseurl;?>';
             var SITEROOT = baseurl;
             createXMLHttpRequest();
-            var url = SITEROOT + '/admin/index/deletedatewiseproduct/';
+            var url = SITEROOT + '/admin/deletedatewiseproduct/'+pid;
 
             var strURL = url;
 
@@ -1470,7 +1470,7 @@ function load_options(id, index) {
                 var query = "deleteid=" + pid;
 
                 if (xmlHttpRequest != null) {
-                    xmlHttpRequest.open("post", strURL, true);
+                    xmlHttpRequest.open("get", strURL, true);
                     xmlHttpRequest.onreadystatechange = (function (x, m) {
                         return function () {
                             if (x.readyState == 4) {
@@ -1501,7 +1501,7 @@ function load_options(id, index) {
             var baseurl = '<?PHP echo $baseurl;?>';
             var SITEROOT = baseurl;
             createXMLHttpRequest();
-            var url = SITEROOT + '/admin/index/deleteproductdetailimage/';
+            var url = SITEROOT + '/admin/deleteproductdetailimage/'+pid;
 
             var strURL = url;
 
@@ -1509,7 +1509,7 @@ function load_options(id, index) {
                 var query = "deleteid=" + pid;
 
                 if (xmlHttpRequest != null) {
-                    xmlHttpRequest.open("post", strURL, true);
+                    xmlHttpRequest.open("get", strURL, true);
                     xmlHttpRequest.onreadystatechange = (function (x, m) {
                         return function () {
                             if (x.readyState == 4) {

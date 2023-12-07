@@ -190,5 +190,7 @@ Route::post('/remproduct', [ProductController::class, 'remproduct'])->name('remp
 Route::get('admin/product-edit/{id}', [ProductController::class, 'product_edit'])->name('product_edit');
 Route::get('admin/deletedetailproimg/{id}', [ProductController::class, 'deletedetailproimg'])->name('deletedetailproimg');
 Route::get('admin/deleteproattributes/{id}', [ProductController::class, 'deleteproattributes'])->name('deleteproattributes');
+Route::get('admin/deletedatewiseproduct/{id}', [ProductController::class, 'deletedatewiseproduct'])->name('deletedatewiseproduct');
+Route::get('admin/deleteproductdetailimage/{id}', [ProductController::class, 'deleteproductdetailimage'])->name('deleteproductdetailimage');
 
 // =========================== Admin Routes End =============================================//

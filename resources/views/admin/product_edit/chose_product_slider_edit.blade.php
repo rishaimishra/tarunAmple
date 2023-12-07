@@ -8,13 +8,16 @@
                                             <select class="selectpicker searchdropdown mtop35px" name="lmorevendor"
                                                     id="lmorevendor" multiple data-style="btn btn-primary btn-round"
                                                     data-live-search="true" data-size="7" title="Select Category">
+                                                    @php
+                                                    $selectvendorky = $productDetails->vendor_uid;
+                                                    @endphp
 
-                                                <?php foreach ($this->vendordata as $key) { ?>
-                                                    <option value="<?php echo $key['tbl_vndr_id']; ?>" <?php if ($selectvendorky != 0) {
-                                                        if ($selectvendorky == $key['tbl_vndr_id']) {
+                                                <?php foreach ($vendor_data as $key) { ?>
+                                                    <option value="<?php echo $key->tbl_vndr_id; ?>" <?php if ($selectvendorky != 0) {
+                                                        if ($selectvendorky == $key->tbl_vndr_id) {
                                                             echo "selected='selected'";
                                                         }
-                                                    } ?>><?php echo $key['vendor_displayname']; ?></option>
+                                                    } ?>><?php echo $key->tbl_vndr_dispname; ?></option>
                                                 <?php } ?>
 
                                             </select>
@@ -31,8 +34,8 @@
                                                     data-live-search="true" data-size="7" title="Select Category"
                                                     onchange="getSubcategory();">
                                                 <option value="">Select Category</option>
-                                                <?php foreach ($this->mcategorydata as $key) { ?>
-                                                    <option value="<?php echo $key['id']; ?>"><?php echo $key['category_name']; ?></option>
+                                                <?php foreach ($categories as $key) { ?>
+                                                    <option value="<?php echo $key->id; ?>"><?php echo $key->category_name; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>

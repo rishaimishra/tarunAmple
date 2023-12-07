@@ -431,6 +431,9 @@ public function product_list(Request $request){
             $data['productDetails']=$productDetails;
             // dd($data['productDetails']);
 
+            $data['product_images']=DB::table('product_images')->where('product_id',$productDetails->id)->get();
+             // dd($data['productDetails']);
+
 
 
 
@@ -514,11 +517,43 @@ public function deleteproattributes($id){
  $images = DB::table('tbl_product_attributes')->where('id', $id)->first();
  if($images){
     //unlink code from folder
-    // $d=DB::table('tbl_product_attributes')->where('id', $usrcid)->delete();
+    // $d=DB::table('tbl_product_attributes')->where('id', $id)->delete();
       return 1;
  }else{
      return 0;
  }
+}
+
+
+
+
+
+public function deletedatewiseproduct($id){
+    $images=DB::table('datewise_price')->where('id', $id)->first();
+    if($images){
+        //unlink code from folder
+        // $d=DB::table('datewise_price')->where('id', $id)->delete();
+          return 1;
+     }else{
+         return 0;
+     }
+}
+
+
+
+
+
+
+public function deleteproductdetailimage($id){
+    $images=DB::table('product_images')->where('id', $id)->first();
+    if($images){
+    //unlink code from folder
+    // $d=DB::table('product_images')->where('id', $id)->delete();
+       return 1;
+    
+     }else{
+         return 0;
+     }
 }
 
 

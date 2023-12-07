@@ -156,9 +156,9 @@ mysqli_select_db($con, $db_database_name);
 
                                 @include('admin.product_edit.pricing_details_edit')
                                 
-                               {{--  @include('admin.product_edit.chose_product_slider_edit')
+                                @include('admin.product_edit.chose_product_slider_edit')
                                 
-                                @include('admin.product_edit.chose_product_images_edit') --}}
+                                @include('admin.product_edit.chose_product_image_edit')
                                 
                             </div>
                         </div>
