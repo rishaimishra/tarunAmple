@@ -23,6 +23,9 @@ class CustomerAuthController extends Controller
   Jeet
 */
     public function indexPage(){
+         // $user = Auth::guard('web')->user();
+                      // $user2 = Auth::user();
+                // dd('successful Customer Login done',$user,$user2);
         $allSlider=HomeBrandSliderModel::with('vendorDetails')->get();
         foreach($allSlider as $key=> $val){
 
@@ -61,7 +64,8 @@ class CustomerAuthController extends Controller
                     'discount_price as pdiscountprice',
                 ])
                 ->orderBy('single_price','asc')
-                ->where('status', '=', "1")
+                // ->where('status', '=', "1")
+                ->whereIn('status', ["2","1"])
                 ->where('is_free_product', '=', "0")
                 ->where('vendor_uid', '=', $val->vendor_id)
                 // ->where($whereCondition, '=', $whereValue)
@@ -130,10 +134,15 @@ class CustomerAuthController extends Controller
                      return back()->with("error","Verfication not done. Kindly verify the link given to your email to proceed");
                 }
 
+                  Auth::login($userDataEmail);
+                Auth::guard('web')->login($userDataEmail);
 
-                dd('successful Customer Login',$userDataEmail);
-                // Auth::login($userDataEmail);
-                 // return redirect()->route('cust.dashboard');
+                  // Access the authenticated admin user
+
+                     $user = Auth::guard('web')->user();
+                      $user2 = Auth::user();
+                // dd('successful Customer Login done',$userDataEmail,$user,$user2);
+                 return redirect()->route('index.page');
             }else{
                  return back()->with("error","Customer Credential is wrong.");
             }

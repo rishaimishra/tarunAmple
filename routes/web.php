@@ -68,8 +68,23 @@ Route::get('/category',[StoreCategoryController::class, 'CategoryPage'])->name('
 
 // product and product details
 Route::get('/products',[ProductsController::class, 'productsPage'])->name('member.products.page');
-Route::get('/product-details',[ProductsController::class, 'productDetailsPage'])->name('member.product.details.page');
+Route::get('/product-details/{id}',[ProductsController::class, 'productDetailsPage'])->name('member.product.details.page');
+
 // =========================== Customer Routes End =============================================//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -91,6 +106,19 @@ Route::get('/vendor-login',[VendorAuthController::class, 'vendorLogin'])->name('
 Route::post('/vendor-login/post',[VendorAuthController::class, 'vendorLoginPost'])->name('vendor.login.post');
 
 // =========================== Vendor Routes Start =============================================//
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
