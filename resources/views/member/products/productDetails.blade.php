@@ -125,6 +125,7 @@ if ($acpt) {
                     <div class="column col-xs-12 col-sm-3 detail_hide" id="left_column">
                         <!-- block best sellers -->
                       @include('member.products.productDetails_part1')
+                      @include("member.products.productDetails_part2")
 
 
 

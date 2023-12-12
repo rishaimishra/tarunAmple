@@ -8,6 +8,7 @@ use DB;
 use App\Models\ProductModel;
 use App\Models\User;
 use Auth;
+use App\Models\AdminImpFunctionModel;
 
 
 class ProductsController extends Controller
@@ -118,6 +119,15 @@ Jeet
     )
     ->where('products.id', $id)
     ->first();
+
+
+    $data['resdelivery'] = DB::table('products')
+        ->select('products.*') // Adjust the columns as needed
+        ->where('products.id', '=', $id)
+        // ->where('products.status', '=', '1')
+        // ->groupBy('products.id')
+        ->first();
+        // dd($data['resdelivery']);
     
 
 
@@ -162,8 +172,10 @@ Jeet
           }
 
           $data['user_total_alample']=$finalAmplepoints;
+          $data['usrmakey']=$user_id;
      }else{
        $data['user_total_alample']=0;
+       $data['usrmakey']=null;
      }
 
     // dd( $data['checkproductalldates']);
