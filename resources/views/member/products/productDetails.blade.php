@@ -126,10 +126,8 @@ if ($acpt) {
                         <!-- block best sellers -->
                       @include('member.products.productDetails_part1')
                       @include("member.products.productDetails_part2")
-
-
-
-
+                      @include("member.products.productDetails_part3")
+                      @include("member.products.productDetails_part4")
 
                       </div>
                     </div>

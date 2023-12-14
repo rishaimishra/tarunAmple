@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\Models\ProductModel;
 
 class AdminImpFunctionModel extends Model
 {
@@ -139,6 +140,96 @@ public function get_vendor_address($vid, $store)
         ->where('vendor_location.vendor_id', '=', $vid)
         ->first();
 
+    return $result;
+}
+
+
+
+
+
+public function featureProductOnOffer($condition, $productKey)
+{
+    if ($condition == 'feature') {
+        $whr = 'is_featured = 1';
+    } elseif ($condition == 'hotdeal') {
+        $whr = 'is_featured = 0';
+    } else {
+        $whr = 'deal_type = 0';
+    }
+// dd($productKey);
+    $result = ProductModel::select(
+        'products.id as pid',
+        'products.vendor_uid as vendor_key',
+        'products.product_name as pname',
+        'products.single_price as pprice',
+        'products.prod_front_fromdate as pfrmdate',
+        'products.prod_front_todate as ptodate',
+        'products.stock_availability as pstock',
+        'quantity',
+        'products.min_order_quantity as pminqty',
+        'product_images.image_name as pimage',
+        'products.deal_type as pdltype',
+        'products.product_discount as pdiscount',
+        'products.no_of_amples as pamples',
+        'products.free_with_amples as pfwamples',
+        'products.supplier_name as pvendor',
+        'products.discount_price as pdiscountprice'
+    )
+       ->leftJoin('product_images', 'product_images.product_id', '=', 'products.id')
+        ->where('products.id', '=', $productKey)
+        ->first();
+
+    return $result;
+}
+
+
+
+
+
+
+public function featureProductOnSale($condition, $productKey)
+{
+    if ($condition == 'feature') {
+        $whr = 'is_featured = 1';
+    } elseif ($condition == 'hotdeal') {
+        $whr = 'is_featured = 0';
+    } else {
+        $whr = 'deal_type = 0';
+    }
+
+    $result = ProductModel::select(
+        'products.id as pid',
+        'products.vendor_uid as vendor_key',
+        'products.product_type_key',
+        'products.product_name as pname',
+        'products.single_price as pprice',
+        'products.prod_front_fromdate as pfrmdate',
+        'products.prod_front_todate as ptodate',
+        'products.stock_availability as pstock',
+        'quantity',
+        'products.min_order_quantity as pminqty',
+        'product_images.image_name as pimage',
+        'products.deal_type as pdltype',
+        'products.product_discount as pdiscount',
+        'products.no_of_amples as pamples',
+        'products.free_with_amples as pfwamples',
+        'products.supplier_name as pvendor',
+        'products.discount_price as pdiscountprice'
+    )
+        ->leftJoin('product_images', 'product_images.product_id', '=', 'products.id')
+        ->where('products.id', '=', $productKey)
+        ->first();
+
+    return $result;
+}
+
+
+
+
+
+public function getVendorDetail($vid)
+{
+    $result =  DB::table('tbl_vendor')->where('tbl_vndr_id', $vid)->first();
     return $result;
 }
 

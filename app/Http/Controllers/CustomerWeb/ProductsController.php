@@ -76,6 +76,22 @@ Jeet
     ->whereIn('products.status', ['1','2'])
     // ->groupBy('products.id')
     ->first();
+
+
+
+        $vendor_id = $productDetails->vendor_key;
+
+        if ($vendor_id > 0) {
+            $vendor_email = DB::table('tbl_vendor')->where('tbl_vndr_id', $vendor_id)->first();
+            $data['tbl_vndr_mail'] = $vendor_email->tbl_vndr_mail;
+            $data['tbl_vndr_dispname'] = $vendor_email->tbl_vndr_dispname;
+        } else {
+            $data['tbl_vndr_mail'] = 'info@amplepoints.com';
+            $data['tbl_vndr_dispname'] = 'Amplepoints';
+        }
+
+
+
     
     $data['product_images']=DB::table('product_images')->where('product_id',@$productDetails->id)->get();
     $data['productDetails']=$productDetails;
@@ -128,6 +144,32 @@ Jeet
         // ->groupBy('products.id')
         ->first();
         // dd($data['resdelivery']);
+
+
+
+         $data['offerproductIdsdata'] = DB::table('tbl_offer_products')
+         ->where('tbl_offer_products.off_mpid', '=', $productDetails->id)
+         // ->groupBy('tbl_offer_products.off_pid')
+         ->get();
+         // dd( $data['offerproductIdsdata']);
+         // return $result;
+
+
+          $data['onsaleproductIdsdata'] =DB::table('tbl_onsale_products')
+        // ->leftJoin('products', 'products.id', '=', 'tbl_onsale_products.os_pid')
+        ->where('tbl_onsale_products.os_mpid', '=', $productDetails->id)
+        // ->where('products.status', '=', '1')
+        // ->groupBy('tbl_onsale_products.os_pid')
+        ->get();
+       
+        // dd($data['onsaleproductIdsdata']);
+         //return $result;
+
+
+        $data['noOfPurchased']=DB::table('products_added')->where('product_id', $productDetails->id)
+        ->where('product_order_status', '!=', 'Cancelled')
+        ->where('is_purchased', 1)
+        ->get();
     
 
 
@@ -173,9 +215,13 @@ Jeet
 
           $data['user_total_alample']=$finalAmplepoints;
           $data['usrmakey']=$user_id;
+          $data['resuser']=User::where('user_id', @$user_id)
+                             ->where('status', '1')
+                             ->first();
      }else{
        $data['user_total_alample']=0;
        $data['usrmakey']=null;
+       $data['resuser']=null;
      }
 
     // dd( $data['checkproductalldates']);

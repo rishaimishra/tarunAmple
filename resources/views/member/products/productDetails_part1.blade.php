@@ -4,7 +4,7 @@ $currencySymbol="$";
 //creating obj of that model
 $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 @endphp
-<div class="block left-module">
+<div class="block left-module" style="margin-top:100px">
 	<?php
 	if (($productDetails->pdiscount) >= 50) { ?>
 	<div class='sidebar-booking-box'>
