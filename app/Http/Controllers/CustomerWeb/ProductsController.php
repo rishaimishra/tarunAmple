@@ -94,6 +94,7 @@ Jeet
 
     
     $data['product_images']=DB::table('product_images')->where('product_id',@$productDetails->id)->get();
+    // dd($data['product_images']);
     $data['productDetails']=$productDetails;
 
 

@@ -2,6 +2,8 @@
 $baseurl=url('/');
 $currencySymbol="$";
 $admin_model_obj = new \App\Models\AdminImpFunctionModel;
+$pid = $resdelivery->id;
+$vid = $resdelivery->vendor_uid;
 ?>
 
  <div class="center_column col-xs-12 col-sm-9 juilk" id="center_column">
@@ -15,7 +17,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 {{-- part-1 --}}
                                     <!-- product-imge-->
                                     <div class="picZoomer"><img
-                                                src="https://amplepoints.com/product_images/{{$product_images[0]->pid}}/{{$product_images[0]->pimage}}"
+                                                src="https://amplepoints.com/product_images/{{$product_images[0]->id}}/{{$product_images[0]->image_name}}"
                                                 style="width:100%; height:100%;" alt=""></div>
                                     <div class="works_item alignleft clear zoom-a">
                                         <div id="fourd" class="carouseller"><a href="javascript:void(0)"
@@ -26,7 +28,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                         foreach ($product_images as $key) { ?>
                                                             <div class="span6 carousel-block piclist">
                                                                 <li>
-                                                                    <img src="https://amplepoints.com/product_images/{{$key->pid}}/{{$key->pimage}}"
+                                                                    <img src="https://amplepoints.com/product_images/{{$key->id}}/{{$key->image_name}}"
                                                                          alt=""></li>
                                                             </div>
                                                             <?php
@@ -635,23 +637,25 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 
 {{-- part-7 --}}
                                             <?php
-                                            if (empty($this->usrmakey)) {
+                                            if (empty(@$usrmakey)) {
                                                 $userid = 0;
                                             } else {
-                                                $userid = $this->usrmakey;
+                                                $userid = @$usrmakey;
                                             }
                                             $deliveryset = $admin_model_obj->get_delivery_set($vid, $pid, $userid);
+                                           // dd($deliveryset);
                                             ?>
-                                            <?php if (!empty($this->resdelivery[0]['pickUp'])) { ?>
+
+                                            <?php if (!empty($resdelivery->pickUp)) { ?>
                                                 <style type="text/css">
                                                     .mainradio.shiping {
                                                         left: 0px !important;
                                                     }
                                                 </style>
-                                            <?php if (!empty($deliveryset)){ ?>
+                                            <?php if (!empty(@$deliveryset)){ ?>
                                             <div class="mainradio pickup">
                                                 <input type="radio"
-                                                       class="pickdate" <?php if ($deliveryset[0]['delivery_type'] == 'pickup') ?>  id="vdrpickupdivadr" value="1" name="pickdelivery">
+                                                       class="pickdate" <?php if (@$deliveryset->delivery_type == 'pickup') ?>  id="vdrpickupdivadr" value="1" name="pickdelivery">
                                                 </input>
                                                 Pickup / Dining </div>
                                             <?php }else{ ?>
@@ -673,13 +677,24 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                         text-align: center;
                                                     }
                                                 </style>
+
+
+
+
+
+
+
+
+
+
+ {{-- part-8  --}}
                                                 <div id="vdrpickupadr" style="display:none;">
                                                     <div id="flash" align="left"></div>
                                                     <div id="show" align="left"></div>
                                                     <form method="post" action="">
                                                         <?php
 
-                                                        if (!empty($vid) && $this->data[0]['is_custom_location'] != 1) {
+                                                        if (!empty($vid) && $productDetails->is_custom_location != 1) {
 
                                                             /*$pickupaddres = $admin_model_obj->get_pickup_location($vid, $pid);
 
@@ -689,7 +704,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                 $pickuplocationadd = $admin_model_obj->get_vendor_address($vid, $store);
                                                                 } }  */
 
-                                                            $allVendorAddr = $admin_model_obj->get_all_vendor_address($vid);
+                                                            $allVendorAddr = $admin_model_obj->get_all_vendor_address_multiple($vid);
 
                                                             if (!empty($allVendorAddr)) {
                                                                 echo '<div style="max-height: 200px;overflow-y: auto;">';
@@ -697,11 +712,11 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                     <div class="clearfix"><i
                                                                                 class="fa fa-map-marker"></i>
                                                                         <input type="radio"
-                                                                               onclick="codeAddress(this.value,'<?php echo $vdraddr['loc_phone']; ?>');"
-                                                                               id="<?php echo $vdraddr['loc_id']; ?>"
+                                                                               onclick="codeAddress(this.value,'<?php echo $vdraddr->loc_phone; ?>');"
+                                                                               id="<?php echo $vdraddr->loc_id; ?>"
                                                                                name="picadd"
-                                                                               value="<?= $vdraddr['loc_address']; ?>">
-                                                                        <?php echo $vdraddr['loc_store'] . " :- " . $vdraddr['loc_address']; ?>
+                                                                               value="<?= $vdraddr->loc_address; ?>">
+                                                                        <?php echo $vdraddr->loc_store . " :- " . $vdraddr->loc_address; ?>
                                                                     </div>
                                                                     <?php
 
@@ -721,10 +736,10 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                                 class="fa fa-map-marker"></i>
                                                                         <input type="radio"
                                                                                onclick="codeAddress(this.value,'');"
-                                                                               id="<?php echo $mycustPic['pickup_id']; ?>"
+                                                                               id="<?php echo $mycustPic->pickup_id; ?>"
                                                                                name="picadd"
-                                                                               value="<?= $mycustPic['address'] ?>">
-                                                                        <?php echo $mycustPic['address']; ?> </div>
+                                                                               value="<?= $mycustPic->address ?>">
+                                                                        <?php echo $mycustPic->address; ?> </div>
                                                                 <?php }
                                                                 echo '</div>';
                                                             } else {
@@ -748,17 +763,27 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                 float: left !important;
                                                             }
                                                         </style>
+
+
+
+
+
+
+
+
+{{-- part-9 --}}
+
                                                         <div class="control-group">
                                                             <div class="controls">
                                                                 <?php if ($datewisePriceAvailable == 1) { ?>
-                                                                    <?php if (!empty($show_date)) { ?>
-                                                                        <input value="<?php echo date('Y/m/d', strtotime($show_date)); ?>"
+                                                                    <?php if (!empty(@$show_date)) { ?>
+                                                                        <input value="<?php echo date('Y/m/d', strtotime(@$show_date)); ?>"
                                                                                type="text" placeholder="Pickup Date"
                                                                                name="picdate"
                                                                                class="form-control dttwiseinput"
                                                                                readonly id="picdate">
                                                                         <div id="flash" align="left"></div>
-                                                                        <input value="<?php echo $show_time; ?>"
+                                                                        <input value="<?php echo @$show_time; ?>"
                                                                                type="text" placeholder="Pickup Time"
                                                                                name="pictime"
                                                                                class="form-control dttwiseinput"
@@ -779,12 +804,14 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                 <?php } ?>
                                                             </div>
                                                         </div>
+
+
                                                         <input type="hidden" id="proid" name="proid"
                                                                value="<?= $pid ?>">
                                                         <input type="hidden" id="vid" name="vid" value="<?= $vid ?>">
-                                                        <?php if (!empty($this->usrmakey)) { ?>
+                                                        <?php if (!empty(@$usrmakey)) { ?>
                                                             <input type="hidden" id="userid" name="userid"
-                                                                   value="<?= $this->usrmakey; ?>">
+                                                                   value="<?= @$usrmakey; ?>">
                                                         <?php } else { ?>
                                                             <input type="hidden" id="userid" name="userid" value="0">
                                                         <?php } ?>
@@ -792,7 +819,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                value="pickup">
                                                         <div class="clearfix"></div>
                                                         <?php if ($datewisePriceAvailable == 1) { ?>
-                                                            <?php if (!empty($show_date)) { ?>
+                                                            <?php if (!empty(@$show_date)) { ?>
                                                                 <input type="button" name="submit" class="submit_button"
                                                                        value="Submit">
                                                             <?php } ?>
@@ -811,7 +838,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                     var vendorid = $('#vid').val();
                                                                     $.ajax({
                                                                         type: "POST",
-                                                                        url: "<?php echo $this->baseUrl(); ?>/category_filter/getvendorhours.php",
+                                                                        url: "{{url('/category_filter/getvendorhours.php')}}",
                                                                         data: {fordate: pickerval, vid: vendorid},
                                                                         cache: true,
                                                                         success: function (data) {
@@ -965,7 +992,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                         });
                                                 </script>
                                             <?php } ?>
-                                            <?php if (!empty($this->resdelivery[0]['online'])) { ?>
+                                            <?php if (!empty($resdelivery->online)) { ?>
                                                 <style type="text/css">
                                                     .attributes.mainbox-forurs.mainbox-forurs-boxs-final > div#onlinepickupadr {
                                                         background: #333 none repeat scroll 0 0;
@@ -1022,8 +1049,8 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                     <input type="radio"
                                                                            onclick="codeAddress(this.value);"
                                                                            id="piconlineadd" name="piconlineadd"
-                                                                           value="<?= $Myloca['address'] ?>">
-                                                                    <?php echo $Myloca['address']; ?> </div>
+                                                                           value="<?= $Myloca->address ?>">
+                                                                    <?php echo $Myloca->address; ?> </div>
                                                             <?php }
                                                             echo '</div>';
                                                         } else {
@@ -1035,9 +1062,9 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                value="<?= $pid ?>">
                                                         <input type="hidden" id="online_vid" name="online_vid"
                                                                value="<?= $vid ?>">
-                                                        <?php if (!empty($this->usrmakey)) { ?>
+                                                        <?php if (!empty(@$usrmakey)) { ?>
                                                             <input type="hidden" id="oline_userid" name="oline_userid"
-                                                                   value="<?= $this->usrmakey; ?>">
+                                                                   value="<?= @$usrmakey; ?>">
                                                         <?php } else { ?>
                                                             <input type="hidden" id="oline_userid" name="oline_userid"
                                                                    value="0">
@@ -1070,7 +1097,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                             $("#flash").fadeIn(400).html('<span class="load">Loading..</span>');
                                                             $.ajax({
                                                                 type: "POST",
-                                                                url: "<?php echo $this->baseUrl(); ?>/category_filter/action.php",
+                                                                url: "{{url('category_filter/action.php')}}",
                                                                 data: {
                                                                     picloc: piconlineloc,
                                                                     proid: proid,
@@ -1093,7 +1120,19 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                     });
                                                 </script>
                                             <?php } ?>
-                                            <?php if (!empty($this->resdelivery[0]['shipping'])) { ?>
+
+
+
+
+
+
+
+
+
+
+
+{{-- Part-10  --}}
+                                            <?php if (!empty($resdelivery->shipping)) { ?>
                                                 <style type="text/css">
                                                     #shipadd > .showbox {
                                                         border-bottom: 1px #09C solid;
@@ -1108,7 +1147,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                         text-align: center;
                                                     }
                                                 </style>
-                                                <?php if (!empty($deliveryset)) { ?>
+                                                <?php if (!empty(@$deliveryset)) { ?>
                                                     <div class="mainradio shiping">
                                                         <input type="radio" class="ship" id="vdrshipdivadr"
                                                                value="1" <?php /* if($deliveryset[0]['delivery_type'] == 'shipment'){ echo 'checked';} */ ?>
@@ -1148,35 +1187,35 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                         <?php } */ ?>
                                                         <div class="shipptype">
                                                             <?php $shippingtype = $admin_model_obj->get_shipp_type($pid); ?>
-                                                            <?php if (!empty($shippingtype[0]['standard_shipping'])) { ?>
+                                                            <?php if (!empty($shippingtype->standard_shipping)) { ?>
                                                                 <div class="myrdo">
                                                                     <input <?php /* if(!empty($deliveryset)){if($deliveryset[0]['shipping_type'] == $shippingtype[0]['standard_shipping']){echo 'checked == "checked"';} } */ ?>
                                                                             type="radio" name="shiptype" id="shiptype1"
-                                                                            value="<?= $shippingtype[0]['standard_shipping'] ?>">
+                                                                            value="<?= $shippingtype->standard_shipping ?>">
                                                                     </input>
                                                                     Standard Shipping
                                                                 </div>
-                                                            <?php } else if (!empty($shippingtype[0]['cexpress_shipping'])) { ?>
+                                                            <?php } else if (!empty($shippingtype->cexpress_shipping)) { ?>
                                                                 <div class="myrdo">
                                                                     <input type="radio" <?php /* if(!empty($deliveryset)){if($deliveryset[0]['shipping_type'] == $shippingtype[0]['cexpress_shipping']){echo 'checked == "checked"';} } */ ?>
                                                                            name="shiptype" id="shiptype2"
-                                                                           value="<?= $shippingtype[0]['cexpress_shipping'] ?>">
+                                                                           value="<?= $shippingtype->cexpress_shipping ?>">
                                                                     </input>
                                                                     CexpressShipping
                                                                 </div>
-                                                            <?php } else if (!empty($shippingtype[0]['ups'])) { ?>
+                                                            <?php } else if (!empty($shippingtype->ups)) { ?>
                                                                 <div class="myrdo">
                                                                     <input type="radio" <?php /* if(!empty($deliveryset)){if($deliveryset[0]['shipping_type'] == $shippingtype[0]['ups']){echo 'checked == "checked"';} } */ ?>
                                                                            name="shiptype" id="shiptype3"
-                                                                           value="<?= $shippingtype[0]['ups'] ?>">
+                                                                           value="<?= $shippingtype->ups ?>">
                                                                     </input>
                                                                     UPS
                                                                 </div>
-                                                            <?php } else if (!empty($shippingtype[0]['fedex'])) { ?>
+                                                            <?php } else if (!empty($shippingtype->fedex)) { ?>
                                                                 <div class="myrdo">
                                                                     <input type="radio" <?php /* if(!empty($deliveryset)){if($deliveryset[0]['shipping_type'] == $shippingtype[0]['fedex']){echo 'checked == "checked"';} } */ ?>
                                                                            name="shiptype" id="shiptype4"
-                                                                           value="<?= $shippingtype[0]['fedex'] ?>">
+                                                                           value="<?= $shippingtype->fedex?>">
                                                                     </input>
                                                                     Fedex
                                                                 </div>
@@ -1192,9 +1231,9 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                         <input type="hidden" id="proid" name="proid"
                                                                value="<?= $pid ?>">
                                                         <input type="hidden" id="vid" name="vid" value="<?= $vid ?>">
-                                                        <?php if (!empty($this->usrmakey)) { ?>
+                                                        <?php if (!empty(@$usrmakey)) { ?>
                                                             <input type="hidden" id="userid" name="userid"
-                                                                   value="<?= $this->usrmakey; ?>">
+                                                                   value="<?= @$usrmakey; ?>">
                                                         <?php } else { ?>
                                                             <input type="hidden" id="userid" name="userid" value="0">
                                                         <?php } ?>
@@ -1223,7 +1262,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                             $("#flashship").fadeIn(400).html('<span class="loadship">Loading..</span>');
                                                             $.ajax({
                                                                 type: "POST",
-                                                                url: "<?php echo $this->baseUrl(); ?>/category_filter/action.php",
+                                                                url: "{{url('/category_filter/action.php')}}",
                                                                 data: {
                                                                     shiploc: shiploc,
                                                                     shiptype: shiptype,
@@ -1248,38 +1287,63 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                     </script>
                                                 </div>
                                             <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{--   part-11   --}}
                                             &nbsp; &nbsp; &nbsp;
-                                            <?php if (!empty($this->resdelivery[0]['delivery'])) {
+                                            <?php if (!empty($resdelivery->delivery)) {
 
                                                 $delivysall = $admin_model_obj->get_delivery_location($pid);
 
-                                                if (!empty($this->usrmakey)) {
+                                                if (!empty($usrmakey)) {
 
                                                     $isdeleveryaailable = false;
 
-                                                    $Usercuntrykey = $this->record['data'][0]['user_countrykey'];
-                                                    $Userstatekey = $this->record['data'][0]['user_statekey'];
-                                                    $Usercitykey = $this->record['data'][0]['user_citykey'];
-                                                    $Userzipcode = $this->record['data'][0]['zip_code'];
+                                                    $Usercuntrykey = $record->user_countrykey;
+                                                    $Userstatekey = $record->user_statekey;
+                                                    $Usercitykey = $record->user_citykey;
+                                                    $Userzipcode = $record->zip_code;
 
                                                     //echo "<pre>";print_R($delivysall);
                                                     //echo "<pre>";print_R($this->record['data']);
 
                                                     foreach ($delivysall as $deladdress) {
 
-                                                        $cuntrykey = $deladdress['country'];
-                                                        $statekey = $deladdress['state'];
-                                                        $citykey = $deladdress['city'];
-                                                        $zipcode = $deladdress['postl_code'];
+                                                        $cuntrykey = $deladdress->country;
+                                                        $statekey = $deladdress->state;
+                                                        $citykey = $deladdress->city;
+                                                        $zipcode = $deladdress->postl_code;
 
                                                         if ($cuntrykey == $Usercuntrykey && $statekey == $Userstatekey && $citykey == $Usercitykey && $zipcode == $Userzipcode) {
 
                                                             $isdeleveryaailable = true;
 
                                                         }
-
-
                                                     } ?>
+
+
                                                     <div class="mainradio ddlivery">
                                                         <input type="radio"
                                                                class="delivrydata" <?php /* if(!empty($deliveryset)){ if($deliveryset[0]['delivery_type'] == 'delivery'){ echo 'checked';}} */ ?>
@@ -1295,7 +1359,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                             <div id="showdiv" align="left"></div>
                                                             <form method="post" action="">
                                                                 <input type="hidden" id="userid" name="userid"
-                                                                       value="<?= $this->usrmakey; ?>">
+                                                                       value="<?= @$usrmakey; ?>">
                                                                 <input type="hidden" id="proid" name="proid"
                                                                        value="<?= $pid ?>">
                                                                 <input type="hidden" id="vid" name="vid"
@@ -1332,7 +1396,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                         $("#flashdiv").fadeIn(400).html('<span class="loaddiv">Loading..</span>');
                                                                         $.ajax({
                                                                             type: "POST",
-                                                                            url: "<?php echo $this->baseUrl(); ?>/category_filter/action.php",
+                                                                            url: "{{url('/category_filter/action.php')}}",
                                                                             data: {
                                                                                 user_zipcode: zipcode,
                                                                                 address: new_address,
@@ -1378,18 +1442,17 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 
                                                             if (!empty($deliveryPricing)) {
 
-                                                                if ($deliveryPricing[0]['delivery_type'] == 'free') {
+                                                                if ($deliveryPricing->delivery_type == 'free') {
 
                                                                     echo "<span> Delivery Type : FREE</span>";
 
                                                                 } else {
 
                                                                     echo "<span> Delivery Type : Not FREE</span></br>";
-                                                                    $delcharge = $deliveryPricing[0]['delivery_fee'];
+                                                                    $delcharge = $deliveryPricing->delivery_fee;
                                                                     echo "<span> Delivery Charge :$ $delcharge</span>";
 
                                                                 }
-
                                                             }
 
                                                             ?>
@@ -1407,18 +1470,18 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                         <?php
                                                         foreach ($delivysall as $deladdress) {
 
-                                                            $cuntrykey = $deladdress['country'];
+                                                            $cuntrykey = $deladdress->country;
                                                             $country_name = $admin_model_obj->get_country($cuntrykey);
-                                                            $statekey = $deladdress['state'];
+                                                            $statekey = $deladdress->state;
                                                             $state_name = $admin_model_obj->get_state($statekey);
-                                                            $citykey = $deladdress['city'];
+                                                            $citykey = $deladdress->city;
                                                             $city_name = $admin_model_obj->get_city($citykey);
-                                                            $zipcode = $deladdress['postl_code'];
-                                                            $miles = $deladdress['miles'];
+                                                            $zipcode = $deladdress->postl_code;
+                                                            $miles = $deladdress->miles;
 
-                                                            $country = $country_name[0]['name'];
-                                                            $state = $state_name[0]['statename'];
-                                                            $city = $city_name[0]['name'];
+                                                            $country = @$country_name->name;
+                                                            $state = @$state_name->statename;
+                                                            $city = @$city_name->name;
                                                             $del1 = $city . ', &nbsp; ' . $state . ', &nbsp; ' . $country . ', &nbsp; ' . $zipcode;
 
                                                             ?>
@@ -1430,7 +1493,27 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                     </div>
                                                 <?php } ?>
                                             <?php } ?>
-                                            <?php if (!empty($this->resdelivery[0]['byappointment'])) { ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{--  part-12  --}}
+                                            <?php if (!empty($resdelivery->byappointment)) { ?>
                                                 <style type="text/css">
 
                                                     .mainbox-forurs.mainbox-forurs-boxs-final #vdrbyappointadr #datepicker1.form-control.hasDatepicker, form select {
@@ -1474,10 +1557,10 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                     }
 
                                                 </style>
-                                            <?php if (!empty($deliveryset)){ ?>
+                                            <?php if (!empty(@$deliveryset)){ ?>
                                                 <div class="mainradio appointments">
                                                     <input type="radio"
-                                                           class="byappointdata" <?php if ($deliveryset[0]['delivery_type'] == 'byappoint') {
+                                                           class="byappointdata" <?php if (@$deliveryset->delivery_type == 'byappoint') {
                                                         echo 'checked';
                                                     } ?> id="vdrbyappointkupdivadr" value="1"
                                                            onclick="openvendorbyappoint(this.value);"
@@ -1495,6 +1578,9 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                 </div>
                                             <?php } ?>
                                                 </strong> <br/>
+
+
+
                                                 <div id="vdrbyappointadr" style="display:none;">
                                                     <div id="flashbyappoint" align="left"></div>
                                                     <div id="showbyappoint" align="left"></div>
@@ -1512,612 +1598,638 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                     <td>Address</td>
                                                                 </tr>
                                                                 <?php foreach ($byappointaddress as $byapp) {
-                                                                    $store = $byapp['store'];
+                                                                    $store = $byapp->store;
                                                                     $byapointstoreadd = $admin_model_obj->get_vendor_address($vid, $store);
 
                                                                     //    print_r($deliveryset);die;
                                                                     ?>
                                                                     <tr>
                                                                         <td>
-                                                                            <input type="radio" <?php if (!empty($deliveryset)) {
-                                                                                if ($deliveryset[0]['byappoint_location'] == $byapp['byappoint_id']) {
+                                                                            <input type="radio" <?php if (!empty(@$deliveryset)) {
+                                                                                if (@$deliveryset->byappoint_location == $byapp->byappoint_id) {
                                                                                     echo 'checked';
                                                                                 }
                                                                             } ?> id="locationadd" name="locationadd"
-                                                                                   value="<?php echo $byapp['byappoint_id']; ?>">
+                                                                                   value="<?php echo $byapp->byappoint_id; ?>">
                                                                         </td>
-                                                                        <!--<td><?php // echo $deliveryset['byappoint_location']; ?></td>-->
-                                                                        <td><?php echo $byapp['startdate']; ?></td>
-                                                                        <td><?php echo $byapp['enddate']; ?></td>
-                                                                        <td><?php echo $byapp['employee']; ?></td>
-                                                                        <td><?php echo $byapointstoreadd[0]['loc_address']; ?></td>
+                                                                        <!--<td><?php // echo $deliveryset->byappoint_location; ?></td>-->
+                                                                        <td><?php echo $byapp->startdate; ?></td>
+                                                                        <td><?php echo $byapp->enddate; ?></td>
+                                                                        <td><?php echo $byapp->employee; ?></td>
+                                                                        <td><?php echo $byapointstoreadd->loc_address; ?></td>
                                                                     </tr>
                                                                 <?php } ?>
                                                             </table>
                                                         <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {{-- part-13 --}}
                                                         <div class="control-group">
                                                             <div class="controls">
                                                                 <input style="width: 126px;"
-                                                                       value="<?php if (!empty($deliveryset)) {
-                                                                           echo $deliveryset[0]['byappoint_date'];
+                                                                       value="<?php if (!empty(@$deliveryset)) {
+                                                                           echo @$deliveryset->byappoint_date;
                                                                        } ?>" type="text" placeholder="Pickup Date"
                                                                        name="byapointdate" class="form-control"
                                                                        id="datepicker1">
                                                                 <select style="width:126px;" name="byapointtime"
                                                                         id="byapointtime" class="form-control">
                                                                     <option value="">Select Time</option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '12:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '12:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="12:00 AM">12:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '12:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '12:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="12:15 AM">12:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '12:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '12:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="12:30 AM">12:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '12:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '12:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="12:45 AM">12:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '1:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '1:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="1:00 AM">1:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '1:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '1:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="1:15 AM">1:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '1:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '1:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="1:30 AM">1:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '1:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '1:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="1:45 AM">1:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '2:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '2:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="2:00 AM">2:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '2:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '2:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="2:15 AM">2:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '2:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '2:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="2:30 AM">2:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '2:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '2:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="2:45 AM">2:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '3:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '3:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="3:00 AM">3:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '3:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '3:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="3:15 AM">3:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '3:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '3:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="3:30 AM">3:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '3:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '3:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="3:45 AM">3:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '4:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '4:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="4:00 AM">4:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '4:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '4:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="4:15 AM">4:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '4:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '4:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="4:30 AM">4:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '4:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '4:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="4:45 AM">4:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '5:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '5:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="5:00 AM">5:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '5:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '5:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="5:15 AM">5:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '5:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '5:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="5:30 AM">5:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '5:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '5:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="5:45 AM">5:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '6:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '6:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="6:00 AM">6:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '6:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '6:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="6:15 AM">6:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '6:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '6:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="6:30 AM">6:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '6:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '6:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="6:45 AM">6:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '7:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '7:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="7:00 AM">7:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '7:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '7:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="7:15 AM">7:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '7:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '7:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="7:30 AM">7:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '7:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '7:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="7:45 AM">7:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '8:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '8:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="8:00 AM">8:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '8:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '8:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="8:15 AM">8:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '8:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '8:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="8:30 AM">8:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '8:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '8:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="8:45 AM">8:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '9:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '9:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="9:00 AM">9:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '9:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '9:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="9:15 AM">9:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '9:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '9:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="9:30 AM">9:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '9:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '9:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="9:45 AM">9:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '10:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '10:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="10:00 AM">10:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '10:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '10:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="10:15 AM">10:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '10:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '10:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="10:30 AM">10:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '10:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '10:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="10:45 AM">10:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '11:00 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '11:00 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="11:00 AM">11:00 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '11:15 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '11:15 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="11:15 AM">11:15 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '11:30 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '11:30 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="11:30 AM">11:30 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '11:45 AM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '11:45 AM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="11:45 AM">11:45 AM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '12:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '12:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="12:00 PM">12:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '12:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '12:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="12:15 PM">12:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '12:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '12:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="12:30 PM">12:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '12:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '12:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="12:45 PM">12:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '1:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '1:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="1:00 PM">1:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '1:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '1:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="1:15 PM">1:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '1:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '1:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="1:30 PM">1:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '1:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '1:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="1:45 PM">1:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '2:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '2:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="2:00 PM">2:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '2:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '2:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="2:15 PM">2:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '2:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '2:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?>value="2:30 PM">2:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '2:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '2:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="2:45 PM">2:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '3:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '3:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="3:00 PM">3:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '3:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '3:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="3:15 PM">3:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '3:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '3:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="3:30 PM">3:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '3:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '3:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="3:45 PM">3:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '4:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '4:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="4:00 PM">4:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '4:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '4:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="4:15 PM">4:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '4:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '4:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="4:30 PM">4:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '4:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '4:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="4:45 PM">4:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '5:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '5:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="5:00 PM">5:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '5:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '5:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="5:15 PM">5:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '5:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '5:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="5:30 PM">5:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '5:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '5:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="5:45 PM">5:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '6:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '6:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="6:00 PM">6:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '6:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '6:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="6:15 PM">6:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '6:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '6:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="6:30 PM">6:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '6:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '6:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="6:45 PM">6:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '7:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '7:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="7:00 PM">7:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '7:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '7:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="7:15 PM">7:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '7:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '7:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="7:30 PM">7:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '7:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '7:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="7:45 PM">7:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '8:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '8:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="8:00 PM">8:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '8:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '8:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="8:15 PM">8:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '8:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '8:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="8:30 PM">8:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '8:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '8:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="8:45 PM">8:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '9:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '9:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="9:00 PM">9:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '9:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '9:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="9:15 PM">9:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '9:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '9:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="9:30 PM">9:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '9:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '9:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="9:45 PM">9:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '10:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '10:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="10:00 PM">10:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '10:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '10:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="10:15 PM">10:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '10:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '10:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="10:30 PM">10:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '10:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '10:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="10:45 PM">10:45 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '11:00 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '11:00 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="11:00 PM">11:00 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '11:15 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '11:15 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="11:15 PM">11:15 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '11:30 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '11:30 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="11:30 PM">11:30 PM
                                                                     </option>
-                                                                    <option <?php if (!empty($deliveryset)) {
-                                                                        if ($deliveryset[0]['byappoint_time'] == '11:45 PM') {
+                                                                    <option <?php if (!empty(@$deliveryset)) {
+                                                                        if (@$deliveryset->byappoint_time == '11:45 PM') {
                                                                             echo 'selected == "selected"';
                                                                         }
                                                                     } ?> value="11:45 PM">11:45 PM
@@ -2128,9 +2240,9 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                         <input type="hidden" id="proid" name="proid"
                                                                value="<?= $pid ?>">
                                                         <input type="hidden" id="vid" name="vid" value="<?= $vid ?>">
-                                                        <?php if (!empty($this->usrmakey)) { ?>
+                                                        <?php if (!empty($usrmakey)) { ?>
                                                             <input type="hidden" id="userid" name="userid"
-                                                                   value="<?= $this->usrmakey; ?>">
+                                                                   value="<?= $usrmakey; ?>">
                                                         <?php } else { ?>
                                                             <input type="hidden" id="userid" name="userid" value="0">
                                                         <?php } ?>
@@ -2141,6 +2253,33 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                         <!--<input type="submit" id="subbyappoint"> -->
                                                     </form>
                                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-14 --}}
+
                                                 <script>
                                                     $(".subbyappoint").click(function () {
                                                         var byappointdate = $('#datepicker1').val();
@@ -2161,7 +2300,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                             $("#flashbyappoint").fadeIn(400).html('<span class="loadbyappoint">Loading..</span>');
                                                             $.ajax({
                                                                 type: "POST",
-                                                                url: "<?php echo $this->baseUrl(); ?>/category_filter/action.php",
+                                                                url: "{{url('/category_filter/action.php')}}",
                                                                 data: {
                                                                     byappointloc: byappointloc,
                                                                     byappointdate: byappointdate,
@@ -2206,9 +2345,22 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                             <?php } ?>
 
                                             <!-- delivery code start-->
-
                                         </div>
-                                        <?php if (!empty($this->resdelivery[0]['shipping'])) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-15 --}}
+                                        <?php if (!empty($resdelivery->shipping)) {
 
                                             $shipprice = $admin_model_obj->get_shipp_price($pid);
 
@@ -2217,7 +2369,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                 ?>
                                                 <div style="background: #555555;color: #fff;font-size: 12px;font-family: sans-serif;">
                                                     <label style="margin-left: 10px;">Shipping Price:
-                                                        $<?php echo $shipprice[0]['shipp_price']; ?></label>
+                                                        $<?php echo $shipprice->shipp_price; ?></label>
                                                 </div>
                                             <?php }
 
@@ -2225,17 +2377,16 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 
                                             if (!empty($shiptype)) {
 
-                                                if ($shiptype[0]['type_of_shipfee'] == 'free') { ?>
+                                                if ($shiptype->type_of_shipfee == 'free') { ?>
                                                     <div style="background: #555555;color: #fff;font-size: 12px;font-family: sans-serif;">
                                                         <label style="margin-left: 10px;">Shipping Type: FREE</label>
                                                     </div>
                                                 <?php }
                                             }
-
                                         } ?>
 
                                         <!-- end code for deliver -->
-                                        <?php if (!empty($this->checkalldates)) { ?>
+                                        <?php if (!empty($checkalldates)) { ?>
                                             <style type="text/css">
                                                 .table-hover > tbody > tr:hover {
                                                     background-color: #f75d00;
@@ -2287,51 +2438,53 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                                                         <?php
                                                                         $i = 1;
 
-                                                                        foreach ($this->checkalldates as $alldatekeys) {
+                                                                        foreach ($checkalldates as $alldatekeys) {
 
-                                                                            $myrpoductName = str_replace("'", "", $alldatekeys['dtp_detail']);
+                                                                            $myrpoductName = str_replace("'", "", $alldatekeys->dtp_detail);
+
                                                                             $myrpoductName = preg_replace("/\r|\n/", "", $myrpoductName);
-                                                                            //$myrpoductName = "nanannananna";
-
                                                                             ?>
-                                                                            <tr <?php if (!empty($slectedPrice) && $slectedPrice == $alldatekeys['id']) { ?> style="background-color: #f75d00;color: #fff;" <?php } ?>
+
+
+                                                                            <tr <?php if (!empty($slectedPrice) && $slectedPrice == $alldatekeys->id) { ?> style="background-color: #f75d00;color: #fff;" <?php } ?>
                                                                                     class="datechecknew"
-                                                                                    onclick="myFunctionnew('<?php echo $alldatekeys['price']; ?>', '<?php echo $alldatekeys['no_of_amples']; ?>', '<?php echo $alldatekeys['free_with_amples']; ?>', '<?php echo $alldatekeys['discount_price']; ?>', '<?php echo $alldatekeys['discount_amp']; ?>','<?php echo $alldatekeys['id']; ?>','<?php echo $alldatekeys['show_date']; ?>','<?php echo $alldatekeys['show_time']; ?>','<?php echo $myrpoductName; ?>')">
+                                                                                    onclick="myFunctionnew('<?php echo $alldatekeys->price; ?>', '<?php echo $alldatekeys->no_of_amples; ?>', '<?php echo $alldatekeys->free_with_amples; ?>', '<?php echo $alldatekeys->discount_price; ?>', '<?php echo $alldatekeys->discount_amp; ?>','<?php echo $alldatekeys->id; ?>','<?php echo $alldatekeys->show_date; ?>','<?php echo $alldatekeys->show_time; ?>','<?php echo $myrpoductName; ?>')">
                                                                                 <td class="nowrapdt"
-                                                                                    style="text-align: left;"><?php echo $alldatekeys['dtp_detail']; ?></td>
+                                                                                    style="text-align: left;"><?php echo $alldatekeys->dtp_detail; ?></td>
                                                                                 <td style="text-align: center;"
-                                                                                    class="nowrapdt"><?php if (!empty($alldatekeys['month'])) {
-                                                                                        echo ($alldatekeys['month']) . "/" . ($alldatekeys['adate']) . "/" . ($alldatekeys['year']);
+                                                                                    class="nowrapdt"><?php if (!empty($alldatekeys->month)) {
+                                                                                        echo ($alldatekeys->month) . "/" . ($alldatekeys->adate) . "/" . ($alldatekeys->year);
                                                                                     } else {
                                                                                         echo "-";
                                                                                     } ?></td>
                                                                                 <td style="text-align: center;"
-                                                                                    class="nowrapdt"><?php if (!empty($alldatekeys['show_time'])) {
-                                                                                        echo($alldatekeys['show_time']);
+                                                                                    class="nowrapdt"><?php if (!empty($alldatekeys->show_time)) {
+                                                                                        echo($alldatekeys->show_time);
                                                                                     } else {
                                                                                         echo "-";
                                                                                     } ?></td>
                                                                                 <td class='cloneprice nowrapdt'
-                                                                                    style="text-align: center;"><?php if ($alldatekeys['price'] != '') {
-                                                                                        echo $this->currencySymbol . number_format($alldatekeys['price'], 2, ".", ",");
+                                                                                    style="text-align: center;"><?php if ($alldatekeys->price != '') {
+                                                                                        echo $currencySymbol . number_format($alldatekeys->price, 2, ".", ",");
                                                                                     } else {
                                                                                         echo "-";
                                                                                     } ?></td>
                                                                                 <td class='cloneprice nowrapdt'
-                                                                                    style="text-align: center;"><?php if ($alldatekeys['no_of_amples'] != '') {
-                                                                                        echo number_format($alldatekeys['no_of_amples'], 2, ".", ",") . " Amples";
+                                                                                    style="text-align: center;"><?php if ($alldatekeys->no_of_amples != '') {
+                                                                                        echo number_format($alldatekeys->no_of_amples, 2, ".", ",") . " Amples";
                                                                                     } else {
                                                                                         echo "-";
                                                                                     } ?></td>
                                                                                 <td class='cloneprice nowrapdt'
-                                                                                    style="text-align: center;"><?php if ($alldatekeys['discount_price'] != '') {
-                                                                                        echo $this->currencySymbol . number_format($alldatekeys['discount_price'], 2, ".", ",");
+                                                                                    style="text-align: center;"><?php if ($alldatekeys->discount_price != '') {
+                                                                                        echo $currencySymbol . number_format($alldatekeys->discount_price, 2, ".", ",");
                                                                                     } else {
                                                                                         echo "-";
                                                                                     } ?></td>
+
                                                                                 <td class='cloneprice nowrapdt'
-                                                                                    style="text-align: center;"><?php if ($alldatekeys['discount_amp'] != '') {
-                                                                                        echo number_format($alldatekeys['discount_amp'], 2, ".", ",") . "%";
+                                                                                    style="text-align: center;"><?php if ($alldatekeys->discount_amp != '') {
+                                                                                        echo number_format($alldatekeys->discount_amp, 2, ".", ",") . "%";
                                                                                     } else {
                                                                                         echo "-";
                                                                                     } ?></td>
@@ -2388,6 +2541,30 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
                                             }
                                         </style>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-16 --}}
                                         <?php
 
                                         $OGDesc = '';

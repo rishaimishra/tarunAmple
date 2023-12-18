@@ -76,6 +76,19 @@ class AdminImpFunctionModel extends Model
     }
 
 
+
+ public function get_all_vendor_address_multiple($vid)
+    {
+       $result = DB::table('vendor_location')
+        ->select('*')
+        ->where('vendor_location.vendor_id', '=', $vid)
+        ->get();
+
+    return $result;
+
+    }
+
+
 public function get_shipp_address($pid)
 {
     $result = DB::table('shipp_address')
@@ -235,6 +248,77 @@ public function getVendorDetail($vid)
 
 
 
+
+public function get_delivery_set($vid, $pid, $userid, $withoutample = 0, $free_product = 0)
+    {
+        $result = array();
+
+        $result = DB::table('product_delivery_type')->where('pro_id', $pid)
+            ->where('vid', $vid)
+            ->where('userid', $userid)
+            ->where('ship_without_ample', $withoutample)
+            ->where('ship_free_product', $free_product)
+            ->where('orderid', '')
+            ->first();
+
+        return $result;
+    }
+
+
+
+
+
+public function get_pickup_locationaddress($pid)
+    {
+        $result = array();
+        $result =  DB::table('pickup_location')->where('pro_id', $pid)->get();
+        return $result;
+    }
+
+
+
+
+public function get_online_locationaddress($pid)
+    {
+        $result = DB::table('online_locations')->where('pro_id', $pid)->get();
+        return $result;
+    }
+
+
+
+
+    public function get_shipp_type($pid)
+    {
+        $result = DB::table('pro_shipp')->where('pro_id', $pid)->first();
+        return $result;
+    }
+
+
+
+
+
+    public function get_delivery_location($pid)
+    {
+        $result =  DB::table('deliver_location')->where('pro_id', $pid)->get();
+        return $result;
+    }
+
+
+     public function get_delivery_price_detail($pid)
+    {
+        $result = DB::table('product_delivery_fees')->where('pro_id', $pid)->first();
+        return $result;
+    }
+
+
+
+
+
+ public function get_shipp_price($pid)
+    {
+        $result = DB::table('shipp_fee')->where('pro_id', $pid)->first();
+        return $result;
+    }
 
 
 
