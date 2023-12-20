@@ -240,7 +240,7 @@ public function featureProductOnSale($condition, $productKey)
 
 
 
-public function getVendorDetail($vid)
+public function get_vendord_details($vid)
 {
     $result =  DB::table('tbl_vendor')->where('tbl_vndr_id', $vid)->first();
     return $result;
@@ -321,10 +321,97 @@ public function get_online_locationaddress($pid)
     }
 
 
+ public function GetVendorTabsDetail($vendor_id)
+    {
+        // $result = DB::select("SELECT * FROM vendor_tabs WHERE vendor_id = ?", [$vendor_id]);
+           $result = DB::table('vendor_tabs')->where('vendor_id',$vendor_id)->get();
+        return $result;
+    }
 
 
 
 
+    public function getProDetailImg($proId)
+    {
+        $result = DB::table('pro_detail_images')
+            ->where('product_id', $proId)
+            ->get();
+
+        return $result;
+    }
+
+
+
+
+
+
+
+
+
+
+    public function getStarUsers($pdctkey, $usrRating)
+    {
+        $result = DB::table('products_rating_comments')
+            ->select(DB::raw("count(*) as total{$usrRating}starusers"))
+            ->leftJoin('users', 'users.user_id', '=', 'products_rating_comments.customer_id')
+            ->where('products_rating_comments.product_id', $pdctkey)
+            ->where('products_rating_comments.usr_rating', $usrRating)
+            ->where('products_rating_comments.isstatus', 1)
+            ->where('products_rating_comments.isdeleted', 0)
+            ->get();
+
+        return $result;
+    }
+
+    public function getOneStarUsers($pdctkey)
+    {
+        return $this->getStarUsers($pdctkey, 1);
+    }
+
+    public function getTwoStarUsers($pdctkey)
+    {
+        return $this->getStarUsers($pdctkey, 2);
+    }
+
+    public function getThreeStarUsers($pdctkey)
+    {
+        return $this->getStarUsers($pdctkey, 3);
+    }
+
+    public function getFourStarUsers($pdctkey)
+    {
+        return $this->getStarUsers($pdctkey, 4);
+    }
+
+    public function getFiveStarUsers($pdctkey)
+    {
+        return $this->getStarUsers($pdctkey, 5);
+    }
+
+
+
+
+    public function get_vendor_hours($vendorId)
+{
+    $result = DB::table('tbl_vendor_hours')->where('vendor_id', $vendorId)->get();
+    return $result;
+}
+
+
+
+
+
+public function getyoumightlikeproductIdsbympid($mspId)
+{
+    $result = DB::table('tbl_mightalsolike_products')->select('tbl_mightalsolike_products.mal_pid')
+        ->leftJoin('products', 'products.id', '=', 'tbl_mightalsolike_products.mal_pid')
+        ->where('mal_mpid', $mspId)
+        ->where('products.status', 1)
+        ->groupBy('mal_pid')
+        ->get();
+
+    return $result;
+}
 
 
 

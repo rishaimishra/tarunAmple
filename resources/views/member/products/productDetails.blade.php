@@ -1,4 +1,4 @@
-@extends('Layouts.app')
+@extends('Layouts.app') --}}
 
 @section('meta')
     {{-- all meta tags --}}
@@ -11,8 +11,14 @@
 @include('includes.head')
 @include('includes.header')
 
-@include('member.products.product_css')
+@include('member.products.product_head_css')
 
+
+
+
+
+
+<body>
 
 
 <?php
@@ -109,7 +115,7 @@ if ($acpt) {
 
 
 
-@section('content')
+{{-- @section('content') --}}
 
 <section>
 
@@ -155,8 +161,8 @@ if ($acpt) {
 
 
 
-@include('includes.footer')
-@include('includes.script')
+{{-- @include('includes.footer') --}}
+{{-- @include('includes.script') --}}
 {{-- script 1 --}}
 
 
@@ -744,4 +750,4 @@ if ($acpt) {
     });
 </script>
 
-@endsection
+</body>

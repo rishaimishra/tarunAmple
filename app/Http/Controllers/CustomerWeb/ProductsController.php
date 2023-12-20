@@ -34,6 +34,13 @@ Jeet
  
  public function productDetailsPage($id){
 
+   //search
+   $srch=ProductModel::where('id',$id)->first();
+   if(!$srch){
+      dd('no');
+      return back()->with('error','id missmatch');
+   }
+
    $productDetails = DB::table('products')
     ->select(
         'products.id',
@@ -77,7 +84,7 @@ Jeet
     // ->groupBy('products.id')
     ->first();
 
-
+     // dd($productDetails);
 
         $vendor_id = $productDetails->vendor_key;
 
@@ -136,6 +143,43 @@ Jeet
     )
     ->where('products.id', $id)
     ->first();
+
+
+
+        $vendorId=$data['respro']->vendor_key;
+        $data['vendordatabyproduct'] = DB::table('tbl_vendor')->select(
+                'tbl_vendor.tbl_vndr_id as vendor_id',
+                'tbl_vndr_dispname as vendor_name',
+                'tbl_vndr_adr as vendor_address',
+                'tbl_vndr_city as vendor_city',
+                'tbl_vndr_state as vendor_state',
+                'tbl_vndr_country as vendor_country',
+                'tbl_vndr_zip as vendor_zip',
+                'tbl_vndr_comment as vndr_comment',
+                'tbl_vndr_feedback as vndr_feedback',
+                'tbl_vndr_complant as vndr_complant',
+                'display_shipping',
+                'display_return',
+                'display_nutritional',
+                'nutritional_facts',
+                'display_specialties',
+                'specialties',
+                'display_specification',
+                'specification',
+                'display_hours',
+                'display_venue',
+                'venue_detail',
+                'venue_image',
+                'display_online_detail',
+                'online_detail'
+            )
+            ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_vendor.tbl_vndr_id')
+            ->where('tbl_vndr_id', $vendorId)
+            ->orderBy('tbl_vndr_id')
+            ->first();
+            // dd($data['vendordatabyproduct'] );
+
+        // return $result;
 
 
     $data['resdelivery'] = DB::table('products')
@@ -226,6 +270,107 @@ Jeet
      }
 
     // dd( $data['checkproductalldates']);
+
+
+     //ratting and comment
+      $productratingcomments = DB::table('products_rating_comments')->select(
+          'products_rating_comments.rat_id as rat_key',
+          'products_rating_comments.usr_coments as user_comments',
+          'products_rating_comments.usr_rating as user_rating',
+          'products_rating_comments.iscreated as commentdated',
+          'products_rating_comments.customer_id as cstkey',
+          'users.first_name',
+          'users.last_name',
+          'users.user_image as profile_photo'
+      )
+      ->leftJoin('users', 'users.user_id', '=', 'products_rating_comments.customer_id')
+      ->where('products_rating_comments.product_id', $productDetails->id)
+      ->where('products_rating_comments.isstatus', 1)
+      ->where('products_rating_comments.isdeleted', 0)
+      ->get();
+      $data['pratingcommentsdata']=$productratingcomments;
+
+
+
+
+      $data['producttotalrating'] =DB::table('products_rating_comments')->select(DB::raw('SUM(usr_rating) as total_rating'))
+      ->leftJoin('users', 'users.user_id', '=', 'products_rating_comments.customer_id')
+      ->where('products_rating_comments.product_id', $productDetails->id)
+      ->where('products_rating_comments.isstatus', 1)
+      ->where('products_rating_comments.isdeleted', 0)
+      ->first();
+
+
+       // $data['pdctavgratingbyusr'] = number_format((($data['producttotalrating']->total_rating) / (count($data['pratingcommentsdata']))), 1);
+
+
+
+        $admin_model_obj = new \App\Models\AdminImpFunctionModel;
+        $productid=$productDetails->id;
+        $onestarusers = $admin_model_obj->getonestarusers($productid);
+        $twostarusers = $admin_model_obj->gettwostarusers($productid);
+        $threestarusers = $admin_model_obj->getthreestarusers($productid);
+        $fourstarusers = $admin_model_obj->getfourstarusers($productid);
+        $fivestarusers = $admin_model_obj->getfivestarusers($productid);
+
+
+     //  $data = [
+     //     'pdctavgratingbyusr' => count($productratingcomments) > 0 ? number_format(($producttotalrating->total_rating / count($productratingcomments)), 1) : 0,
+
+
+     //     'pdctonestarrating' => count($productratingcomments) > 0 ? (int)(($onestarusers->totalonestarusers / count($productratingcomments)) * 100) : 0,
+     //     'pdcttwostarrating' => count($productratingcomments) > 0 ? (int)(($twostarusers->totaltwostarusers / count($productratingcomments)) * 100) : 0,
+     //     'pdctthreestarrating' => count($productratingcomments) > 0 ? (int)(($threestarusers->totalthreestarusers / count($productratingcomments)) * 100) : 0,
+     //     'pdctfourstarrating' => count($productratingcomments) > 0 ? (int)(($fourstarusers->totalfourstarusers / count($productratingcomments)) * 100) : 0,
+     //     'pdctfivestarrating' => count($productratingcomments) > 0 ? (int)(($fivestarusers->totalfivestarusers / count($productratingcomments)) * 100) : 0,
+
+
+     //     'pdctonestarusers' => count($productratingcomments) > 0 ? $onestarusers->totalonestarusers : 0,
+     //     'pdcttwostarusers' => count($productratingcomments) > 0 ? $twostarusers->totaltwostarusers : 0,
+     //     'pdctthreestarusers' => count($productratingcomments) > 0 ? $threestarusers->totalthreestarusers : 0,
+     //     'pdctfourstarusers' => count($productratingcomments) > 0 ? $fourstarusers->totalfourstarusers : 0,
+     //     'pdctfivestarusers' => count($productratingcomments) > 0 ? $fivestarusers->totalfivestarusers : 0,
+
+
+
+     //     'pdctavgratingbyusr'=> count($productratingcomments) > 0 ? number_format((($data['producttotalrating']->total_rating) / (count($data['pratingcommentsdata']))), 1) : 0 ,
+
+
+     // ];
+
+
+$data['pdctavgratingbyusr'] = count($productratingcomments) > 0 ? number_format(($producttotalrating->total_rating / count($productratingcomments)), 1) : 0;
+
+$data['pdctonestarrating'] = count($productratingcomments) > 0 ? (int)(($onestarusers->totalonestarusers / count($productratingcomments)) * 100) : 0;
+$data['pdcttwostarrating'] = count($productratingcomments) > 0 ? (int)(($twostarusers->totaltwostarusers / count($productratingcomments)) * 100) : 0;
+$data['pdctthreestarrating'] = count($productratingcomments) > 0 ? (int)(($threestarusers->totalthreestarusers / count($productratingcomments)) * 100) : 0;
+$data['pdctfourstarrating'] = count($productratingcomments) > 0 ? (int)(($fourstarusers->totalfourstarusers / count($productratingcomments)) * 100) : 0;
+$data['pdctfivestarrating'] = count($productratingcomments) > 0 ? (int)(($fivestarusers->totalfivestarusers / count($productratingcomments)) * 100) : 0;
+
+$data['pdctonestarusers'] = count($productratingcomments) > 0 ? $onestarusers->totalonestarusers : 0;
+$data['pdcttwostarusers'] = count($productratingcomments) > 0 ? $twostarusers->totaltwostarusers : 0;
+$data['pdctthreestarusers'] = count($productratingcomments) > 0 ? $threestarusers->totalthreestarusers : 0;
+$data['pdctfourstarusers'] = count($productratingcomments) > 0 ? $fourstarusers->totalfourstarusers : 0;
+$data['pdctfivestarusers'] = count($productratingcomments) > 0 ? $fivestarusers->totalfivestarusers : 0;
+
+$data['pdctavgratingbyusr'] = count($productratingcomments) > 0 ? number_format((($producttotalrating->total_rating) / (count($data['pratingcommentsdata']))), 1) : 0;
+
+
+
+
+
+
+$data['relatedproductIdsdata'] = DB::table('tbl_related_products')->select('tbl_related_products.relp_pid')
+        ->leftJoin('products', 'products.id', '=', 'tbl_related_products.relp_pid')
+        ->where('relp_mpid', $productid)
+        ->where('products.status', 1)
+        ->groupBy('relp_pid')
+        ->get();
+
+    // return $result;
+
+   $resultyoumightlikeproductIds = $admin_model_obj->getyoumightlikeproductIdsbympid($productid);
+  $data['mightlikeproductIdsdata'] =$resultyoumightlikeproductIds;
 
     // return $data;
     return view('member.products.productDetails')->with($data);

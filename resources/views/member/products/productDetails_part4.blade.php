@@ -17,7 +17,7 @@ $vid = $resdelivery->vendor_uid;
 {{-- part-1 --}}
                                     <!-- product-imge-->
                                     <div class="picZoomer"><img
-                                                src="https://amplepoints.com/product_images/{{$product_images[0]->id}}/{{$product_images[0]->image_name}}"
+                                                src="https://amplepoints.com/product_images/{{$product_images[0]->product_id}}/{{$product_images[0]->image_name}}"
                                                 style="width:100%; height:100%;" alt=""></div>
                                     <div class="works_item alignleft clear zoom-a">
                                         <div id="fourd" class="carouseller"><a href="javascript:void(0)"
@@ -28,7 +28,7 @@ $vid = $resdelivery->vendor_uid;
                                                         foreach ($product_images as $key) { ?>
                                                             <div class="span6 carousel-block piclist">
                                                                 <li>
-                                                                    <img src="https://amplepoints.com/product_images/{{$key->id}}/{{$key->image_name}}"
+                                                                    <img src="https://amplepoints.com/product_images/{{$productDetails->id}}/{{$key->image_name}}"
                                                                          alt=""></li>
                                                             </div>
                                                             <?php
@@ -277,10 +277,13 @@ $vid = $resdelivery->vendor_uid;
 
                                                     $vendorname = '';
                                                     $msgvendorid = 0;
+                                                    //
+                                                    //dd($productDetails);
 
                                                     if ($productDetails->vendor_key > 0) {
 
-                                                        $myvendordata = $admin_model_obj->getvendorddetail($productDetails->vendor_key);
+                                                        $myvendordata = $admin_model_obj->get_vendord_details($productDetails->vendor_key);
+                                                        //dd($myvendordata)
                                                         $vendorname = $myvendordata->tbl_vndr_dispname;
                                                         $msgvendorid = $myvendordata->tbl_vndr_id;
 
@@ -635,6 +638,11 @@ $vid = $resdelivery->vendor_uid;
 
 
 
+
+
+
+
+
 {{-- part-7 --}}
                                             <?php
                                             if (empty(@$usrmakey)) {
@@ -677,6 +685,10 @@ $vid = $resdelivery->vendor_uid;
                                                         text-align: center;
                                                     }
                                                 </style>
+
+
+
+
 
 
 
@@ -763,6 +775,14 @@ $vid = $resdelivery->vendor_uid;
                                                                 float: left !important;
                                                             }
                                                         </style>
+
+
+
+
+
+
+
+
 
 
 
@@ -1131,6 +1151,12 @@ $vid = $resdelivery->vendor_uid;
 
 
 
+
+
+
+
+
+
 {{-- Part-10  --}}
                                             <?php if (!empty($resdelivery->shipping)) { ?>
                                                 <style type="text/css">
@@ -1287,6 +1313,10 @@ $vid = $resdelivery->vendor_uid;
                                                     </script>
                                                 </div>
                                             <?php } ?>
+
+
+
+
 
 
 
@@ -1512,6 +1542,13 @@ $vid = $resdelivery->vendor_uid;
 
 
 
+
+
+
+
+
+
+
 {{--  part-12  --}}
                                             <?php if (!empty($resdelivery->byappointment)) { ?>
                                                 <style type="text/css">
@@ -1621,6 +1658,7 @@ $vid = $resdelivery->vendor_uid;
                                                                 <?php } ?>
                                                             </table>
                                                         <?php } ?>
+
 
 
 
@@ -2278,6 +2316,8 @@ $vid = $resdelivery->vendor_uid;
 
 
 
+
+
 {{-- part-14 --}}
 
                                                 <script>
@@ -2346,6 +2386,10 @@ $vid = $resdelivery->vendor_uid;
 
                                             <!-- delivery code start-->
                                         </div>
+
+
+
+
 
 
 
@@ -2564,20 +2608,24 @@ $vid = $resdelivery->vendor_uid;
 
 
 
+
+
+
 {{-- part-16 --}}
                                         <?php
 
                                         $OGDesc = '';
 
-                                        if ($this->data[0]['pdiscount'] >= 50) {
+                                        if ($productDetails->pdiscount >= 50) {
 
-                                            $OGDesc .= "GET IT FREE WITH :" . $admin_model_obj->DisplayAmplePoints($this->data[0]['pfwamples']) . " Amples ";
+                                            $OGDesc .= "GET IT FREE WITH :" . $admin_model_obj->DisplayAmplePoints($productDetails->pfwamples) . " Amples ";
                                         }
-                                        $OGDesc .= "Price:$" . $this->data[0]['single_price'] . " ";
-                                        $OGDesc .= "Buy & Earn:" . $admin_model_obj->DisplayAmplePoints($this->data[0]['pamples']) . " Amples ";
-                                        $OGDesc .= "Reward Value: $" . $this->data[0]['pdiscountprice'] . " ";
-                                        $OGDesc .= "You Earn:" . $this->data[0]['pdiscount'] . "% ";
-                                        $OGDesc .= "Product By:" . $this->data[0]['pvendor'] . " ";
+                                        $OGDesc .= "Price:$" . $productDetails->single_price . " ";
+                                        $OGDesc .= "Buy & Earn:" . $admin_model_obj->DisplayAmplePoints($productDetails->pamples) . " Amples ";
+                                        $OGDesc .= "Reward Value: $" . $productDetails->pdiscountprice . " ";
+                                        $OGDesc .= "You Earn:" . $productDetails->pdiscount . "% ";
+                                        $OGDesc .= "Product By:" . $productDetails->pvendor . " ";
+                                        $ogImage = 'https://amplepoints.com/product_images/' . $productDetails->id . '/' . $productDetails->image;
 
                                         ?>
 
@@ -2592,9 +2640,9 @@ $vid = $resdelivery->vendor_uid;
                                                         async="async"></script>
                                                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
                                                 <div class="sharethis-inline-share-buttons"
-                                                     data-url="<?php echo 'https://amplepoints.com/productdetail/' . $this->main_product_id ?>"
-                                                     data-title="<?php echo strip_tags($this->data[0]['product_name']); ?>"
-                                                     data-image="<?php echo $this->ogImage; ?>"
+                                                     data-url="<?php echo 'https://amplepoints.com/productdetail/' . $productDetails->id ?>"
+                                                     data-title="<?php echo strip_tags($productDetails->product_name); ?>"
+                                                     data-image="<?php echo $ogImage; ?>"
                                                      data-description="<?php echo $OGDesc; ?>"></div>
                                             </div>
                                             <h3 class="h3a"
@@ -2604,12 +2652,12 @@ $vid = $resdelivery->vendor_uid;
 
                                                 $("body").on("click", ".st-btn", function (event) {
 
-                                                    var UserId = "<?php echo $this->UserId; ?>";
+                                                    var UserId = "<?php echo @$usrmakey; ?>";
 
                                                     if (UserId != '') {
 
                                                         $.ajax({
-                                                            url: '<?php echo $this->baseUrl(); ?>/index/addampletouser',
+                                                            url: '{{url('/index/addampletouser')}}',
                                                             data: {userId: UserId},
                                                             type: 'POST',
                                                             dataType: "json"
@@ -2729,8 +2777,8 @@ $vid = $resdelivery->vendor_uid;
                             </style>
                             <?php
 
-                            $tabsDetails = $admin_model_obj->GetVendorTabsDetail($this->data[0]['vendor_key']);
-
+                            $tabsDetails = $admin_model_obj->GetVendorTabsDetail($productDetails->vendor_key);
+                           //dd($tabsDetails);
                             ?>
                             <div class="product-tab">
 
@@ -2742,7 +2790,7 @@ $vid = $resdelivery->vendor_uid;
                                     <li role="presentation"><a href="#review_rating_tab"
                                                                aria-controls="review_rating_tab" role="tab"
                                                                data-toggle="tab">Reviews & Rating</a></li>
-                                    <?php if ($this->vendordatabyproduct[0]['display_hours'] == 1) { ?>
+                                    <?php if ($vendordatabyproduct->display_hours == 1) { ?>
                                         <li role="presentation"><a href="#working_hours_tab"
                                                                    aria-controls="working_hours_tab" role="tab"
                                                                    data-toggle="tab">Working Hours</a></li>
@@ -2754,10 +2802,10 @@ $vid = $resdelivery->vendor_uid;
 
                                             ?>
                                             <li role="presentation"><a
-                                                        href="#<?php echo 'display_tab_' . $tbdata['tab_id']; ?>"
-                                                        aria-controls="<?php echo 'display_tab_' . $tbdata['tab_id']; ?>"
+                                                        href="#<?php echo 'display_tab_' . $tbdata->tab_id; ?>"
+                                                        aria-controls="<?php echo 'display_tab_' . $tbdata->tab_id; ?>"
                                                         role="tab"
-                                                        data-toggle="tab"><?php echo $tbdata['tab_name']; ?></a></li>
+                                                        data-toggle="tab"><?php echo $tbdata->tab_name; ?></a></li>
                                             <?php
 
                                         }
@@ -2765,15 +2813,39 @@ $vid = $resdelivery->vendor_uid;
                                     }
                                     ?>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-17 --}}
+
                                     <?php if (!empty($GiftcardDetail)) { ?>
 
                                         <li role="presentation"><a href="#giftcard_tab" aria-controls="giftcard_tab"
                                                                    role="tab" data-toggle="tab">Gift Card Details</a>
                                         </li>
 
-                                        <?php if ($GiftcardDetail['redeemed_for'] == 1) { ?>
+                                        <?php if ($GiftcardDetail->redeemed_for == 1) { ?>
                                             <li role="presentation"><a
-                                                        href="<?php echo $this->baseUrl('product_images/' . $this->escape($this->main_product_id) . '/' . $this->escape($GiftcardDetail['price_sheet'])); ?>"
+                                                        href="{{-- <?php echo $this->baseUrl('product_images/' . $this->escape($this->main_product_id) . '/' . $this->escape($GiftcardDetail['price_sheet'])); ?> --}}"
                                                         role="tab">Special Price</a></li>
                                         <?php } ?>
 
@@ -2781,24 +2853,31 @@ $vid = $resdelivery->vendor_uid;
 
                                 </ul>
 
+
+
+
+
+
+
+
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="detail_tab">
-                                        <?php if (!empty($this->data[0]['productdetail_image'])) { ?>
-                                            <img src="<?php echo $admin_model_obj->cdnUrl('product_images/' . $this->escape($this->main_product_id) . '/' . $this->escape($this->data[0]['productdetail_image'])); ?>"
+                                        <?php if (!empty($productDetails->productdetail_image)) { ?>
+                                            <img src="{{-- <?php echo $admin_model_obj->cdnUrl('product_images/' . $this->escape($this->main_product_id) . '/' . $this->escape($this->data[0]['productdetail_image'])); ?> --}}"
                                                  style="width: 100%;" class="img-responsive" alt="">
                                         <?php } ?>
                                         <?php
 
-                                        $allDetailImg = $admin_model_obj->Getprodetailimg($this->main_product_id);
+                                        $allDetailImg = $admin_model_obj->getProDetailImg($productDetails->id);
 
                                         if (!empty($allDetailImg)) {
                                             foreach ($allDetailImg as $imgdata) { ?>
-                                                <img src="<?php echo $admin_model_obj->cdnUrl('product_images/' . $this->escape($this->main_product_id) . '/' . $this->escape($imgdata['image_name'])); ?>"
+                                                <img src="{{-- <?php echo $admin_model_obj->cdnUrl('product_images/' . $this->escape($this->main_product_id) . '/' . $this->escape($imgdata['image_name'])); ?> --}}"
                                                      style="width: 100%;" class="img-responsive" alt="">
                                             <?php }
                                         } ?>
-                                        <p><?php echo htmlspecialchars_decode($this->data[0]['long_desc']); ?></p>
+                                        <p><?php echo htmlspecialchars_decode($productDetails->long_desc); ?></p>
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="review_rating_tab">
                                         <div class="container product-comments-block-tab">
@@ -2806,11 +2885,11 @@ $vid = $resdelivery->vendor_uid;
                                                 <div class="col-sm-5">
                                                     <div class="rating-block rating-div-select">
                                                         <h4>Average Customer Rating</h4>
-                                                        <h2 class="bold padding-bottom-7"><?php echo $this->pdctavgratingbyusr; ?>
+                                                        <h2 class="bold padding-bottom-7"><?php echo $pdctavgratingbyusr; ?>
                                                             <small>/ 5</small>
                                                         </h2>
                                                         <?php
-                                                        $pdtotalavgrating = $this->pdctavgratingbyusr;
+                                                        $pdtotalavgrating = $pdctavgratingbyusr;
                                                         for ($i = 1; $i <= 5; $i++) {
                                                             $selected = "";
                                                             if (!empty($pdtotalavgrating) && $i <= $pdtotalavgrating) {
@@ -2828,11 +2907,11 @@ $vid = $resdelivery->vendor_uid;
                                                         ?>
                                                     </div>
                                                     <div>
-                                                        <span class="user-users glyphicon glyphicon-user"></span><?php echo count($this->pratingcommentsdata); ?>
+                                                        <span class="user-users glyphicon glyphicon-user"></span><?php echo count($pratingcommentsdata); ?>
                                                         total
                                                     </div>
                                                     <p><a class="btn-comment"
-                                                          style="margin-top:15px; padding:5px 15px; text-align:center; width:66%; font-family:sans-serif; color:orangered;" <?php if ($this->usrmakey) { ?> href="#" id="open-review-box" <?php } else { ?>  id="modal_trigger" href="#modal" <?php } ?>>Write
+                                                          style="margin-top:15px; padding:5px 15px; text-align:center; width:66%; font-family:sans-serif; color:orangered;" <?php if (@$usrmakey) { ?> href="#" id="open-review-box" <?php } else { ?>  id="modal_trigger" href="#modal" <?php } ?>>Write
                                                             your review !</a></p>
                                                 </div>
                                                 <div class="col-sm-7 sdassasa">
@@ -2842,18 +2921,41 @@ $vid = $resdelivery->vendor_uid;
                                                             <div style="height:9px; margin:5px 0;">5 <span
                                                                         class="glyphicon glyphicon-star"></span></div>
                                                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-18  --}}
                                                         <div class="pull-left" style="width:180px;">
                                                             <div class="progress" style="height:9px; margin:8px 0;">
                                                                 <div class="progress-bar progress-bar-success"
                                                                      role="progressbar" aria-valuenow="5"
                                                                      aria-valuemin="0" aria-valuemax="5"
-                                                                     style="width: <?php echo $this->pdctfivestarrating; ?>%">
-                                                                    <span class="sr-only"><?php echo $this->pdctfivestarrating; ?>%</span>
+                                                                     style="width: <?php echo $pdctfivestarrating; ?>%">
+                                                                    <span class="sr-only"><?php echo $pdctfivestarrating; ?>%</span>
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="pull-right"
-                                                             style="margin-left:10px;"><?php echo $this->pdctfivestarusers; ?></div>
+                                                             style="margin-left:10px;"><?php echo $pdctfivestarusers; ?></div>
                                                     </div>
                                                     <div class="pull-left rating-div-select">
                                                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -2865,13 +2967,13 @@ $vid = $resdelivery->vendor_uid;
                                                                 <div class="progress-bar progress-bar-primary"
                                                                      role="progressbar" aria-valuenow="4"
                                                                      aria-valuemin="0" aria-valuemax="5"
-                                                                     style="width: <?php echo $this->pdctfourstarrating; ?>%">
-                                                                    <span class="sr-only"><?php echo $this->pdctfourstarrating; ?>%</span>
+                                                                     style="width: <?php echo $pdctfourstarrating; ?>%">
+                                                                    <span class="sr-only"><?php echo $pdctfourstarrating; ?>%</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="pull-right"
-                                                             style="margin-left:10px;"><?php echo $this->pdctfourstarusers; ?></div>
+                                                             style="margin-left:10px;"><?php echo $pdctfourstarusers; ?></div>
                                                     </div>
                                                     <div class="pull-left rating-div-select">
                                                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -2883,13 +2985,13 @@ $vid = $resdelivery->vendor_uid;
                                                                 <div class="progress-bar progress-bar-info"
                                                                      role="progressbar" aria-valuenow="3"
                                                                      aria-valuemin="0" aria-valuemax="5"
-                                                                     style="width: <?php echo $this->pdctthreestarrating; ?>%">
-                                                                    <span class="sr-only"><?php echo $this->pdctthreestarrating; ?>%</span>
+                                                                     style="width: <?php echo $pdctthreestarrating; ?>%">
+                                                                    <span class="sr-only"><?php echo $pdctthreestarrating; ?>%</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="pull-right"
-                                                             style="margin-left:10px;"><?php echo $this->pdctthreestarusers; ?></div>
+                                                             style="margin-left:10px;"><?php echo $pdctthreestarusers; ?></div>
                                                     </div>
                                                     <div class="pull-left rating-div-select">
                                                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -2901,13 +3003,13 @@ $vid = $resdelivery->vendor_uid;
                                                                 <div class="progress-bar progress-bar-warning"
                                                                      role="progressbar" aria-valuenow="2"
                                                                      aria-valuemin="0" aria-valuemax="5"
-                                                                     style="width: <?php echo $this->pdcttwostarrating; ?>%">
-                                                                    <span class="sr-only"><?php echo $this->pdcttwostarrating; ?>%</span>
+                                                                     style="width: <?php echo $pdcttwostarrating; ?>%">
+                                                                    <span class="sr-only"><?php echo $pdcttwostarrating; ?>%</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="pull-right"
-                                                             style="margin-left:10px;"><?php echo $this->pdcttwostarusers; ?></div>
+                                                             style="margin-left:10px;"><?php echo $pdcttwostarusers; ?></div>
                                                     </div>
                                                     <div class="pull-left rating-div-select">
                                                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -2919,16 +3021,51 @@ $vid = $resdelivery->vendor_uid;
                                                                 <div class="progress-bar progress-bar-danger"
                                                                      role="progressbar" aria-valuenow="1"
                                                                      aria-valuemin="0" aria-valuemax="5"
-                                                                     style="width: <?php echo $this->pdctonestarrating; ?>%">
-                                                                    <span class="sr-only"><?php echo $this->pdctonestarrating; ?>%</span>
+                                                                     style="width: <?php echo $pdctonestarrating; ?>%">
+                                                                    <span class="sr-only"><?php echo $pdctonestarrating; ?>%</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="pull-right"
-                                                             style="margin-left:10px;"><?php echo $this->pdctonestarusers; ?></div>
+                                                             style="margin-left:10px;"><?php echo $pdctonestarusers; ?></div>
                                                     </div>
                                                 </div>
                                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-19  --}}
                                             <div class="row" id="post-review-box" style="display:none;">
                                                 <div class="col-sm-12" style="margin-top:10px;">
                                                     <form accept-charset="UTF-8" action="" method="post">
@@ -2961,21 +3098,21 @@ $vid = $resdelivery->vendor_uid;
                                                 <div class="col-sm-12">
                                                     <hr/>
                                                     <div class="review-block rating-div-select">
-                                                        <?php if ($this->pratingcommentsdata > 0) {
-                                                            foreach ($this->pratingcommentsdata as $keyrcomments) { ?>
+                                                        <?php if (count($pratingcommentsdata) > 0) {
+                                                            foreach ($pratingcommentsdata as $keyrcomments) { ?>
                                                                 <div class="row">
                                                                     <div class="col-sm-3 text-center"><img
-                                                                                src="<?php if (!empty($keyrcomments['profile_photo'])) {
+                                                                                src="{{-- <?php if (!empty($keyrcomments->profile_photo)) {
                                                                                     echo $admin_model_obj->cdnUrl('user_images/' . $keyrcomments['cstkey'] . '/profile_image/' . $keyrcomments['profile_photo']);
                                                                                 } else {
                                                                                     echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg');
-                                                                                } ?>" class="img-rounded"
+                                                                                } ?> --}}" class="img-rounded"
                                                                                 style="width:30%">
-                                                                        <div class="review-block-name"><?php echo $keyrcomments['first_name'] . ' ' . $keyrcomments['last_name']; ?></div>
-                                                                        <div class="review-block-date"><?php echo date('F d, Y', strtotime($keyrcomments['commentdated'])); ?>
+                                                                        <div class="review-block-name"><?php echo $keyrcomments->first_name . ' ' . $keyrcomments->last_name; ?></div>
+                                                                        <div class="review-block-date"><?php echo date('F d, Y', strtotime($keyrcomments->commentdated)); ?>
                                                                             <br/>
                                                                             <?php
-                                                                            $seconds = time() - strtotime($keyrcomments['commentdated']);
+                                                                            $seconds = time() - strtotime($keyrcomments->commentdated);
                                                                             $years = floor($seconds / 31104000);
                                                                             $seconds %= 31104000;
                                                                             $months = floor($seconds / 2592000);
@@ -3009,7 +3146,7 @@ $vid = $resdelivery->vendor_uid;
 
                                                                             for ($i = 1; $i <= 5; $i++) {
                                                                                 $selected = "";
-                                                                                if (!empty($keyrcomments['user_rating']) && $i <= $keyrcomments['user_rating']) {
+                                                                                if (!empty($keyrcomments->user_rating) && $i <= $keyrcomments->user_rating) {
                                                                                     $selected = "btn btn-warning btn-xs";
                                                                                 } else {
                                                                                     $selected = "btn btn-default btn-grey btn-xs";
@@ -3025,8 +3162,8 @@ $vid = $resdelivery->vendor_uid;
                                                                             }
                                                                             ?>
                                                                         </div>
-                                                                        <!--<div class="review-block-title"><?php //echo $keyrcomments['comment_title']; ?></div>-->
-                                                                        <div class="review-block-description"><?php echo $keyrcomments['user_comments']; ?></div>
+                                                                        <!--<div class="review-block-title"><?php //echo $keyrcomments->comment_title; ?></div>-->
+                                                                        <div class="review-block-description"><?php echo $keyrcomments->user_comments; ?></div>
                                                                     </div>
                                                                 </div>
                                                                 <hr/>
@@ -3037,11 +3174,11 @@ $vid = $resdelivery->vendor_uid;
                                             </div>
                                         </div>
                                     </div>
-                                    <?php if ($this->vendordatabyproduct[0]['display_hours'] == 1) { ?>
+                                    <?php if ($vendordatabyproduct->display_hours == 1) { ?>
                                         <div role="tabpanel" class="tab-pane" id="working_hours_tab">
                                             <?php
                                             $dayArray = array('Mon' => 'Monday', 'Tue' => 'Tuesday', 'Wed' => 'Wednsday', 'Thu' => 'Thursday', 'Fri' => 'Friday', 'Sat' => 'Saturday', 'Sun' => 'Sunday');
-                                            $VdrHours = $admin_model_obj->get_vendor_hours($this->vendordatabyproduct[0]['vendor_id']);
+                                            $VdrHours = $admin_model_obj->get_vendor_hours($vendordatabyproduct->vendor_id);
 
                                             if (!empty($VdrHours)) { ?>
                                                 <table class="table table-striped table-bordered" id="hourstable">
@@ -3056,11 +3193,11 @@ $vid = $resdelivery->vendor_uid;
 
                                                         ?>
                                                         <tr>
-                                                            <td style="text-align: center"><?php echo $dayArray[$hrdata['day']]; ?></td>
-                                                            <td style="text-align: center"><?php echo $hrdata['open_close']; ?></td>
-                                                            <?php if ($hrdata['open_close'] == 'open') { ?>
-                                                                <td style="text-align: center"><?php echo $hrdata['start_time']; ?></td>
-                                                                <td style="text-align: center"><?php echo $hrdata['end_time']; ?></td>
+                                                            <td style="text-align: center"><?php echo $dayArray[$hrdata->day]; ?></td>
+                                                            <td style="text-align: center"><?php echo $hrdata->open_close; ?></td>
+                                                            <?php if ($hrdata->open_close == 'open') { ?>
+                                                                <td style="text-align: center"><?php echo $hrdata->start_time; ?></td>
+                                                                <td style="text-align: center"><?php echo $hrdata->end_time; ?></td>
                                                             <?php } else { ?>
                                                                 <td style="text-align: center">-</td>
                                                                 <td style="text-align: center">-</td>
@@ -3078,7 +3215,7 @@ $vid = $resdelivery->vendor_uid;
 
                                             ?>
                                             <div role="tabpanel" class="tab-pane"
-                                                 id="<?php echo 'display_tab_' . $tbdata['tab_id']; ?>"><?php echo $tbdata['tab_content']; ?></div>
+                                                 id="<?php echo 'display_tab_' . $tbdata->tab_id; ?>"><?php echo $tbdata->tab_content; ?></div>
                                             <?php
 
                                         }
@@ -3113,25 +3250,25 @@ $vid = $resdelivery->vendor_uid;
 
                                             <ol class="gfcol">
                                                 <li>Gift Cards without AmplePoints, customers
-                                                    get <?php echo $GiftcardDetail['per_without_ample']; ?>% discount
+                                                    get <?php echo $GiftcardDetail->per_without_ample; ?>% discount
                                                 </li>
                                                 <li>Gift Cards with AmplePoints customers
-                                                    get <?php echo $GiftcardDetail['per_with_ample']; ?>% in AmplePoints
+                                                    get <?php echo $GiftcardDetail->per_with_ample; ?>% in AmplePoints
                                                 </li>
                                                 <li>
 
                                                     Customers can use Gift
-                                                    Cards <?php if ($GiftcardDetail['no_hours'] == 0) {
+                                                    Cards <?php if ($GiftcardDetail->no_hours == 0) {
                                                         echo "during these hours only";
                                                     } else {
                                                         echo "all the time";
                                                     } ?>
 
-                                                    <?php if ($GiftcardDetail['no_hours'] == 0) {
+                                                    <?php if ($GiftcardDetail->no_hours == 0) {
 
-                                                        if (!empty($GiftcardDetail['hours_of_use'])) {
+                                                        if (!empty($GiftcardDetail->hours_of_use)) {
 
-                                                            $hourlist = json_decode($GiftcardDetail['hours_of_use'], true);
+                                                            $hourlist = json_decode($GiftcardDetail->hours_of_use, true);
 
                                                         } else {
 
@@ -3153,9 +3290,9 @@ $vid = $resdelivery->vendor_uid;
                                                                 <?php foreach ($hourlist as $hrdtl) { ?>
 
                                                                     <tr style="text-align: center;font-weight: normal;">
-                                                                        <td><?php echo $hrdtl['hr_day']; ?></td>
-                                                                        <td><?php echo $hrdtl['start_time']; ?></td>
-                                                                        <td><?php echo $hrdtl['end_time']; ?></td>
+                                                                        <td><?php echo $hrdtl->hr_day; ?></td>
+                                                                        <td><?php echo $hrdtl->start_time; ?></td>
+                                                                        <td><?php echo $hrdtl->end_time; ?></td>
 
                                                                     </tr>
 
@@ -3175,7 +3312,7 @@ $vid = $resdelivery->vendor_uid;
                                                 </li>
                                                 <?php
 
-                                                if ($GiftcardDetail['redeemed_for'] == 1) {
+                                                if ($GiftcardDetail->redeemed_for == 1) {
 
                                                     $priceItem = 'Special priced items';
 
@@ -3187,39 +3324,39 @@ $vid = $resdelivery->vendor_uid;
                                                 ?>
                                                 <li>This Gift Card can be used only for <?php echo $priceItem; ?></li>
                                                 <li>Gift Card can be redeemed
-                                                    on <?php echo $GiftcardDetail['per_of_bill']; ?>% of total bill
+                                                    on <?php echo $GiftcardDetail->per_of_bill; ?>% of total bill
                                                 </li>
-                                                <li><?php if ($GiftcardDetail['combine_with'] == 0) {
+                                                <li><?php if ($GiftcardDetail->combine_with == 0) {
                                                         echo 'Cannot';
                                                     } else {
                                                         echo 'Can';
                                                     } ?> be combined with any other offers
                                                 </li>
-                                                <?php if ($GiftcardDetail['ask_which_product'] == 1) { ?>
+                                                <?php if ($GiftcardDetail->ask_which_product == 1) { ?>
                                                     <li>Ask which products and services can be redeemed with 100%
                                                         AmplePoints.
                                                     </li>
                                                 <?php } ?>
-                                                <?php if ($GiftcardDetail['inform_advance'] == 1) { ?>
+                                                <?php if ($GiftcardDetail->inform_advance == 1) { ?>
                                                     <li>Let the business know in advance if you will be using a Gift
                                                         Card
                                                     </li>
                                                 <?php } ?>
-                                                <?php if ($GiftcardDetail['is_appointment'] == 1) { ?>
+                                                <?php if ($GiftcardDetail->is_appointment == 1) { ?>
                                                     <li>Call for appointment</li>
-                                                <?php } ?> <?php if ($GiftcardDetail['no_cash_back'] == 1) { ?>
+                                                <?php } ?> <?php if ($GiftcardDetail->no_cash_back == 1) { ?>
                                                     <li>No cash back. Must use entire amount in one transaction</li>
                                                 <?php } ?>
-                                                <li>Only <?php echo $GiftcardDetail['no_of_time']; ?> Gift Card per
+                                                <li>Only <?php echo $GiftcardDetail->no_of_time; ?> Gift Card per
                                                     visit
                                                 </li>
-                                                <?php if ($GiftcardDetail['final_sale'] == 1) { ?>
+                                                <?php if ($GiftcardDetail->final_sale == 1) { ?>
                                                     <li>Final Sale</li>
                                                 <?php } ?>
-                                                <?php if (!empty($GiftcardDetail['detail_note'])) { ?>
+                                                <?php if (!empty($GiftcardDetail->detail_note)) { ?>
                                                     <li>
                                                         <p>Detail Note :</p>
-                                                        <p style="margin-top: 10px;font-weight: normal;"><?php echo $GiftcardDetail['detail_note']; ?></p>
+                                                        <p style="margin-top: 10px;font-weight: normal;"><?php echo $GiftcardDetail->detail_note; ?></p>
                                                     </li>
                                                 <?php } ?>
                                             </ol>
@@ -3232,190 +3369,236 @@ $vid = $resdelivery->vendor_uid;
                                 </div>
                             </div>
 
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-20 --}}
+
                             <!-- ./tab product -->
-                            <!-- box product -->
-                            <?php
+                         
 
-                            //echo "<pre>";print_r($this->relatedproductIdsdata);
+<!-- box product -->
+<?php
+//echo "<pre>";print_r($this->relatedproductIdsdata);
 
-                            if (!empty($this->relatedproductIdsdata)) { ?>
-                                <div class="row">
-                                    <div class="page-product-box nv_r  col-md-12 col-sm-12 col-xs-12">
-                                        <h3 class="heading">Related Products</h3>
-                                        <ul class="nv_relate product-list owl-carousel owl-theme owl-loaded"
-                                            data-dots="false" data-loop="true" data-nav="true" data-margin="18"
-                                            data-autoplaytimeout="1000" data-autoplayhoverpause="true">
-                                            <?php
+if (count($relatedproductIdsdata) > 0) { ?>
+    <div class="row">
+        <div class="page-product-box nv_r  col-md-12 col-sm-12 col-xs-12">
+            <h3 class="heading">Related Products</h3>
+            <ul class="nv_relate product-list owl-carousel owl-theme owl-loaded" data-dots="false" data-loop="true"
+                data-nav="true" data-margin="18" data-autoplaytimeout="1000" data-autoplayhoverpause="true">
+                <?php
+                if (count($relatedproductIdsdata) > 0) {
+                    foreach ($relatedproductIdsdata as $relatedproductkay) {
+                        $relatedproducts = $admin_model_obj->featureproductonsale('feature', $relatedproductkay->relp_pid);
 
-                                            if ($this->relatedproductIdsdata > 0) {
-                                                foreach ($this->relatedproductIdsdata as $relatedproductkay) {
-                                                    $relatedproducts = $admin_model_obj->featureproductonsale('feature', $relatedproductkay['relp_pid']);
-
-                                                    if ($relatedproducts > 0) {
-                                                        foreach ($relatedproducts as $key) { ?>
-                                                            <li class="product-container">
-                                                                <div class="right-block">
-                                                                    <h5 class="Butter_aria"><?php echo strip_tags(ucwords(strtolower(substr($key['pname'], 0, 20)))); ?></h5>
-                                                                    <?php if ($key['pdiscount'] >= 50) {
-                                                                        echo "<div class='content_price3 smallprod'>
-                                                                            <h5> Free&nbsp;</h5>
-                                                                            <span>with&nbsp;</span>
-                                                                            <h6>" . $this->escape($admin_model_obj->DisplayAmplePoints($key['pfwamples'])) . "</h6> 
-                                                                            <span1> Amples</span1>
-                                                                            <div class='amp-logo'></div> 
-                                                                            </div>";
-                                                                    } else {
-                                                                        echo "<div class='price2'>
-                                                                            <a class='same' href='#'>$this->currencySymbol" . $this->escape($key['pprice']) . "</a>
-                                                                            </div>";
-                                                                    } ?>
-                                                                </div>
-                                                                <div class="left-block">
-                                                                    <a href="<?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?>">
-                                                                        <img class="img-responsive" alt="product"
-                                                                             src="<?php echo $admin_model_obj->cdnUrl('product_images/' . $this->escape($key['pid']) . '/' . $this->escape($key["pimage"])); ?>"/></a>
-                                                                    <div class="price_main">
-                                                                        <div class="price">
-                                                                            <div class="price2"><a class="same"
-                                                                                                   href="#"><?php echo $this->currencySymbol; ?><?php echo $this->escape($key['pprice']); ?></a>
-                                                                            </div>
-                                                                            <div class="content_price4">Buy & Earn
-                                                                                <span> <?php echo $this->escape($admin_model_obj->DisplayAmplePoints($key['pamples'])); ?> </span>
-                                                                                <span>Amples </span></div>
-                                                                            <div class="price7"> Reward
-                                                                                value&nbsp;<span><?php echo $this->currencySymbol; ?><?php echo $this->escape($key['pdiscountprice']); ?></span>
-                                                                                <br>
-                                                                            </div>
-                                                                            <div class="save5">You Earn&nbsp;
-                                                                                <span><?php echo (int)$this->escape($key['pdiscount']); ?>%</span>
-                                                                            </div>
-                                                                            <?php $MyVendorName = strtolower(preg_replace('/\s+/', '', $key['pvendor'])); ?>
-                                                                            <div class="by_aria">
-                                                                                <h6>By:&nbsp;</h6>
-                                                                                <a href="<?php echo $this->baseUrl('/productbyseller/' . $MyVendorName . '/' . $this->escape($key['vendor_key'])); ?>"><?php echo $this->escape($key['pvendor']); ?></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="quick-view"><a
-                                                                                title="Add to my wishlist"
-                                                                                class="heart" <?php if (!empty($this->usrmakey)) { ?> href="javascript:void(0);" onclick="wishlist_cart('<?php echo $this->escape($key['pname']); ?>','<?php echo $this->escape($key['pid']); ?>','1','<?php echo $this->escape($key['pprice']); ?>','<?php echo $this->usrmakey; ?>','add');"    <?php } else { ?>  id="modal_trigger" href="#modal" <?php } ?>></a>
-                                                                        <!-- <a title="Quick view" class="search" href="#"></a>-->
-                                                                    </div>
-                                                                    <div class="add-to-cart">
-                                                                        <?php if ($key['product_type_key'] == '0') { ?>
-                                                                            <?php /*
-
-                                                                            <a title="Add to Cart" <?php if($key['pdiscount'] >= 50){ ?> href="<?php echo $this->baseUrl('/productdetail/').$this->escape($key['pid']);?>" <?php } else { ?> href="javascript:void(0);" onclick="vpb_add_to_cart('<?php echo $this->escape($key['pname']); ?>','<?php echo $this->escape($key['pid']); ?>','1','<?php echo $this->escape($key['pprice']); ?>','<?php echo $this->escape($key['pamples']); ?>','<?php if(!empty($this->record['data'][0]['total_ample'])) { echo $this->record['data'][0]['total_ample']+1; } else { echo "0.00"; } ?>','<?php echo $this->usrmakey; ?>','<?php echo $this->escape($key['vendor_key']); ?>','add');" <?php } ?>>Add to Cart</a> */ ?>
-                                                                            <a title="Add to Cart"
-                                                                               href="<?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?>">Add
-                                                                                to Cart</a>
-                                                                        <?php } else { ?>
-                                                                            <a title="Add to Cart"
-                                                                               href="<?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?>">
-                                                                                Contact Me</a>
-                                                                        <?php } ?>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        <?php }
-                                                    }
-                                                }
-                                            }
-                                            ?>
-                                        </ul>
+                        if ($relatedproducts > 0) {
+                            foreach ($relatedproducts as $key) { ?>
+                                <li class="product-container">
+                                    <div class="right-block">
+                                        <h5 class="Butter_aria"><?php echo strip_tags(ucwords(strtolower(substr($key->pname, 0, 20)))); ?></h5>
+                                        <?php if ($key->pdiscount >= 50) {
+                                            echo "<div class='content_price3 smallprod'>
+                                                    <h5> Free&nbsp;</h5>
+                                                    <span>with&nbsp;</span>
+                                                    <h6>" . $this->escape($admin_model_obj->DisplayAmplePoints($key->pfwamples)) . "</h6> 
+                                                    <span1> Amples</span1>
+                                                    <div class='amp-logo'></div> 
+                                                </div>";
+                                        } else {
+                                            echo "<div class='price2'>
+                                                    <a class='same' href='#'>$this->currencySymbol" . $this->escape($key->pprice) . "</a>
+                                                </div>";
+                                        } ?>
                                     </div>
-                                </div>
-                            <?php } ?>
-                            <!-- ./box product -->
-                            <!-- box product -->
-                            <?php if (!empty($this->mightlikeproductIdsdata)) { ?>
-                                <div class="row">
-                                    <div class="page-product-box nv-like col-md-12 col-sm-12 col-xs-12">
-                                        <h3 class="heading">You might also like</h3>
-                                        <ul class="product-list owl-carousel owl-theme owl-loaded" data-dots="false"
-                                            data-loop="true" data-nav="true" data-margin="30"
-                                            data-autoplaytimeout="1000" data-autoplayhoverpause="true">
-                                            <?php
-                                            if ($this->mightlikeproductIdsdata > 0) {
-                                                foreach ($this->mightlikeproductIdsdata as $mightlikeproductkay) {
-                                                    $mightlikeproducts = $admin_model_obj->featureproductonsale('feature', $mightlikeproductkay['mal_pid']);
-
-                                                    if ($mightlikeproducts) {
-                                                        foreach ($mightlikeproducts as $key) { ?>
-                                                            <li class="product-container">
-                                                                <div class="right-block">
-                                                                    <h5 class="Butter_aria"><?php echo strip_tags(ucwords(strtolower(substr($key['pname'], 0, 20)))); ?></h5>
-                                                                    <?php if ($key['pdiscount'] >= 50) {
-                                                                        echo "<div class='content_price3 smallprod'>
-                                                                            <h5> Free&nbsp;</h5>
-                                                                            <span>with&nbsp;</span>
-                                                                            <h6>" . $this->escape($admin_model_obj->DisplayAmplePoints($key['pfwamples'])) . "</h6> 
-                                                                            <span1> Amples</span1>
-                                                                            <div class='amp-logo'></div> 
-                                                                            </div>";
-                                                                    } else {
-                                                                        echo "<div class='price2'>
-                                                                            <a class='same' href='#'>$this->currencySymbol" . $this->escape($key['pprice']) . "</a>
-                                                                            </div>";
-                                                                    } ?>
-                                                                </div>
-                                                                <div class="left-block"><a
-                                                                            href="<?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?>">
-                                                                        <img class="img-responsive" alt="product"
-                                                                             src="<?php echo $admin_model_obj->cdnUrl('product_images/' . $this->escape($key['pid']) . '/' . $this->escape($key["pimage"])); ?>"/></a>
-                                                                    <div class="price_main">
-                                                                        <div class="price">
-                                                                            <div class="price2"><a class="same"
-                                                                                                   href="#"><?php echo $this->currencySymbol; ?><?php echo $this->escape($key['pprice']); ?></a>
-                                                                            </div>
-                                                                            <div class="content_price4">Buy & Earn
-                                                                                <span> <?php echo $this->escape($admin_model_obj->DisplayAmplePoints($key['pamples'])); ?> </span>
-                                                                                <span>Amples </span></div>
-                                                                            <div class="price7"> Reward
-                                                                                value&nbsp;<span><?php echo $this->currencySymbol; ?><?php echo $this->escape($key['pdiscountprice']); ?></span>
-                                                                                <br>
-                                                                            </div>
-                                                                            <div class="save5">You Earn&nbsp;
-                                                                                <span><?php echo (int)$this->escape($key['pdiscount']); ?>%</span>
-                                                                            </div>
-                                                                            <?php $MyVendorName = strtolower(preg_replace('/\s+/', '', $key['pvendor'])); ?>
-                                                                            <div class="by_aria">
-                                                                                <h6>By:&nbsp;</h6>
-                                                                                <a href="<?php echo $this->baseUrl('/productbyseller/' . $MyVendorName . '/' . $this->escape($key['vendor_key'])); ?>"><?php echo $this->escape($key['pvendor']); ?></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="quick-view"><a
-                                                                                title="Add to my wishlist"
-                                                                                class="heart" <?php if (!empty($this->usrmakey)) { ?> href="javascript:void(0);" onclick="wishlist_cart('<?php echo $this->escape($key['pname']); ?>','<?php echo $this->escape($key['pid']); ?>','1','<?php echo $this->escape($key['pprice']); ?>','<?php echo $this->usrmakey; ?>','add');"    <?php } else { ?>  id="modal_trigger" href="#modal" <?php } ?>></a>
-                                                                        <!--   <a title="Quick view" class="search" href="#"></a>-->
-                                                                    </div>
-                                                                    <div class="add-to-cart">
-                                                                        <?php if ($key['product_type_key'] == '0') { ?>
-                                                                            <?php /*
-                                                                            <a title="Add to Cart" <?php if($key['pdiscount'] >= 50){ ?> href="<?php echo $this->baseUrl('/productdetail/').$this->escape($key['pid']);?>" <?php } else { ?> href="javascript:void(0);" onclick="vpb_add_to_cart('<?php echo $this->escape($key['pname']); ?>','<?php echo $this->escape($key['pid']); ?>','1','<?php echo $this->escape($key['pprice']); ?>','<?php echo $this->escape($key['pamples']); ?>','<?php if(!empty($this->record['data'][0]['total_ample'])) { echo $this->record['data'][0]['total_ample']; } else { echo "0.00"; } ?>','<?php echo $this->usrmakey; ?>','<?php echo $this->escape($key['vendor_key']); ?>','add');" <?php } ?>>Add to Cart</a> */ ?>
-                                                                            <a title="Add to Cart"
-                                                                               href="<?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?>">Add
-                                                                                to Cart</a>
-                                                                        <?php } else { ?>
-                                                                            <a title="Add to Cart"
-                                                                               href="<?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?>">
-                                                                                Contact Me</a>
-                                                                        <?php } ?>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        <?php }
-                                                    }
-                                                }
-                                            }
-                                            ?>
-                                        </ul>
+                                    <div class="left-block">
+                                        <a href="{{-- <?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?> --}}">
+                                            <img class="img-responsive" alt="product"
+                                                 src="{{-- <?php echo $admin_model_obj->cdnUrl('product_images/' . $this->escape($key['pid']) . '/' . $this->escape($key["pimage"])); ?> --}}"/>
+                                        </a>
+                                        <div class="price_main">
+                                            <div class="price">
+                                                <div class="price2">
+                                                    <a class="same" href="#"><?php echo $currencySymbol; ?><?php echo $key->pprice; ?></a>
+                                                </div>
+                                                <div class="content_price4">Buy & Earn
+                                                    <span><?php echo $admin_model_obj->DisplayAmplePoints($key->pamples); ?> </span>
+                                                    <span>Amples </span>
+                                                </div>
+                                                <div class="price7"> Reward value&nbsp;<span><?php echo $currencySymbol; ?><?php echo $key->pdiscountprice; ?></span>
+                                                    <br>
+                                                </div>
+                                                <div class="save5">You Earn&nbsp;
+                                                    <span><?php echo (int)$key->pdiscount; ?>%</span>
+                                                </div>
+                                                <?php $MyVendorName = strtolower(preg_replace('/\s+/', '', $key->pvendor)); ?>
+                                                <div class="by_aria">
+                                                    <h6>By:&nbsp;</h6>
+                                                    <a href="{{-- <?php echo $this->baseUrl('/productbyseller/' . $MyVendorName . '/' . $this->escape($key['vendor_key'])); ?> --}}">
+                                                        <?php echo $key->pvendor ?>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="quick-view">
+                                            <a title="Add to my wishlist" class="heart"
+                                               <?php if (!empty(@$usrmakey)) { ?> href="javascript:void(0);"
+                                               onclick="wishlist_cart('<?php echo $key->pname; ?>','<?php echo $key->pid; ?>','1','<?php echo $key->pprice; ?>','<?php echo $usrmakey; ?>','add');"
+                                               <?php } else { ?> id="modal_trigger" href="#modal" <?php } ?>></a>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <?php if ($key->product_type_key == '0') { ?>
+                                                <a title="Add to Cart"
+                                                   href="{{-- <?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?> --}}">
+                                                    Add to Cart
+                                                </a>
+                                            <?php } else { ?>
+                                                <a title="Add to Cart"
+                                                   href="{{-- <?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?> --}}">
+                                                    Contact Me
+                                                </a>
+                                            <?php } ?>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php } ?>
-                            <!-- ./box product -->
+                                </li>
+                            <?php }
+                        }
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+<?php } ?>
+<!-- ./box product -->
+
+
+
+
+
+
+
+
+
+<!-- box product -->
+<?php if (!empty($mightlikeproductIdsdata)) { ?>
+    <div class="row">
+        <div class="page-product-box nv-like col-md-12 col-sm-12 col-xs-12">
+            <h3 class="heading">You might also like</h3>
+            <ul class="product-list owl-carousel owl-theme owl-loaded" data-dots="false"
+                data-loop="true" data-nav="true" data-margin="30"
+                data-autoplaytimeout="1000" data-autoplayhoverpause="true">
+                <?php
+                if (count($mightlikeproductIdsdata) > 0) {
+                    foreach ($mightlikeproductIdsdata as $mightlikeproductkay) {
+                        $mightlikeproducts = $admin_model_obj->featureproductonsale('feature', $mightlikeproductkay->mal_pid);
+
+                        if ($mightlikeproducts) {
+                            foreach ($mightlikeproducts as $key) { ?>
+                                <li class="product-container">
+                                    <div class="right-block">
+                                        <h5 class="Butter_aria"><?php echo strip_tags(ucwords(strtolower(substr($key->pname, 0, 20)))); ?></h5>
+                                        <?php if ($key->pdiscount >= 50) {
+                                            echo "<div class='content_price3 smallprod'>
+                                                <h5> Free&nbsp;</h5>
+                                                <span>with&nbsp;</span>
+                                                <h6>" . $admin_model_obj->DisplayAmplePoints($key->pfwamples) . "</h6> 
+                                                <span1> Amples</span1>
+                                                <div class='amp-logo'></div> 
+                                            </div>";
+                                        } else {
+                                            echo "<div class='price2'><a class='same' href='#'>" . $currencySymbol . $key->pprice . "</a></div>";
+                                        } ?>
+                                    </div>
+                                    <div class="left-block">
+                                        <a href="{{-- <?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?> --}}">
+                                            <img class="img-responsive" alt="product"
+                                                 src="{{-- <?php echo $admin_model_obj->cdnUrl('product_images/' . $this->escape($key['pid']) . '/' . $this->escape($key["pimage"])); ?> --}}"/>
+                                        </a>
+                                        <div class="price_main">
+                                            <div class="price">
+                                                <div class="price2">
+                                                    <a class="same" href="#"><?php echo $currencySymbol . $key->pprice; ?></a>
+                                                </div>
+                                                <div class="content_price4">Buy & Earn
+                                                    <span><?php echo $admin_model_obj->DisplayAmplePoints($key->pamples); ?></span>
+                                                    <span>Amples </span>
+                                                </div>
+                                                <div class="price7"> Reward value&nbsp;<span><?php echo $currencySymbol . $key->pdiscountprice; ?></span>
+                                                    <br>
+                                                </div>
+                                                <div class="save5">You Earn&nbsp;
+                                                    <span><?php echo (int)$key->pdiscount; ?>%</span>
+                                                </div>
+                                                <?php $MyVendorName = strtolower(preg_replace('/\s+/', '', $key->pvendor)); ?>
+                                                <div class="by_aria">
+                                                    <h6>By:&nbsp;</h6>
+                                                    <a href="{{-- <?php echo $this->baseUrl('/productbyseller/' . $MyVendorName . '/' . $this->escape($key['vendor_key'])); ?> --}}">
+                                                        <?php echo $key->pvendor ?>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="quick-view">
+                                            <a title="Add to my wishlist" class="heart"
+                                               <?php if (!empty($usrmakey)) { ?> href="javascript:void(0);"
+                                               onclick="wishlist_cart('<?php echo $key->pname ?>','<?php echo $key->pid; ?>','1','<?php echo $key->pprice; ?>','<?php echo $usrmakey; ?>','add');"
+                                               <?php } else { ?> id="modal_trigger" href="#modal" <?php } ?>></a>
+                                            <!-- <a title="Quick view" class="search" href="#"></a>-->
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <?php if ($key->product_type_key == '0') { ?>
+                                                <?php /*
+                                                <a title="Add to Cart" <?php if($key['pdiscount'] >= 50){ ?> href="<?php echo $this->baseUrl('/productdetail/').$this->escape($key['pid']);?>" <?php } else { ?> href="javascript:void(0);" onclick="vpb_add_to_cart('<?php echo $this->escape($key['pname']); ?>','<?php echo $this->escape($key['pid']); ?>','1','<?php echo $this->escape($key['pprice']); ?>','<?php echo $this->escape($key['pamples']); ?>','<?php if(!empty($this->record['data'][0]['total_ample'])) { echo $this->record['data'][0]['total_ample']; } else { echo "0.00"; } ?>','<?php echo $this->usrmakey; ?>','<?php echo $this->escape($key['vendor_key']); ?>','add');" <?php } ?>>Add to Cart</a> */ ?>
+                                                <a title="Add to Cart"
+                                                   href="{{-- <?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?> --}}">
+                                                    Add to Cart
+                                                </a>
+                                            <?php } else { ?>
+                                                <a title="Add to Cart"
+                                                   href="{{-- <?php echo $this->baseUrl('/productdetail/') . $this->escape($key['pid']); ?> --}}">
+                                                    Contact Me
+                                                </a>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php }
+                        }
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+<?php } ?>
+<!-- ./box product -->
+
+
+
+
+
+
+
+
+
+
+
                         </div>
                         <!-- Product -->
                     </div>
+
+
+
+
+
+
 
