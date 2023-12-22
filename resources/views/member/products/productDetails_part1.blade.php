@@ -274,7 +274,7 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 			<div class='grand-total text-center' data-step="4"
 				data-intro="Send Contact Request" data-position='left'>
 				
-			
+				
 				<div class='col-md-12 col-sm-12 col-xs-12'>
 					<div class='button-group'>
 						<?php if (empty($usrmakey)) { ?>
@@ -571,23 +571,6 @@ $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 </div>
 <?php } ?>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 $("body").on("click", "#cartwithample", function (event) {
@@ -633,10 +616,6 @@ $('#modal_trigger').trigger("click");
 alert("no")
 }
 });
-
-
-
-
 $("body").on("click", "#cartwithoutample", function (event) {
 var product_name = "<?php echo strip_tags($productDetails->product_name); ?>";
 var product_id = '<?php echo strip_tags($productDetails->id); ?>';
@@ -674,10 +653,6 @@ alert("no")
 }
 });
 </script>
-
-
-
-
 <script>
 $(document).ready(function () {
 $('#contactme').click(function () {
