@@ -69,6 +69,7 @@ Route::get('/category',[StoreCategoryController::class, 'CategoryPage'])->name('
 // product and product details
 Route::get('/products',[ProductsController::class, 'productsPage'])->name('member.products.page');
 Route::get('/product-details/{id}',[ProductsController::class, 'productDetailsPage'])->name('member.product.details.page');
+Route::post('/add-to-cart',[ProductsController::class, 'add_to_cart'])->name('member.add.to.cart');
 
 // =========================== Customer Routes End =============================================//
 

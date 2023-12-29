@@ -379,4 +379,39 @@ $data['relatedproductIdsdata'] = DB::table('tbl_related_products')->select('tbl_
 
 
 
+
+
+
+
+public function add_to_cart(Request $request)
+{
+   // dd($request->all());
+   $vpb_check_all_items = DB::table('products_added')
+    ->select('*')
+    ->where('customer_Id', '=', $request->usrmaid)
+    ->where('is_purchased', '=', 0)
+    ->orderBy('id', 'asc')
+    ->get();
+
+    $data['currencySymbol']="$";
+      $data['usrmakey']= @Auth::user()->user_id;;
+    // dd($vpb_check_all_items);
+    $data['data']=$vpb_check_all_items;
+
+$count = DB::table('products_added')->where('customer_Id', $request->usrmaid)
+    ->where('is_purchased', 0)
+    ->get();
+
+// Calculate sums
+$data['itemsTotal'] = $count->sum('amount');
+$data['taxTotal'] = $count->sum('tax');
+$data['shippingTotal'] = $count->sum('shipping');
+$data['itemsQuant'] = $count->sum('quantity');
+
+// dd($data);
+
+
+    return view('member.products.add_to_cart_modal')->with($data);
+}
+
 }

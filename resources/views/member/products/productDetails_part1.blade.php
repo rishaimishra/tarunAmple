@@ -4,6 +4,8 @@ $currencySymbol="$";
 //creating obj of that model
 $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 @endphp
+
+<div id="addtocartmodal">jeeeeeeeeeeeeeeeeeeeeet</div>
 <div class="block left-module" style="margin-top:100px">
 	<?php
 	if (($productDetails->pdiscount) >= 50) { ?>
@@ -613,7 +615,7 @@ alert("Please Select One Of Delivery Method");
 });
 } else {
 $('#modal_trigger').trigger("click");
-alert("no")
+alert("no 1")
 }
 });
 $("body").on("click", "#cartwithoutample", function (event) {
@@ -649,7 +651,7 @@ alert("Please Select One Of Delivery Method");
 });
 } else {
 $('#modal_trigger').trigger("click");
-alert("no")
+alert("no 2")
 }
 });
 </script>
@@ -715,4 +717,61 @@ $('#modal').addClass('mynewloginbox');
 }
 });
 });
+
+
+
+
+
+
+
+
+
+
+function vpb_add_to_cart(product_name, product_id, quentity, single_price, pamples, total_ample, usrmakey, vendor_key, actiondata){
+console.log(product_name, product_id, quentity, single_price, pamples, total_ample, usrmakey, vendor_key, actiondata);
+// alert(1);
+   $.ajaxSetup({
+	headers: {
+	'X-CSRF-TOKEN': "{{csrf_token()}}"
+	}
+	});
+
+
+
+
+$.ajax({
+type: "POST",
+url: '<?php echo $baseUrl; ?>/shopping_cart/shopping_cart_operation.php',
+data: "item_name=" + product_name + "&prod_id=" + product_id + "&quant=" + quentity + "&item_price=" + single_price + "&earn_amples=" + pamples + "&usr_tot_amples=" + total_ample + "&usrmaid=" + usrmakey + "&vdrmaid=" + vendor_key + "&page=add_to_cart&is_without_ample=1",
+success: function (b) {
+var a = b.split("###");
+// console.log(b)
+// $("#totalitemcount").html(a[0]);
+// $("#totalitemcount4mob").html(a[0]);
+// $(".totalitemnewcount").html(a[0]);
+// $(".cart-title").html(a[0] + " Items in my cart");
+// $(".totalitemdata").html(a[1]);
+// $(".totalitemamount").html("$ " + a[2]);
+},
+});
+
+
+
+
+
+$.ajax({
+type: "POST",
+url: '<?php echo $baseUrl; ?>/add-to-cart',
+data: "item_name=" + product_name + "&prod_id=" + product_id + "&quant=" + quentity + "&item_price=" + single_price + "&earn_amples=" + pamples + "&usr_tot_amples=" + total_ample + "&usrmaid=" + usrmakey + "&vdrmaid=" + vendor_key + "&page=add_to_cart&is_without_ample=1",
+success: function (b) {
+console.log(b)
+ $('#addtocartmodal').html(b);
+ // $('#openModalBtn').click();
+
+},
+});
+
+
+
+}
 </script>
