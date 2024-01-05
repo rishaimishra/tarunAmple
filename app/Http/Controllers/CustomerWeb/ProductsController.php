@@ -414,4 +414,151 @@ $data['itemsQuant'] = $count->sum('quantity');
     return view('member.products.add_to_cart_modal')->with($data);
 }
 
+
+
+
+
+
+
+
+public function add_to_cart_count(Request $request){
+       // dd($request->all());
+   $vpb_check_all_items = DB::table('products_added')
+    ->select('*')
+    ->where('customer_Id', '=', $request->usrmaid)
+    ->where('is_purchased', '=', 0)
+    ->orderBy('id', 'asc')
+    ->get();
+
+    $data['currencySymbol']="$";
+      $data['usrmakey']= @Auth::user()->user_id;;
+    // dd($vpb_check_all_items);
+    $data['data']=$vpb_check_all_items;
+
+$count = DB::table('products_added')->where('customer_Id', $request->usrmaid)
+    ->where('is_purchased', 0)
+    ->get();
+
+// Calculate sums
+$data['itemsTotal'] = $count->sum('amount');
+$data['taxTotal'] = $count->sum('tax');
+$data['shippingTotal'] = $count->sum('shipping');
+$data['itemsQuant'] = $count->sum('quantity');
+
+// dd($data);
+
+
+    return $data;
+}
+
+
+
+
+
+public function add_to_cart_header(Request $request)
+{
+   // dd($request->all());
+    $usrmaid=@Auth::user()->user_id;
+   $vpb_check_all_items = DB::table('products_added')
+    ->select('*')
+    ->where('customer_Id', '=', $usrmaid)
+    ->where('is_purchased', '=', 0)
+    ->orderBy('id', 'asc')
+    ->get();
+
+    $data['currencySymbol']="$";
+      $data['usrmakey']= @Auth::user()->user_id;;
+    // dd($vpb_check_all_items);
+    $data['data']=$vpb_check_all_items;
+
+$count = DB::table('products_added')->where('customer_Id', $usrmaid)
+    ->where('is_purchased', 0)
+    ->get();
+
+// Calculate sums
+$data['itemsTotal'] = $count->sum('amount');
+$data['taxTotal'] = $count->sum('tax');
+$data['shippingTotal'] = $count->sum('shipping');
+$data['itemsQuant'] = $count->sum('quantity');
+
+// dd($data);
+
+
+    return view('member.products.add_to_cart_modal')->with($data);
+}
+
+
+
+
+
+
+
+
+
+public function checkbeforecheckout(Request $request){
+
+    if ($request->isMethod('post')) {
+        $user_id = $request->input('userid');
+        $admin_model_obj = new \App\Models\AdminImpFunctionModel;
+
+        $allData = $admin_model_obj->getCardDetailsWithShippingDetail($user_id);
+         // return response($allData);
+
+        if (!empty($allData)) {
+            $displayMsg = '';
+
+            foreach ($allData as $dataVal) {
+                if ($dataVal['total_amount'] < $dataVal['min_allowed_total']) {
+                    $displayMsg .= "MINIMUM BUYS FOR " . $dataVal['tbl_vndr_dispname'] . " STORE $" . $dataVal['min_allowed_total'] . "\n";
+                }
+            }
+
+            if (!empty($displayMsg)) {
+                return response($displayMsg);
+            } else {
+                return response("process");
+            }
+        } else {
+            return response("process");
+        }
+    }
+
+    return response("Invalid Request");
+
+}
+
+
+
+
+
+
+public function checkout(){
+    if(@Auth::user()->user_id){
+
+    $data['record'] = User::where('user_id', @Auth::user()->user_id)
+        ->where('status', '1')
+        ->first();
+
+
+    $data['countrylist'] = DB::table('tbl_countries')
+        ->select('name', 'id', 'sortname')
+        ->orderBy('name', 'ASC')
+        ->get();
+
+    $data['usrmakey']= @Auth::user()->user_id;
+    return view('member.checkout.checkout')->with($data);
+    }else{
+        echo"login first";
+    }
+}
+
+
+
+
+
+
+
+
+
+
 }

@@ -418,6 +418,150 @@ public function getyoumightlikeproductIdsbympid($mspId)
 
 
 
+public function getCardDetailsWithShippingDetail($user_id)
+{
+    // $products_added = 'products_added';
+    
+    $result = DB::table('products_added')
+        ->select(
+            DB::raw('SUM(price * quantity) AS total_amount'),
+            'vendor_id',
+            'product_delivery_type.delivery_type',
+            'tbl_vendor.is_allow_min_total',
+            'tbl_vendor.min_allowed_total',
+            'tbl_vendor.tbl_vndr_comp',
+            'tbl_vendor.tbl_vndr_dispname'
+        )
+        ->leftJoin('product_delivery_type', 'product_delivery_type.pro_id', '=', "products_added.product_id")
+        ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_vndr_id', '=', "products_added.vendor_id")
+        ->where("products_added.customer_Id", $user_id)
+        ->where("products_added.is_purchased", 0)
+        ->where('product_delivery_type.is_purchased', 0)
+        ->where('product_delivery_type.delivery_type', 'shipment')
+        ->where('tbl_vendor.is_allow_min_total', 1)
+        ->groupBy("products_added.vendor_id", 'product_delivery_type.delivery_type', 'tbl_vendor.is_allow_min_total', 'tbl_vendor.min_allowed_total', 'tbl_vendor.tbl_vndr_comp', 'tbl_vendor.tbl_vndr_dispname')
+       
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function calculateCartSpecialFeesData($user_id)
+{
+    $tableName = 'products_added';
+
+    $result = DB::table($tableName)
+        ->select([
+            'products_added.id as product_added_id',
+            'products_added.vendor_id',
+            'products_added.item_added',
+            'products_added.price as item_single_price',
+            'products_added.amount as item_added_price',
+            'products_added.quantity as item_added_quantity',
+            'tbl_vendor.special_fee',
+            'tbl_vendor.special_fee_percentage'
+        ])
+        ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_vndr_id', '=', 'products_added.vendor_id')
+        ->where('products_added.customer_Id', $user_id)
+        ->where('is_purchased', 0)
+        ->get();
+
+        // dd($result );
+
+    return $result;
+}
+
+
+
+public function calculateCartShippingFeesDetail($user_id)
+{
+    $tableName = 'products_added';
+
+    $result = DB::table($tableName)
+        ->select([
+            'products_added.id as product_added_id',
+            'products_added.vendor_id',
+            'products_added.item_added',
+            'products_added.price as item_single_price',
+            'products_added.amount as item_added_price',
+            'products_added.quantity as item_added_quantity',
+            'shipp_fee.shipp_price'
+        ])
+        ->leftJoin('shipp_fee', 'shipp_fee.pro_id', '=', 'products_added.product_id')
+        ->where('products_added.customer_Id', $user_id)
+        ->where('is_purchased', 0)
+        ->get();
+
+        // dd( $result);
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+public function showstatelist($countryId)
+{
+
+    $result = DB::table('tbl_states')
+        ->select('stateid', 'statename')
+        ->where('country_id', $countryId)
+        ->get();
+
+    return $result;
+}
+
+
+
+public function showcitylist($stateId)
+{
+    $result = DB::table('tbl_cities')
+        ->select('id', 'name')
+        ->leftJoin('tbl_states', 'tbl_states.stateid', '=', 'tbl_cities.state_id')
+        ->where('tbl_cities.state_id', '=', $stateId)
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -70,7 +70,10 @@ Route::get('/category',[StoreCategoryController::class, 'CategoryPage'])->name('
 Route::get('/products',[ProductsController::class, 'productsPage'])->name('member.products.page');
 Route::get('/product-details/{id}',[ProductsController::class, 'productDetailsPage'])->name('member.product.details.page');
 Route::post('/add-to-cart',[ProductsController::class, 'add_to_cart'])->name('member.add.to.cart');
-
+Route::post('/add-to-cart-count',[ProductsController::class, 'add_to_cart_count'])->name('member.add.to.cart.count');
+Route::get('/add-to-cart-header',[ProductsController::class, 'add_to_cart_header'])->name('member.add.to.cart.header');
+Route::post('/checkbeforecheckout',[ProductsController::class, 'checkbeforecheckout'])->name('member.checkbeforecheckout');
+Route::get('/checkout',[ProductsController::class, 'checkout'])->name('member.checkout');
 // =========================== Customer Routes End =============================================//
 
 

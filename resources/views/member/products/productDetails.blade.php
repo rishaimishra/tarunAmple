@@ -9,9 +9,12 @@
 @endsection
 
 @include('includes.head')
-@include('includes.header')
 
 @include('member.products.product_head_css')
+
+
+@include('includes.header')
+
 
 
 
@@ -162,7 +165,7 @@ if ($acpt) {
 
 
 {{-- @include('includes.footer') --}}
-{{-- @include('includes.script') --}}
+@include('includes.script')
 {{-- script 1 --}}
 
 

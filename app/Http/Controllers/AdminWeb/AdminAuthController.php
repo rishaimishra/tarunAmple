@@ -79,8 +79,13 @@ utype=1 admin
 
 
  public function logout(Request $request) {
-  Auth::logout();
-  return redirect()->route('admin.login.page');
+  if(@Auth::user()->user_type=="User"){
+      Auth::logout();
+      return redirect()->route('index.page');
+   }else{
+      Auth::logout();
+      return redirect()->route('admin.login.page');
+   }
  }
 
 
