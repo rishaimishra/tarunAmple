@@ -553,6 +553,157 @@ public function showcitylist($stateId)
 
 
 
+public function select_cart_numericdata($values)
+{
+    $tableName = 'products_added';
+
+    // if (empty($values['user_id'])) {
+    //     $values['user_id'] = '';
+    // }
+
+    // if (empty($values['username'])) {
+    //     $values['username'] = '';
+    // }
+
+    $userKey = $values;
+
+    if (!empty($userKey)) {
+        $result = DB::table($tableName)
+            ->select(
+                'products_added.item_added',
+                'products_added.price as item_single_price',
+                'products_added.amount as item_added_price',
+                'products_added.quantity as item_added_quantity',
+                'products_added.newprice_byamples',
+                'products_added.apply_amples',
+                'products_added.earned_amples',
+                'products_added.cacolor as cacolor',
+                'products_added.casize as casize',
+                'products_added.product_id',
+                'products_added.vendor_id',
+                'products.image as imaged',
+                'products_added.id as productaddedid',
+                'products_added.without_ample as is_buy_without_ample',
+                'products_added.is_buy_free'
+            )
+            ->leftJoin('products', 'products.id', '=', 'products_added.product_id')
+            ->where('products_added.customer_Id', '=', $values)
+            ->where('is_purchased', '=', 0)
+            ->get();
+    } else {
+        $result = DB::table($tableName)
+            ->select(
+                'products_added.item_added',
+                'products_added.price as item_single_price',
+                'products_added.amount as item_added_price',
+                'products_added.quantity as item_added_quantity',
+                'products_added.newprice_byamples',
+                'products_added.apply_amples',
+                'products_added.earned_amples',
+                'products_added.cacolor as cacolor',
+                'products_added.casize as casize',
+                'products_added.product_id',
+                'products_added.vendor_id',
+                'products.image as imaged',
+                'products_added.id as productaddedid',
+                'products_added.without_ample as is_buy_without_ample',
+                'products_added.is_buy_free'
+            )
+            ->leftJoin('products', 'products.id', '=', 'products_added.product_id')
+            ->where('products_added.username', '=', $values)
+            ->where('is_purchased', '=', 0)
+            ->get();
+    }
+
+    return $result->toArray();
+}
+
+
+
+
+
+public function getDeliverySet($vid, $pid, $userid, $withoutample = 0, $free_product = 0)
+{
+    // dd($vid, $pid, $userid, $withoutample, $free_product);
+    $result = array();
+    $tableName = 'product_delivery_type';
+
+    $query = DB::table($tableName)
+        ->where('pro_id', $pid)
+        ->where('vid', $vid)
+        ->where('userid', $userid)
+        // ->where('ship_without_ample', $withoutample)
+        ->where('ship_free_product', $free_product)
+        ->where('orderid', '');
+
+    $result = $query->first();
+
+    return $result;
+}
+
+
+
+
+
+public function get_appointlocation($appointId, $vid, $pid)
+{
+    $result = DB::table('byappoint_location')->where('pro_id', $pid)
+        ->where('vid', $vid)
+        ->where('byappoint_id', $appointId)
+        ->first();
+
+    return $result;
+}
+
+
+
+
+
+public function get_appointlocationbystore($appointId, $vid)
+{
+    $result = DB::table('vendor_location')->where('vendor_id', $vid)
+        ->where('loc_store', $appointId)
+        ->first();
+        // dd($result);
+
+    return $result;
+}
+
+
+
+
+
+
+public function GetVendorSpecialFeesDetail($vendorId)
+{
+    $resultData = array();
+
+    $result = DB::table('tbl_vendor')
+        ->select('special_fee', 'special_fee_percentage')
+        ->where('tbl_vndr_id', $vendorId)
+        ->first();
+
+    if (!empty($result)) {
+        $resultData['special_fee'] = $result->special_fee;
+        $resultData['special_fee_percentage'] = $result->special_fee_percentage;
+    }
+
+    return $resultData;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

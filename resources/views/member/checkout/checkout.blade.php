@@ -414,7 +414,7 @@ if (!empty($usrmakey)) {
                                 <input class="input form-control ap_checkout_inp" type="text" name="b_postal_code"
                                        id="postal_code"
                                        value="<?php if (!empty($usrmakey)) {
-                                           echo $this->record['data'][0]['zip_code'];
+                                           echo $record->zip_code;
                                        } ?>" required>
                                 <div style="color:red;"><span id="zip_error"></span></div>
                             </div><!--/ [col] -->
@@ -589,17 +589,17 @@ if (!empty($usrmakey)) {
                                     <select class="input form-control ap_checkout_select_inp" id="user_sstate"
                                             name="sstate"
                                             onchange="schangecity(this.value);" required>
-                                        <?php if ($this->record['data'][0]['user_statekey']) { ?>
+                                        <?php if ($record->user_statekey) { ?>
 
-                                            <option value="<?php echo $this->record['data'][0]['user_statekey']; ?>"
-                                                    selected><?php echo $this->record['data'][0]['user_state']; ?></option>
+                                            <option value="<?php echo $record->user_statekey; ?>"
+                                                    selected><?php echo $record->user_state; ?></option>
 
-                                            <?php if ($this->record['data'][0]['user_countrykey']) {
+                                            <?php if ($record->user_countrykey) {
 
-                                                $resultBlSt = $admin_model_obj->showstatelist($this->record['data'][0]['user_countrykey']);
+                                                $resultBlSt = $admin_model_obj->showstatelist($record->user_countrykey);
 
                                                 foreach ($resultBlSt as $getst) { ?>
-                                                    <option value="<?php echo $getst['stateid']; ?>"><?php echo $getst['statename']; ?></option>
+                                                    <option value="<?php echo $getst->stateid; ?>"><?php echo $getst->statename; ?></option>
                                                 <?php } ?>
 
                                             <?php } ?>
@@ -614,23 +614,28 @@ if (!empty($usrmakey)) {
                                 </div><!--/ [col] -->
                             </li><!--/ .row -->
 
+
+
+
+
+
                             <li class="row two_inp_cnt">
                                 <div class="col-sm-6 ap_clear_container">
                                     <label for="city" class="required">City</label>
                                     <select class="input form-control ap_checkout_select_inp" id="user_scity"
                                             name="scity"
                                             required>
-                                        <?php if ($this->record['data'][0]['user_citykey']) { ?>
+                                        <?php if ($record->user_citykey) { ?>
 
-                                            <option value="<?php echo $this->record['data'][0]['user_citykey']; ?>"
-                                                    selected><?php echo $this->record['data'][0]['user_city']; ?></option>
+                                            <option value="<?php echo $record->user_citykey; ?>"
+                                                    selected><?php echo $record->user_city; ?></option>
 
-                                            <?php if ($this->record['data'][0]['user_statekey']) {
+                                            <?php if ($record->user_statekey) {
 
-                                                $resultBlCity = $admin_model_obj->showcitylist($this->record['data'][0]['user_statekey']);
+                                                $resultBlCity = $admin_model_obj->showcitylist($record->user_statekey);
 
                                                 foreach ($resultBlCity as $getst) { ?>
-                                                    <option value="<?php echo $getst['id']; ?>"><?php echo $getst['name']; ?></option>
+                                                    <option value="<?php echo $getst->id; ?>"><?php echo $getst->name; ?></option>
                                                 <?php } ?>
 
                                             <?php } ?>
@@ -644,12 +649,18 @@ if (!empty($usrmakey)) {
                                     <div style="color:red;"><span id="scity_error"></span></div>
                                 </div><!--/ [col] -->
 
+
+
+
+
+
+
                                 <div class="col-sm-6 ap_clear_container">
                                     <label for="postal_code" class="required">Zip/Postal Code</label>
                                     <input class="input form-control ap_checkout_inp" type="text" name="spostal_code"
                                            id="spostal_code"
                                            value="<?php if (!empty($usrmakey)) {
-                                               echo $this->record['data'][0]['zip_code'];
+                                               echo $record->zip_code;
                                            } ?>" required>
                                     <div style="color:red;"><span id="szip_error"></span></div>
                                 </div><!--/ [col] -->
@@ -661,7 +672,7 @@ if (!empty($usrmakey)) {
                                     <input class="input form-control ap_checkout_inp" type="text" name="stelephone"
                                            id="stelephone"
                                            value="<?php if (!empty($usrmakey)) {
-                                               echo $this->record['data'][0]['mobile'];
+                                               echo $record->mobile;
                                            } ?>" required>
                                     <div style="color:red;"><span id="stel_error"></span></div>
                                 </div><!--/ [col] -->
@@ -670,7 +681,7 @@ if (!empty($usrmakey)) {
                                     <label for="fax">Fax</label>
                                     <input class="input form-control ap_checkout_inp" type="text" name="sfax" id="sfax"
                                            value="<?php if (!empty($usrmakey)) {
-                                               echo $this->record['data'][0]['mobile'];
+                                               echo $record->mobile;
                                            } ?>">
                                     <div style="color:red;"><span id="sfax_error"></span></div>
                                 </div><!--/ [col] -->
@@ -687,7 +698,32 @@ if (!empty($usrmakey)) {
                     </div>
                 <?php } ?>
 
-                <?php if ((isset($this->cartdata[0]['items_total']) && $this->cartdata[0]['items_total'] > 0) || $checkSpecialFeesTotal > 0 || $checkProductsShippingFeesTotal > 0) { ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-7 --}}
+
+                <?php if ((isset($itemsTotal) && $itemsTotal > 0) || $checkSpecialFeesTotal > 0 || $checkProductsShippingFeesTotal > 0) { ?>
 
                     <input type="hidden" name="payment_type" value="by_stripe">
 
@@ -729,14 +765,14 @@ if (!empty($usrmakey)) {
                         $finalSpecialFeesTotal = 0;
                         $overAllTotal = 0;
 
-                        if ($this->totalcartdata) {
+                        if (count($totalcartdata)>0) {
                             //echo "<pre>";print_r($this->totalcartdata);die;
-                            foreach ($this->totalcartdata as $key) {
+                            foreach ($totalcartdata as $key) {
                                 //print_r($this->totalcartdata);
 
-                                $CurrentVendorIdIs = $key['vendor_id'];
+                                $CurrentVendorIdIs = $key->vendor_id;
 
-                                $is_buy_without_ample_pro = $key['is_buy_without_ample'];
+                                $is_buy_without_ample_pro = $key->is_buy_without_ample;
 
                                 ?>
 
@@ -745,49 +781,94 @@ if (!empty($usrmakey)) {
 
                                         <?php if ($is_buy_without_ample_pro) { ?>
 
-                                            <a href="<?php echo $this->baseUrl('/productdetail/') . $key['product_id'] . '/no_ample/true'; ?>"><img
+                                            {{-- <a href="<?php echo $this->baseUrl('/productdetail/') . $key['product_id'] . '/no_ample/true'; ?>"><img
                                                         src="<?php echo $admin_model_obj->OnlyCdnUrl('/product_images/') . $key['product_id'] . '/' . $key['imaged']; ?>"
-                                                        alt="Product"></a>
+                                                        alt="Product"></a> --}}
+
+                                                        <a href="{{ url('/productdetail/' . $key->product_id . '/no_ample/true') }}">
+                                                            <img src="https://amplepoints.com/product_images/{{$key->product_id}}/{{$key->imaged}}" alt="Product">
+                                                        </a>
 
                                         <?php } else { ?>
 
-                                            <a href="<?php echo $this->baseUrl('/productdetail/') . $key['product_id']; ?>"><img
+                                            {{-- <a href="<?php echo $this->baseUrl('/productdetail/') . $key['product_id']; ?>"><img
                                                         src="<?php echo $admin_model_obj->OnlyCdnUrl('/product_images/') . $key['product_id'] . '/' . $key['imaged']; ?>"
-                                                        alt="Product"></a>
+                                                        alt="Product"></a> --}}
 
+                                                        <a href="{{ url('/productdetail/' . $key->product_id) }}">
+                                                            <img src="{{ asset('product_images/' . $key->product_id . '/' . $key->imaged) }}" alt="Product">
+                                                        </a>
                                         <?php } ?>
-
                                     </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-8 --}}
                                     <td class="cart_description">
 
                                         <?php if ($is_buy_without_ample_pro) { ?>
 
                                             <p class="product-name">
-                                                <a href="<?php echo $this->baseUrl('/productdetail/') . '' . $key['product_id'] . '/no_ample/true'; ?>"><?php echo $key['item_added']; ?> </a>
+                                                {{-- <a href="<?php echo $this->baseUrl('/productdetail/') . '' . $key['product_id'] . '/no_ample/true'; ?>"><?php echo $key['item_added']; ?> </a> --}}
+
+                                                <a href="{{ url('/productdetail/' . $key->product_id . '/no_ample/true') }}">
+                                                    {{ $key->item_added }}
+                                                </a>
+
                                             </p>
 
                                         <?php } else { ?>
 
-                                            <p class="product-name"><a
-                                                        href="<?php echo $this->baseUrl('/productdetail/') . '' . $key['product_id']; ?>"><?php echo $key['item_added']; ?> </a>
+                                            <p class="product-name">
+                                               {{--  <a
+                                                        href="<?php echo $this->baseUrl('/productdetail/') . '' . $key['product_id']; ?>"><?php echo $key['item_added']; ?> </a> --}}
+
+                                                        <a href="{{ url('/productdetail/' . $key->product_id) }}">
+                                                            {{ $key->item_added }}
+                                                        </a>
+
                                             </p>
 
                                         <?php } ?>
                                         <small class="cart_ref">SKU : #123654999</small>
                                         <br>
+
+
+
                                         <small>Color :
-                                            <div style="margin:-21px 0px 0px 50px;width:20px;height:20px;background-color:<?php echo $key['cacolor']; ?>;"></div>
+                                            <div style="margin:-21px 0px 0px 50px;width:20px;height:20px;background-color:<?php echo $key->cacolor; ?>;"></div>
                                         </small>
-                                        <small>Size : <?php echo $key['casize']; ?></small>
+                                        <small>Size : <?php echo $key->casize; ?></small>
                                     </td>
                                     <td class="cart_avail">
-                                        <?php if ($key['is_buy_without_ample'] == 1) { ?>
+                                        <?php if ($key->is_buy_without_ample == 1) { ?>
                                             Product Without Amplepoints
                                         <?php } else { ?>
-                                            <span class="label label-success">Earn Amples : <?php echo (int)strip_tags($key['earned_amples']); ?></span>
-                                            <span class="label label-success">Redeem Amples : <?php echo (int)strip_tags($key['apply_amples']); ?></span>
+                                            <span class="label label-success">Earn Amples : <?php echo (int)strip_tags($key->earned_amples); ?></span>
+                                            <span class="label label-success">Redeem Amples : <?php echo (int)strip_tags($key->apply_amples); ?></span>
                                         <?php } ?>
                                     </td>
+
+
+
+
+
+
                                     <!--delivery detail-->
                                     <td class="cart_pickup_delivery">
 
@@ -799,9 +880,11 @@ if (!empty($usrmakey)) {
                                             $userid = $usrmakey;
                                         }
 
-                                        $deliverysetnew = $admin_model_obj->get_delivery_set($key['vendor_id'], $key['product_id'], $userid, $key['is_buy_without_ample'], $key['is_buy_free']);
+                                        $deliverysetnew = $admin_model_obj->getDeliverySet($key->vendor_id, $key->product_id, $userid, $key->is_buy_without_ample, $key->is_buy_free);
 
                                         $keycount = 1;
+
+                                       // dd($deliverysetnew);
 
                                         ?>
                                         <strong>&nbsp; &nbsp; &nbsp; &nbsp;
@@ -809,87 +892,109 @@ if (!empty($usrmakey)) {
 
                                             //echo "<pre>";print_r($deliverysetnew);
 
-                                            $mydeleviryType = (array)$deliverysetnew[0];
+                                            $mydeleviryType = $deliverysetnew;
 
                                             //echo "<pre>";print_r($mydeleviryType);
 
-                                            if (!empty($mydeleviryType) and $mydeleviryType['delivery_type'] == 'pickup') {
+                                            if (!empty($mydeleviryType) and $mydeleviryType->delivery_type == 'pickup') {
 
                                                 //echo "<pre>";print_r($key);
 
-                                                $Location_id = $mydeleviryType['del_loc_id'];
-                                                $Location_address = $mydeleviryType['pickuplocation'];
+                                                $Location_id = $mydeleviryType->del_loc_id;
+                                                $Location_address = $mydeleviryType->pickuplocation;
 
-                                                $PvendorId = $key['vendor_id'];
+                                                $PvendorId = $key->vendor_id;
 
-                                                $AddedId = $key['productaddedid'];
+                                                $AddedId = $key->productaddedid;
 
-                                                $vendorTableDta = $admin_model_obj->ExecuteRowQuery("SELECT * FROM tbl_vendor WHERE tbl_vndr_id = $PvendorId");
+                                                $vendorTableDta = DB::table('tbl_vendor')->where('tbl_vndr_id', $PvendorId)->first();
 
-                                                $vendor_unique_key = $vendorTableDta['vendor_qnique_id'];
+                                                $vendor_unique_key = $vendorTableDta->vendor_qnique_id;
 
                                                 //echo  $vendor_unique_key; address_id
 
                                                 $uqryresult = mysqli_query($connection, "UPDATE `products_added` SET  `delivery-type` =  'pickup' ,`order_confirm_vendor_id` =  '$vendor_unique_key' ,`address_id` =  '$Location_id' ,`full_address` =  '$Location_address' WHERE  `id` = $AddedId");
-
                                                 ?>
 
                                                 <input type="hidden" name="deliverytype[]" value="pickup">
-                                                <input type="checkbox" <?php if ($mydeleviryType['delivery_type'] == 'pickup') {
+                                                <input type="checkbox" <?php if ($mydeleviryType->delivery_type == 'pickup') {
                                                     echo 'checked';
                                                 } ?> class="pickdate" id="vdrpickupdivadr<?php echo $keycount; ?>"
                                                        value="PickUp" disabled="disabled" name="deliverytypepickup">
                                                 </input>Pickup &nbsp; &nbsp; &nbsp;</br>
-                                                Store Name :- <?= $mydeleviryType['pickuplocation']; ?></br>
+                                                Store Name :- <?= $mydeleviryType->pickuplocation; ?></br>
                                                 <input type="hidden" name="pickupstore"
-                                                       value="<?= $mydeleviryType['pickuplocation']; ?>">
-                                                Date :- <?= date('m/d/Y', strtotime($mydeleviryType['pickup_date'])); ?></br>
+                                                       value="<?= $mydeleviryType->pickuplocation; ?>">
+                                                Date :- <?= date('m/d/Y', strtotime($mydeleviryType->pickup_date)); ?></br>
                                                 <input type="hidden" name="pickupdate"
-                                                       value="<?= $mydeleviryType['pickup_date']; ?>">
-                                                Time  :- <?= $mydeleviryType['pickup_time']; ?>
+                                                       value="<?= $mydeleviryType->pickup_date; ?>">
+                                                Time  :- <?= $mydeleviryType->pickup_time; ?>
                                                 <input type="hidden" name="pickuptime"
-                                                       value="<?= $mydeleviryType['pickup_time']; ?>">
+                                                       value="<?= $mydeleviryType->pickup_time; ?>">
 
                                             <?php } ?>
 
-                                            <?php if (!empty($mydeleviryType) and $mydeleviryType['delivery_type'] == 'online') {
 
-                                                $onlineAddedId = $key['productaddedid'];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-9 --}}
+                                            <?php if (!empty($mydeleviryType) and $mydeleviryType->delivery_type == 'online') {
+
+                                                $onlineAddedId = $key->productaddedid;
 
                                                 $onlineresult = mysqli_query($connection, "UPDATE `products_added` SET  `delivery-type` =  'online' WHERE  `id` = $onlineAddedId");
 
                                                 ?>
 
                                                 <input type="hidden" name="deliverytype[]" value="online">
-                                                <input type="checkbox" <?php if ($mydeleviryType['delivery_type'] == 'online') {
+                                                <input type="checkbox" <?php if ($mydeleviryType->delivery_type == 'online') {
                                                     echo 'checked';
                                                 } ?> class="pickonine" id="vdronlinedivadr<?php echo $keycount; ?>"
                                                        value="online" disabled="disabled" name="deliverytypeonline">
                                                 </input>Online &nbsp; &nbsp; &nbsp;</br>
-                                                Location Name :- <?= $mydeleviryType['onlinelocation']; ?></br>
+                                                Location Name :- <?= $mydeleviryType->onlinelocation; ?></br>
                                                 <input type="hidden" name="onlinestore"
-                                                       value="<?= $mydeleviryType['onlinelocation']; ?>">
+                                                       value="<?= $mydeleviryType->onlinelocation; ?>">
                                             <?php } ?>
 
 
-                                            <?php if (!empty($mydeleviryType) and $mydeleviryType['delivery_type'] == 'delivery') {
+                                            <?php if (!empty($mydeleviryType) and $mydeleviryType->delivery_type == 'delivery') {
 
-                                                $delvendor = $key['vendor_id'];
+                                                $delvendor = $key->vendor_id;
 
-                                                $AddedId = $key['productaddedid'];
+                                                $AddedId = $key->productaddedid;
 
                                                 //$del_vendorTableDta = $admin_model_obj->getvendortabledata($delvendor);
 
-                                                $del_vendorTableDta = $admin_model_obj->ExecuteRowQuery("SELECT * FROM tbl_vendor WHERE tbl_vndr_id = $delvendor");
+                                                $del_vendorTableDta = DB::table('tbl_vendor')->where('tbl_vndr_id', $delvendor)->first();
 
-                                                $del_vendor_unique_key = $del_vendorTableDta['vendor_qnique_id'];
+                                                $del_vendor_unique_key = $del_vendorTableDta->vendor_qnique_id;
 
                                                 $deliveryuqryresult = mysqli_query($connection, "UPDATE `products_added` SET  `delivery-type` =  'delivery',`order_confirm_vendor_id` =  '$del_vendor_unique_key' WHERE  `id` = $AddedId");
 
                                                 ?>
 
                                                 <input type="hidden" name="deliverytype[]" value="delivery">
-                                                <input type="radio" <?php if ($mydeleviryType['delivery_type'] == 'delivery') {
+                                                <input type="radio" <?php if ($mydeleviryType->delivery_type == 'delivery') {
                                                     echo 'checked';
                                                 } ?> class="delivrydata" id="cstdelverdivadr<?php echo $keycount; ?>"
                                                        disabled="disabled" value="delivery"
@@ -897,85 +1002,152 @@ if (!empty($usrmakey)) {
 
                                                 <!--<input type="textarea" value="" id="delivry_adress" name="deladdresss"> -->
 
-                                                <?php if (!empty($mydeleviryType['delivery_address'])) {
-                                                    echo "Delivery Address :" . $mydeleviryType['delivery_address'];
+                                                <?php if (!empty($mydeleviryType->delivery_address)) {
+                                                    echo "Delivery Address :" . $mydeleviryType->delivery_address;
                                                 } ?>
 
                                             <?php } ?>
 
-                                            <?php if (!empty($mydeleviryType) and $mydeleviryType['delivery_type'] == 'byappoint') {
 
-                                                $vid = $key['vendor_id'];
-                                                $pid = $key['product_id'];
 
-                                                $AddedId = $key['productaddedid'];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-10 --}}
+                                            <?php if (!empty($mydeleviryType) and $mydeleviryType->delivery_type == 'byappoint') {
+
+                                                $vid = $key->vendor_id;
+                                                $pid = $key->product_id;
+
+                                                $AddedId = $key->productaddedid;
 
                                                 $byappointuqryresult = mysqli_query($connection, "UPDATE `products_added` SET  `delivery-type` =  'byappoint' WHERE  `id` = $AddedId");
 
                                                 ?>
                                                 <input type="hidden" name="deliverytype[]" value="byappoint">
                                                 <input type="radio"
-                                                       class="byappointdata" <?php if ($mydeleviryType['delivery_type'] == 'byappoint') {
+                                                       class="byappointdata" <?php if ($mydeleviryType->delivery_type == 'byappoint') {
                                                     echo 'checked';
                                                 } ?> id="vdrbyappointkupdivadr<?php echo $keycount; ?>"
                                                        value="By Appointment" name="deliverytype_byappoint"
                                                        disabled="disabled">
                                                 </input>By Appointment</br>
 
-                                                Appointment Date: <?= $mydeleviryType['byappoint_date'] ?>
+                                                Appointment Date: <?= $mydeleviryType->byappoint_date ?>
                                                 </br>
                                                 <input type="hidden" name="appointdate"
-                                                       value="<?= $mydeleviryType['byappoint_date'] ?>">
-                                                Appointment Time: <?= $mydeleviryType['byappoint_time'] ?> </br>
+                                                       value="<?= $mydeleviryType->byappoint_date ?>">
+                                                Appointment Time: <?= $mydeleviryType->byappoint_time ?> </br>
                                                 <input type="hidden" name="appointtime"
-                                                       value="<?= $mydeleviryType['byappoint_time'] ?>">
+                                                       value="<?= $mydeleviryType->byappoint_time ?>">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-11 --}}
                                                 <?php
-                                                $appoint_id = $mydeleviryType['byappoint_location'];
-                                                $byappoint = $admin_model_obj->get_appointlocation($appoint_id, $vid, $pid); ?>
-                                                Appointment Empoyee Name: <?= $byappoint[0]['employee'] ?>
+                                                $appoint_id = $mydeleviryType->byappoint_location;
+                                                $byappoint = $admin_model_obj->get_appointlocation($appoint_id, $vid, $pid);
+                                                 ?>
+                                                Appointment Empoyee Name: <?= $byappoint->employee ?>
 
                                                 </br>
                                                 <input type="hidden" name="employessName"
-                                                       value="<?= $byappoint[0]['employee'] ?>">
-                                                Appointment Store Name:<?= $byappoint[0]['store'] ?>
+                                                       value="<?= $byappoint->employee ?>">
+                                                Appointment Store Name:<?= $byappoint->store ?>
                                                 </br>
                                                 <input type="hidden" name="byappointstore"
-                                                       value="<?= $byappoint[0]['store'] ?>">
+                                                       value="<?= $byappoint->store ?>">
                                                 <?php
-                                                $byappointstore = $byappoint[0]['store'];
+                                                $byappointstore = $byappoint->store;
                                                 $byappointlocation = $admin_model_obj->get_appointlocationbystore($byappointstore, $vid); ?>
-                                                Appointment Location:<?= $byappointlocation[0]['loc_address'] ?>
+                                                Appointment Location:<?= $byappointlocation->loc_address ?>
                                                 </br>
                                                 <input type="hidden" name="byappointloction"
-                                                       value="<?= $byappointlocation[0]['loc_address'] ?>">
+                                                       value="<?= $byappointlocation->loc_address ?>">
 
                                             <?php } ?>
-                                            <?php if (!empty($mydeleviryType) and $mydeleviryType['delivery_type'] == 'shipment') {
 
-                                                $AddedId = $key['productaddedid'];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-12  --}}
+                                            <?php if (!empty($mydeleviryType) and $mydeleviryType->delivery_type == 'shipment') {
+
+                                                $AddedId = $key->productaddedid;
 
                                                 $shipmentuqryresult = mysqli_query($connection, "UPDATE `products_added` SET  `delivery-type` =  'shipment' WHERE  `id` = $AddedId");
 
                                                 ?>
                                                 <input type="hidden" name="deliverytype[]" value="shipment">
                                                 <input type="checkbox"
-                                                       class="shipping" <?php if ($mydeleviryType['delivery_type'] == 'shipment') {
+                                                       class="shipping" <?php if ($mydeleviryType->delivery_type== 'shipment') {
                                                     echo 'checked';
                                                 } ?> disabled="disabled" id="vdrshippupdivadr<?php echo $keycount; ?>"
                                                        value="shippment" name="deliverytype_shipment">
-                                                </input>Shipping
+                                                </input>
+
+
+
+
+
+                                                Shipping
                                                 <div class="shipp type">
                                                     shipment Type:-
-                                                    <?php if ($mydeleviryType['shipping_type'] == 'ss') { ?>
+                                                    <?php if ($mydeleviryType->shipping_type == 'ss') { ?>
                                                         Standard Shipping
                                                         <input type="hidden" name="shiptype" value="Standard Shipping">
-                                                    <?php } else if ($mydeleviryType['shipping_type'] == 'CS') { ?>
+                                                    <?php } else if ($mydeleviryType->shipping_type == 'CS') { ?>
                                                         Cexpress Shipping
                                                         <input type="hidden" name="shiptype" value="Cexpress Shipping">
-                                                    <?php } else if ($mydeleviryType['shipping_type'] == 'Fedex') { ?>
+                                                    <?php } else if ($mydeleviryType->shipping_type == 'Fedex') { ?>
                                                         Fedex
                                                         <input type="hidden" name="shiptype" value="Fedex">
-                                                    <?php } else if ($mydeleviryType['shipping_type'] == 'UPS') { ?>
+                                                    <?php } else if ($mydeleviryType->shipping_type == 'UPS') { ?>
                                                         UPS
                                                         <input type="hidden" name="shiptype" value="UPS">
                                                     <?php } ?>
@@ -985,55 +1157,86 @@ if (!empty($usrmakey)) {
                                             <?php } ?>
                                         </strong> <br/>
                                     </td>
-                                    <!--end delivery detail-->
-                                    <td class="price"><span><?php echo $this->currencySymbol; ?><?php echo $key['item_single_price'];
 
-                                            /* if(($key['apply_amples'] == 0.00) && ($key['newprice_byamples'] == 0.00)) { echo $key['item_single_price']; } else { echo $key['newprice_byamples']; } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- part-13 --}}
+                                    <!--end delivery detail-->
+                                    <td class="price"><span><?php echo $currencySymbol; ?><?php echo $key->item_single_price;
+
+                                            /* if(($key->apply_amples == 0.00) && ($key->newprice_byamples == 0.00)) { echo $key->item_single_price; } else { echo $key->newprice_byamples; } */
 
                                             ?></span></td>
                                     <td class="qty">
                                         <input class="form-control input-sm" type="text"
-                                               value="<?php echo $key['item_added_quantity']; ?>" disabled readonly/>
-                                        <?php if (($key['apply_amples'] == 0.00) && ($key['newprice_byamples'] == 0.00)) { ?>
+                                               value="<?php echo $key->item_added_quantity; ?>" disabled readonly/>
+                                        <?php if (($key->apply_amples == 0.00) && ($key->newprice_byamples == 0.00)) { ?>
 
-                                            <?php if ($key['is_buy_without_ample'] == 1) { ?>
+                                            <?php if ($key->is_buy_without_ample == 1) { ?>
 
 
                                                 <a href="javascript:void(0);"
-                                                   onclick="increase_iteam('<?php echo $key['item_added']; ?>','<?php echo $key['product_id']; ?>','<?php echo $key['min_order_quantity']; ?>','<?php echo $key['discount_price_without_ample']; ?>','0.00','<?php if (!empty($this->record['data'][0]['total_ample'])) {
-                                                       echo $this->record['data'][0]['total_ample'];
+                                                   onclick="increase_iteam('<?php echo $key->item_added; ?>','<?php echo $key->product_id; ?>','<?php echo @$key->min_order_quantity; ?>','<?php echo @$key->discount_price_without_ample; ?>','0.00','<?php if (!empty($record->total_ample)) {
+                                                       echo $record->total_ample;
                                                    } else {
                                                        echo "0.00";
-                                                   } ?>','<?php echo $usrmakey; ?>','<?php echo $key['vendor_id']; ?>','add',1);"><i
+                                                   } ?>','<?php echo $usrmakey; ?>','<?php echo $key->vendor_id; ?>','add',1);"><i
                                                             class="fa fa-caret-up"></i></a>
 
                                             <?php } else { ?>
 
+
+
+
                                                 <a href="javascript:void(0);"
-                                                   onclick="increase_iteam('<?php echo $key['item_added']; ?>','<?php echo $key['product_id']; ?>','<?php echo $key['min_order_quantity']; ?>','<?php echo $key['item_single_price']; ?>','<?php if (!empty($key['earned_amples'])) {
-                                                       echo $key['earned_amples'];
+                                                   onclick="increase_iteam('<?php echo $key->item_added; ?>','<?php echo $key->product_id; ?>','<?php echo @$key->min_order_quantity; ?>','<?php echo $key->item_single_price; ?>','<?php if (!empty($key->earned_amples)) {
+                                                       echo $key->earned_amples;
                                                    } else {
                                                        echo "0.00";
-                                                   } ?>','<?php if (!empty($this->record['data'][0]['total_ample'])) {
-                                                       echo $this->record['data'][0]['total_ample'];
+                                                   } ?>','<?php if (!empty($record->total_ample)) {
+                                                       echo $record->total_ample;
                                                    } else {
                                                        echo "0.00";
-                                                   } ?>','<?php echo $usrmakey; ?>','<?php echo $key['vendor_id']; ?>','add',0);"><i
+                                                   } ?>','<?php echo $usrmakey; ?>','<?php echo $key->vendor_id; ?>','add',0);"><i
                                                             class="fa fa-caret-up"></i></a>
 
                                             <?php } ?>
 
-                                            <?php if ($key['is_buy_without_ample'] == 1) { ?>
+
+
+
+
+
+
+
+                                            <?php if ($key->is_buy_without_ample == 1) { ?>
 
 
                                                 <a href="javascript:void(0);"
-                                                   onclick="decrease_iteam('<?php echo $key['item_added']; ?>','<?php echo $key['product_id']; ?>','<?php echo $key['min_order_quantity']; ?>','<?php echo $key['discount_price_without_ample']; ?>','<?php echo $usrmakey; ?>','del',1);"><i
+                                                   onclick="decrease_iteam('<?php echo $key->item_added; ?>','<?php echo $key->product_id; ?>','<?php echo @$key->min_order_quantity; ?>','<?php echo @$key->discount_price_without_ample; ?>','<?php echo $usrmakey; ?>','del',1);"><i
                                                             class="fa fa-caret-down"></i></a>
 
                                             <?php } else { ?>
 
                                                 <a href="javascript:void(0);"
-                                                   onclick="decrease_iteam('<?php echo $key['item_added']; ?>','<?php echo $key['product_id']; ?>','<?php echo $key['min_order_quantity']; ?>','<?php echo $key['item_single_price']; ?>','<?php echo $usrmakey; ?>','del',0);"><i
+                                                   onclick="decrease_iteam('<?php echo $key->item_added; ?>','<?php echo $key->product_id; ?>','<?php echo @$key->min_order_quantity; ?>','<?php echo $key->item_single_price; ?>','<?php echo $usrmakey; ?>','del',0);"><i
                                                             class="fa fa-caret-down"></i></a>
 
                                             <?php } ?>
@@ -1041,6 +1244,24 @@ if (!empty($usrmakey)) {
 
                                         <?php } ?>
                                     </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {{-- part-14  --}}
                                     <?php /*now calculate text*/ ?>
 
                                     <?php
@@ -1052,25 +1273,25 @@ if (!empty($usrmakey)) {
                                     $MyShipingCharge = 0;
                                     $MySpecialFeeCharge = 0;
 
-                                    $myItemTotal = $key['item_added_quantity'];
+                                    $myItemTotal = $key->item_added_quantity;
 
-                                    $MyItemPrice = $key['item_single_price'];
+                                    $MyItemPrice = $key->item_single_price;
 
-                                    $MyTotal = $key['item_added_price'];
+                                    $MyTotal = $key->item_added_price;
 
 
                                     $SpecialFeesDataVdr = $admin_model_obj->GetVendorSpecialFeesDetail($CurrentVendorIdIs);
 
-                                    if (!empty($SpecialFeesDataVdr)) {
+                                    if (@$SpecialFeesDataVdr) {
 
-                                        if (!empty($SpecialFeesDataVdr['special_fee']) && $SpecialFeesDataVdr['special_fee'] > 0) {
+                                        if (!empty($SpecialFeesDataVdr->special_fee) && $SpecialFeesDataVdr->special_fee > 0) {
 
-                                            $MySpecialFeeCharge += $SpecialFeesDataVdr['special_fee'];
+                                            $MySpecialFeeCharge += $SpecialFeesDataVdr->special_fee;
                                         }
 
-                                        if (!empty($SpecialFeesDataVdr['special_fee_percentage']) && $SpecialFeesDataVdr['special_fee_percentage'] > 0) {
+                                        if (!empty($SpecialFeesDataVdr->special_fee_percentage) && $SpecialFeesDataVdr->special_fee_percentage > 0) {
 
-                                            $FinalSpecialPercentageAmount = ((($key['item_single_price'] * $key['item_added_quantity']) * $SpecialFeesDataVdr['special_fee_percentage']) / 100);
+                                            $FinalSpecialPercentageAmount = ((($key->item_single_price * $key->item_added_quantity) * $SpecialFeesDataVdr->special_fee_percentage) / 100);
 
                                             $MySpecialFeeCharge += $FinalSpecialPercentageAmount;
                                         }
@@ -1088,27 +1309,30 @@ if (!empty($usrmakey)) {
                                     $MyTotal = $key['item_added_quantity']*$key['newprice_byamples'];
                                     }*/
 
-                                    if (!empty($mydeleviryType) and $mydeleviryType['delivery_type'] == 'shipment') {
+                                    if (!empty($mydeleviryType) and $mydeleviryType->delivery_type == 'shipment') {
 
-                                        $shipprice = $admin_model_obj->get_shipp_price($key['product_id']);
+                                        $shipprice = $admin_model_obj->get_shipp_price($key->product_id);
 
                                         if (!empty($shipprice)) {
 
-                                            $MyShipingCharge = $shipprice[0]['shipp_price'];
+                                            $MyShipingCharge = (int)$shipprice->shipp_price;
+                                           //(int) dd( (int)$shipprice->shipp_price );
 
                                         }
-
                                     }
 
-                                    if (!empty($mydeleviryType) and $mydeleviryType['delivery_type'] == 'delivery') {
 
-                                        $deleveryshipprice = $admin_model_obj->get_delivery_price_detail($key['product_id']);
+
+
+                                    if (!empty($mydeleviryType) and $mydeleviryType->delivery_type == 'delivery') {
+
+                                        $deleveryshipprice = $admin_model_obj->get_delivery_price_detail($key->product_id);
 
                                         if (!empty($deleveryshipprice)) {
 
-                                            if (!empty($mydeleviryType) and $mydeleviryType['delivery_type'] == 'delivery') {
+                                            if (!empty($mydeleviryType) and $mydeleviryType->delivery_type == 'delivery') {
 
-                                                $MyShipingCharge = $deleveryshipprice[0]['delivery_fee'];
+                                                $MyShipingCharge = (int)$deleveryshipprice->delivery_fee;
 
                                             }
 
@@ -1121,17 +1345,17 @@ if (!empty($usrmakey)) {
 
                                     if (!empty($usrmakey)) {
 
-                                        if ($this->record['data'][0]['user_state'] == 'Nevada' && $this->record['data'][0]['user_statekey'] == '3951') {
+                                        if ($record->user_state == 'Nevada' && $record->user_statekey == '3951') {
 
-                                            $UserName = $this->record['data'][0]['first_name'] . " " . $this->record['data'][0]['last_name'];
+                                            $UserName = $record->first_name . " " . $record->last_name;
 
-                                            $UserAddress = $this->record['data'][0]['address'];
-                                            $UserZipCode = $this->record['data'][0]['zip_code'];
-                                            $UserCity = $this->record['data'][0]['user_city'];
+                                            $UserAddress = $record->address;
+                                            $UserZipCode = $record->zip_code;
+                                            $UserCity = $record->user_city;
 
                                             $tb = new Avalara\TransactionBuilder($client, "AMPLEPOINTSLLC", Avalara\DocumentType::C_SALESINVOICE, $UserName);
                                             $t = $tb->withAddress('SingleLocation', $UserAddress, null, null, $UserCity, 'NV', $UserZipCode, 'US')
-                                                ->withLine($MyTotal, 1, $key['product_id'], "P0000000")
+                                                ->withLine($MyTotal, 1, $key->product_id, "P0000000")
                                                 ->create();
 
                                             if (!empty($t)) {
@@ -1147,46 +1371,66 @@ if (!empty($usrmakey)) {
                                         }
                                     }
 
-                                    $MyTotalAmount = $MyTotal + $MyText + $MySpecialFeeCharge + $MyShipingCharge;
+                                    $MyTotalAmount = (float)$MyTotal + (float)$MyText + (float)$MySpecialFeeCharge + (float)$MyShipingCharge;
+
+                                    //dd( $MyTotalAmount);
 
                                     ?>
 
                                     <td class="price">
-                                        <span><?php echo $this->currencySymbol; ?><?php echo number_format($MyText, 2); ?></span>
+                                        <span><?php echo $currencySymbol; ?><?php echo number_format((float)$MyText, 2); ?></span>
                                     </td>
                                     <?php /*now calculate Special Fees over*/ ?>
                                     <td class="price">
-                                        <span><?php echo $this->currencySymbol; ?><?php echo number_format($MySpecialFeeCharge, 2); ?></span>
+                                        <span><?php echo $currencySymbol; ?><?php echo number_format((float)$MySpecialFeeCharge, 2); ?></span>
                                     </td>
                                     <?php /*now calculate text over*/ ?>
                                     <td class="price">
-                                        <span><?php echo $this->currencySymbol; ?><?php echo number_format(($MyShipingCharge), 2); ?></span>
+                                        <span><?php echo $currencySymbol; ?><?php echo number_format((float)($MyShipingCharge), 2); ?></span>
                                     </td>
                                     <td class="price">
-                                        <span><?php echo $this->currencySymbol; ?><?php echo number_format(($MyTotal), 2); ?></span>
+                                        <span><?php echo $currencySymbol; ?><?php echo number_format((float)($MyTotal), 2); ?></span>
                                     </td>
                                     <td class="price">
-                                        <span><?php echo $this->currencySymbol; ?><?php echo number_format(($MyTotalAmount), 2); ?></span>
+                                        <span><?php echo $currencySymbol; ?><?php echo number_format((float)($MyTotalAmount), 2); ?></span>
                                     </td>
                                     <td class="action">
                                         <a href="javascript:void(0);"
-                                           onclick="remove_this_item('<?php echo $key['productaddedid']; ?>','<?php echo $usrmakey; ?>');">Delete
+                                           onclick="remove_this_item('<?php echo $key->productaddedid; ?>','<?php echo $usrmakey; ?>');">Delete
                                             item</a>
                                     </td>
                                 </tr>
 
                                 <?php
-                                $FinalTotal += $MyTotal;
-                                $finalTextTotal += $MyText;
-                                $finalShipingTotal += $MyShipingCharge;
-                                $finalSpecialFeesTotal += $MySpecialFeeCharge;
-                                $overAllTotal += $MyTotalAmount;
+                                $FinalTotal += (float)$MyTotal;
+                                $finalTextTotal += (float)$MyText;
+                                $finalShipingTotal += (float)$MyShipingCharge;
+                                $finalSpecialFeesTotal += (float)$MySpecialFeeCharge;
+                                $overAllTotal += (float)$MyTotalAmount;
                                 $urid = $usrmakey;
-                                $prid = $key['product_id'];
-                                $poductaddedID = $key['productaddedid'];
-                                $uqry = mysqli_query($connection, "UPDATE products_added set tax='$MyText',shipping='$MyShipingCharge',special_fees_amount = '$MySpecialFeeCharge',tax_detail = '$tax_detail' WHERE id = '$poductaddedID' AND product_id='$prid' AND customer_Id = '$urid'");
+                                $prid = $key->product_id;
+                                $poductaddedID = $key->productaddedid;
+
+
+                                ///////$uqry = mysqli_query($connection, "UPDATE products_added set tax='$MyText',shipping='$MyShipingCharge',special_fees_amount = '$MySpecialFeeCharge',tax_detail = '$tax_detail' WHERE id = '$poductaddedID' AND product_id='$prid' AND customer_Id = '$urid'");
+
+                                //dd($MyText,$MyShipingCharge,$MySpecialFeeCharge,$tax_detail);
+
+                                $uqry = DB::table('products_added')
+                                        ->where('id', $poductaddedID)
+                                        ->where('product_id', $prid)
+                                        ->where('customer_Id', $urid)
+                                        ->update([
+                                            'tax' => $MyText,
+                                            'shipping' => $MyShipingCharge,
+                                            'special_fees_amount' => $MySpecialFeeCharge,
+                                            'tax_detail' => $tax_detail,
+                                        ]);
+
+
                                 // echo "UPDATE products_added set tax='$MyText',shipping='$MyShipingCharge' WHERE product_id='$prid' and customer_Id = '$urid' ";
-                                mysqli_query($connection, $uqry);
+
+                               /////// mysqli_query($connection, $uqry);
                                 $keycount++;
                             }
 
@@ -1200,38 +1444,38 @@ if (!empty($usrmakey)) {
                             <td colspan="2" rowspan="2"></td>
                             <td colspan="3">Total Products</td>
                             <td colspan="7"><span
-                                        id="totalcheckouttaxamount"> <?php echo $this->currencySymbol; ?><?php echo number_format(($FinalTotal), 2); ?></span>
+                                        id="totalcheckouttaxamount"> <?php echo $currencySymbol; ?><?php echo number_format(($FinalTotal), 2); ?></span>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3">Total Tax</td>
                             <td colspan="7"><span
-                                        id="totalcheckoutamount"><?php echo $this->currencySymbol; ?><?php echo number_format(($finalTextTotal), 2); ?></span>
+                                        id="totalcheckoutamount"><?php echo $currencySymbol; ?><?php echo number_format(($finalTextTotal), 2); ?></span>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="5">Special Fees Charges</td>
                             <td colspan="7"><span
-                                        id="totalcheckoutamount"><?php echo $this->currencySymbol; ?><?php echo number_format(($finalSpecialFeesTotal), 2); ?></span>
+                                        id="totalcheckoutamount"><?php echo $currencySymbol; ?><?php echo number_format(($finalSpecialFeesTotal), 2); ?></span>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2" rowspan="2"></td>
                             <td colspan="3">Total Shipping</td>
                             <td colspan="7"><span
-                                        id="totalcheckouttaxamount"><?php echo $this->currencySymbol; ?><?php echo number_format(($finalShipingTotal), 2); ?></span>
+                                        id="totalcheckouttaxamount"><?php echo $currencySymbol; ?><?php echo number_format(($finalShipingTotal), 2); ?></span>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3"><strong>Total</strong></td>
                             <td colspan="7"><strong><span
-                                            id="totalcheckouttaxamount"><?php echo $this->currencySymbol; ?><?php echo number_format((round($overAllTotal)), 2); ?></span></strong>
+                                            id="totalcheckouttaxamount"><?php echo $currencySymbol; ?><?php echo number_format((round($overAllTotal)), 2); ?></span></strong>
                             </td>
                         </tr>
                         </tfoot>
                     </table>
                     <input type="hidden" name="overalltotal" value="<?php echo $overAllTotal; ?>">
-                    <?php if (count($this->totalcartdata) > 0) { ?>
+                    <?php if (count($totalcartdata) > 0) { ?>
                         <button type="submit" id="savecheckoutdata" style="display:none;"></button>
                         <button type="sunmit" class="button pull-right" id="checkpickdelivery">Process Order</button>
                     <?php } ?>

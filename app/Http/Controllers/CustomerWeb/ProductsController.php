@@ -533,9 +533,13 @@ public function checkbeforecheckout(Request $request){
 
 
 public function checkout(){
+
+    $admin_model_obj = new \App\Models\AdminImpFunctionModel;
     if(@Auth::user()->user_id){
 
-    $data['record'] = User::where('user_id', @Auth::user()->user_id)
+    $usrmaid=@Auth::user()->user_id;
+
+    $data['record'] = User::where('user_id', $usrmaid)
         ->where('status', '1')
         ->first();
 
@@ -546,6 +550,24 @@ public function checkout(){
         ->get();
 
     $data['usrmakey']= @Auth::user()->user_id;
+
+     $count = DB::table('products_added')->where('customer_Id', $usrmaid)
+    ->where('is_purchased', 0)
+    ->get();
+
+    // Calculate sums
+    $data['itemsTotal'] = $count->sum('amount');
+    $data['taxTotal'] = $count->sum('tax');
+    $data['shippingTotal'] = $count->sum('shipping');
+    $data['itemsQuant'] = $count->sum('quantity');
+
+    $data['totalcartdata']=$admin_model_obj->select_cart_numericdata($usrmaid);
+    // dd($data);
+
+    $data['currencySymbol']="$";
+
+
+
     return view('member.checkout.checkout')->with($data);
     }else{
         echo"login first";
