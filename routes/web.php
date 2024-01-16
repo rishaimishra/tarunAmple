@@ -74,6 +74,9 @@ Route::post('/add-to-cart-count',[ProductsController::class, 'add_to_cart_count'
 Route::get('/add-to-cart-header',[ProductsController::class, 'add_to_cart_header'])->name('member.add.to.cart.header');
 Route::post('/checkbeforecheckout',[ProductsController::class, 'checkbeforecheckout'])->name('member.checkbeforecheckout');
 Route::get('/checkout',[ProductsController::class, 'checkout'])->name('member.checkout');
+Route::post('/checkout/submit',[ProductsController::class, 'checkout_submit'])->name('checkout.submit');
+Route::get('/city-list/{city}',[ProductsController::class, 'cityList'])->name('cityList');
+Route::get('/state-list/{statename}',[ProductsController::class, 'statelist'])->name('statelist');
 // =========================== Customer Routes End =============================================//
 
 

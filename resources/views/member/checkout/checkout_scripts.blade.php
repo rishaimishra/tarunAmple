@@ -215,22 +215,35 @@ else
 document.getElementById('adr_error').innerHTML = '';
 }
 }*/
+
+
+
+
+
+
+
 function billChangeCount(state) {
 var baseurl = '<?PHP echo $baseUrl;?>';
 var SITEROOT = baseurl;
 createXMLHttpRequest();
-var url = SITEROOT + '/default/index/statelist/';
+var url = SITEROOT + '/state-list/'+state;
 var strURL = url;
 if (state != '') {
 var query = "statename=" + state;
 if (xmlHttpRequest != null) {
-xmlHttpRequest.open("post", strURL, true);
+xmlHttpRequest.open("get", strURL, true);
 xmlHttpRequest.onreadystatechange = showsBillState;
 xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xmlHttpRequest.send(query);
 }
 }
 }
+
+
+
+
+
+
 function showsBillState() {
 if (xmlHttpRequest.readyState == 4) {
 if (xmlHttpRequest.status == 200) {
@@ -240,22 +253,34 @@ document.getElementById('b_city').innerHTML = "<option value='0'>Select City</op
 }
 }
 }
+
+
+
+
+
+
 function BillChangeCity(city) {
 var baseurl = '<?PHP echo $baseUrl;?>';
 var SITEROOT = baseurl;
 createXMLHttpRequest();
-var url = SITEROOT + '/default/index/citylist/';
+var url = SITEROOT + '/city-list/'+city;
 var strURL = url;
 if (city != '') {
 var query = "cityname=" + city;
 if (xmlHttpRequest != null) {
-xmlHttpRequest.open("post", strURL, true);
+xmlHttpRequest.open("get", strURL, true);
 xmlHttpRequest.onreadystatechange = showBillCity;
 xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xmlHttpRequest.send(query);
 }
 }
 }
+
+
+
+
+
+
 function showBillCity() {
 if (xmlHttpRequest.readyState == 4) {
 if (xmlHttpRequest.status == 200) {
@@ -264,23 +289,40 @@ document.getElementById('b_city').innerHTML = response;
 }
 }
 }
+
+
+
+
+
+
+
+
 /* Function above billing country state city */
 function changecount(state) {
 var baseurl = '<?PHP echo $baseUrl;?>';
 var SITEROOT = baseurl;
 createXMLHttpRequest();
-var url = SITEROOT + '/default/index/statelist/';
+var url = SITEROOT + '/state-list/'+state;
 var strURL = url;
 if (state != '') {
 var query = "statename=" + state;
 if (xmlHttpRequest != null) {
-xmlHttpRequest.open("post", strURL, true);
+xmlHttpRequest.open("get", strURL, true);
 xmlHttpRequest.onreadystatechange = showState;
 xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xmlHttpRequest.send(query);
 }
 }
 }
+
+
+
+
+
+
+
+
+
 function showState() {
 if (xmlHttpRequest.readyState == 4) {
 if (xmlHttpRequest.status == 200) {
@@ -290,16 +332,23 @@ document.getElementById('user_city').innerHTML = "<option value='0'>Select City<
 }
 }
 }
+
+
+
+
+
+
+
 function schangecount(state) {
 var baseurl = '<?PHP echo $baseUrl;?>';
 var SITEROOT = baseurl;
 createXMLHttpRequest();
-var url = SITEROOT + '/default/index/statelist/';
+var url = SITEROOT + '/state-list/'+state;
 var strURL = url;
 if (state != '') {
 var query = "statename=" + state;
 if (xmlHttpRequest != null) {
-xmlHttpRequest.open("post", strURL, true);
+xmlHttpRequest.open("get", strURL, true);
 xmlHttpRequest.onreadystatechange = showsState;
 xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xmlHttpRequest.send(query);
@@ -319,12 +368,12 @@ function changecity(city) {
 var baseurl = '<?PHP echo $baseUrl;?>';
 var SITEROOT = baseurl;
 createXMLHttpRequest();
-var url = SITEROOT + '/default/index/citylist/';
+var url = SITEROOT + '/city-list/'+city;
 var strURL = url;
 if (city != '') {
 var query = "cityname=" + city;
 if (xmlHttpRequest != null) {
-xmlHttpRequest.open("post", strURL, true);
+xmlHttpRequest.open("get", strURL, true);
 xmlHttpRequest.onreadystatechange = showcity;
 xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xmlHttpRequest.send(query);
@@ -343,12 +392,12 @@ function schangecity(city) {
 var baseurl = '<?PHP echo $baseUrl;?>';
 var SITEROOT = baseurl;
 createXMLHttpRequest();
-var url = SITEROOT + '/default/index/citylist/';
+var url = SITEROOT + '/city-list/'+city;
 var strURL = url;
 if (city != '') {
 var query = "cityname=" + city;
 if (xmlHttpRequest != null) {
-xmlHttpRequest.open("post", strURL, true);
+xmlHttpRequest.open("get", strURL, true);
 xmlHttpRequest.onreadystatechange = sshowcity;
 xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xmlHttpRequest.send(query);
@@ -412,12 +461,12 @@ function calcavatax(city) {
 var baseurl = '<?PHP echo $baseUrl;?>';
 var SITEROOT = baseurl;
 createXMLHttpRequest();
-var url = SITEROOT + '/default/index/citylist/';
+var url = SITEROOT + '/city-list/'+city;
 var strURL = url;
 if (city != '') {
 var query = "cityname=" + city;
 if (xmlHttpRequest != null) {
-xmlHttpRequest.open("post", strURL, true);
+xmlHttpRequest.open("get", strURL, true);
 xmlHttpRequest.onreadystatechange = avavtaxresult;
 xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xmlHttpRequest.send(query);

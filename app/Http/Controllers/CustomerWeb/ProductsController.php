@@ -9,10 +9,30 @@ use App\Models\ProductModel;
 use App\Models\User;
 use Auth;
 use App\Models\AdminImpFunctionModel;
-
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
+
+
+
+public function createrandomstring()
+{
+    $length = 5;
+
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+
+    $randomString .= uniqid();
+
+    return substr(str_shuffle($randomString), 0, 5);
+}
+
 
 
 /*
@@ -578,6 +598,416 @@ public function checkout(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+public function checkout_submit(Request $request){
+    // dd($request->all());
+    if ($request->all()) {
+            $admin_model_obj = new \App\Models\AdminImpFunctionModel;
+
+            //echo "<pre>";print_r($_POST);die;
+            $user_id=Auth::user()->user_id;
+
+            $contuseridata =DB::table('users')->where('user_id',$user_id)->first();
+            // dd($contuseridata);
+            //print_r($contuseridata); die();
+            $contid = $contuseridata->user_countrykey; //$this->_getParam('country');
+            $statid = $contuseridata->user_statekey;  //$this->_getParam('state');
+            $citid = $contuseridata->user_citykey; //$this->_getParam('city');
+
+
+
+
+
+            $contstatcitidata = $admin_model_obj->getcontstatcitidata($contid, $statid, $citid);
+            // dd($contstatcitidata );
+            //print_r($contstatcitidata); die();
+            $user_country = @$contstatcitidata->contname;
+            $user_state = @$contstatcitidata->statename;
+            $user_city = @$contstatcitidata->citiname;
+
+
+            $udetail['user_type'] = $contuseridata->user_type;
+            $udetail['first_name'] = $contuseridata->first_name;//$request->getParam('first_name');
+            $udetail['last_name'] = $contuseridata->last_name; //$request->getParam('last_name');
+            //$udetail['cname'] = $request->getParam('company_name');
+            $udetail['email'] = $contuseridata->email; //$request->getParam('email_address');
+
+            $udetail['address'] = $contuseridata->address; //$request->getParam('address');
+            $udetail['ucity'] = $user_city;
+            $udetail['ustate'] = $user_state;
+            $udetail['ucountry'] = $user_country;
+            $udetail['user_citykey'] = $citid;
+            $udetail['user_statekey'] = $statid;
+            $udetail['user_countrykey'] = $contid;
+            $udetail['uzip'] = $contuseridata->zip_code; //$request->getParam('postal_code');
+            $udetail['mobile'] = $contuseridata->mobile; //$request->getParam('telephone');
+            $udetail['user_id'] = $user_id;
+
+            $ccname = $udetail['first_name'] . ' ' . $udetail['last_name'];
+
+
+
+
+            $checkOutTotal = $request->overalltotal;
+            $payment_type_check = $request->payment_type;
+
+            /*Store User Address ForOrder*/
+
+            $orderdetail['customer_id'] = $user_id;
+            $orderdetail['first_name'] = $request->b_first_name;
+            $orderdetail['last_name'] = $request->b_last_name;
+            $orderdetail['cname'] = $request->b_first_name . ' ' . $request->b_last_name;
+            $orderdetail['email'] = $request->b_email_address;
+            $orderdetail['address'] = $request->b_address;
+
+            $b_country = $request->b_country;
+            $b_state = $request->b_state;
+            $b_city = $request->b_city;
+
+
+
+
+
+            $getscountcitydataBill = $admin_model_obj->getcontstatcitidata($b_country, $b_state, $b_city);
+// dd($getscountcitydataBill);
+            $orderdetail['ucity'] = @$getscountcitydataBill->citiname;
+            $orderdetail['ustate'] = @$getscountcitydataBill->statename;
+            $orderdetail['ucountry'] = @$getscountcitydataBill->contname;
+
+            $orderdetail['user_citykey'] = $b_city;
+            $orderdetail['user_statekey'] = $b_state;
+            $orderdetail['user_countrykey'] = $b_country;
+
+            $orderdetail['uzip'] = $request->b_postal_code;
+            $orderdetail['mobile'] = $request->b_telephone;
+            $orderdetail['ufax'] = $request->b_fax;
+            $sfirst_name = $request->sfirst_name;
+            $slast_name = $request->slast_name;
+            $semail_address = $request->semail_address;
+            $saddress = $request->saddress;
+            $scountry = $request->scountry;
+            $sstate = $request->sstate;
+            $scity = $request->scity;
+            $spostal_code = $request->spostal_code;
+            $stelephone = $request->stelephone;
+            $sfax = $request->sfax;
+            $orderdetail['sfirst_name'] = $sfirst_name;
+            $orderdetail['slast_name'] = $slast_name;
+            $orderdetail['scname'] = $ccname;
+            $orderdetail['semail'] = $semail_address;
+            $orderdetail['saddress'] = $saddress;
+
+
+
+
+            $getscountcitydata = $admin_model_obj->getcontstatcitidata($scountry, $sstate, $scity);
+            // dd($getscountcitydata);
+            $suser_country = @$getscountcitydata->contname;
+            $suser_state = @$getscountcitydata->statename;
+            $suser_city = @$getscountcitydata->citiname;
+            $orderdetail['sucity'] = $suser_city;
+            $orderdetail['sustate'] = $suser_state;
+            $orderdetail['sucountry'] = $suser_country;
+            $orderdetail['suser_citykey'] = $scity;
+            $orderdetail['suser_statekey'] = $sstate;
+            $orderdetail['suser_countrykey'] = $scountry;
+            $orderdetail['suzip'] = $spostal_code;
+            $orderdetail['smobile'] = $stelephone;
+            $orderdetail['sufax'] = $sfax;
+
+            // dd("1st",$orderdetail);
+
+
+
+
+            if (!empty($payment_type_check) && $payment_type_check == 'by_stripe') {
+
+                $OrdRandStr = $this->createrandomstring();
+                // dd($OrdRandStr);
+                $orderid = "AMPLI" . $OrdRandStr;
+
+                $transaction_id = $orderid;
+
+                $order_amt = number_format($checkOutTotal, 2, '.', '');
+
+                // if(empty($valid)) {
+                $first_name = $udetail['first_name'];
+                $last_name = $udetail['last_name'];
+                $email = $udetail['email'];
+                //echo $email; die();
+                // $password = $udetail['password'];
+                $mobile = $udetail['mobile'];
+                $image = '';
+                $zip_code = $udetail['uzip'];
+                $birthdays = '';
+                $educations = '';
+                $incomes = '';
+                $interestss = '';
+                $user = 'User';
+
+                // $ustatus = $udetail['status'];
+                $fulname = "$first_name" . "$last_name";
+                $ucreated = date('Y-m-d H:i:s');
+                if (!empty($fulname)) {
+                    $n_ample = 5;
+                } else {
+                    $n_ample = 0;
+                }
+                if (!empty($mobile)) {
+                    $m_ample = 4;
+                } else {
+                    $m_ample = 0;
+                }
+                if (!empty($email)) {
+                    $e_ample = 5;
+
+                } else {
+                    $e_ample = 0;
+                }
+                if (!empty($image)) {
+                    $i_ample = 4;
+                } else {
+                    $i_ample = 0;
+                }
+                if (!empty($zip_code)) {
+
+                    $zip_ample = 5;
+                } else {
+                    $zip_ample = 0;
+                }
+                if (!empty($birthdays)) {
+
+                    $b_ample = 5;
+                } else {
+                    $b_ample = 0;
+                }
+                if (!empty($educations)) {
+
+                    $edu_ample = 5;
+                } else {
+                    $edu_ample = 0;
+                }
+                if (!empty($incomes)) {
+
+                    $in_ample = 4;
+                } else {
+                    $in_ample = 0;
+                }
+                if (!empty($interestss)) {
+
+                    $intest_ample = 5;
+                } else {
+                    $intest_ample = 0;
+                }
+
+                $default_ample = ($n_ample + $m_ample + $e_ample + $i_ample + $zip_ample + $b_ample + $edu_ample + $in_ample + $intest_ample);
+
+                // dd($default_ample);
+                 // dd($udetail);
+                $userkey = $udetail['user_id'];
+
+
+                /*NEW END CODE*/
+                $address1 = $udetail['address'] . ',' . $user_city . ',' . $user_state . ',' . $user_country . '-' . $udetail['uzip'];
+                $deliverytype = $request->deliverytype;
+                $orderdata['user_id'] = $user_id;
+                $orderdata['order_date'] = date('Y-m-d H:i:s');
+                $orderdata['total_price'] = $order_amt;
+                $orderdata['shipping_price'] = '0';
+                $orderdata['updated_date'] = date('Y-m-d H:i:s');
+                $orderdata['order_status'] = 'In Process';
+                $orderdata['payment_mode'] = 'stripe';
+                $orderdata['account_number'] = '';
+                $orderdata['card_type'] = '';
+                $orderdata['retail_price'] = '0';
+                $orderdata['buyer_comments'] = 'awesome product';
+                $orderdata['order_id'] = $transaction_id;
+                $orderdata['currency'] = 'USD';
+                $orderdata['current_rate'] = '0';
+                $orderdata['order_type'] = implode(',', $deliverytype);
+                $orderdata['order_payment_status'] = 0;
+
+                // dd($orderdata);
+
+
+                $insertorderdata = $admin_model_obj->userinsertorderdata($orderdata);
+
+                $LastOrderInsert = $insertorderdata;
+                // dd($LastOrderInsert);
+
+                $order_date = date('Y-m-d H:i:s');
+
+                $orderdetail['order_id'] = $transaction_id;
+
+                $insertorderadressdata = $admin_model_obj->userinsertorderaddressdata($orderdetail);
+                dd("next payment gateway");
+                return redirect("/processcheckoutpayment/order_id/$transaction_id/user_id/$user_id");
+                // $this->_redirect("/processcheckoutpayment/order_id/$transaction_id/user_id/$user_id");
+
+            } 
+
+
+
+
+
+
+
+
+            else if (!empty($payment_type_check) && $payment_type_check == 'by_amplepoints') {
+
+
+                $OrdRandStr = $this->createrandomstring();
+                $orderid = "AMPLI" . $OrdRandStr;
+                $transaction_id = $orderid;
+
+                $address1 = $udetail['address'] . ',' . $user_city . ',' . $user_state . ',' . $user_country . '-' . $udetail['uzip'];
+                $deliverytype = $request->deliverytype;
+                $orderdata['user_id'] = $user_id;
+                $orderdata['order_date'] = date('Y-m-d H:i:s');
+                $orderdata['total_price'] = 0.00;
+                $orderdata['shipping_price'] = '0';
+                $orderdata['updated_date'] = date('Y-m-d H:i:s');
+                $orderdata['order_status'] = 'In Process';
+                $orderdata['payment_mode'] = 'byamples';
+                $orderdata['account_number'] = '';
+                $orderdata['card_type'] = '';
+                $orderdata['retail_price'] = '0';
+                $orderdata['buyer_comments'] = 'awesome product';
+                $orderdata['order_id'] = $transaction_id;
+                $orderdata['currency'] = 'USD';
+                $orderdata['current_rate'] = '0';
+                $orderdata['order_type'] = implode(',', $deliverytype);
+                $orderdata['order_payment_status'] = 1;
+                // print_r($orderdata);die;
+
+                $insertorderdata = $admin_model_obj->userinsertorderdata($orderdata);
+
+                $LastOrderInsert = $insertorderdata;
+
+                $order_date = date('Y-m-d H:i:s');
+
+                $resultupdateproductadded = $admin_model_obj->updateproductaddeddata($user_id, $transaction_id);
+
+                $resultupdateproductpickup = $admin_model_obj->updatedeliverytypedata($user_id, $transaction_id);
+
+                $resultupdateuseramples = $admin_model_obj->updateuseramplesdata($user_id, $transaction_id);
+
+                $orderdetail['order_id'] = $transaction_id;
+
+                $insertorderadressdata = $admin_model_obj->userinsertorderaddressdata($orderdetail);
+
+                dd("done");
+
+
+
+
+
+                $this->updateGiftCardRelatedCheckoutData($transaction_id, $user_id);
+
+                $this->customerdermail($transaction_id, $user_id);
+
+                $this->ordermail($transaction_id, $user_id);
+
+                $vendorData = $admin_model_obj->selectdistincOrderVendor($transaction_id);
+
+
+
+                foreach ($vendorData as $vdata) {
+
+                    $this->vendorordermail($transaction_id, $user_id, $vdata->vendor_id);
+
+                }
+
+                $this->sendmessegeTocustomer($transaction_id);
+
+                $giftCardToData = $admin_model_obj->getFullOrderDetailForGiftToUsers($transaction_id);
+
+                if (!empty($giftCardToData)) {
+
+                    foreach ($giftCardToData as $orderInfo) {
+
+                        $gfOrderId = $orderInfo['orderid'];
+                        $gfuserId = $orderInfo['customer_Id'];
+
+                        $this->gifrcardOrderEmail($gfOrderId, $orderInfo, $gfuserId);
+
+                        $this->sendGiftcardMsgTOUser($gfOrderId, $orderInfo);
+                    }
+                }
+
+                $this->addUserPurchaseReward($user_id, $transaction_id);
+
+                $this->UpdateProductQuantity($transaction_id);
+
+
+                $this->_redirect("/ordersuccess/msg/1/order_id/$transaction_id/user_id/$user_id");
+
+            } else {
+
+                $this->_redirect("/ordersuccess/msg/2/");
+            }
+
+
+        }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+public function cityList($city)
+{
+    $stateId = $city;
+
+    $cities = DB::table('tbl_cities')
+        ->select('tbl_cities.id', 'tbl_cities.name')
+        ->join('tbl_states', 'tbl_states.stateid', '=', 'tbl_cities.state_id')
+        ->where('tbl_cities.state_id', '=', $stateId)
+        ->get();
+
+   echo "<option value=''>Select City</option>";
+
+    foreach ($cities as $val) {
+         echo "<option value=" . $val->id . ">" . $val->name . "</option>";
+    }
+   die();
+}
+
+
+
+ public function statelist($statename)
+    {
+        $countryId = $statename;
+
+        echo "<option value=''>Select State</option>";
+       $result = DB::table('tbl_states')
+            ->select('stateid', 'statename')
+            ->where('country_id', '=', $countryId)
+            ->get();
+
+        foreach ($result as $getst) {
+            echo "<option value=" . $getst->stateid . ">" . $getst->statename . "</option>";
+        }
+        die;
+    }
 
 
 

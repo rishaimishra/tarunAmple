@@ -198,7 +198,8 @@ if (!empty($usrmakey)) {
 
 
         <!-- ../page heading-->
-        <form id="mycheckoutform" action="" method="post" onsubmit="return validateForm();">
+        <form id="mycheckoutform" action="{{route('checkout.submit')}}" method="post" onsubmit="return validateForm();">
+            @csrf
             <div class="page-content checkout-page">
                 <h3 class="checkout-sep">1. Checkout Method</h3>
                 <div class="box-border method_box">

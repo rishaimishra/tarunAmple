@@ -696,6 +696,215 @@ public function GetVendorSpecialFeesDetail($vendorId)
 
 
 
+  public function getcontstatcitidata($contId, $statId, $citId)
+    {
+        $result = DB::table('tbl_cities')
+            ->select([
+                'tbl_countries.name as contname',
+                'tbl_states.statename',
+                'tbl_cities.name as citiname'
+            ])
+            ->leftJoin('tbl_states', 'tbl_states.stateid', '=', 'tbl_cities.state_id')
+            ->leftJoin('tbl_countries', 'tbl_countries.id', '=', 'tbl_states.country_id')
+            ->where('tbl_states.country_id', '=', $contId)
+            ->where('tbl_cities.state_id', '=', $statId)
+            ->where('tbl_cities.id', '=', $citId)
+            ->first();
+
+        return $result;
+    }
+
+
+
+
+
+
+public function userinsertorderdata($values)
+{
+    $tableName = 'tbl_order';
+
+    $sales = [];
+    foreach ($values as $key => $value) {
+        $sales[$key] = $value;
+    }
+
+    $orderId = DB::table($tableName)->insertGetId($sales);
+
+    return $orderId;
+}
+
+
+public function userinsertorderaddressdata($values)
+{
+    $tableName = 'order_address';
+
+    $sales = [];
+    foreach ($values as $key => $value) {
+        $sales[$key] = $value;
+    }
+
+    DB::table($tableName)->insert($sales);
+}
+
+
+
+
+
+public function updateproductaddeddata($userKey, $transactionId)
+{
+    $tableName = 'products_added';
+
+    $orderData = [
+        'order_id' => $transactionId,
+        'is_purchased' => 1,
+        'date' => now(), // Laravel equivalent of date('Y-m-d H:i:s')
+        'purchase_date' => now(),
+    ];
+
+    $result = DB::table($tableName)
+        ->where('customer_Id', $userKey)
+        ->where('is_purchased', 0)
+        ->update($orderData);
+
+    return $result;
+}
+
+
+
+
+
+
+public function updatedeliverytypedata($userKey, $transactionId)
+{
+    $tableName = 'product_delivery_type';
+
+    $orderData = [
+        'orderid' => $transactionId,
+        'is_purchased' => 1,
+    ];
+
+    $result = DB::table($tableName)
+        ->where('userid', $userKey)
+        ->where('is_purchased', 0)
+        ->update($orderData);
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+
+public function updateuseramplesdata($userId, $transactionId)
+{
+    $productsAddedTable = 'products_added';
+    $loginTable = 'login';
+
+    $result1 = DB::table($productsAddedTable)
+        ->select('earned_amples')
+        ->where('customer_Id', $userId)
+        ->where('order_id', $transactionId)
+        ->get();
+
+    $earnedAmple = 0.00;
+    $totalEarnedAmple = 0.00;
+
+    $result2 = DB::table($loginTable)
+        ->select('total_ample')
+        ->where('user_id', $userId)
+        ->first();
+
+    $totalUserAmple = $result2->total_ample;
+
+    foreach ($result1 as $cartProductKey) {
+        $totalEarnedAmple += $cartProductKey->earned_amples;
+    }
+
+    $totalUserAmple += $totalEarnedAmple;
+
+    $userTotalAmple = ['total_ample' => $totalUserAmple];
+    $result = DB::table($loginTable)
+        ->where('user_id', $userId)
+        ->update($userTotalAmple);
+
+    return $result;
+}
+
+
+
+
+
+public function selectdistincOrderVendor($orderId)
+{
+    $tableName = 'products_added';
+
+    $result = DB::table($tableName)
+        ->select('vendor_id')
+        ->distinct()
+        ->where('order_id', $orderId)
+        ->where('is_purchased', 1)
+        ->orderByDesc('id')
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+public function getFullOrderDetailForGiftToUsers($orderId)
+{
+    $productsAddedTable = 'products_added';
+    $orderTable = 'tbl_order';
+    $productsTable = 'products';
+    $productImagesTable = 'product_images';
+    $productDeliveryTypeTable = 'product_delivery_type';
+
+    $result = DB::table($productsAddedTable)
+        ->select(
+            'products_added.*',
+            'tbl_order.*',
+            'products.*',
+            'product_images.*',
+            'product_delivery_type.*',
+            'products_added.quantity as total_product_quantity',
+            'products_added.id as productadded_id',
+            'products_added.shipping as shipcharge',
+            'products_added.tax as applytax'
+        )
+        ->leftJoin($orderTable, "tbl_order.order_id", '=', "products_added.order_id")
+        ->leftJoin($productsTable, "products.id", '=', "products_added.product_id")
+        ->leftJoin($productImagesTable, "product_images.product_id", '=', "products_added.product_id")
+        ->leftJoin(
+            $productDeliveryTypeTable,
+            function ($join) use ($productsAddedTable, $productDeliveryTypeTable) {
+                $join->on("product_delivery_type.pro_id", '=', "products_added.product_id")
+                    ->where("product_delivery_type.orderid", '=', "products_added.order_id");
+            }
+        )
+        ->where("$productsAddedTable.order_id", '=', $orderId)
+        ->where("$productsAddedTable.is_purchased", '=', 1)
+        ->where("$productsAddedTable.is_gift_card", '=', 1)
+        ->where("$productsAddedTable.gift_card_for", '=', 2)
+        ->groupBy("$productsAddedTable.id")
+        ->orderByDesc("$productsAddedTable.id")
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
+
 
 
 
