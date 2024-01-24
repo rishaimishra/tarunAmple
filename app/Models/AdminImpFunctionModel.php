@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Models\ProductModel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class AdminImpFunctionModel extends Model
 {
@@ -903,6 +905,197 @@ public function getFullOrderDetailForGiftToUsers($orderId)
 
 
 
+ public function all_amples_data($limit = null)
+    {
+        $tableName = 'tbl_advertises'; // Adjust the table name based on your actual database structure
+
+        $query = DB::table($tableName)
+            ->select('*')
+            ->where('status', '=', 1)
+            ->orderByDesc('ad_price');
+
+        if (!is_null($limit)) {
+            $query->limit($limit);
+        }
+
+        $result = $query->get();
+
+        return $result;
+    }
+
+
+
+
+
+
+  public function cdnUrl($url)
+    {
+        if (empty($url)) {
+            throw new \Exception('Path is missing');
+        }
+
+        $pattern = '/^http/i';
+
+        if (preg_match($pattern, $url)) {
+            throw new \Exception('Invalid usage. ' .
+                'Use: /htdocs/images instead of the full URL ' .
+                'http://example.com/htdocs/images.'
+            );
+        }
+
+        $pattern = '|^/|';
+        if (!preg_match($pattern, $url)) {
+            $url = '/' . $url;
+        }
+
+        // Assuming 'siteurl' is a key in your config file
+        $cdn_hostname = config('your-config-file-name.siteurl', 'https://amplepoints.com');
+
+        $uri = asset($url, $cdn_hostname);
+
+        return $uri;
+    }
+
+
+
+
+
+
+public function OnlyCdnUrl($url)
+    {
+        if (empty($url)) {
+            throw new \Exception('Path is missing');
+        }
+
+        $pattern = '/^http/i';
+
+        if (preg_match($pattern, $url)) {
+            throw new \Exception('Invalid usage. ' .
+                'Use: /htdocs/images instead of the full URL ' .
+                'http://example.com/htdocs/images.'
+            );
+        }
+
+        $pattern = '|^/|';
+        if (!preg_match($pattern, $url)) {
+            $url = '/' . $url;
+        }
+
+        // Assuming 'siteurl' is a key in your config file
+        $cdnHostname = config('your-config-file-name.siteurl', 'https://amplepoints.com');
+
+        $uri = asset($url, $cdnHostname);
+
+        return $uri;
+    }
+
+
+
+
+
+
+
+
+
+
+
+     public function getNewSidebarProductsList($countryCode = 'DEFAULT')
+    {
+        $includeVendors = '';
+
+        $selectedVendor = DB::select("SELECT * FROM `sidebar_products_add` WHERE `country_code` = ?", [$countryCode]);
+
+        if (!empty($selectedVendor)) {
+            $orArray = explode(',', $selectedVendor[0]->selected_vendors);
+
+            $incVdrArra = array_map(function ($value) {
+                return "products.vendor_uid = $value";
+            }, $orArray);
+
+            $includeVendors = implode(' OR ', $incVdrArra);
+        }
+
+        $products = DB::table('products')->select(
+            'products.id as product_id',
+            'products.product_name',
+            'products.product_discount',
+            'products.free_with_amples',
+            'products.image',
+            'products.no_of_amples',
+            'products.discount_price',
+            'products.product_discount',
+            'products.single_price',
+            'products.supplier_name',
+            'products.product_type_key'
+        )
+            ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_vndr_id', '=', 'products.vendor_uid')
+            ->where('products.status', '=', '1')
+            ->inRandomOrder()
+            ->limit(50);
+
+        if (!empty($includeVendors)) {
+            $products->whereRaw($includeVendors);
+        }
+
+        $result = $products->get();
+
+        return $result;
+    }
+
+
+
+
+
+
+
+
+ public function GetUserRemoteCountryFromIP($request)
+    {
+        $countryCode = [];
+
+        $defaultCountry = $this->Get_Options('default_country');
+
+        $myCode = '';
+
+        if (!$request->cookie('user_remote_country')) {
+            $ipAddress = $request->ip(); // Get client's IP address
+
+            $apiKey = 'deb3edadc6e5fb165a24eb79b0780ca5c67967f9e443865d3232bed729de2386';
+
+            $userDetails = @json_decode(Http::get("https://api.ipinfodb.com/v3/ip-country/?key=$apiKey&ip=$ipAddress&format=json")->body());
+
+            if (!empty($userDetails)) {
+                $myCode = $userDetails->countryCode != '' && $userDetails->countryCode != '-' ? $userDetails->countryCode : $defaultCountry;
+            }
+
+            return response()->json(['country_code' => $myCode])->cookie('user_remote_country', $myCode, 30 * 24 * 60); // 30 days expiration
+        }
+
+        $myCode = $request->cookie('user_remote_country');
+
+        $countryCode['country_code'] = $myCode;
+
+        return response()->json($countryCode);
+    }
+
+
+
+
+
+
+
+
+    // Helper function to get options, replace with your actual implementation
+    public function Get_Options($optionName)
+    {
+        $option = DB::table('tbl_options')->where('option_name', $optionName)->first();
+
+        if ($option) {
+            return $option->option_value;
+        }
+
+        return null; // Or handle accordingly if the option doesn't exist
+    }
 
 
 
@@ -915,7 +1108,71 @@ public function getFullOrderDetailForGiftToUsers($orderId)
 
 
 
+public function almplePointsUrl($url)
+{
+    if (empty($url)) {
+        throw new \Exception('Path is missing');
+    }
 
+    $pattern = '/^http/i';
+
+    if (preg_match($pattern, $url)) {
+        throw new \Exception('Invalid usage. Use: /htdocs/images instead of the full URL http://example.com/htdocs/images.');
+    }
+
+    $pattern = '|^/|';
+
+    if (!preg_match($pattern, $url)) {
+        $url = '/' . $url;
+    }
+
+    $cdnHostname = 'https://www.amplepoints.com';
+    // Uncomment the line below if you want to use the siteurl from options
+    // $cdnHostname = $this->getOptions('siteurl');
+
+    if (empty($cdnHostname)) {
+        $cdnHostname = 'https://www.amplepoints.com';
+    }
+
+    $uri = $cdnHostname . $url;
+
+    return $uri;
+}
+
+
+
+
+
+
+
+
+
+public function getGameVideoData($limitfrom, $rowperrpage)
+{
+    $result = DB::table('game_vedio')
+        ->offset($limitfrom)
+        ->limit($rowperrpage)
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
+
+public function getGameVideoDataByCat($limitfrom, $rowperrpage, $vedio_category)
+{
+    $result = DB::table('game_vedio')
+        ->where('vedio_category', '=', $vedio_category)
+        ->skip($limitfrom)
+        ->take($rowperrpage)
+        ->get();
+
+    return $result;
+}
 
 
 

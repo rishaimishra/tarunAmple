@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminWeb\AdminBannerController;
 use App\Http\Controllers\AdminWeb\CategoryController;
 use App\Http\Controllers\AdminWeb\BrandController;
 use App\Http\Controllers\AdminWeb\ProductController;
+use App\Http\Controllers\CustomerWeb\Addcontroller;
 
 
 /*
@@ -77,6 +78,14 @@ Route::get('/checkout',[ProductsController::class, 'checkout'])->name('member.ch
 Route::post('/checkout/submit',[ProductsController::class, 'checkout_submit'])->name('checkout.submit');
 Route::get('/city-list/{city}',[ProductsController::class, 'cityList'])->name('cityList');
 Route::get('/state-list/{statename}',[ProductsController::class, 'statelist'])->name('statelist');
+
+
+
+//video page
+Route::get('/all-videos',[Addcontroller::class, 'all_videos'])->name('all.videos');
+Route::post('/loadmoreearnvideos',[Addcontroller::class, 'loadmoreearnvideos'])->name('loadmoreearnvideos');
+Route::post('/loadmorearncatevideos',[Addcontroller::class, 'loadmorearncatevideos'])->name('loadmorearncatevideos');
+
 // =========================== Customer Routes End =============================================//
 
 

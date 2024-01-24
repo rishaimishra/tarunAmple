@@ -473,4 +473,6 @@ $('#sliderInfo{{ $val->id }}').text('Group ' + currentGroup + ' of ' + totalGrou
 </div>
 @include('includes.footer')
 @include('includes.script')
+@include('member.videos.advertisement')
+
 @endsection

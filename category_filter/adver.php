@@ -1,6 +1,22 @@
 <?php /* Please Do Not Change Any Code In this File If you want To change Please contact Mr.Tony*/ ?>
 <?php
     $rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+     // $rootUrl="http://localhost:8080/tarunAmple";
+
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $script_path = $_SERVER['SCRIPT_NAME'];
+
+    // Extract the directory part from the script path
+    $project_path = dirname($script_path);
+    $base_url_full = $protocol . '://' . $host . $project_path;
+    // Remove "/category_filter"
+    $base_url = str_replace("/category_filter", "", $base_url_full);
+
+    // echo $base_url;
+    // die();
+
+
     require("db_config.php");
 ?>
 <style>
@@ -152,7 +168,7 @@
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo cdnUrl('slider/demoStyleSheet.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo cdnUrl('newcss/css/bebas.css'); ?>"/>
-<script type="text/javascript" src="<?php echo $rootUrl; ?>/slider/fadeSlideShow.js"></script>
+<script type="text/javascript" src="<?php echo $base_url; ?>/slider/fadeSlideShow.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
 
@@ -231,7 +247,9 @@
             //echo "SELECT * FROM adver_pro WHERE adver_id = '".$q."' GROUP BY adver_product ORDER BY adver_pro_id DESC limit 5";
             $data_pro = mysqli_query($con,$adver_pro);
             $count = mysqli_num_rows($data_pro);
-            // print_r($count);
+            // $data_fetch = mysqli_fetch_array($data_pro);
+            // print_r($data_fetch);
+            // die();
         ?>
         <ul id="slideshow">
             <?php
@@ -239,14 +257,18 @@
                 $i =1;
                 while($data_fetch = mysqli_fetch_array($data_pro)){
 
-                    $pro_immages="SELECT * FROM products INNER JOIN  product_images ON products.id = product_images.product_id WHERE product_images.product_id = '".$data_fetch['adver_product']."'";
+                    // $pro_immages="SELECT * FROM products INNER JOIN  product_images ON products.id = product_images.product_id WHERE product_images.product_id = '".$data_fetch['adver_product']."'";
+                    $pro_immages="SELECT * FROM products INNER JOIN  product_images ON products.id = product_images.product_id WHERE product_images.product_id = 58098";
                     $data_images = mysqli_query($con,$pro_immages);
                     $images_fetch = mysqli_fetch_array($data_images);
+                    // print_r($data_fetch['adver_product']);
+                    //    die();
 
                     $amples = "SELECT * FROM tbl_advertises WHERE adver_id = '".$data_fetch['adver_id']."'";
                     $amples_data = mysqli_query($con,$amples);
                     $amples_fetch = mysqli_fetch_array($amples_data);
-                    //    print_r($images_fetch);
+                       // print_r($images_fetch);
+                       // die();
 
                     $ProductId = $data_fetch['adver_product'];
 
@@ -333,13 +355,13 @@
                     <ul class="four-btns" style="display:none;">
                         <li id="Buynow">
                             <?php if($images_fetch['product_type_key']=='0'){ ?>
-                                <a  id="buynowa" target = "_blank" href="<?php echo $rootUrl; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Buy Now</a>
+                                <a  id="buynowa" target = "_blank" href="<?php echo $base_url; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Buy Now</a>
                                 <?php }else{ ?>
-                                <a title="Add to Cart" class="contact_me_btn" id="buynowa" target = "_blank" href="<?php echo $rootUrl; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Contact Me</a>
+                                <a title="Add to Cart" class="contact_me_btn" id="buynowa" target = "_blank" href="<?php echo $base_url; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Contact Me</a>
                                 <?php }  ?>
                             <input type="hidden" class="hiddenproductId" name="hiddenproduct" value="<?php echo $ProductId ; ?>">
                         </li>
-                        <li id="Info"> <a  id="infoa" target = "_blank" href="<?php echo $rootUrl; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Info</a>
+                        <li id="Info"> <a  id="infoa" target = "_blank" href="<?php echo $base_url; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Info</a>
                             <input type="hidden" class="hiddenproductId" name="hiddenproduct" value="<?php echo $ProductId ; ?>">
                         </li>
                         <li id="Wishlist"><a id="addwisha" title="Add to my wishlist" href="javascript:void(0);" onclick="wishlist_cart('<?php echo $images_fetch['product_name']; ?>','<?php echo $data_fetch['adver_product']; ?>','1','<?php echo strip_tags($images_fetch['single_price']); ?>','<?php echo $userid ; ?>','add');">Wishlist</a>
@@ -471,7 +493,7 @@
 
                 $.ajax({
                     //url: 'http://amplepoints.com/public/category_filter/history.php',
-                    url: '<?php echo $rootUrl; ?>/category_filter/history.php',
+                    url: '<?php echo $base_url; ?>/category_filter/history.php',
                     data: {adver_id_history: adver_id,user_history_id: user_id,respond:respondtext},
                     type: 'POST'
                 }).done(function(data){
@@ -481,13 +503,13 @@
                 if(adver_type=='static'){
 
                     $.ajax({
-                        url: '<?php echo $rootUrl; ?>/category_filter/analytics.php',
+                        url: '<?php echo $base_url; ?>/category_filter/analytics.php',
                         data: {adverid: adver_id,userid: user_id,respond:respondtext,productid:myproductid,addtime:15,addtype:'static'},
                         type: 'POST'
                     })
 
                     $.ajax({
-                        url: '<?php echo $rootUrl; ?>/category_filter/adddata.php',
+                        url: '<?php echo $base_url; ?>/category_filter/adddata.php',
                         data: {adver_id: adver_id,amples: amples,user_id: user_id},
                         type: 'POST',
                         dataType: "json"
@@ -519,13 +541,13 @@
                 }else{
 
                     $.ajax({
-                        url: '<?php echo $rootUrl; ?>/category_filter/analytics.php',
+                        url: '<?php echo $base_url; ?>/category_filter/analytics.php',
                         data: {adverid: adver_id,userid: user_id,respond:respondtext,productid:myproductid,addtime:length_video,addtype:'video'},
                         type: 'POST'
                     })
 
                     $.ajax({
-                        url: '<?php echo $rootUrl; ?>/category_filter/adddata.php',
+                        url: '<?php echo $base_url; ?>/category_filter/adddata.php',
                         data: {adver_id: adver_id,length_video: length_video,user_id: user_id},
                         type: 'POST',
                         dataType: "json"
@@ -616,7 +638,7 @@
         if(feedback_val){
 
             $.ajax({
-                url: '<?php echo $rootUrl; ?>/category_filter/add_adver_feedback.php',
+                url: '<?php echo $base_url; ?>/category_filter/add_adver_feedback.php',
                 data: {adver_id: adver_id,user_id: user_id,feedback:feedback_val},
                 type: 'POST',
             })

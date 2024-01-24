@@ -1,5 +1,18 @@
 <?php /* Please Do Not Change Any Code In this File If you want To change Please contact Mr.Tony*/ ?>
-<?php $rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST']; ?>
+<?php 
+$rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST']; 
+
+
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+$host = $_SERVER['HTTP_HOST'];
+$script_path = $_SERVER['SCRIPT_NAME'];
+
+// Extract the directory part from the script path
+$project_path = dirname($script_path);
+$base_url = $protocol . '://' . $host . $project_path;
+// echo $base_url;
+// die();
+?>
 <style>
     .pause.clocse-my-video { font-size: 16px;height: 23px;width: 23px;}
     .top-set-video .fa.fa-volume-up, .top-set-video .fa.fa-volume-off {
@@ -51,30 +64,38 @@
     }
 
 </style>
+
+
 <?php 
     $q = intval($_GET['camid']);
     $userid = intval($_GET['userid']);
     require("db_config.php");
+
+
     $sql="SELECT * FROM tbl_advertises WHERE adver_id = '".$q."'";
     $result = mysqli_query($con,$sql);
+    // $row = mysqli_fetch_array($result);
+    //  print_r($row);
+    // die();
     while($row = mysqli_fetch_array($result)) {
     ?>
+
+
     <div class="video-player">    
-
         <div class="player">
-
             <div class="ads_logo_container">
-
-                <img class="ads_logo" src="<?php echo cdnUrl('adver_images/image/'.$row['adver_logo']); ?>">
-
+                
+           <img class="ads_logo" src="https://amplepoints.com/adver_images/image/<?php echo $row['adver_logo']; ?>">          
             </div>
 
-            <div class="mediaplayer">
 
-                <video autoplay playsinline muted id="myVideo">
-                    <source type="video/mp4" src="<?php echo cdnUrl('adver_images/video/'.$row['adver_video']); ?>">
-                    <source type="video/webm" src="<?php echo cdnUrl('adver_images/video/'.$row['adver_video']); ?>">
-                </video>
+        <div class="mediaplayer">
+
+                <video autoplay playsinline muted id="myVideo" style="width: 375px;">
+                <source type="video/mp4" src="https://amplepoints.com/adver_images/video/<?php echo $row['adver_video']; ?>">
+                <source type="video/webm" src="https://amplepoints.com/adver_images/video/<?php echo $row['adver_video']; ?>">
+            </video>
+
 
 
             </div>
@@ -98,6 +119,8 @@
             </div>
         </div>
     </div>
+
+ 
     <script>
         var mytimeout;
         var mytime = "<?=$row['length_video'];?>";
@@ -106,15 +129,16 @@
             var id = "<?=$q;?>";
             var user_id = "<?=$userid;?>";
             //alert(id);
-            //alert(user_id);
+            alert(user_id);
             $.ajax({
-                url: '<?php echo $rootUrl; ?>/category_filter/adver.php',
+                url: '<?php echo $base_url; ?>/adver.php',
                 //cache:false,
                 data: {adverid: id,userid: user_id},
                 type: 'GET'
             })
             .done(function(data){
-                // alert(data);    
+                // alert(data); 
+                console.log(data)   
 
                 $('#member').css('display','none');
                 $('.main-wpappers').css('display','none');
@@ -124,7 +148,7 @@
             //$('.video-player').css('display','none');
             // $('.main-wpappers').css('display','none');
             // $('.bonce').css('display','block');
-        }, Bytime);
+        }, 1000);
 
     </script>
 
