@@ -37,12 +37,14 @@ $currentRoute = Route::currentRouteName();
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Social</a>
                                 </li>
+                                @if(@Auth::user()->user_id)
                                 <li class="nav-item custom-dropdown">
-                                    <a class="nav-link" href="#">Ample Theater</a>
+                                    <a class="nav-link" href="{{route('all.videos')}}">Ample Theater</a>
                                     <div class="custom-dropdown-content">
-                                        <a class="dropdown-item" href="#">Videos</a>
+                                        <a class="dropdown-item" href="{{route('all.videos')}}">Videos</a>
                                     </div>
                                 </li>
+                                @endif
                                 <li class="nav-item custom-dropdown">
                                     <a class="nav-link" href="#">Travel</a>
                                     <div class="custom-dropdown-content">
