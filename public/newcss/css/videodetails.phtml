@@ -1,0 +1,355 @@
+<section>
+    <div class="all-start">
+
+        <!--<div class="blog-bennar">
+			<img src="<?php echo $this->baseUrl('images/blog-banner.jpg');?>" />
+		</div>-->
+        <div class="container" id="columns">
+
+            <div class="row">
+                <!-- Left colunm -->
+                <div class="column col-xs-12 col-sm-4 detail" id="left_column">
+                    <?php print $this->render('index/advertisementqube.phtml'); ?>
+                </div>
+            </div>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-8" id="center_column">
+
+
+                <div class="gallery">
+                    <ul class="gallery-full">
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg1" checked="checked" />
+                            <figure><video style="width:100%;" controls="">
+  <source src="<?php echo $this->baseUrl('userblog_image/'. $this->uservideo['0']['video_1']); ?>" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg2" />
+                            <figure><video style="width:100%;" controls="">
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg3" />
+                            <figure><video style="width:100%; height:474px;" controls="">
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg4" />
+                            <figure><video style="width:100%; height:474px;" controls="">
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg5" />
+                            <figure><video style="width:100%; height:474px;" controls="">
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg6" />
+                            <figure><video style="width:100%; height:474px;" controls="">
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg7" />
+                            <figure><video style="width:100%; height:474px;" controls="">
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg8" />
+                            <figure><video style="width:100%; height:474px;" controls="">
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg9" />
+                            <figure><video style="width:100%; height:474px;" controls="">
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                        <li class="gallery-full-item gallery-fula">
+                            <input type="radio" name="gallerySelect" id="galleryImg10" />
+                            <figure><video style="width:100%; height:474px;" controls="">
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video></figure>
+                        </li>
+                    </ul>
+
+                    <!--<div class="gallery-thumbnail-video">
+										<div class="gallery-thumbnail-prev"></div>
+										<div class="gallery-thumbnail-next"></div>
+										<div class="gallery-thumbnail-toggle">
+											<div class="gallery-thumbnail-toggle-body">
+												<label for="galleryImg1"><video style="width:100%; height:54px;"  >
+  <source src="<?php echo $this->baseUrl('userblog_image/'. $this->uservideo['0']['video_1']); ?>" type="video/mp4">
+ 
+</video></label>
+												<label for="galleryImg2"><video style="width:100%; height:54px;"  >
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+ 
+</video></label>
+												<label for="galleryImg3"><video style="width:100%; height:54px;"  >
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+ 
+</video></label>
+												<label for="galleryImg4"><video style="width:100%; height:54px;"  >
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+ 
+</video></label>
+												<label for="galleryImg5"><video style="width:100%; height:54px;"  >
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+ 
+</video></label>
+												<label for="galleryImg6"><video style="width:100%; height:54px;"  >
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+ 
+</video></label>
+												<label for="galleryImg7"><video style="width:100%; height:54px;"  >
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+ 
+</video></label>
+												<label for="galleryImg8"><video style="width:100%; height:54px;"  >
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+ 
+</video></label>
+												<label for="galleryImg9"><video style="width:100%; height:54px;"  >
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+ 
+</video></label>
+												<label for="galleryImg10"><video style="width:100%; height:54px;"  >
+  <source src="file:///C|/Users/abc/Desktop/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+ 
+</video></label>
+											</div>
+										</div>
+									</div>-->
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7">
+                            <h2 class="page-heading2"> <span class="page-heading-title">The Federal Government of the United States is the national government</span> </h2>
+                            <div class="video-auth">
+                                <span class="amp-user-Thumb"><img src="" width="50px" height="50px" border="0"></span>
+                                <div class="amp-user-info">
+                                    <b>By <span style="color:#ff8a00">James Griffiths</span> and Hamdi Alkhshali, CNN</b> <br />
+                                    <b><i class="fa fa-clock-o" aria-hidden="true"></i> Updated 4:22 AM ET, Tue Jun 13, 2017</b>
+                                    <button type="button" class="btn btn-default btn-danger btn-xs">Subscribe</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <div class="align-right" style="margin-top:10px;">
+                                <span class='st_sharethis_vcount' displayText='ShareThis'></span>
+                                <span class='st_facebook_vcount' displayText='Facebook'></span>
+                                <span class='st_twitter_vcount' displayText='Tweet'></span>
+                                <span class='st_pinterest_vcount' displayText='Pinterest'></span>
+                            </div>
+                            <div class="watch-view-accout">
+                                700 Views
+                            </div>
+                        </div>
+
+                        <div class="name-div-Comment">
+                            <h2>0 comments:</h2>
+
+                            <h2>Post a Comment</h2>
+
+                            <p><strong>Note:</strong> Only a member of this blog may post a comment.</p>
+                            <div class="name-div-Comments">
+                                <textarea placeholder="Enter your comment..." id="current-address" class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="name-div-Comment-btn">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label>Comment as:</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <select class="form-control" name="Category">
+                                        <option>Demo</option>
+                                        <option>Demo</option>
+                                  </select>
+                                </div>
+                                <div class="col-lg-4 col-xs-offset-3">
+                                    <span class="blog-login">
+                                        <a id="modal_trigger" href="#modal" title="LOGIN"><i class="fa fa-sign-in"></i>&nbsp; <samp>LOGIN</samp></a></span>
+                                    <span class="blog-signup">
+                                        <a id="modal_trigger1" href="#modal1" title="SIGN UP"><i class="fa fa-user-plus"></i>&nbsp; <samp>SIGN UP</samp></a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="name-div-Comment">
+                            <div class="name-div">
+                                <div class="name-divimg">
+                                    <img src="<?php echo $this->baseUrl('images/user1.jpg');?>" />
+                                </div>
+                                <div class="name-divname">
+                                    <h4>Name Demo</h4>
+                                    <h3>fgfgfd g dfg dfg df gdf df dfgfd</h3>
+                                </div>
+                            </div>
+                            <div class="name-div">
+                                <div class="name-divimg">
+                                    <img src="<?php echo $this->baseUrl('images/user1.jpg');?>" />
+                                </div>
+                                <div class="name-divname">
+                                    <h4>Name Demo</h4>
+                                    <h3>fgfgfd g dfg dfg df gdf df dfgfd</h3>
+                                </div>
+                            </div>
+                            <div class="name-div">
+                                <div class="name-divimg">
+                                    <img src="<?php echo $this->baseUrl('images/user1.jpg');?>" />
+                                </div>
+                                <div class="name-divname">
+                                    <h4>Name Demo</h4>
+                                    <h3>fgfgfd g dfg dfg df gdf df dfgfd</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>&nbsp;</div>    
+                        <ul id="portfolio-list" class="product-media  product-list ni row">
+                            <li style="display: block;" class="all blogs col-sm-3  product-container no-space a1">
+
+                                <div class="left-block">
+                                    <a href="#"><img class="img-responsive" alt="product" src="<?php echo $this->baseUrl('images/4.jpg'); ?>"></a>
+
+
+                                    <div class="add-to-charity">
+                                        <a title="Add to Cart" href="Charity-detail.html"><i class="fa fa-book"></i> READ</a>
+                                    </div>
+                                </div>
+                                <div class="box-text-a">
+                                    <div class="blog-text-a blog-text-c">
+                                        <a href="#">Butter Chicken Burger</a>
+                                        <h5>Phasellus in egestas libero, et congue lacus. Cras vel lacus nisi.</h5>
+                                        <!-- <a href="#"> ASDFHGHJJH jhgjhhhjjk j</a>-->
+
+                                    </div>
+
+
+                                    <div class="by_aria">
+                                        <h6>By:&nbsp;</h6>
+                                        <a href="#">carsonchicken</a>
+                                    </div>
+                                    <div class="readmore-btnblog">
+                                        <i class="fa fa-book"></i> READ
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="display: block;" class="all blogs col-sm-3  product-container no-space a1">
+
+                                <div class="left-block">
+                                    <a href="#"><img class="img-responsive" alt="product" src="<?php echo $this->baseUrl('images/4.jpg'); ?>"></a>
+
+
+                                    <div class="add-to-charity">
+                                        <a title="Add to Cart" href="Charity-detail.html"><i class="fa fa-book"></i> READ</a>
+                                    </div>
+                                </div>
+                                <div class="box-text-a">
+                                    <div class="blog-text-a blog-text-c">
+                                        <a href="#">Butter Chicken Burger</a>
+                                        <h5>Phasellus in egestas libero, et congue lacus. Cras vel lacus nisi.</h5>
+                                        <!-- <a href="#"> ASDFHGHJJH jhgjhhhjjk j</a>-->
+
+                                    </div>
+
+
+                                    <div class="by_aria">
+                                        <h6>By:&nbsp;</h6>
+                                        <a href="#">carsonchicken</a>
+                                    </div>
+                                    <div class="readmore-btnblog">
+                                        <i class="fa fa-book"></i> READ
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="display: block;" class="all blogs col-sm-3  product-container no-space a1">
+
+                                <div class="left-block">
+                                    <a href="#"><img class="img-responsive" alt="product" src="<?php echo $this->baseUrl('images/4.jpg'); ?>"></a>
+
+
+                                    <div class="add-to-charity">
+                                        <a title="Add to Cart" href="Charity-detail.html"><i class="fa fa-book"></i> READ</a>
+                                    </div>
+                                </div>
+                                <div class="box-text-a">
+                                    <div class="blog-text-a blog-text-c">
+                                        <a href="#">Butter Chicken Burger</a>
+                                        <h5>Phasellus in egestas libero, et congue lacus. Cras vel lacus nisi.</h5>
+                                        <!-- <a href="#"> ASDFHGHJJH jhgjhhhjjk j</a>-->
+
+                                    </div>
+
+
+                                    <div class="by_aria">
+                                        <h6>By:&nbsp;</h6>
+                                        <a href="#">carsonchicken</a>
+                                    </div>
+                                    <div class="readmore-btnblog">
+                                        <i class="fa fa-book"></i> READ
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="display: block;" class="all blogs col-sm-3  product-container no-space a1">
+
+                                <div class="left-block">
+                                    <a href="#"><img class="img-responsive" alt="product" src="<?php echo $this->baseUrl('images/4.jpg'); ?>"></a>
+
+
+                                    <div class="add-to-charity">
+                                        <a title="Add to Cart" href="Charity-detail.html"><i class="fa fa-book"></i> READ</a>
+                                    </div>
+                                </div>
+                                <div class="box-text-a">
+                                    <div class="blog-text-a blog-text-c">
+                                        <a href="#">Butter Chicken Burger</a>
+                                        <h5>Phasellus in egestas libero, et congue lacus. Cras vel lacus nisi.</h5>
+                                        <!-- <a href="#"> ASDFHGHJJH jhgjhhhjjk j</a>-->
+
+                                    </div>
+
+
+                                    <div class="by_aria">
+                                        <h6>By:&nbsp;</h6>
+                                        <a href="#">carsonchicken</a>
+                                    </div>
+                                    <div class="readmore-btnblog">
+                                        <i class="fa fa-book"></i> READ
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <!-- ./ Center colunm -->
+                </div>
+                <!-- ./row-->
+            </div>
+
+        </div>
+    </div>
+</section>

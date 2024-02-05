@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminWeb\AdminBannerController;
 use App\Http\Controllers\AdminWeb\CategoryController;
 use App\Http\Controllers\AdminWeb\BrandController;
 use App\Http\Controllers\AdminWeb\ProductController;
+use App\Http\Controllers\CustomerWeb\Addcontroller;
 
 
 /*
@@ -70,7 +71,29 @@ Route::get('/category',[StoreCategoryController::class, 'CategoryPage'])->name('
 Route::get('/products',[ProductsController::class, 'productsPage'])->name('member.products.page');
 Route::get('/product-details/{id}',[ProductsController::class, 'productDetailsPage'])->name('member.product.details.page');
 Route::post('/add-to-cart',[ProductsController::class, 'add_to_cart'])->name('member.add.to.cart');
+Route::post('/add-to-cart-count',[ProductsController::class, 'add_to_cart_count'])->name('member.add.to.cart.count');
+Route::get('/add-to-cart-header',[ProductsController::class, 'add_to_cart_header'])->name('member.add.to.cart.header');
+Route::post('/checkbeforecheckout',[ProductsController::class, 'checkbeforecheckout'])->name('member.checkbeforecheckout');
+Route::get('/checkout',[ProductsController::class, 'checkout'])->name('member.checkout');
+Route::post('/checkout/submit',[ProductsController::class, 'checkout_submit'])->name('checkout.submit');
+Route::get('/city-list/{city}',[ProductsController::class, 'cityList'])->name('cityList');
+Route::get('/state-list/{statename}',[ProductsController::class, 'statelist'])->name('statelist');
 
+
+
+//video page
+Route::get('/all-videos',[Addcontroller::class, 'all_videos'])->name('all.videos');
+Route::post('/loadmoreearnvideos',[Addcontroller::class, 'loadmoreearnvideos'])->name('loadmoreearnvideos');
+Route::post('/loadmorearncatevideos',[Addcontroller::class, 'loadmorearncatevideos'])->name('loadmorearncatevideos');
+
+
+
+//payment
+Route::get('/processcheckoutpayment/{transaction_id}/{user_id}',[ProductsController::class, 'processcheckoutpayment'])->name('processcheckoutpayment');
+
+Route::post('/createstrippayment',[ProductsController::class, 'createstrippayment'])->name('createstrippayment');
+
+Route::any('/stripeorderstatus/{order_id}/{customer_id}',[ProductsController::class, 'stripeorderstatus'])->name('stripeorderstatus');
 // =========================== Customer Routes End =============================================//
 
 

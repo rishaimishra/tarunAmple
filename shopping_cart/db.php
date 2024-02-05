@@ -1,4 +1,5 @@
 <?php
+// dd(env('DB_CONNECTION'));
     $mysql_hostname = "localhost";
     $mysql_user = "root";
     $mysql_password = "";

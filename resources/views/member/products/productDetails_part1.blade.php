@@ -5,7 +5,7 @@ $currencySymbol="$";
 $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 @endphp
 
-<div id="addtocartmodal">jeeeeeeeeeeeeeeeeeeeeet</div>
+{{-- <div id="addtocartmodal"></div> --}}
 <div class="block left-module" style="margin-top:100px">
 	<?php
 	if (($productDetails->pdiscount) >= 50) { ?>
@@ -651,7 +651,7 @@ alert("Please Select One Of Delivery Method");
 });
 } else {
 $('#modal_trigger').trigger("click");
-alert("no 2")
+alert("please login or sing up")
 }
 });
 </script>
@@ -765,8 +765,23 @@ url: '<?php echo $baseUrl; ?>/add-to-cart',
 data: "item_name=" + product_name + "&prod_id=" + product_id + "&quant=" + quentity + "&item_price=" + single_price + "&earn_amples=" + pamples + "&usr_tot_amples=" + total_ample + "&usrmaid=" + usrmakey + "&vdrmaid=" + vendor_key + "&page=add_to_cart&is_without_ample=1",
 success: function (b) {
 console.log(b)
- $('#addtocartmodal').html(b);
+ $('#addtocartmodalheader').html(b);
  // $('#openModalBtn').click();
+
+},
+});
+
+
+
+//to update header count of add to cart
+$.ajax({
+type: "POST",
+url: '<?php echo $baseUrl; ?>/add-to-cart-count',
+data: "item_name=" + product_name + "&prod_id=" + product_id + "&quant=" + quentity + "&item_price=" + single_price + "&earn_amples=" + pamples + "&usr_tot_amples=" + total_ample + "&usrmaid=" + usrmakey + "&vdrmaid=" + vendor_key + "&page=add_to_cart&is_without_ample=1",
+success: function (res) {
+console.log(res)
+itemcount
+   $('#itemcount').text(res.itemsQuant);
 
 },
 });

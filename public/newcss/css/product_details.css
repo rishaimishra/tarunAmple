@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.product_detail_page_cus .amp-logo { background: url(../img/amples-sall_home.png) center center no-repeat !important; top: 2px !important; right: -6px !important; }
+.product_detail_page_cus .heart { display: none !important; }
+.product_detail_page_cus .owl-item.active:hover .heart { display: block !important; }
+.product_detail_page_cus .tab-content { min-height: auto; }
+.product_detail_page_cus .product-list li:hover .price_main { padding-left: 0; }
+.product_detail_page_cus .content_price4 span { padding-left: 0px; }
+.product_detail_page_cus .product-list li { width: 100%; }
+.picZoomer-pic-wp { width: 100% !important; height: auto !important; }
+
+@media screen and (max-width: 1200px) {
+.product_detail_page_cus .Butter_aria { font-size: 13px; }
+.content_price3 h5 { font-size: 12px; }
+.content_price3 h6 { font-size: 12px; }
+.product_detail_page_cus .content_price3 span1 { margin-top: -1px; font-size: 11px; padding-left: 2px; }
+.content_price3 span { margin-top: -2px; }
+}
+
+@media screen and (max-width: 991px) {
+.price_main { padding-left: 0; }
+#left_column { width: 100%; }
+.block.left-module { display: block; }
+.page-product-box.nv_r.col-md-12.col-sm-12.col-xs-12, .page-product-box.nv-like.col-md-12.col-sm-12.col-xs-12 { display: none; }
+.onsalle { display: none !important; }
+.pb-left-column { padding-right: 0px;
+padding-left: 0px;}
+.detail_hide {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.product-tab {
+    margin-top: 0;
+}
+.picZoomer-pic { width: 100% !important; }
+.product_detail_page_cus .product-price-group { margin-left: 0px; }
+.product_detail_page_cus .info-orther p { margin-left: 0px; }
+.product_detail_page_cus .form-option { margin-left: 0px; }
+}
+
+@media screen and (max-width: 767px) {
+.nv_relate .owl-item { width: auto; margin-right: auto; }
+.product_detail_page_cus .product-list li .left-block { min-height: 223px !important; }
+.juilk {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.left-module .title_block{display:none;}
+.detail_hide .left-module:last-child {
+
+    display: none;
+
+}
+}
+
+@media screen and (max-width: 500px) {
+.btn-comment{width:100% !important;margin-bottom: 8px;}	
+	
+}

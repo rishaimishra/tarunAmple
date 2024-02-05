@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Custom Modal</title>
+
     <style>
         /* Overlay style */
         .overlay {
@@ -29,11 +24,9 @@
             text-align: center;
         }
     </style>
-</head>
-<body>
 
 <!-- Modal-like container (visible by default) -->
-<div class="overlay" id="customModal">
+<div class="overlay customModalforcart" id="customModalforcart" >
     <div class="modal-container">
         <h2>Custom Modal</h2>
         <!-- Your content goes here -->
@@ -95,9 +88,10 @@
 <script>
     // Function to close the custom modal
     function closeCustomModal() {
-        document.getElementById('customModal').style.display = 'none';
+        // alert(2)
+        $(".customModalforcart").hide();
+        // document.getElementsByClassName('customModalforcart').style.display = 'none';
     }
+
 </script>
 
-</body>
-</html>

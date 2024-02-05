@@ -1,0 +1,496 @@
+@charset "utf-8";
+/* CSS Document */
+
+.login-heap{
+    border: 1px solid #e3e3e3;
+    color: orangered;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    overflow: hidden;
+    padding:7px !important;
+    text-align: center;
+    text-transform: uppercase;
+	border-radius:2px;
+}
+.login-heap:hover{
+    border: 1px solid orangered;
+	background-color:orangered;
+	color:#fff;
+}
+.login-heap:hover #modal_trigger{color:#fff;}
+.login-heap {
+    display: block;
+    height: 44px;
+    margin: 0;
+    width: 60%;
+	float:left;
+}
+.bfg {
+    display: block;
+    margin: 0;
+	padding:0 0 0 0;
+    width: 88%;
+	float:left;
+}
+.login-heap span1{ width:100%; float::left; font-size:15px; }
+.login-heap span {
+    color:orangered;
+	float: left;
+    font-size: 11px;
+    padding: 6px 5px 0 0;
+    width: 17%;
+}
+.soc-sub1 .fa.fa-sign-in{padding:5px 0px 0 3px;; width:12%; font-size:20px; float:left;}
+.soc-sub .fa.fa-user-plus{padding:0px 5px;}
+/*.soc-sub1 #modal_trigger {
+    display: block;
+    height: 40px;
+    margin: 0;
+    width: 140px;
+}*/
+
+#lean_overlay {
+    position: fixed;
+    z-index:111111;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+
+.popupContainer{
+	position:absolute;
+	width:32%;
+	height: auto;
+	/*left:34% !important;*/
+	top:80px;
+	background:#FF4500 none repeat scroll 0% 0%;
+	z-index:1111111;
+}
+.popupContainer1{
+	position:absolute;
+	width:32%;
+	height: auto;
+	left:34% !important;
+	top:80px;
+	background: #FFF;
+}
+.soc-abs {
+    border-bottom: 1px solid #fff;
+    float: left;
+    margin-bottom: 21px;
+    padding-bottom: 14px;
+    width: 100%;
+}
+.pop-bot{width:100%; float:left; padding:12px 0; background-color:orangered;}
+.pop-bot a{width:40%; float:left; font-family:sans-serif; color:#07253f; font-size:14px;}
+.pop-bot span{width:60%; float:left; font-family:sans-serif; text-align:center; color:#fff; font-size:14px;}
+
+.pack.fixed-header #modal_trigger {
+    /*color:#777;*/
+}
+.pack.fixed-header #modal_trigger2{
+    color: #777;
+}
+#modal_trigger {
+    color:orangered;
+    display: block;
+    float: left;
+    margin: 0;
+    width: 100%;
+	font-size:15px;
+	font-family:sans-serif;
+}
+
+#modal_trigger1 .fa.fa-sign-in{ padding:0 14px 0 0; color:#fff;}
+#modal_trigger2 {
+    color: white;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 4px 0 0;
+    width: 37%;
+}
+/*#modal_trigger {
+	margin:0px; 
+	width:180px;
+	height:50px; 
+	display:block;
+}*/
+#modal_trigger1 {
+	 
+	display:block;
+}
+
+
+*::after, *::before {
+    box-sizing: border-box;
+}
+*::after, *::before {
+    box-sizing: border-box;
+}
+#modal_trigger.btn {
+    border: 2px solid #fff;
+    color: orangered;
+    padding: 14px 10px !important;
+    text-align: center;
+    font-family:sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;
+	overflow:hidden;
+	
+}
+#modal_trigger1.btn {
+    border: 2px solid #fff;
+    color: orangered;
+    padding: 14px 10px !important;
+    text-align: center;
+    font-family:sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;
+	overflow:hidden;
+	
+}
+#modal_trigger .btn_red {background: #ED6347; color: #FFF;}
+
+#modal_trigger.btn:hover {background:orangered ; color:#fff; border-color:orangered;}
+/*.btn_red:hover {background: #C12B05;}*/
+
+#modal_trigger a.btn {color:#666; text-align: center; text-decoration: none;}
+#modal_trigger a.btn_red {color: #FFF;}
+
+
+#modal_trigger1 .btn_red {background: #ED6347; color: #FFF;}
+#modal_trigger1.btn:hover {background:orangered ; color:#fff; border-color:orangered;}
+#modal_trigger1 a.btn {color:#666; text-align: center; text-decoration: none;}
+/*#modal_trigger1 a.btn_red {color: #FFF;}*/
+
+
+
+
+
+.one_half {
+    background: orangered none repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 50px;
+    padding: 10px 15px;
+    text-align: center !important;
+    width: 50%;
+}
+.one_full {
+    background:#07253f;
+    display: block;
+    float: left;
+    padding: 10px 15px;
+    text-align: center !important;
+    width: 100%;
+}
+.one_full a{
+	
+	color: #fff;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    text-align: center !important;
+    text-transform: uppercase;
+    width: 25%;
+}
+.one_full a:hover{
+	
+	color: #fff;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    text-align: center !important;
+    text-transform: uppercase;
+    width: 25%;
+}
+.one_full:hover{ color:#07253f !important; background:#004887;}
+.one_half a{
+	
+	font-size:16px;
+	font-family:sans-serif;
+	font-weight:bold;
+	color:#fff;
+	text-transform:uppercase;
+	padding:5px 24px 0;	
+}
+.one_half.last {width:45%; margin-left:5%;}
+.one_half.last a{
+	
+	font-size:16px;
+	font-family:sans-serif;
+	font-weight:bold;
+	color:#fff;
+	text-transform:uppercase;
+	padding:5px 24px 0;	
+}
+.one_half.last a:hover{
+	
+	 /*border: 1px solid #fff;*/
+    color: black;
+    /*font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    overflow: hidden;
+    padding: 14px 10px !important;
+    text-align: center;
+    text-transform: uppercase;*/
+}
+.icon_title1 {
+    color: white;
+    float: left;
+    margin: -30px 0 5px;
+    text-align: center;
+    width: 100%;
+    z-index: 11111111;
+}
+.icon_title1 .tit {
+    color: white;
+    text-align: center;
+    width: 10%;
+    z-index: 11111111;
+	margin:0 auto;
+	font-family:sans-serif;
+	padding:0 10px;
+	background-color:orangered;
+	font-size:15px;
+	letter-spacing:2px;
+}
+
+
+.popupHeader {font-size:26px; font-family:sans-serif; font-weight:bold; text-transform: uppercase; color:#fff; text-align:center;}
+.popupHeader {background:orangered; position:relative; padding:10px 20px 15px; border-bottom:2px solid #fff; font-weight:bold; z-index:-1; letter-spacing:3px;}
+.popupHeader .modal_close {position: absolute;
+right: 4px;
+top: 4px;
+padding: 3px 8px;
+cursor: pointer;
+color: #FFF;
+font-size: 18px;
+border: 2px solid #FFF;
+border-radius: 50%;
+width: 35px;
+height: 35px;}
+
+.popupBody {padding:20px 20px 30px 20px; background-color:orangered;}
+
+
+
+.social_login {}
+.icon {
+    border-right: 1px solid #4b4b4b;
+    color: white;
+    float: left;
+    font-size: 22px;
+    padding: 8px 0px;
+    text-align: center;
+    width:16%;
+}
+.icon_title {
+    color: #FFF;
+float: left;
+font-family: sans-serif;
+font-size: 16px;
+padding: 13px 16px 10px;
+text-align: center;
+text-transform: uppercase;
+width: 84%;
+letter-spacing: 1px;
+}
+.social_box {display:block; clear:both; margin-bottom: 10px; background:#07253f; overflow: hidden;}
+.social_box:hover {display:block; clear:both; margin-bottom: 10px; background:#004887; overflow: hidden;}
+.social_login .social_box {display:block; clear:both; padding:10px; margin-bottom: 10px; background:#07253f; overflow: hidden;}
+.social_login .icon {display:block; width:30px; padding:5px 10px; margin-right: 10px; float:left; color:#FFF; font-size:16px; text-align: center;} 
+.social_login .fb .icon {background:#3B5998;}
+.social_login .google .icon {background:#DD4B39;}
+.social_login .icon_title {display:block; padding:9px 0; float:left; font-weight: bold; font-family:sans-serif; letter-spacing:2px; font-size: 15px; color:white; width:100%; text-align:center;}
+.social_login .social_box:hover {background: #004887;}
+
+
+
+.social_login1 .social_box {display:block; clear:both; padding:10px; margin-bottom: 10px; background:#07253f; overflow: hidden;}
+.social_login1 .icon {display:block; width:30px; padding:5px 10px; margin-right: 10px; float:left; color:#FFF; font-size:16px; text-align: center;} 
+.social_login1 .fb .icon {background:#3B5998;}
+.social_login1 .google .icon {background:#DD4B39;}
+.social_login1 .icon_title {display:block; padding:9px 0; float:left; font-weight: bold; font-family:sans-serif; letter-spacing:2px; font-size: 15px; color:white; width:100%; text-align:center;}
+.social_login1 .social_box:hover {background: #E4E4E2;}
+
+
+
+.centeredText {text-align: center; margin: 20px 0; clear: both; overflow: hidden; text-transform: uppercase;}
+
+.action_btns {clear:both; overflow: hidden;}
+.action_btns a {display: block;}
+
+.user_login1 {display: none;}
+.user_login1 label {display: block; margin:2px 0 0 0; padding:0px;}
+.user_login1 input[type="text"], .user_login1 input[type="email"], .user_login1 input[type="password"] 
+{
+	 background: white none repeat scroll 0 0;
+    border-bottom: 2px solid #07253f;
+    color: #666;
+    display: block;
+    font-size: 17px;
+    padding: 16px;
+    width: 100%;
+
+}
+.user_login1 input[type="checkbox"] {float:left; margin-right:5px;}
+.user_login1 input[type="checkbox"]+label {float:left;}
+.user_login1 .checkbox {margin-bottom: 10px; clear: both; overflow: hidden;}
+.user_login1 .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
+    margin-left:0px !important;
+    position:relative;
+}
+
+.user_login2 {display: none;}
+.user_login2 label {display: block; margin-bottom:9px; margin-top:5px; font-family: sans-serif;
+    font-size: 12px; line-height: 15px;
+}
+.user_login2 input[type="text1"]
+{
+	 background: white none repeat scroll 0 0;
+    border-bottom: 2px solid #07253f;
+    color: #666;
+    display: block;
+    font-size: 17px;
+    padding: 8px;
+    width: 49.5%;
+	float:left;
+	margin:0 0 0 1px;
+
+}
+.user_login2 input[type="text"], .user_login2 input[type="email"], .user_login2 input[type="password"] 
+{
+	 background: white none repeat scroll 0 0;
+    border-bottom: 2px solid #07253f;
+    color: #666;
+    display: block;
+    font-size: 17px;
+    padding: 8px;
+    width: 100%;
+
+}
+.user_login2 input[type="checkbox"] {float:left; margin-right:5px; margin-top:7px;}
+.user_login2 input[type="checkbox"]+label {float:none;}
+.user_login2 .checkbox {margin:0px; clear: both; overflow: hidden;}
+.user_login2 .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
+    margin-left:0px !important;
+    position:relative;
+}
+.user_login2 .one_full{padding:6px 15px;}
+.user_login2 .pop-bot{padding:5px 0 0;}
+
+
+.user_login {display: none;}
+.user_login label {display: block; margin:2px 0 0 0; padding:0px;}
+.user_login input[type="text"], .user_login input[type="email"], .user_login input[type="password"] {
+	  background: white none repeat scroll 0 0;
+    border-bottom: 2px solid #07253f;
+    color: #666;
+    display: block;
+    font-size: 17px;
+    padding: 16px;
+    width: 100%;
+}
+.user_login input[type="checkbox"] {float:left; margin-right:5px;}
+.user_login input[type="checkbox"]+label {float:left;}
+
+.user_login .checkbox {margin-bottom: 10px; clear: both; overflow: hidden;}
+.forgot_password {display:block; margin: 20px 0 10px; clear: both; overflow: hidden; text-decoration: none; color:#ED6347;}
+
+
+.user_register {display: none;}
+.user_register label {display: block; margin-bottom:9px; margin-top:5px; font-family: sans-serif;
+    font-size: 12px; line-height: 15px;
+}
+.user_register input[type="text1"]
+{
+	 background: white none repeat scroll 0 0;
+    border-bottom: 2px solid #07253f;
+    color: #666;
+    display: block;
+    font-size: 17px;
+    padding: 8px;
+    width: 49.5%;
+	float:left;
+	margin:0 0 0 1px;
+
+}
+.user_register input[type="text"], .user_register input[type="email"], .user_register input[type="password"] {
+	 background: white none repeat scroll 0 0;
+    border-bottom: 2px solid #07253f;
+    color: #666;
+    display: block;
+    font-size: 17px;
+    padding: 8px;
+    width: 100%;
+}
+.user_register input[type="checkbox"] {float:left; margin-right:5px; margin-top:7px;}
+
+.user_register input[type="checkbox"]+label {float:none;}
+
+.user_register .checkbox {margin:0px; clear: both; overflow: hidden;}
+
+.user_login .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
+    margin-left:0px !important;
+    position:relative;
+}
+.user_register .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
+    margin-left:0px !important;
+    position:relative;
+}
+.user_register .one_full{padding:6px 15px;}
+.user_register .pop-bot{padding:5px 0 0;}
+
+
+#totalitemdata .fa.fa-trash-o {
+    color: #ff0000;
+    float: right;
+    position: absolute;
+    right: 0;
+}
+#totalitemdata .fa.fa-trash-o::before {
+    background: #ff0000 none repeat scroll 0 0;
+    border-radius: 10em;
+    color: #fff;
+    content: "X";
+    display: block;
+    font-family: arial;
+    font-size: 10px;
+    font-weight: bold;
+    height: 18px;
+    left: 0;
+    line-height: 1.8;
+    padding: 0;
+    right: 5px;
+    text-align: center;
+    width: 18px;
+}
+#totalitemdata .remove_link {
+    display: block;
+    position: absolute;
+    right: 0;
+}
+#totalitemdata .remove_link {
+    display: block;
+    height: 19px !important;
+    left: 242px;
+    position: absolute;
+    right: 0;
+    width: 19px;
+}

@@ -1,6 +1,22 @@
 <?php /* Please Do Not Change Any Code In this File If you want To change Please contact Mr.Tony*/ ?>
 <?php
     $rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+     // $rootUrl="http://localhost:8080/tarunAmple";
+
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $script_path = $_SERVER['SCRIPT_NAME'];
+
+    // Extract the directory part from the script path
+    $project_path = dirname($script_path);
+    $base_url_full = $protocol . '://' . $host . $project_path;
+    // Remove "/category_filter"
+    $base_url = str_replace("/category_filter", "", $base_url_full);
+
+    // echo $base_url;
+    // die();
+
+
     require("db_config.php");
 ?>
 <style>
@@ -152,7 +168,9 @@
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo cdnUrl('slider/demoStyleSheet.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo cdnUrl('newcss/css/bebas.css'); ?>"/>
-<script type="text/javascript" src="<?php echo $rootUrl; ?>/slider/fadeSlideShow.js"></script>
+<!-- <script type="text/javascript" src="<?php echo $base_url; ?>/slider/fadeSlideShow.js"></script> -->
+ <script type="text/javascript" src="<?php echo $base_url; ?>/slider/fadeSlideShow.js"></script>
+ 
 <script type="text/javascript">
     jQuery(document).ready(function(){
 
@@ -231,7 +249,9 @@
             //echo "SELECT * FROM adver_pro WHERE adver_id = '".$q."' GROUP BY adver_product ORDER BY adver_pro_id DESC limit 5";
             $data_pro = mysqli_query($con,$adver_pro);
             $count = mysqli_num_rows($data_pro);
-            // print_r($count);
+            // $data_fetch = mysqli_fetch_array($data_pro);
+            // print_r($data_fetch);
+            // die();
         ?>
         <ul id="slideshow">
             <?php
@@ -239,14 +259,21 @@
                 $i =1;
                 while($data_fetch = mysqli_fetch_array($data_pro)){
 
-                    $pro_immages="SELECT * FROM products INNER JOIN  product_images ON products.id = product_images.product_id WHERE product_images.product_id = '".$data_fetch['adver_product']."'";
+                    // $pro_immages="SELECT * FROM products INNER JOIN  product_images ON products.id = product_images.product_id WHERE product_images.product_id = '".$data_fetch['adver_product']."'";
+
+
+                    $pro_immages="SELECT * FROM products INNER JOIN  product_images ON products.id = product_images.product_id WHERE product_images.product_id = 58098";
+
                     $data_images = mysqli_query($con,$pro_immages);
-                    $images_fetch = mysqli_fetch_array($data_images);
+                    @$images_fetch = mysqli_fetch_array($data_images);
+                    // print_r($data_fetch['adver_product']);
+                    //    die();
 
                     $amples = "SELECT * FROM tbl_advertises WHERE adver_id = '".$data_fetch['adver_id']."'";
                     $amples_data = mysqli_query($con,$amples);
                     $amples_fetch = mysqli_fetch_array($amples_data);
-                    //    print_r($images_fetch);
+                       // print_r(@$images_fetch);
+                       // die();
 
                     $ProductId = $data_fetch['adver_product'];
 
@@ -256,27 +283,27 @@
 
                     $countQueryRow = mysqli_fetch_array($CountQeyVar);
 
-                    //$OfferAvailable =  $images_fetch['quantity'] - $countQueryRow['total_purchased'];
+                    //$OfferAvailable =  @$images_fetch['quantity'] - $countQueryRow['total_purchased'];
 
-                    $OfferAvailable =  $images_fetch['quantity'];
+                    $OfferAvailable =  @$images_fetch['quantity'];
 
                 ?>
                 <li>
-                    <div class="sliders-leftsection"><img src="<?php echo cdnUrl('product_images/'.$data_fetch['adver_product'].'/'.$images_fetch['image_name']); ?>" width="640" height="480" border="0" alt="" /></div>
+                    <div class="sliders-leftsection"><img src="<?php echo cdnUrl('product_images/'.$data_fetch['adver_product'].'/'.@$images_fetch['image_name']); ?>" width="640" height="480" border="0" alt="" /></div>
                     <div class="carousel-caption">
                         <div class="right-image-slider">
-                            <?php if($images_fetch['product_type_key']=='0'){ ?>
+                            <?php if(@$images_fetch['product_type_key']=='0'){ ?>
                                 <div class="right-image-slider-first">
-                                    <p class="product_with"> <?=ucfirst($images_fetch['product_name']);?></p>
+                                    <p class="product_with"> <?=ucfirst(@$images_fetch['product_name']);?></p>
                                     <div class="clear"></div>
-                                    <?php if($images_fetch['product_discount'] >= 50){ ?>
-                                        <span>FREE <b class="bnh">with</b> </span> <span><?php echo $images_fetch['free_with_amples']; ?> <b class="bnh">Amples</b></span>
+                                    <?php if(@$images_fetch['product_discount'] >= 50){ ?>
+                                        <span>FREE <b class="bnh">with</b> </span> <span><?php echo @$images_fetch['free_with_amples']; ?> <b class="bnh">Amples</b></span>
                                         <?php } ?>
                                 </div>
                                 <div class="right-image-slider-second byur">
                                     <strong>Buy & Earn</strong>
                                     <span>
-                                        <?=$images_fetch['no_of_amples'];?>
+                                        <?=@$images_fetch['no_of_amples'];?>
                                         <br>
                                         <b>Amples</b>
                                         <strong class="padto">Offers Available</strong>
@@ -285,7 +312,7 @@
                                         </div>
                                         <br>
                                         <span class="pricess"> $
-                                            <?=(int) $images_fetch['single_price'];?>
+                                            <?=(int) @$images_fetch['single_price'];?>
                                             <div class="clear"></div>
                                         </span>
                                     </span>
@@ -294,12 +321,12 @@
                                 <?php }else{ ?>
                                 <!-- This Code is use For Contact Me -->
                                 <div class="right-image-slider-first contact_first">
-                                    <p class="product_with"> <?=ucfirst($images_fetch['product_name']);?></p>
+                                    <p class="product_with"> <?=ucfirst(@$images_fetch['product_name']);?></p>
                                     <div class="clear"></div>
                                 </div>
                                 <div class="right-image-slider-second byur">
                                     <strong>Buy & Earn</strong> <span>
-                                        <?=$images_fetch['no_of_amples'];?>
+                                        <?=@$images_fetch['no_of_amples'];?>
                                         <br>
                                         <b>Amples</b>
                                         <strong class="padto">Offers Available</strong>
@@ -308,7 +335,7 @@
                                         </div>
                                         <br>
                                         <span class="pricess"> $
-                                            <?=(int) $images_fetch['single_price'];?>
+                                            <?=(int) @$images_fetch['single_price'];?>
                                             <div class="clear"></div>
                                         </span>
                                     </span>
@@ -316,33 +343,33 @@
                                 </div>
                                 <?php }  ?>
                             <div class="right-image-slider-third byur2">
-                                <strong>Reward value</strong><span style="padding-left:9px;">$<?php echo $images_fetch['discount_price'];?></span>
+                                <strong>Reward value</strong><span style="padding-left:9px;">$<?php echo @$images_fetch['discount_price'];?></span>
                                 <div class="clear"></div>
                                 <br>
-                                <div class="right-image-slider-second byur3"> <strong>You Earn</strong><span style="padding-left: 9px;"><?php echo (int) $images_fetch['product_discount'];?>%</span>
+                                <div class="right-image-slider-second byur3"> <strong>You Earn</strong><span style="padding-left: 9px;"><?php echo (int) @$images_fetch['product_discount'];?>%</span>
                                     <div class="clear"></div>
                                     <br>
                                 </div>
                             </div>
                             <div class="newr"> <strong>By</strong><br>
-                                <?=$images_fetch['supplier_name'];?>
+                                <?=@$images_fetch['supplier_name'];?>
                                 <div class="clear"></div>
                             </div>
                         </div>
                     </div>
                     <ul class="four-btns" style="display:none;">
                         <li id="Buynow">
-                            <?php if($images_fetch['product_type_key']=='0'){ ?>
-                                <a  id="buynowa" target = "_blank" href="<?php echo $rootUrl; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Buy Now</a>
+                            <?php if(@$images_fetch['product_type_key']=='0'){ ?>
+                                <a  id="buynowa" target = "_blank" href="<?php echo $base_url; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Buy Now</a>
                                 <?php }else{ ?>
-                                <a title="Add to Cart" class="contact_me_btn" id="buynowa" target = "_blank" href="<?php echo $rootUrl; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Contact Me</a>
+                                <a title="Add to Cart" class="contact_me_btn" id="buynowa" target = "_blank" href="<?php echo $base_url; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Contact Me</a>
                                 <?php }  ?>
                             <input type="hidden" class="hiddenproductId" name="hiddenproduct" value="<?php echo $ProductId ; ?>">
                         </li>
-                        <li id="Info"> <a  id="infoa" target = "_blank" href="<?php echo $rootUrl; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Info</a>
+                        <li id="Info"> <a  id="infoa" target = "_blank" href="<?php echo $base_url; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Info</a>
                             <input type="hidden" class="hiddenproductId" name="hiddenproduct" value="<?php echo $ProductId ; ?>">
                         </li>
-                        <li id="Wishlist"><a id="addwisha" title="Add to my wishlist" href="javascript:void(0);" onclick="wishlist_cart('<?php echo $images_fetch['product_name']; ?>','<?php echo $data_fetch['adver_product']; ?>','1','<?php echo strip_tags($images_fetch['single_price']); ?>','<?php echo $userid ; ?>','add');">Wishlist</a>
+                        <li id="Wishlist"><a id="addwisha" title="Add to my wishlist" href="javascript:void(0);" onclick="wishlist_cart('<?php echo @$images_fetch['product_name']; ?>','<?php echo $data_fetch['adver_product']; ?>','1','<?php echo strip_tags(@$images_fetch['single_price']); ?>','<?php echo $userid ; ?>','add');">Wishlist</a>
                             <input type="hidden" class="hiddenproductId" name="hiddenproduct" value="<?php echo $ProductId ; ?>">
                         </li>
                         <li id="Viewed"><a href="#" class="view" id="viewa">Viewed</a>
@@ -471,7 +498,7 @@
 
                 $.ajax({
                     //url: 'http://amplepoints.com/public/category_filter/history.php',
-                    url: '<?php echo $rootUrl; ?>/category_filter/history.php',
+                    url: '<?php echo $base_url; ?>/category_filter/history.php',
                     data: {adver_id_history: adver_id,user_history_id: user_id,respond:respondtext},
                     type: 'POST'
                 }).done(function(data){
@@ -481,13 +508,13 @@
                 if(adver_type=='static'){
 
                     $.ajax({
-                        url: '<?php echo $rootUrl; ?>/category_filter/analytics.php',
+                        url: '<?php echo $base_url; ?>/category_filter/analytics.php',
                         data: {adverid: adver_id,userid: user_id,respond:respondtext,productid:myproductid,addtime:15,addtype:'static'},
                         type: 'POST'
                     })
 
                     $.ajax({
-                        url: '<?php echo $rootUrl; ?>/category_filter/adddata.php',
+                        url: '<?php echo $base_url; ?>/category_filter/adddata.php',
                         data: {adver_id: adver_id,amples: amples,user_id: user_id},
                         type: 'POST',
                         dataType: "json"
@@ -519,13 +546,13 @@
                 }else{
 
                     $.ajax({
-                        url: '<?php echo $rootUrl; ?>/category_filter/analytics.php',
+                        url: '<?php echo $base_url; ?>/category_filter/analytics.php',
                         data: {adverid: adver_id,userid: user_id,respond:respondtext,productid:myproductid,addtime:length_video,addtype:'video'},
                         type: 'POST'
                     })
 
                     $.ajax({
-                        url: '<?php echo $rootUrl; ?>/category_filter/adddata.php',
+                        url: '<?php echo $base_url; ?>/category_filter/adddata.php',
                         data: {adver_id: adver_id,length_video: length_video,user_id: user_id},
                         type: 'POST',
                         dataType: "json"
@@ -616,7 +643,7 @@
         if(feedback_val){
 
             $.ajax({
-                url: '<?php echo $rootUrl; ?>/category_filter/add_adver_feedback.php',
+                url: '<?php echo $base_url; ?>/category_filter/add_adver_feedback.php',
                 data: {adver_id: adver_id,user_id: user_id,feedback:feedback_val},
                 type: 'POST',
             })

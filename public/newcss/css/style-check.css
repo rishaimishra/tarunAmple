@@ -1,0 +1,2486 @@
+/*********************************************************
+	TABLE OF CONTENTS
+	1. GENERAL STYLES
+	2. PRELOADER 
+	3. SUPERSIZED SLIDER
+	4. NAVIGATION TRANSPARENT MENU 
+	5. LIGHT MENU 
+	6. HOMEPAGE SEARCH BOX
+	7. HOMEPAGE (INDEX-1, INDEX-2, INDEX-3, INDEX-4 ETC.) 
+	8. HOTEL.HTML
+	9. FLIGHT.HTML
+	10. HOLIDAY.HTML
+	11. CAR.HTML
+	12. CRUISE.HTML
+	13. HOTEL-GRID.HTML
+	14. HOTEL-LIST.HTML & HOTEL-LIST-2.html
+	15. FLIGHT.LIST.HTML
+	16. HOTEL-LIST-2.HTML
+	17. HOLIDAYS-GRID.HTML
+	18. HOLIDAYS-GRID-2.HTML
+	19. CRUISE-LIST.HTML
+	20. HOTEL-DETAILED.HTML
+	21. HOTEL-DETAILED-2.HTML
+	22. HOLIDAY-DETAIL.HTML
+	23. FLIGHT-BOOKING.HTML
+	24. HOTEL-BOOKING.HTML
+	25. HOTEL-BOOKING-2.HTML
+	26. THANK-YOU.HTML
+	27. BLOG
+	28. SINGLE BLOG
+	29. CONTACT-US.HTML
+	30. ABOUT-US.HTML
+	31. USER-PROFILE.HTML
+	32. COMING-SOON.HTML
+	33. 404.HTML
+	34. LOADING.HTML
+	35. HOTEL-INDEX.HTML
+	36. HOTEL-INDEX-2.HTML
+	37. HOLIDAY-INDEX.HTML
+	38. HOLIDAY-INDEX-2.HTML
+	39. CAR-INDEX.HTML
+	40. CAR-LIST.HTML
+	41. CAR-DETAILED.HTML
+	42. CAR-DETAILED-2.HTML
+	43. MAIN FOOTER
+	44. GALLERY.HTML
+	45. LOGIN.HTML
+	46. TYPOGRAPHY.HTML
+	47. CRUISE-DETAIL.HTML
+	48. LIST VIEW AND GRID VIEW SWITCH
+**********************************************************/
+
+
+
+
+
+
+/*********************************************************
+			1. GENERAL STYLES 
+**********************************************************/
+
+.light-row {
+	background: #ffffff;
+}
+.dark-row {
+	background: #07253F;
+	padding: 60px 0;
+	color: #ffffff;
+}
+.space {
+	width: 100%;
+	position: relative;
+	display: inline-block;
+	margin: 10px 0;
+}
+.section-title {
+	margin-bottom: 60px;
+}
+.site-wrapper {
+	margin: auto;
+}
+
+@media (max-width: 991px) {
+	.form-gp {
+		margin-bottom: 20px;
+	}
+	.clearfix-md {
+		clear: none;
+	}
+	.clearfix-sm {
+		clear: both;
+	}
+	.modify-hotel {
+		background-size: cover;
+	}
+}
+
+@media (max-width: 767px) {
+	.clearfix-xs {
+		clear: both;
+	}
+	
+}
+
+/*********************************************************************************
+				21. hotel-detailed-2.html CSS Start
+*********************************************************************************/
+.sidebar-booking-box {
+	position: relative;
+}
+.sidebar-booking-box  h3 {
+	background: orangered none repeat scroll 0 0;
+    color: #ffffff;
+    padding: 10px 35px 20px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	position: relative;
+	margin: 0px;
+}
+.sidebar-booking-box  h3:after {
+	background: orangered none repeat scroll 0 0;
+    border-radius: 50%;
+    color: #fff;
+    content: "\f091";
+    font-family: "FontAwesome";
+    left: 45%;
+    padding: 10px 17px;
+    position: absolute;
+    top: 63%;
+	font-size:18px;
+}
+.sidebar-assistance-box {
+	position: relative;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.sidebar-assistance-box h3 {
+	background: #f75d00 none repeat scroll 0 0;
+    color: #ffffff;
+    padding: 22px 0;
+	font-weight: bold;
+	letter-spacing: 1px;
+	position: relative;
+	margin: 0px;
+}
+.sidebar-assistance-box  h3:after {
+	background: #f75d00 none repeat scroll 0 0;
+    border-radius: 50%;
+    color: #fff;
+    content: "\f095";
+    font-family: "FontAwesome";
+    left: 45%;
+    padding: 10px 17px;
+    position: absolute;
+    top: 63%;
+}
+.assistance-box h3 {
+	margin-top: 10px;
+}
+.assistance-box-body {
+	background: #e6e6e6;
+	padding: 35px 20px 20px;
+	box-shadow: 0px 0px 5px #e6e6e6;
+}
+.assistance-box-body h5 {
+	font-size: 18px;
+}
+.assistance-box-body h4 {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 0px;
+}
+.booking-box-body .custom-select-button {
+	background: #ffffff;
+}
+.booking-box-body {
+	background: #e6e6e6 none repeat scroll 0 0;
+    box-shadow: 0 0 5px #e6e6e6;
+    padding: 15px 5px 0px;
+}
+.booking-box-body .room-price h5 {
+	margin-top: 23px;
+	margin-bottom: 0px;
+	font-weight: bold;
+	color: #f75d00;
+	font-family:sans-serif;
+	font-size:14px;
+	font-weight:bold;
+}
+.booking-box-body .room-price h4 {
+	margin-top: 15px;
+	margin-bottom: 0px;
+	font-weight: bold;
+	color: #f75d00;
+	font-family:sans-serif;
+	font-size:14px;
+	font-weight:bold;
+}
+.booking-box-body .room-price label {
+	margin-bottom: 0px;
+}
+.booking-box-body .grand-total {
+	margin-top: 15px;
+	margin-left: -5px;
+	margin-right: -5px;
+	overflow: hidden;
+	background: #07253F;
+	padding: 15px 0px;
+}
+.booking-box-body .grand-total  button{
+	color: #ffffff;
+	border: none;
+	background: transparent;
+	border: 1px solid #ffffff;
+	padding: 10px 15px;
+	font-weight: bold;
+	margin:0 0 0 -12%;
+	font-size:13px;
+}
+.booking-box-body .grand-total  button:hover {
+	background: orangered;
+}
+.booking-box-body .grand-total  h4 {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #fff;
+    margin: 10px 0;
+    padding: 0;
+    text-transform: capitalize;
+}
+
+.booking-box-body .grand-total1 {
+	margin-top: 10px;
+	margin-left: -5px;
+	margin-right: -5px;
+	overflow: hidden;
+	background:none;
+	padding: 2px 0px;
+}
+.booking-box-body .grand-total1  button{
+	color: #ffffff;
+    background-color: #07253f;
+	border: none;
+	padding: 10px 15px;
+	font-weight: bold;
+	margin:0 0 0 0%;
+	font-size:13px;
+}
+.booking-box-body .grand-total1  button:hover {
+	background: orangered;
+	color:#fff;
+	border-color:#fff;
+}
+.booking-box-body .grand-total1  h4 {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color:orangered;
+    margin: 11px 0;
+    padding: 0;
+    text-transform: capitalize;
+	font-size:14px;
+	width:30%;
+	float:left;
+}
+.booking-box-body .grand-total1 span {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #07253f;
+    margin: 11px -6% 0 0;
+    padding: 0;
+    text-transform: capitalize;
+	font-size:14px;
+	width:40%;
+	float:left;
+}
+.booking-box-body .grand-total1 .res-collection-sub {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color:orangered;
+    margin: 11px -6% 0 0;
+    padding: 0;
+    text-transform: capitalize;
+	font-size:14px;
+	width:20%;
+	float:left;
+}
+.booking-box-body span {
+	margin-left: 10px;
+}
+.booking-box-body label {
+	
+    font-family: sans-serif;
+    font-size: 13px;
+    /*font-weight: bold;*/
+    margin-top: 14px;
+}
+.booking-box-body .room-price .form-control {
+    border: medium none;
+    border-radius: 0;
+    box-shadow: none;
+    height: 34px;
+    margin: 0px 0 0;
+}
+
+.booking-box-body .form-control {
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	height: 35px;
+}
+.input-group.margin-bottom-sm.col-md-8 {
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 6px 0 0;
+    
+}
+.booking-box-body .input-group-addon {
+	background-color:orangered;
+    border: medium none;
+    border-radius: 0;
+    color: #fff;
+}
+.booking-box-body .input-group {
+	margin:7px 0 0 0;
+	 
+}
+
+.map.sidebar-item h5 {
+    background: #e6e6e6 none repeat scroll 0 0;
+    line-height: 17px;
+    margin: 0;
+    padding:5px 15px 10px;
+    text-align: center;
+	color:#666;
+	font-family:sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+.map.sidebar-item h4 {
+    background: #e6e6e6 none repeat scroll 0 0;
+    line-height:17px;
+    margin: 0;
+    padding: 5px 15px;
+    text-align: center;
+	color:#666;
+	font-family:sans-serif;
+	font-size:13px;
+	font-weight:bold;
+}
+.map.sidebar-item h5 i {
+    color:orangered;
+	font-weight:bold;
+	font-size:16px;
+	
+}
+.mask{width:100%; height:60px;}
+.mask1{ margin:15px 0 0;}
+.mask1 span {
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 0 0 5px;
+}
+.tools.tools-bottom {
+    margin: 14px 0 0 !important;
+    padding: 0 0 0 32% !important;
+}
+.image.view.view-first img{max-height:180px; min-height:180px; width:100%;}
+.room-ammenties {
+	margin-top: 30px;
+	overflow: hidden;
+}
+.custom-head {
+	position: relative;
+	line-height: 1.6;
+	margin-top: 0px;
+}
+.custom-head:after {
+	background: #f75d00 none repeat scroll 0 0;
+    content: "";
+    height: 5px;
+    left: 0;
+    position: absolute;
+    top: 110%;
+    width: 100px;
+}
+
+@media (max-width: 767px) {
+	.custom-head {
+		margin-bottom: 25px;
+	}
+}
+/*********************************************************************************
+			22. holiday-detail.html CSS Start
+*********************************************************************************/
+
+@media (max-width: 767px) {
+	.package-complete-detail .nav-tabs li a span {
+		display: none;
+	}
+}
+
+/*********************************************************************************
+				23. flight-booking.html CSS Start
+*********************************************************************************/
+.flight-title i {
+	margin: 0px 10px;
+}
+#review-booking .flight-list-v2 {
+	margin: 0px;
+}
+.booking-tab {
+	background: #e6e6e6;
+	
+}
+.booking-detail {
+	padding: 60px 0px;
+}
+.booking-tab .nav-tabs > li.active > a, 
+.booking-tab .nav-tabs > li.active > a:focus, 
+.booking-tab .nav-tabs > li.active > a:hover{
+	border: none;
+	background: #e6e6e6;
+	position: relative;
+}
+.booking-tab .nav-tabs .active {
+	position: relative;
+}
+.booking-tab .nav-tabs .active:after {
+	background: #f9676b none repeat scroll 0 0;
+    content: "";
+    height: 5px;
+    left: 43%;
+    position: absolute;
+    top: 100%;
+    width: 50px;
+}
+.booking-tab .pan .active:after {
+	background: #f9676b none repeat scroll 0 0;
+    content: "";
+    height: 5px;
+    left: 43%;
+    position: absolute;
+    top: 100%;
+    width: 50px;
+}
+
+.booking-tab .nav-tabs {
+	border-bottom: none;
+}
+.booking-tab .nav-tabs > li.active > a i ,
+.booking-tab  .nav-tabs > li > a i {
+    display: block;
+    padding: 5px;
+	font-size: 30px;
+}
+.booking-tab .nav-tabs > li.active > a span,
+.booking-tab  .nav-tabs > li > a span {
+	font-size: 20px;
+}
+.booking-tab .nav-tabs > li.active > a, 
+.booking-tab  .nav-tabs > li > a {
+	color: #07253F;
+}
+.booking-tab .tab-content {
+	padding: 20px 0px;
+}
+.booking-sidebar .sidebar-item {
+	border: 1px solid #e6e6e6;
+	box-shadow: 0px 0px 5px #e6e6e6;
+}
+.booking-sidebar .sidebar-item h4 {
+	background: #e6e6e6 none repeat scroll 0 0;
+    padding: 20px 15px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin: 0px;
+}
+.booking-sidebar .sidebar-item h4 i {
+	color: #f75d00;
+	margin-right: 10px;
+}
+.booking-sidebar .sidebar-body {
+	padding: 20px;
+}
+.booking-sidebar .sidebar-body .table {
+	margin-bottom: 0px;
+}
+.booking-sidebar .sidebar-body table tr {
+	border-bottom: 1px solid #e6e6e6;
+}
+.booking-sidebar .sidebar-body table tr:last-child {
+	border-bottom: none;
+}
+.booking-sidebar .sidebar-body table td {
+	border-top: none;
+}
+.booking-sidebar .sidebar-body .total {
+	font-size: 20px;
+	font-weight: bold;
+}
+.booking-form .form-control {
+	height: 40px;
+	border-radius: 0px;
+}
+.login-box {
+	overflow: hidden;
+	border: 1px solid #e6e6e6;
+	box-shadow: 0px 0px 5px #e6e6e6;
+	
+}
+.login-box h3 {
+	background: #e6e6e6 none repeat scroll 0 0;
+    line-height: 1.6;
+    margin: 0;
+    padding: 10px 20px;
+}
+.booking-form {
+	padding: 0 15px 20px;
+	overflow: hidden;
+}
+.booking-form a {
+	color: #f75d00;
+	margin-top: 5px;
+	display: block;
+}
+.booking-form label {
+	margin-top: 15px;
+}
+.booking-form button {
+	background: #f75d00 none repeat scroll 0 0;
+    border: medium none;
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 10px 50px;
+}
+.booking-form button:hover {
+	background: #00adef;
+}
+.social-media-login {
+	margin-top: 20px;
+}
+.social-media-login a {
+	background: #5470AF;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1;
+    margin: 10px 0;
+    padding: 0 15px
+}
+.social-media-login a i {
+	border-right: 1px solid #fff;
+    margin-right: 15px;
+    padding: 15px 15px 15px 0;
+}
+.social-media-login span {
+	display: block;
+	font-weight: bold;
+}
+.booking-sidebar .contact-box {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+#passenger-info {
+	overflow: hidden;
+}
+.passenger-detail {
+	overflow: hidden;
+	border: 1px solid #e6e6e6;
+	box-shadow: 0px 0px 5px #e6e6e6;
+}
+.passenger-detail h3 {
+	margin: 0px;
+	padding: 10px 20px;
+	line-height: 1.6;
+	background: #e6e6e6;
+}
+.passenger-detail-body {
+	padding: 20px;
+}
+.passenger-detail-body label {
+	margin-top: 15px;
+	font-weight: normal;
+}
+.passenger-detail-body .form-control {
+	border-radius: 0px;
+	height: 40px;
+}
+.passenger-detail-body button {
+	background: #f75d00 none repeat scroll 0 0;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+	margin-bottom: 20px;
+	border: none;
+    padding: 10px 20px;
+}
+.passenger-detail-body button:hover {
+	background: #00adef;
+}
+.passenger-detail-body button i {
+	margin-left: 5px;
+	
+}
+.saved-card {
+	border: 1px solid #e6e6e6;
+	overflow: hidden;
+	padding: 0px 20px 20px;
+}
+.saved-card label {
+	margin-top: 10px;
+}
+.saved-card label span {
+	font-size: 18px;
+	margin-left: 10px;
+	line-height: 1.6;
+}
+.payment-seperator {
+	border-top: 1px solid #e6e6e6;
+	margin: 40px 0px 30px;
+	position: relative;
+}
+.payment-seperator:after {
+	background: #e6e6e6 none repeat scroll 0 0;
+    border-radius: 50%;
+    content: "Or";
+    left: 45%;
+    padding: 12px 15px;
+    position: absolute;
+    top: -23px;
+    z-index: 1;
+}
+.add-new-card {
+	overflow: hidden;
+}
+.paypal-pay {
+	overflow: hidden;
+}
+.paypal-pay  i{
+	color: #009CDE;
+	font-size: 50px;
+	margin-top: 20px;
+}
+.paypal-pay a {
+	 background: #f75d00 none repeat scroll 0 0;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 25px;
+    padding: 10px 20px;
+}
+.paypal-pay a:hover {
+	background: #00adef;
+}
+@media (max-width: 767px) {
+	.login-box {
+		margin-bottom: 40px;
+	}
+}
+
+/*********************************************************************************
+				24. hotel-booking.html CSS Start
+*********************************************************************************/
+.booking-summary {
+	overflow: hidden;
+}
+.sidebar-body {
+	overflow: hidden;
+}
+.booking-summary h4 {
+	margin-top: 0px;
+	margin-bottom: 7px;
+	font-weight: bold;
+}
+.booking-summary h5 {
+	margin-top: 0px;
+}
+.booking-summary .fa-star {
+	color: #E1974F;
+}
+.booking-summary .loc {
+	color: #00adef;
+}
+.booking-summary .fa-map-marker {
+	margin-right: 5px;
+}
+.booking-summary .date h2{
+	margin: 0px;
+}
+.booking-summary .date h5 {
+	background: #e6e6e6;
+	margin: 0px;
+	padding: 5px;
+}
+.booking-summary .date {
+	border: 1px solid #e6e6e6;
+	max-width: 100px;
+	padding-top: 5px;
+}
+.booking-summary-title {
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+.booking-summary table {
+	margin-top: 15px;
+}
+.clear-margin {
+	margin-top: 0px;
+}
+/*********************************************************************************
+				25. hotel-booking-2.html CSS Start
+*********************************************************************************/
+.booking-summary-v2 {
+	overflow: hidden;
+	border: 1px solid #e6e6e6;
+	box-shadow: 0px 0px 5px #e6e6e6;
+}
+.booking-summary-v2 img {
+	max-width: 100%;
+	padding: 15px;
+}
+.booking-summary-v2 h4 {
+	font-weight: bold;
+}
+.booking-summary-v2 h4 i {
+	color: #F19C4F;
+}
+.booking-summary-v2 p i {
+	color: #f75d00;
+}
+.booking-summary-v2 p span {
+	font-weight: bold;
+}
+.booking-summary-v2 a {
+	background: #f75d00 none repeat scroll 0 0;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 60px;
+    padding: 7px 15px;
+}
+.booking-summary-v2 a:hover {
+	background: #00adef;
+}
+@media (max-width: 991px) {
+	.booking-summary-v2 a {
+		margin: 10px 0px 15px;
+	}
+}
+/*********************************************************************************
+				26. thank-you.html CSS Start
+*********************************************************************************/
+.thank i {
+	background: #f19c4f none repeat scroll 0 0;
+    border-radius: 50%;
+    color: #ffffff;
+    margin-right: 5px;
+    padding: 10px 12px;
+}
+.confirmation-detail {
+	margin-top: 40px;
+	border: 1px solid #e6e6e6;
+	box-shadow: 0px 0px 5px #e6e6e6;
+	margin-bottom: 40px;
+	overflow: hidden;
+	padding: 0px 20px 20px;
+}
+.confirmation-detail td {
+	border-top: none !important;
+	border-bottom: 1px solid #e6e6e6;
+}
+.confirmation-detail p {
+	font-weight: bold;
+}
+.rec-box {
+	margin: 40px 0px;
+}
+.rec-box a {
+	color: #07253F;
+}
+.rec-box a:hover {
+	color: #f75d00;
+}
+.rec-box td i {
+	color: #f75d00;
+	margin-right: 5px;
+}
+/*********************************************************************************
+				27. BLOG CSS Start
+*********************************************************************************/
+
+
+/*********************************************************************************
+				29. contact-us.html CSS Start
+*********************************************************************************/
+
+.user-personal-info,
+.user-change-password,
+.user-preference,
+.card-entry,
+.user-add-card {
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0px 0px 5px #e6e6e6;
+}
+.user-info-body,
+.change-password-body {
+	padding: 20px 5px;
+	overflow: hidden;
+}
+.user-personal-info label,
+.user-change-password label,
+.user-preference label {
+	font-weight: normal;
+}
+.user-personal-info .form-control,
+.user-change-password .form-control,
+.user-preference .form-control {
+	border-radius: 0px;
+	margin-bottom: 0px;
+	padding: 10px;
+	height: 40px;
+}
+.user-personal-info textarea {
+	height: auto;
+}
+.user-personal-info button,
+.user-change-password button,
+.user-preference button,
+.user-add-card button,
+.submit-complaint button {
+	border: 0px;
+	color: #fff;
+	background: #00adef;
+	padding: 10px 20px;
+	margin-top: 20px;
+	font-weight: bold;
+}
+.user-change-password button,
+.user-preference button, 
+.user-add-card button,
+.submit-complaint button {
+	margin-top: 5px;
+}
+.user-personal-info a {
+	background: #f75d00;
+	font-weight: bold;
+	color: #fff;
+	padding: 10px 20px;
+	display: inline-block;
+	margin-top: 20px;
+}
+.user-preference {
+	margin: 40px 0px;
+}
+.user-preference .collapse {
+	padding: 20px 5px;
+	overflow: hidden;
+}
+.upload-pic {
+	height: 30px;
+}
+.card-entry {
+	padding: 15px;
+	margin-bottom: 40px;
+}
+.card-entry .pull-right a {
+	margin:0px 5px;
+	color: #07253F;
+	font-size: 20px;
+}
+.card-entry .pull-right a:hover {
+	color: #f75d00;
+}
+.card-entry .card-type {
+	overflow: hidden;
+}
+.card-entry .card-type h3 {
+	margin-top: 0px;
+}
+.card-entry .card-type p {
+	margin: 20px 0px 0px;
+}
+.primary-card span {
+	color: #fff;
+	background: #f75d00;
+	display: block;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+}
+.primary-card h3 {
+	margin-top: 0px;
+}
+.user-add-card {
+	padding: 15px;
+}
+.user-add-card .form-control {
+	border-radius: 0px;
+	height: 40px;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
+.ui-datepicker-prev {
+	float: left;
+}
+.ui-datepicker-next {
+	float: right;
+}
+.custom-select-button {
+	background: transparent none repeat scroll 0 0;
+    border: 1px solid #BEC4C8;
+    border-radius: 0;
+    height: 40px;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+	background: #07253F;
+	border-radius: 0;
+}
+.bootstrap-select.btn-group .dropdown-menu li a {
+	color: #ffffff;
+	background: #07253F !important;
+}
+.bootstrap-select.btn-group .dropdown-menu li a:hover {
+	color: #00ADEF;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	width: 100%;
+}
+.btn:hover {
+	color: #00ADEF;
+}
+.search-button {
+	background: #f9676b;
+    border-radius: 0;
+    margin-top: 10px;
+    padding: 10px 30px;
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+	color: #fff;
+	transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+}
+.search-button:hover {
+	background: #00adef;
+	color: #fff;
+}
+
+@media (max-width: 767px) {
+	.full-screen {
+		height: auto;
+	}
+	.coming-soon-wrapper .centered-box {
+		position: relative;
+		top: 0;
+		left: 0;
+		transform: translate(0,0);
+		-o-transform: translate(0,0);
+		-ms-transform: translate(0,0);
+		-webkit-transform: translate(0,0);
+		-moz-transform: translate(0,0);
+		padding: 60px 20px;
+	}
+	.coming-soon-wrapper .coming-soon {
+		height: auto;
+	}
+	.centered-box .countdown-section {
+		width: 25%;
+		float: left;
+		display: block;
+		margin-top: 30px;
+		padding: 0px;
+	}
+	.centered-box .countdown-amount {
+		display: block;
+		font-size: 40px;
+		font-weight: 600;
+	}
+	.centered-box .launch-title h1:after {
+		left: 35%;
+	}
+	.centered-box .launch-title h1 span {
+		border: none;
+	}
+}
+/*********************************************************************************
+			33. 404.html CSS Start
+*********************************************************************************/
+
+
+
+/*********************************************************************************
+		45. login.html CSS Start
+*********************************************************************************/
+.login-row {
+	padding: 60px 0px;
+}
+.useful-links h4,
+.login-form h4,
+.sign-up-form h4 {
+	font-weight: 800;
+	text-transform: uppercase;
+	color: #f9676b;
+	margin-bottom: 20px;
+}
+.useful-links {
+	border-right: 1px solid #e6e6e6;
+	line-height: 2;
+}
+.useful-links a {
+	display: block;
+	color: #07253F;
+}
+.useful-links a:hover {
+	color: #f9676b;
+}
+.login-form ,
+.sign-up-form {
+	padding-left: 45px;
+}
+.login-form  label,
+.sign-up-form label {
+	font-weight: normal;
+}
+.login-form .form-control ,
+.sign-up-form .form-control {
+	border-radius: 0;
+	height: 40px;
+	padding: 10px;
+}
+.login-form .input-group ,
+.sign-up-form .input-group {
+	margin-bottom: 15px;
+}
+.login-form .input-group-addon,
+.sign-up-form .input-group-addon {
+	border-radius: 0;
+	height: 40px;
+	background: #e6e6e6;
+}
+.login-form button,
+.sign-up-form button {
+	background: #f9676b none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0;
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    margin-top: 30px;
+    padding: 10px 30px;
+}
+.login-form button:hover,
+.sign-up-form button:hover {
+	background: #00adef;
+}
+.login-form button i,
+.sign-up-form button i  {
+	margin-left: 5px;
+}
+@media (max-width: 767px) {
+	.login-form ,
+	.sign-up-form {
+		padding: 0 15px;
+		margin-top: 45px;
+	}
+}
+
+/*********************************************************************************
+				31. user-profile.html CSS Start
+*********************************************************************************/
+.user-profile {
+	padding: 20px 0px;
+	background: #f7f7f7;
+	overflow: hidden;
+}
+.user-profile-tabs {
+	margin-bottom: 40px;
+	width:15%;
+	float:left;
+	margin-left:3%;
+}
+.tab-content{
+    background: rgba(255, 255, 255, 0.4) none repeat scroll 0 0;
+    float: left;
+    padding: 25px 5px 100px;
+    width: 98%;
+	box-shadow: 1px 1px 2px;
+	/*min-height: 939px;*/
+}
+.user-profile.dropdown-toggle.acc.fa.fa-user {
+    padding: 8px 0 0 10px;
+}
+.user-profile-tabs  i {
+	display: block;
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+.user-profile-tabs .nav-tabs > li {
+	float: none !important;
+	border-bottom: 2px solid #0A3152;
+	
+}
+.user-profile-tabs .nav-tabs > li a:hover {
+	border: none;
+	background: #f75d00;
+}
+.user-profile-tabs .nav-tabs > li > a {
+    background: #07253F;
+    border-radius: 0;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.42857;
+    padding: 5px 0px 8px;
+	margin-right: 0px;
+	border: none;
+}
+.user-profile .user-name h3 {
+	margin: 0 0 15px 24px;
+	font-family:sans-serif;
+	font-size:18px;
+	font-weight:bold;
+}
+.user-profile-tabs .nav-tabs > li.active > a,
+.user-profile-tabs .nav-tabs > li.active > a:focus {
+	background:#f75d00;
+	color: #fff;
+	border: none;
+}
+.user-profile .brief-info {
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0px 0px 5px #e6e6e6;
+	padding: 0px 15px 0px;
+}
+.user-profile .brief-info img {
+	max-width: 100%;
+	border-radius: 50%;
+	margin: 10px 0 20px;
+}
+.user-profile .brief-info h5 i {
+	margin-right: 10px;
+	color: #f75d00;
+	
+}
+.user-profile .brief-info h3 {
+	margin-top: 0px;
+	font-family: sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+.user-profile .brief-info h5 {
+	margin-top: 0px;
+	font-family: sans-serif;
+    font-size: 12px;
+    padding: 6px 0;
+}
+.user-profile .brief-info-footer {
+	background: #e6e6e6;
+	margin:0px -15px;
+	padding: 10px 15px;
+}
+.user-profile .brief-info-footer a {
+	color: #07253F;
+	margin-right: 10px;
+	font-size: 22px;
+	font-family:sans-serif;
+	font-weight:bold;
+}
+.user-profile .brief-info-footer a:hover {
+	color: #f75d00;
+}
+.user-profile .brief-info-footer a i {
+	margin-right: 5px;
+}
+.most-recent-booking .field-entry .fa-star {
+	color: #F19C4F;
+	margin: 0px;
+}
+.most-recent-booking .field-entry {
+	padding: 15px 15px;
+	overflow: hidden;
+	border-bottom: 1px solid #e6e6e6;
+}
+.most-recent-booking .field-entry p {
+	margin: 0px;
+}
+.most-recent-booking .field-entry p i {
+	margin: 0px 5px;
+}
+.most-recent-booking .field-entry a {
+	color: #f75d00;
+}
+.confirmed {
+	color: #009933;
+}
+.failed {
+	color: #f75d00;
+}
+.most-recent-booking {
+	box-shadow: 0px 0px 5px #e6e6e6;
+	overflow: hidden;
+	margin: 40px 0px;
+	background: #fff;
+}
+.most-recent-booking h4,
+.user-profile-offer h4,
+.user-notification h4,
+.user-personal-info h4,
+.user-change-password h4,
+.user-preference h4 {
+	background: #e6e6e6;
+	margin: 0px;
+	padding: 15px;
+	font-size: 16px;
+}
+.user-profile-offer {
+	box-shadow: 0px 0px 5px #e6e6e6;
+	overflow: hidden;
+	background: #fff;
+} 
+.user-profile-offer .offer-body {
+	padding: 15px 15px 0px;
+	overflow: hidden;
+}
+.user-profile-offer .offer-body .offer-entry {
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.user-profile-offer .offer-left {
+	color: #f75d00;
+}
+.user-profile-offer .offer-left p {
+	font-size: 24px;
+	font-weight: 600;
+}
+.user-profile-offer .offer-right p {
+	line-height: 1.6;
+}
+.user-profile-offer .offer-right {
+	border-left: 1px solid #e6e6e6;
+}
+.user-profile-offer .offer-entry a {
+	color: #f75d00;
+	font-weight: 600;
+}
+.user-notification {
+	margin: 40px 0px;
+	background: #fff;
+}
+.user-notification .notification-body {
+	padding: 15px 15px 0px;
+	overflow: hidden;
+}
+.notification-entry  p {
+	margin: 0px;
+	padding: 10px 0px;
+	border-bottom: 1px solid #e6e6e6;
+}
+.notification-entry  p i {
+	color: #fff;
+	background: #f75d00;
+	padding: 5px;
+	margin-right: 5px;
+}
+.item-entry {
+	overflow: hidden;
+	margin: 40px 0px;
+}
+.item-entry span {
+	background: #f75d00 none repeat scroll 0 0;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 20px; 
+	color: #fff;
+}
+.item-content {
+	background: #fff;
+	padding: 15px;
+	overflow: hidden;
+}
+.item-content img {
+	max-width: 100%;
+}
+.item-content h4 {
+	margin-top: 0px;
+	font-size: 16px;
+	font-weight: 600;
+}
+.item-content h4  i {
+	color: #F19C4F;
+}
+.item-content p {
+	margin-bottom: 5px;
+	line-height: 2;
+}
+.item-content .confirmed i,
+.item-content .failed i {
+	margin-right: 5px;
+}
+.item-content a {
+	background: #f75d00 none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-weight: 600;
+    padding: 5px 15px;
+}
+.item-body {
+	padding-bottom: 15px;
+	overflow: hidden;
+	border-bottom: 1px solid #e6e6e6;
+}
+.item-footer {
+	padding-top: 10px;
+}
+.item-footer p {
+	margin-bottom: 0px;
+}
+.item-footer a {
+	display: inline-block;
+	color: #f75d00;
+	border: 2px solid #f75d00;
+	background: transparent;
+	margin-left: 30px;
+}
+.item-footer strong {
+	margin: 0px 5px 0px 20px;;
+}
+.completed span {
+	background: #e6e6e6;
+	color: #07253F;
+}
+.user-personal-info,
+.user-change-password,
+.user-preference,
+.card-entry,
+.user-add-card {
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0px 0px 5px #e6e6e6;
+}
+.user-info-body,
+.change-password-body {
+	padding: 20px 5px;
+	overflow: hidden;
+}
+.user-personal-info label,
+.user-change-password label,
+.user-preference label {
+	font-weight: normal;
+}
+.user-personal-info .form-control,
+.user-change-password .form-control,
+.user-preference .form-control {
+	border-radius: 0px;
+	margin-bottom: 15px;
+	padding: 10px;
+	height: 40px;
+}
+.user-personal-info textarea {
+	height: auto;
+}
+.user-personal-info button,
+.user-change-password button,
+.user-preference button,
+.user-add-card button,
+.submit-complaint button {
+	border: 0px;
+	color: #fff;
+	background: #00adef;
+	padding: 10px 20px;
+	margin-top: 20px;
+	font-weight: bold;
+}
+.user-change-password button,
+.user-preference button, 
+.user-add-card button,
+.submit-complaint button {
+	margin-top: 5px;
+}
+.user-personal-info a {
+	background: #f75d00;
+	font-weight: bold;
+	color: #fff;
+	padding: 10px 20px;
+	display: inline-block;
+	margin-top: 20px;
+}
+.user-preference {
+	margin: 40px 0px;
+}
+.user-preference .collapse {
+	padding: 20px 5px;
+	overflow: hidden;
+}
+.upload-pic {
+	height: 30px;
+}
+.card-entry {
+	padding: 15px;
+	margin-bottom: 40px;
+}
+.card-entry .pull-right a {
+	margin:0px 5px;
+	color: #07253F;
+	font-size: 20px;
+}
+.card-entry .pull-right a:hover {
+	color: #f75d00;
+}
+.card-entry .card-type {
+	overflow: hidden;
+}
+.card-entry .card-type h3 {
+	margin-top: 0px;
+}
+.card-entry .card-type p {
+	margin: 20px 0px 0px;
+}
+.primary-card span {
+	color: #fff;
+	background: #f75d00;
+	display: block;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+}
+.primary-card h3 {
+	margin-top: 0px;
+}
+.user-add-card {
+	padding: 15px;
+}
+.user-add-card .form-control {
+	border-radius: 0px;
+	height: 40px;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+.recent-complaint h3 {
+	margin: 30px 0px 40px;
+	position: relative;
+}
+.recent-complaint h3:after {
+	content: "";
+	width: 100px;
+	height: 3px;
+	background: #f75d00;
+	position: absolute;
+	top: 115%;
+	left: 0;
+}
+.recent-complaint .nav-tabs > li > a {
+	font-size: 16px;
+	color: #07253F;
+}
+.recent-complaint .tab-content {
+	background: #ffffff;
+	padding: 20px;
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+}
+.recent-complaint .tab-content a {
+	color: #07253F;
+}
+.recent-complaint .tab-content a:hover {
+	color: #00adef;
+}
+.recent-complaint .tab-content a span {
+	font-weight: 600;
+}
+.recent-complaint .tab-content  p:nth-child(2n+1) {
+    background: #f7f7f7 none repeat scroll 0 0;
+    margin: 0;
+    padding: 15px;
+}
+.recent-complaint .tab-content  p:nth-child(2n+0) {
+    background: #e6e6e6 none repeat scroll 0 0;
+    margin: 0;
+    padding: 15px;
+}
+.submit-complaint {
+	overflow: hidden;
+	background: #ffffff;
+	padding: 20px 5px;
+}
+.submit-complaint .form-control {
+	border-radius: 0px;
+	height: 40px;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+.submit-complaint textarea {
+	height: auto !important;
+}
+@media (max-width: 767px) {
+	.item-content img {
+		margin-bottom: 20px;
+	}
+}
+
+
+
+
+
+.card {
+	     padding-top: 20px;
+    margin: 0px 0 0px 0;
+    background-color: rgba(214, 224, 226, 0.2);
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    height: 280px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+} 
+.card .card-heading { padding: 0 20px; margin: 0; } 
+.card .card-heading.simple { font-size: 20px; font-weight: 300; color: #777; border-bottom: 1px solid #e5e5e5; } 
+.card .card-heading.image img { 
+display: inline-block; width: 46px; height: 46px; margin-right: 15px; vertical-align: top; border: 0; 
+-webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; 
+} 
+.card .card-heading.image .card-heading-header { display: inline-block; vertical-align: top; } 
+.card .card-heading.image .card-heading-header h3 { margin: 0; font-size: 14px; line-height: 16px; color: #262626; } 
+.card .card-heading.image .card-heading-header span { font-size: 12px; color: #999999; } 
+.card .card-body { padding: 0 20px; margin-top: 20px; } 
+.card .card-media { padding: 0 20px; margin: 0 -14px; } 
+.card .card-media img { max-width: 100%; max-height: 100%; } 
+.card .card-actions { min-height: 30px; padding: 0 20px 20px 20px; margin: 20px 0 0 0; }
+ .card .card-comments { padding: 20px; margin: 0; background-color: #f8f8f8; } 
+ .card .card-comments .comments-collapse-toggle { padding: 0; margin: 0 20px 12px 20px; } 
+ .card .card-comments .comments-collapse-toggle a, .card .card-comments .comments-collapse-toggle span {
+	  padding-right: 5px; overflow: hidden; font-size: 12px; color: #999; text-overflow: ellipsis; white-space: nowrap; 
+} 
+.card-comments .media-heading { font-size: 13px; font-weight: bold; } 
+.card.people { 
+position: relative; display: inline-block; width: 170px; height: 300px; 
+padding-top: 0; margin-left: 20px; overflow: hidden; vertical-align: top; 
+} 
+.card.people:first-child { margin-left: 0; } 
+.card.people .card-top { position: absolute; top: 0; left: 0; display: inline-block; width: 170px; height: 150px; background-color: #ffffff; } 
+.card.people .card-top.green { background-color: #53a93f; } 
+.card.people .card-top.blue { background-color: #427fed; } 
+.card.people .card-info { 
+position: absolute; top: 150px; display: inline-block; width: 100%; height: 101px; 
+overflow: hidden; background: #ffffff; -webkit-box-sizing: border-box; 
+-moz-box-sizing: border-box; box-sizing: border-box; 
+} 
+.card.people .card-info .title { 
+display: block; margin: 8px 14px 0 14px; overflow: hidden; font-size: 16px; 
+font-weight: bold; line-height: 18px; color: #404040; 
+} 
+.card.people .card-info .desc { 
+display: block; margin: 8px 14px 0 14px; overflow: hidden; font-size: 12px; 
+line-height: 16px; color: #737373; text-overflow: ellipsis; 
+} 
+.card.people .card-bottom { 
+position: absolute; bottom: 0; left: 0; display: inline-block; width: 100%; 
+padding: 10px 20px; line-height: 29px; text-align: center; -webkit-box-sizing: 
+border-box; -moz-box-sizing: border-box; box-sizing: border-box; 
+} 
+.card.hovercard { 
+position: relative; padding-top: 0; overflow: hidden; text-align: center; 
+background-color: rgba(214, 224, 226, 0.2); 
+
+} 
+.cardheader img { 
+height: 135px;
+min-height:135px; 
+width:100%;
+max-width:100%;
+} 
+.card.hovercard .avatar { position: relative; top: -53px; margin-bottom: -50px; } 
+.card.hovercard .avatar img { 
+width: 100px; height: 100px; max-width: 100px; max-height: 100px; 
+-webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; border: 5px solid rgba(255,255,255,0.5); 
+} 
+.card.hovercard .info { padding: 4px 8px 10px; } 
+.card.hovercard .info .title { margin-bottom: 4px; font-size: 18px; font-weight:bold; font-family:sans-serif; line-height: 1; color: #262626; vertical-align: middle; } 
+.card.hovercard .info .desc { overflow: hidden; font-size: 13px; font-weight:bold; font-family:sans-serif; line-height: 20px; color: #737373; text-overflow: ellipsis; } 
+.card.hovercard .bottom { padding: 0 20px; margin-bottom: 17px; } 
+.btn{ border-radius:4px; width:32px; height:32px; line-height:18px; }
+
+
+
+
+
+.card.hovercard .profileimg {
+    position: relative;
+    top: -53px;
+    margin-bottom: -50px;
+    width: 50%;
+    float: left;
+}
+
+.card.hovercard .profileimg img { 
+width: 100px; height: 100px; max-width: 100px; max-height: 100px; 
+-webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; border: 5px solid rgba(255,255,255,0.5); 
+}
+
+
+
+
+
+
+
+.chart {
+  display: inline-block;
+  width: 95px;
+  height: 95px;
+  margin: 0 10px;
+  vertical-align: top;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 33px;
+      background: rgba(255, 69, 0, 0.55);
+    border-radius: 50%;
+	color:#fff;
+}
+.chart span {
+  display: block;
+  font-size: 2em;
+  font-weight: normal;
+  text-align:center;
+}
+.chart canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+}
+
+
+
+
+/*.row.ash-col{
+    margin: 120px 0px 0px 3% !important;
+    
+}*/
+
+
+
+
+.stix *:focus {
+	outline: none;
+}
+.stix .wrap {
+	height: 1%; overflow: hidden;
+	background: white;
+	border: 1px dotted #ccc;
+	padding: 10px;
+	width: 100%;
+}
+.stix .operationmenu {
+	float: right;
+}
+.stix .editormenu {
+	float: left;
+}
+.stix .menu {
+	min-height: 30px;
+	background: #eee;
+}
+.stix .editormenu button {
+	font-size: 14px;
+	background: 0;
+	cursor: pointer;
+	border: 2px solid rgba(0,0,0,0.00000001);
+	color:#444;
+	    margin-top: 0px;
+    padding: 0px 8px;
+}
+.stix .editormenu button:hover {
+	background: #F2F2F2;
+	border: 2px solid #D8D8D8;
+}
+.stix .target {
+	float:left;
+	clear: both;
+}
+.stix .wrap {
+	background: #fff;
+}
+.stix .fixfloat {
+	height: 1%; 
+	overflow: hidden;
+}
+.stix .operationbtn {
+	background:#07253F;
+	border:0;
+	font-size: 9pt;
+	text-decoration: none;
+	cursor: pointer;
+	    margin: 0px 3px 0px 0px;
+    padding: 0px 37px;;
+}
+.stix .operationbtn:hover{
+	opacity: 0.6;
+}
+.stix .hidden {
+	display: none;
+}
+.stix [contenteditable="true"]{
+	width: 100%;
+	border: 0;
+}
+.stix .htmleditor {
+	width: 99%;
+	margin: auto;
+	min-height: 100px;
+}
+
+.stix button{color:#fff; width:auto !important; font-family: sans-serif; height: 32px; border-radius: 3px;} 
+
+
+
+.inter p{    color: #fff;   font-size: 12px;  font-family: sans-serif;  font-weight: 100; line-height:30px;}
+.inter{clear:both; float:left;}
+.squared{width:0px; height:0px;}
+
+.squaredThree {
+	width: 20px;	
+	
+	position: relative;
+}
+
+.squaredThree label {
+	cursor: pointer;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 0;
+	border-radius: 4px;
+
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+
+	background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+	background: linear-gradient(top, #222 0%, #45484d 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+}
+
+.squaredThree label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+	content: '';
+	position: absolute;
+	width: 14px;
+	height: 7px;
+	background: transparent;
+	top: 4px;
+	left: 3px;
+	border: 3px solid #fcfff4;
+	border-top: none;
+	border-right: none;
+
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.squaredThree label:hover::after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+
+.squaredThree input[type=checkbox]:checked + label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+
+.text-chackbox{
+	clear: both;
+    background:#07253F;
+    float: left;
+	width:100%;
+	
+	}
+	
+	
+	
+	
+	.modal {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+
+
+.popup-h h3{    margin: 15px 0 15px 7px;
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid #f75d00;
+    padding-bottom: 6px;}
+	
+	
+	
+.persons .checkbox.checkbox-alt label:hover:after, .checkbox-alt.checkbox-alt label:hover:after {
+  -webkit-animation: check 0.8s ease infinite;
+  -moz-animation: check 0.8s ease infinite;
+  -o-animation: check 0.8s ease infinite;
+  animation: check 0.8s ease infinite;
+}
+.persons .checkbox.checkbox-alt input:checked + label:after, .checkbox-alt.checkbox-alt input:checked + label:after {
+  -webkit-animation: none;
+  -moz-animation: none;
+  -o-animation: none;
+  animation: none;
+}
+
+.wrapper {
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+}
+
+.persons .checkbox, .checkbox-alt{
+display: inline-block;
+    height: 28px;
+    margin: 3px 0 0 0;
+    width: 28px;
+    border-radius: 50%;
+    border: 2px solid #F3DFD7;
+}
+
+
+.persons .checkbox, .checkbox-alt:a{
+display: inline-block;
+    height: 28px;
+    margin: 3px 0 0 0;
+    width: 28px;
+    border-radius: 50%;
+    border: 2px solid #F3DFD7;
+}
+
+
+
+
+.persons .checkbox label, .checkbox-alt label{
+  display: block;
+  height: 30px;
+  position: relative;
+  width: 30px;
+
+}
+
+.persons .checkbox label:after, .checkbox-alt label:after {
+  /*
+  This element has a border on the right, and top. By rotating it looks like a check symbol, but the wrong way. That's why I'm flipping it with scaleX(-1)
+  */
+  -moz-transform: scaleX(-1) rotate(135deg);
+  -ms-transform: scaleX(-1) rotate(135deg);
+  -webkit-transform: scaleX(-1) rotate(135deg);
+  transform: scaleX(-1) rotate(135deg);
+  /*
+  I want to position the symbol using the left top, because when increasing the width and height of an object, it expands from the top left corner as well. That is what makes it looks like it's being drawn.
+  */
+  -moz-transform-origin: left top;
+  -ms-transform-origin: left top;
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+  border-right: 4px solid #cee;
+  border-top: 4px solid #cee;
+  content: '';
+  display: block;
+  height: 20px;
+  left: 2px;
+  position: absolute;
+  top: 16px;
+  width: 10px;
+}
+.persons .checkbox label:hover:after, .checkbox-alt label:hover:after {
+  border-color: #bdd;
+}
+.persons .checkbox input, .checkbox-alt input {
+  display: none;
+}
+.persons .checkbox input:checked + label:after, .checkbox-alt input:checked + label:after {
+  -webkit-animation: check 0.8s;
+  -moz-animation: check 0.8s;
+  -o-animation: check 0.8s;
+  animation: check 0.8s;
+  border-color: #f75d00;
+}
+
+.persons .checkbox label:visited :after, .checkbox-alt label:visited :after{border-color:#000;}
+
+
+
+
+@-webkit-keyframes check {
+  0% {
+    height: 0;
+    width: 0;
+  }
+  25% {
+    height: 0;
+    width: 10px;
+  }
+  50% {
+    height: 20px;
+    width: 10px;
+  }
+}
+@-moz-keyframes check {
+  0% {
+    height: 0;
+    width: 0;
+  }
+  25% {
+    height: 0;
+    width: 10px;
+  }
+  50% {
+    height: 10px;
+    width: 10px;
+  }
+}
+@-ms-keyframes check {
+  0% {
+    height: 0;
+    width: 0;
+  }
+  25% {
+    height: 0;
+    width: 10px;
+  }
+  50% {
+    height: 20px;
+    width: 10px;
+  }
+}
+@keyframes check {
+  0% {
+    height: 0;
+    width: 0;
+  }
+  25% {
+    height: 0;
+    width: 10px;
+  }
+  50% {
+    height: 20px;
+    width: 10px;
+  }
+}
+
+
+
+.col-padding-right{padding:0px; float:right; height:30px;}
+
+
+.img-menu{}
+.img-menu ul{position:relative;}
+.img-menu ul li{}
+.img-menu ul li a{}
+.img-menu ul ul{position:absolute;}
+.img-menu ul ul{position:absolute;}
+
+.slider-text{ position: absolute; top: 134px;  color: #fff; padding: 15px; width:98%;}
+.slider-text h6{font-family:sans-serif;}
+.charity-user{text-align:center;}
+.charity-user ul{text-align:center;}
+.charity-donate{height: 115px;}
+.charity-donate ul{text-align:center;}
+
+
+
+
+
+
+
+
+
+
+#navid {
+  margin-top:15px;
+}
+#navid ul {
+  list-style:none;
+  position:relative;
+  float:left;
+  margin:0;
+  padding:0;
+}
+#navid ul li {
+  position:relative;
+  float:left;
+  margin:0;
+  padding:0;
+}
+#navid ul li:hover {
+  background:#ddd;
+}
+#navid ul a {
+  display:block;
+  padding:0 15px;
+}
+#navid ul ul {
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  padding:0;
+}
+#navid ul li:hover > ul {
+  display:block;
+}
+#navid ul ul li {
+  width:150px;
+}
+#navid ul ul ul {
+  top:0;
+  left:100%;
+}
+
+.persons {
+  padding:0;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+.persons:before, .persons:after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+.persons .person {
+  width: 25%;
+  display: table;
+  float: left;
+  border: 5px solid transparent;
+  cursor: pointer;
+}
+.persons .person .avatar {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.persons .person .avatar img {
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  height: 140px;
+}
+.persons .person.active .avatar img {
+  border-color: #323A45;
+}
+.persons .person .fullname {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-family: Raleway, sans-serif;
+  color: #828282;
+  font-size: 20px;
+  padding: 10px 0 5px;
+}
+.persons .person .title {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-family: Raleway, sans-serif;
+  color: #828282;
+  font-size: 16px;
+}
+.persons .person .js-description {
+  display: none;
+}
+.person.js-dropdown-item .text-chackbox .col-pad p{text-align:center; padding-left: 20px;}
+
+
+
+
+@media screen and (max-width: 700px) {
+  .persons .person {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .persons .person {
+    width: 100%;
+    border-left: medium none;
+  }
+}
+.persons .js-dropdown {
+  background-clip: padding-box !important;
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  float: left;
+  padding: 0;
+  margin: 11px 0 20px;
+  width: 100%;
+  display: table;
+  border-color: transparent;
+  border-image: none;
+  border-style: solid;
+  border-width:0px 0px 0px 0px;
+}
+.persons .js-dropdown:before, .persons .js-dropdown:after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+@media screen and (max-width: 400px) {
+  .persons .js-dropdown {
+    border-left: medium none;
+  }
+}
+.persons .js-dropdown .js-dropdown-content {
+  background:#F6F6F6 none repeat scroll 0px 0px;
+border: 5px solid rgb(255, 69, 0);
+clear: both;
+color: #333;
+float: left;
+padding: 0px;
+position: relative;
+width: 100%;
+box-shadow: 1px 2px 3px #000;
+}
+.persons .js-dropdown .js-dropdown-content .js-dropdown-arrow {
+  position: absolute;
+  bottom: 100%;
+  right: 0%  !important;
+  width: 0;
+  height: 0;
+  margin-left:0px;
+  border: 20px solid  transparent;
+  border-bottom-color: #f75d00;
+  pointer-events: none;
+  -webkit-transition: left 0.3s;
+  -moz-transition: left 0.3s;
+  transition: left 0.3s;
+}
+.persons .js-dropdown .js-dropdown-content p {
+  line-height: 26px;
+  margin: 0 0 40px;
+  padding: 0;
+  font-size: 16px;
+}
+
+.col-padding p span{color: #fff; font-family: sans-serif; font-size: 12px; line-height: 33px;}
+
+.col-pad{
+position: relative;
+top: -37px;}
+.col-pad p span{color: #fff; font-family: sans-serif; font-size: 15px; display: block;
+
+line-height: 24px;}
+.btn-a {border-radius: 3px; float:right; line-height: 22px; font-family:sans-serif; color: #fff; background-color:rgba(0, 0, 0, 0.45) ;
+border: 1PX solid #FFF;}
+
+
+#maindiv{
+
+    margin:10px auto; 
+    padding:10px;
+    font-family: 'Droid Sans', sans-serif;
+}
+#formdiv{
+    
+    float:left; 
+    text-align: center;
+	width:100%;
+}
+#formdiv form{
+    padding: 40px 20px;
+    
+}
+
+.upload{
+    background-color:#f75d00;
+    color:#fff;
+    border-radius:5px;
+    padding:10px;
+    text-shadow:1px 1px 0px green;
+    box-shadow: 2px 2px 15px rgba(0,0,0, .75);
+	    width: 100%;
+    margin: 6px 1px;
+}
+.upload:hover{
+    cursor:pointer;
+    background:#c20b0b;
+    border:1px solid #c20b0b;
+    box-shadow: 0px 0px 5px rgba(0,0,0, .75);
+}
+#file{
+    color:green;
+    padding:5px; border:1px dashed #123456;
+    background-color: #f9ffe5;
+}
+#upload{
+   
+}
+
+#noerror{
+    color:green;
+    text-align: left;
+}
+#error{
+    color:red;
+    text-align: left;
+}
+#img{ 
+    width: 24px;
+    border: none; 
+    height:24px;
+    margin-left: 0px;
+    margin-bottom: 91px;
+}
+
+.abcd{
+    text-align: center;
+}
+
+.abcd img{
+    height:100px;
+    width:100px;
+    padding: 5px;
+    border: 1px solid rgb(232, 222, 189);
+}
+
+#formget{
+    float:right; 
+
+}
+
+
+#upload-img-file{}
+
+div#filediv {
+    float: left;
+}
+
+
+.lb {
+    width: 73% !important;
+    float: left;
+}
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1;
+    font-size: 23px;
+    color: #f75d00;
+}
+
+
+
+<!----------------calender--------------------->
+
+.calendar {
+    width: 280px;
+    height: 330px;
+}
+.calendar-modal {
+    display: none;
+    position: absolute;
+    background: #fdfdfd;
+    border: 1px solid #e8e8e8;
+    box-shadow: 1px 2px 3px #ddd
+}
+.calendar-inner {
+    position: relative;
+    z-index: 1;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    -ms-transform: perspective(1000px);
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+}
+.calendar-views {
+    transform-style: preserve-3d;
+}
+.calendar .view {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    *overflow: hidden;
+    -webkit-transition: .6s;
+    transition: .6s;
+}
+.calendar-d .view-month,
+.calendar-m .view-date {
+    transform: rotateY(180deg);
+    visibility: hidden;
+    z-index: 1;
+}
+.calendar-d .view-date,
+.calendar-m .view-month {
+    transform: rotateY(0deg);
+    visibility: visible;
+    z-index: 2;
+}
+.calendar-ct,
+.calendar-hd,
+.calendar-views .week,
+.calendar-views .days {
+    overflow: hidden;
+}
+.calendar-views {
+    width: 100%;
+}
+.calendar .view,
+.calendar-display,
+.calendar-arrow .prev,
+.calendar .date-items li {
+    float: left;
+}
+.calendar-arrow,
+.calendar-arrow .next {
+    float: right;
+}
+.calendar-hd {
+    padding: 10px 0;
+    height: 30px;
+    line-height: 30px;
+}
+.calendar-display {
+    font-size: 28px;
+    text-indent: 10px;
+}
+.view-month .calendar-hd {
+    padding: 10px;
+}
+.calendar-arrow,
+.calendar-display {
+    color: #ddd;
+}
+.calendar li[disabled] {
+    color: #bbb;
+}
+.calendar li.old[disabled],
+.calendar li.new[disabled] {
+    color: #eee;
+}
+.calendar-display .m,
+.calendar-views .week,
+.calendar-views .days .old,
+.calendar-views .days .new,
+.calendar-display:hover,
+.calendar-arrow span:hover {
+    color: #888;
+}
+
+.calendar-arrow span,
+.calendar-views .days li[data-calendar-day],
+.calendar-views .view-month li[data-calendar-month] {
+    cursor: pointer;
+} 
+.calendar li[disabled] {
+    cursor: not-allowed;
+}
+
+.calendar-arrow {
+    width: 50px;
+    margin-right: 10px;
+}
+.calendar-arrow span {
+    font: 500 26px sans-serif;
+}
+
+.calendar ol li {
+    position: relative;
+    float: left;
+    text-align: center;
+    border-radius: 50%;
+}
+.calendar .week li,
+.calendar .days li {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+.calendar .month-items li {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+}
+.calendar .days li[data-calendar-day]:hover,
+.calendar .view-month li[data-calendar-month]:hover {
+    background: #eee; 
+}
+.calendar .calendar-views .now {
+    color: #fff;
+    background: #66be8c!important;  
+}
+.calendar .calendar-views .selected {
+    color: #66be8c;
+    background: #CDE9D9!important; 
+}
+.calendar .calendar-views .dot {
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    margin-left: -2px; 
+    width: 4px;
+    height: 4px;
+    background: #66be8c;
+    border-radius: 50%;
+}
+.calendar-views .now .dot {
+    background: #fff;
+}
+
+.calendar .date-items {
+    width: 300%;
+    margin-left: -100%;
+}
+
+.calendar-label {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    padding: 5px 10px;
+    line-height: 22px;
+    color: #fff;
+    background: #000;
+    border-radius: 3px;
+    opacity: .7;
+    filter: alpha(opacity=70);
+}
+.calendar-label i {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: -12px;
+    width: 0;
+    height: 0;
+    margin-left: -3px;
+    border: 6px solid transparent;
+    border-top-color: #000;
+}
+
+
+<!----------------calender-end--------------------->

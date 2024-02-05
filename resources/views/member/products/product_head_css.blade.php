@@ -21,12 +21,19 @@
 	<meta property="og:image"  content="https://amplepoints.com/product_images/59090/amplepoints_product_1694255592_img1.jpg" />
 	
 	<title>GUCCI Gray Gradient Cat Eye Ladies Sunglasses</title>
+
 	<link rel='shortcut icon' type='image/x-icon' href="https://amplepoints.com/images/favicon.ico" >
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto+Mono:300,400,500,700|Roboto:100,300,400,500,900" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/font-awesome/css/font-awesome.css" />
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/fonts/glyphicons-halflings-regular.ttf" />
-	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/bootstrap.min.css" />
+
+
+
+	{{-- <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/bootstrap.min.css" /> --}}
+	 @include("member.products.bootstrap_min")
+
+
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/main-style.css" />
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/amplepoint-style.css" />
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/amples.css" />
@@ -36,13 +43,39 @@
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/prodect-b.css" >
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/search-header.css" />
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/POPUP.css" >
-	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/responsive.css" >
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/responsive.css" >
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/flyPanels.css" >
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/prodect-detail.css" >
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/jquery-ui.css" >
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/animate-login.css" >
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/shopping_cart/vasplus_programming_blog_shopping_cart_v4.css">
 	<style type="text/css">
+
+
+		/* Custom styles for Bootstrap modal */
+
+/* Additional styling for the overlay if needed */
+/* Custom styles for Bootstrap modal */
+/*.modal {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}*/
+
+/* Additional styling for the overlay if needed */
+.modal-backdrop {
+    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust as needed */
+}
+
+/* Override Bootstrap's modal fade class */
+.fade {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+
+
 	/*.dropdown-menu{
 	left:15px !important;
 	}

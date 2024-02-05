@@ -1,0 +1,118 @@
+@charset "utf-8";
+.bfg,  .login-heap { display: block; margin: 0; float: left }
+#modal_trigger.btn,  #modal_trigger1.btn,  .login-heap,  .one_full a,  .one_full a:hover { font-weight: 700; text-transform: uppercase }
+.login-heap { border: 1px solid #e3e3e3; color: #ff4500; font-family: sans-serif; font-size: 14px; overflow: hidden; padding: 7px!important; text-align: center; border-radius: 2px; height: 44px; width: 60% }
+.login-heap:hover { border: 1px solid #ff4500; background-color: #ff4500; color: #fff }
+.login-heap:hover #modal_trigger { color: #fff }
+.bfg { padding: 0; width: 88% }
+.login-heap span1 { width: 100%;  float: :left;
+font-size: 15px }
+.login-heap span { color: #ff4500; float: left; font-size: 11px; padding: 6px 5px 0 0; width: 17% }
+.soc-sub1 .fa.fa-sign-in { padding: 5px 0 0 3px; width: 12%; font-size: 20px; float: left }
+.pop-bot a,  .pop-bot span { font-size: 14px; font-family: sans-serif }
+.soc-sub .fa.fa-user-plus { padding: 0 5px }
+#lean_overlay { position: fixed; z-index: 111111; top: 0; left: 0; height: 100%; width: 100%; background: #000; display: none }
+.popupContainer,  .popupContainer1 { position: absolute; width: 32%; height: auto; top: 80px }
+.popupContainer { background: #FF4500;z-index: 9999999999 !important;}
+.popupContainer1 { left: 34%!important; background: #FFF }
+.soc-abs { border-bottom: 1px solid #fff; float: left; margin-bottom: 21px; padding-bottom: 14px; width: 100% }
+#modal_trigger,  #modal_trigger2 { float: left; margin: 0; display: block }
+.pop-bot { width: 100%; float: left; padding: 12px 0; background-color: #ff4500 }
+.pop-bot a { width: 40%; float: left; color: #07253f }
+.pop-bot span { width: 60%; float: left; text-align: center; color: #fff }
+.pack.fixed-header #modal_trigger2 { color: #777 }
+#modal_trigger {/* width: 100%;*/ font-size: 15px; font-family: sans-serif }
+#modal_trigger1 .fa.fa-sign-in { padding: 0 14px 0 0; color: #fff }
+#modal_trigger2 { color: #fff; padding: 4px 0 0; width: 37% }
+#modal_trigger1 { display: block }
+::after, 
+::before { box-sizing: border-box }
+#modal_trigger.btn,  #modal_trigger1.btn { color: #fff; padding: 4px 10px!important; font-family: sans-serif; font-size: 20px; width: 135px; text-align: center; overflow: hidden }
+.one_full,  .one_half { display: block; padding: 10px 15px; float: left }
+#modal_trigger .btn_red { background: #ED6347; color: #FFF }
+#modal_trigger.btn:hover { background: #ff4500; color: #fff; border-color: #ff4500 }
+#modal_trigger a.btn { color: #666; text-align: center; text-decoration: none }
+#modal_trigger a.btn_red { color: #FFF }
+#modal_trigger1 .btn_red { background: #ED6347; color: #FFF }
+#modal_trigger1.btn:hover { background: #ff4500; color: #fff; border-color: #ff4500 }
+#modal_trigger1 a.btn { color: #666; text-align: center; text-decoration: none }
+.one_full,  .one_half { text-align: center!important }
+.one_half { background: #ff4500; height: 50px; width: 50% }
+.one_full { background: #07253f; width: 100% }
+.one_full a,  .one_full a:hover { color: #fff; font-family: sans-serif; font-size: 16px; letter-spacing: 1px; margin: 0 auto; text-align: center!important; width: 25% }
+.one_full:hover { color: #07253f!important; background: #004887 }
+.one_half a,  .one_half.last a { font-size: 16px; color: #fff; padding: 5px 24px 0; font-weight: 700; font-family: sans-serif; text-transform: uppercase }
+.one_half.last { width: 45%; margin-left: 5% }
+.one_half.last a:hover { color: #000 }
+.icon_title1,  .icon_title1 .tit,  .popupHeader { color: #fff; text-align: center }
+.icon_title1 { float: left; margin: -30px 0 5px; width: 100%; z-index: 11111111 }
+.icon_title1 .tit { width: 10%; z-index: 11111111; margin: 0 auto; font-family: sans-serif; padding: 0 10px; background-color: #ff4500; font-size: 15px; letter-spacing: 2px }
+.social_box,  .social_box:hover,  .social_login .social_box,  .social_login1 .social_box { margin-bottom: 10px; clear: both; overflow: hidden }
+.popupHeader { font-size: 26px; font-family: sans-serif; text-transform: uppercase; background: #ff4500; position: relative; padding: 10px 20px 15px; border-bottom: 2px solid #fff; font-weight: 700; z-index: -1; letter-spacing: 3px }
+.popupHeader .modal_close { position: absolute; right: 4px; top: 4px; padding: 3px 8px; cursor: pointer; color: #FFF; font-size: 18px; border: 2px solid #FFF; border-radius: 50%; width: 35px; height: 35px }
+.popupBody { padding: 20px 20px 30px; background-color: #ff4500 }
+.icon { border-right: 1px solid #4b4b4b; color: #fff; float: left; font-size: 22px; padding: 8px 0; text-align: center; width: 16% }
+.icon_title { color: #FFF; float: left; font-family: sans-serif; font-size: 16px; padding: 13px 16px 10px; text-align: center; text-transform: uppercase; width: 84%; letter-spacing: 1px }
+.social_login .icon_title,  .social_login1 .icon_title { letter-spacing: 2px; display: block; float: left; font-family: sans-serif; font-weight: 700; text-align: center }
+.social_box { display: block; background: #07253f }
+.social_box:hover { display: block; background: #004887 }
+.social_login .social_box { display: block; padding: 10px; background: #07253f }
+.social_login .icon { display: block; width: 30px; padding: 5px 10px; margin-right: 10px; float: left; color: #FFF; font-size: 16px; text-align: center }
+.social_login .fb .icon { background: #3B5998 }
+.social_login .google .icon { background: #DD4B39 }
+.social_login .icon_title { padding: 9px 0; font-size: 15px; color: #fff; width: 100% }
+.social_login .social_box:hover { background: #004887 }
+.social_login1 .social_box { display: block; padding: 10px; background: #07253f }
+.social_login1 .icon { display: block; width: 30px; padding: 5px 10px; margin-right: 10px; float: left; color: #FFF; font-size: 16px; text-align: center }
+.social_login1 .fb .icon { background: #3B5998 }
+.social_login1 .google .icon { background: #DD4B39 }
+.social_login1 .icon_title { padding: 9px 0; font-size: 15px; color: #fff; width: 100% }
+.social_login1 .social_box:hover { background: #E4E4E2 }
+.centeredText { text-align: center; margin: 20px 0; clear: both; overflow: hidden; text-transform: uppercase }
+.action_btns { clear: both; overflow: hidden }
+.action_btns a { display: block }
+.user_login1 { display: none }
+.user_login1 label { display: block; margin: 2px 0 0; padding: 0 }
+.user_login1 input[type=text],  .user_login1 input[type=email],  .user_login1 input[type=password] { background: #fff; border-bottom: 2px solid #07253f; color: #666; display: block; font-size: 17px; padding: 16px; width: 100% }
+.user_login1 input[type=checkbox] { float: left; margin-right: 5px }
+.user_login1 input[type=checkbox] + label { float: left }
+.user_login1 .checkbox { margin-bottom: 10px; clear: both; overflow: hidden }
+.checkbox-inline input[type=checkbox],  .user_login1 .checkbox input[type=checkbox] { margin-left: 0!important; position: relative }
+.user_login2 { display: none }
+.user_login2 label { display: block; margin-bottom: 9px; margin-top: 5px; font-family: sans-serif; font-size: 12px; line-height: 15px }
+.user_login2 input[type=text1] { background: #fff; border-bottom: 2px solid #07253f; color: #666; display: block; font-size: 17px; padding: 8px; width: 49.5%; float: left; margin: 0 0 0 1px }
+.user_login2 input[type=text],  .user_login2 input[type=email],  .user_login2 input[type=password] { background: #fff; border-bottom: 2px solid #07253f; color: #666; display: block; font-size: 17px; padding: 8px; width: 100% }
+.user_login2 input[type=checkbox] { float: left; margin-right: 5px; margin-top: 7px }
+.user_login2 input[type=checkbox] + label { float: none }
+.user_login2 .checkbox { margin: 0; clear: both; overflow: hidden }
+.checkbox-inline input[type=checkbox],  .user_login2 .checkbox input[type=checkbox] { margin-left: 0!important; position: relative }
+.user_login2 .one_full { padding: 6px 15px }
+.user_login2 .pop-bot { padding: 5px 0 0 }
+.user_login { display: none }
+.user_login label { display: block; margin: 2px 0 0; padding: 0 }
+.user_login input[type=text],  .user_login input[type=email],  .user_login input[type=password] { background: #fff; border-bottom: 2px solid #07253f; color: #666; display: block; font-size: 17px; padding: 16px; width: 100% }
+.user_login input[type=checkbox] { float: left; margin-right: 5px }
+.user_login input[type=checkbox] + label { float: left }
+.user_login .checkbox { margin-bottom: 10px; clear: both; overflow: hidden }
+.forgot_password { display: block; margin: 20px 0 10px; clear: both; overflow: hidden; text-decoration: none; color: #ED6347 }
+.user_register { display: none }
+.user_register label { display: block; margin-bottom: 9px; margin-top: 5px; font-family: sans-serif; font-size: 12px; line-height: 15px }
+.user_register input[type=text1] { background: #fff; border-bottom: 2px solid #07253f; color: #666; display: block; font-size: 17px; padding: 8px; width: 49.5%; float: left; margin: 0 0 0 1px }
+.user_register input[type=text],  .user_register input[type=email],  .user_register input[type=password] { background: #fff; border-bottom: 2px solid #07253f; color: #666; display: block; font-size: 17px; padding: 8px; width: 100% }
+.user_register input[type=checkbox] { float: left; margin-right: 5px; margin-top: 7px }
+.user_register input[type=checkbox] + label { float: none }
+.user_register .checkbox { margin: 0; clear: both; overflow: hidden }
+.checkbox-inline input[type=checkbox],  .user_login .checkbox input[type=checkbox],  .user_register .checkbox input[type=checkbox] { margin-left: 0!important; position: relative }
+.user_register .one_full { padding: 6px 15px }
+.user_register .pop-bot { padding: 5px 0 0 }
+#totalitemdata .fa.fa-trash-o { color: red; float: right; position: absolute; right: 0 }
+#totalitemdata .fa.fa-trash-o::before { background: red; border-radius: 10em; color: #fff; content: "X"; display: block; font-family: arial; font-size: 10px; font-weight: 700; height: 18px; left: 0; line-height: 1.8; padding: 0; right: 5px; text-align: center; width: 18px }
+#totalitemdata .remove_link { display: block; height: 19px!important; left: 242px; position: absolute; right: 0; width: 19px }
+.right-footer-link #modal_trigger {
+
+    width: 100%;
+
+}
+.login-a-icon #modal_trigger {
+    width: 100%;
+}

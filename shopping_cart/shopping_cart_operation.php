@@ -75,7 +75,23 @@ if (isset($_POST['page']) && !empty($_POST['page'])) {
         ?>
 
         <?php
-    } elseif ($_POST['page'] == "remove_this_item") //Remove a specific item from the cart
+    } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    elseif ($_POST['page'] == "remove_this_item") //Remove a specific item from the cart
     {
         // echo 4;
         //   die();

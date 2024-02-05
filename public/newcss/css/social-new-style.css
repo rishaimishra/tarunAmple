@@ -1,0 +1,318 @@
+.panel-body {
+    padding: 0px;
+}
+
+.panelTop {
+    padding: 0px;
+}
+
+.left-zero-pad{
+    padding-left: 0px;
+}
+
+.barand-image{
+    width: 300px;
+    height: 225px;
+   /* width: 100%;
+    height: 150px;*/
+}
+
+.all-a.products .panel{
+    border: 3px solid #494670 !important;
+}
+
+.all-a.products .barand-image{
+
+    border-right: 3px solid #494670 !important;
+}
+
+.all-a.video .panel{
+    border: 3px solid #9b00c1 !important;
+} 
+.all-a.video .barand-image{
+    border-right: 3px solid #9b00c1 !important;
+}
+
+.all-a.tv .panel{
+    border: 3px solid #f31f39!important;
+} 
+
+.all-a.tv .barand-image{
+    border-right: 3px solid #f31f39!important;
+}
+
+.all-a.giveaways .panel{
+    border: 3px solid #d4ff00 !important;
+}
+
+.all-a.giveaways .barand-image{
+    border-right: 3px solid #d4ff00 !important;
+}
+
+.all-a.photo .panel{
+    border: 3px solid #3bc08b !important;
+}
+
+.all-a.photo .barand-image{
+    border-right: 3px solid #3bc08b !important;
+}
+
+.all-a.charity .panel{
+    border: 3px solid #e90ad6 !important;
+}
+
+.all-a.charity .barand-image{
+    border-right: 3px solid #e90ad6 !important;
+}
+
+.all-a.blogs .panel{
+    border: 3px solid #f46a44 !important;
+}
+
+.all-a.blogs .barand-image{
+    border-right: 3px solid #f46a44 !important;
+}
+
+.custdisplay.productsnew .panel{
+    border: 3px solid #494670 !important;
+}
+
+.custdisplay.productsnew .barand-image{
+
+    border-right: 3px solid #494670 !important;
+}
+
+.custdisplay.videonew .panel{
+    border: 3px solid #9b00c1 !important;
+} 
+.custdisplay.videonew .barand-image{
+    border-right: 3px solid #9b00c1 !important;
+}
+
+
+.custdisplay.tvnew .panel{
+    border: 3px solid #f31f39!important;
+} 
+
+.custdisplay.tvnew .barand-image{
+    border-right: 3px solid #f31f39!important;
+}
+
+.custdisplay.giveawaysnew .panel{
+    border: 3px solid #d4ff00 !important;
+}
+
+.custdisplay.giveawaysnew .barand-image{
+    border-right: 3px solid #d4ff00 !important;
+}
+
+.custdisplay.photonew .panel{
+    border: 3px solid #3bc08b !important;
+}
+
+.custdisplay.photonew .barand-image{
+    border-right: 3px solid #3bc08b !important;
+}
+
+.custdisplay.charitynew .panel{
+    border: 3px solid #e90ad6 !important;
+}
+
+.custdisplay.charitynew .barand-image{
+    border-right: 3px solid #e90ad6 !important;
+}
+
+.custdisplay.blogsnew .panel{
+    border: 3px solid #f46a44 !important;
+}
+
+.custdisplay.blogsnew .barand-image{
+    border-right: 3px solid #f46a44 !important;
+}
+
+.pro-title{
+    color: #07253F;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.no-padding {
+    padding: 15px 0px 0px 0px;
+}
+.p-content {
+    padding: 10px 0px 0px 0px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #07253F;
+}
+.brand-color{
+    color: #f75d00;
+}
+.author-p{
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+    left: 36%;
+}
+.btn-add-to-cart {
+    background: #f46a44;
+    color: #fff;
+    position: absolute;
+    right: 24px;
+    bottom: 10px;
+
+}
+.btn.btn-add-to-cart.focus, .btn.btn-add-to-cart:focus, .btn.btn-add-to-cart:hover  {
+    color: #fff;   
+    background: #f75d00;
+    outline: none;
+}
+.btn-add-to-cart:active {
+    background: #f75d00;
+    outline: none;
+}
+.btn-giveway {
+    background: #d4ff00;
+    color: #07253F;
+    position: absolute;
+    right: 24px;
+    bottom: 10px;
+}
+.btn.btn-giveway.focus, .btn.btn-giveway:focus, .btn-giveway:hover  {
+    color: #fff;   
+    background: #f75d00;
+    outline: none;
+}
+.btn-giveway:active {
+    background: #f75d00;
+    outline: none;
+}
+.btn-photo {
+    background: #3bc08b;
+    color: #fff;
+    position: absolute;
+    right: 24px;
+    bottom: 10px;
+}
+.btn.btn-photo.focus, .btn.btn-photo:focus, .btn-photo:hover  {
+    color: #fff;   
+    background: #f75d00;
+    outline: none;
+}
+.btn-photo:active {
+    background: #f75d00;
+    outline: none;
+}
+.btn-video {
+    background: #9b00c1;
+    color: #fff;
+    position: absolute;
+    right: 24px;
+    bottom: 10px;
+}
+.btn.btn-video.focus, .btn.btn-video:focus, .btn-video:hover  {
+    color: #fff;   
+    background: #f75d00;
+    outline: none;
+}
+.btn-video:active {
+    background: #f75d00;
+    outline: none;
+}
+.btn-blog {
+    background: #f46a44;
+    color: #fff;
+    position: absolute;
+    right: 24px;
+    bottom: 10px;
+}
+.btn.btn-blog.focus, .btn.btn-blog:focus, .btn-blog:hover  {
+    color: #fff;   
+    background: #f75d00;
+    outline: none;
+}
+.btn-blog:active {
+    background: #f75d00;
+    outline: none;
+}
+.btn-tv {
+    background: #f31f39;
+    color: #fff;
+    position: absolute;
+    right: 24px;
+    bottom: 10px;
+}
+.btn.btn-tv.focus, .btn.btn-tv:focus, .btn-tv:hover  {
+    color: #fff;   
+    background: #f75d00;
+    outline: none;
+}
+.btn-tv:active {
+    background: #f75d00;
+    outline: none;
+}
+.btn-charity {
+    background: #e90ad6;
+    color: #fff;
+    position: absolute;
+    right: 24px;
+    bottom: 10px;
+}
+.btn.btn-charity.focus, .btn.btn-charity:focus, .btn-charity:hover  {
+    color: #fff;   
+    background: #f75d00;
+    outline: none;
+}
+.btn-charity:active {
+    background: #f75d00;
+    outline: none;
+}
+.normal-p{
+    color: #07253F;
+    text-align: justify;
+    font-family: 'Georgia','Cambria','Times New Roman','Times','serif';
+}
+.charity-line {
+    float: left;
+    margin-bottom: 14px;
+    padding: 10px 0;
+    width: 100%;
+}
+.charity-detail, .charity-line {
+    border-bottom: 1px dotted #999999;
+    border-top: 1px dotted #999999;
+}
+.charity-user {
+    text-align: center;
+}
+.charity-user .charity-round {
+    border: 2px solid #f75d00;
+    border-radius: 50%;
+    height: 70px;
+    margin-left: 80px;
+    text-align: center;
+    width: 70px;
+}
+.charity-user .charity-round .fa.fa-user {
+    color: #f75d00;
+    font-size: 25px;
+    padding-top: 5px;
+}
+.charity-user .charity-round h6 {
+    margin: 8px 0 0;
+}
+.charity-user .charity-round h5, .charity-user .charity-round h6 {
+    color: #f75d00;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+.charity-round-text {
+    color: #666666;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+.charity-user .charity-round img {
+    padding-top: 6px;
+    width: 22px;

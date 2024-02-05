@@ -21,6 +21,11 @@ $con = mysqli_connect($db_host, $db_user, $db_password, $db_name, $db_port);
     mysqli_select_db($con,"amplepoint_new");
 
     function Get_Options($option_name){
+        $db_host = 'localhost';
+        $db_user = 'root';
+        $db_password = '';  
+        $db_name = 'amplepoint_new';
+        $db_port = '3307'; 
 
         $connew = mysqli_connect($db_host, $db_user, $db_password, $db_name, $db_port);
         $sql = "SELECT option_value FROM `tbl_options` WHERE `option_name` = '$option_name'";
