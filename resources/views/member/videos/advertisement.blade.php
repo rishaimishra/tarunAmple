@@ -1,6 +1,5 @@
 @if(@Auth::user()->user_id)
 
-
 <script src="
 https://cdn.jsdelivr.net/npm/countdowntimer@2.0.1/dist/js/jQuery.countdownTimer.min.js
 "></script>
@@ -226,7 +225,11 @@ $amplesdatas=$amplesresult;
             <img src="https://amplepoints.com/newcss/img/be_1.jpg" alt="">
         </div>
         <div class="wpbs_handle blink">
+<<<<<<< HEAD
             <img src="https://amplepoints.com/newcss/img/af_1.jpg" alt="" style="display:none">
+=======
+            <img src="https://amplepoints.com/newcss/img/af_1.jpg" alt="">
+>>>>>>> 8182c1bfea5192ae8802182fb800768d4155eae0
         </div>
     </div>
 
@@ -397,8 +400,11 @@ $amplesdatas=$amplesresult;
                 </div>
                 <!--end code for video-->
 
+<<<<<<< HEAD
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js" integrity="sha512-FkM4ZGExuYz4rILLbNzw8f3HxTN9EKdXrQYcYfdluxJBjRLthYPxxZixV/787qjN3JLs2607yN5XknR/cQMU8w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+=======
+>>>>>>> 8182c1bfea5192ae8802182fb800768d4155eae0
                 <script>
 
                     var incadd = 1; 
@@ -473,7 +479,11 @@ $amplesdatas=$amplesresult;
                     function stopAddRotation(){
 
                         clearInterval(rotationaddInterval);
+<<<<<<< HEAD
                         console.log("Stop Add Rotation 1"); 
+=======
+                        console.log("Stop Add Rotation"); 
+>>>>>>> 8182c1bfea5192ae8802182fb800768d4155eae0
                     }
 
                     $("body").on("click", ".main-logo", function(event){

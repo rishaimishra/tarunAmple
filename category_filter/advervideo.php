@@ -139,7 +139,8 @@ $base_url = $protocol . '://' . $host . $project_path;
             })
             .done(function(data){
                 // alert(data); 
-                // console.log(data)   
+
+                console.log(data)  
 
                 $('#member').css('display','none');
                 $('.main-wpappers').css('display','none');
@@ -149,7 +150,7 @@ $base_url = $protocol . '://' . $host . $project_path;
             //$('.video-player').css('display','none');
             // $('.main-wpappers').css('display','none');
             // $('.bonce').css('display','block');
-        }, Bytime);
+        }, 1000);
 
 
 

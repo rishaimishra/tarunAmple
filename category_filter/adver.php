@@ -168,9 +168,10 @@
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo cdnUrl('slider/demoStyleSheet.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo cdnUrl('newcss/css/bebas.css'); ?>"/>
+
 <!-- <script type="text/javascript" src="<?php echo $base_url; ?>/slider/fadeSlideShow.js"></script> -->
  <script type="text/javascript" src="<?php echo $base_url; ?>/slider/fadeSlideShow.js"></script>
- 
+
 <script type="text/javascript">
     jQuery(document).ready(function(){
 
@@ -260,19 +261,29 @@
                 while($data_fetch = mysqli_fetch_array($data_pro)){
 
                     // $pro_immages="SELECT * FROM products INNER JOIN  product_images ON products.id = product_images.product_id WHERE product_images.product_id = '".$data_fetch['adver_product']."'";
+<<<<<<< HEAD
 
 
                     $pro_immages="SELECT * FROM products INNER JOIN  product_images ON products.id = product_images.product_id WHERE product_images.product_id = 58098";
 
                     $data_images = mysqli_query($con,$pro_immages);
                     @$images_fetch = mysqli_fetch_array($data_images);
+=======
+                    $pro_immages="SELECT * FROM products INNER JOIN  product_images ON products.id = product_images.product_id WHERE product_images.product_id = 58098";
+                    $data_images = mysqli_query($con,$pro_immages);
+                    $images_fetch = mysqli_fetch_array($data_images);
+>>>>>>> 8182c1bfea5192ae8802182fb800768d4155eae0
                     // print_r($data_fetch['adver_product']);
                     //    die();
 
                     $amples = "SELECT * FROM tbl_advertises WHERE adver_id = '".$data_fetch['adver_id']."'";
                     $amples_data = mysqli_query($con,$amples);
                     $amples_fetch = mysqli_fetch_array($amples_data);
+<<<<<<< HEAD
                        // print_r(@$images_fetch);
+=======
+                       // print_r($images_fetch);
+>>>>>>> 8182c1bfea5192ae8802182fb800768d4155eae0
                        // die();
 
                     $ProductId = $data_fetch['adver_product'];
@@ -359,7 +370,11 @@
                     </div>
                     <ul class="four-btns" style="display:none;">
                         <li id="Buynow">
+<<<<<<< HEAD
                             <?php if(@$images_fetch['product_type_key']=='0'){ ?>
+=======
+                            <?php if($images_fetch['product_type_key']=='0'){ ?>
+>>>>>>> 8182c1bfea5192ae8802182fb800768d4155eae0
                                 <a  id="buynowa" target = "_blank" href="<?php echo $base_url; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Buy Now</a>
                                 <?php }else{ ?>
                                 <a title="Add to Cart" class="contact_me_btn" id="buynowa" target = "_blank" href="<?php echo $base_url; ?>/productdetail/<?=$data_fetch['adver_product'];?>">Contact Me</a>

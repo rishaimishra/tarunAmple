@@ -359,7 +359,23 @@ autoplaySpeed: 5000,
 // dots: true,
 infinite: true,
 prevArrow: '<button type="button" class="slick-prev">Previous</button>',
-nextArrow: '<button type="button" class="slick-next">Next</button>'
+nextArrow: '<button type="button" class="slick-next">Next</button>',
+responsive: [
+    {
+        breakpoint: 600,
+        settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }
+    },
+    {
+        breakpoint: 480,
+        settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }
+    }
+]
 });
 var slidesToShow = 5; // Adjust the number of slides to show at a time
 var slidesToScroll = 5; // Adjust the number of slides to scroll

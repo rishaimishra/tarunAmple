@@ -81,6 +81,7 @@ Route::get('/state-list/{statename}',[ProductsController::class, 'statelist'])->
 
 
 
+
 //video page
 Route::get('/all-videos',[Addcontroller::class, 'all_videos'])->name('all.videos');
 Route::post('/loadmoreearnvideos',[Addcontroller::class, 'loadmoreearnvideos'])->name('loadmoreearnvideos');
