@@ -8,6 +8,7 @@ use DB;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class AdminImpFunctionModel extends Model
 {
@@ -409,7 +410,7 @@ public function getyoumightlikeproductIdsbympid($mspId)
         ->leftJoin('products', 'products.id', '=', 'tbl_mightalsolike_products.mal_pid')
         ->where('mal_mpid', $mspId)
         ->where('products.status', 1)
-        ->groupBy('mal_pid')
+        // ->groupBy('mal_pid')
         ->get();
 
     return $result;
@@ -894,7 +895,7 @@ public function getFullOrderDetailForGiftToUsers($orderId)
         ->where("$productsAddedTable.is_purchased", '=', 1)
         ->where("$productsAddedTable.is_gift_card", '=', 1)
         ->where("$productsAddedTable.gift_card_for", '=', 2)
-        ->groupBy("$productsAddedTable.id")
+        // ->groupBy("$productsAddedTable.id")
         ->orderByDesc("$productsAddedTable.id")
         ->get();
 
@@ -1459,9 +1460,453 @@ public function UpdateAnyTableData($table_name, $values, $where)
 
 
 
+    
 
 
 
+
+
+
+
+
+
+
+// =========================================================================================== //
+
+// 1
+   public function createrandomstring()
+    {
+
+        $length = 5;
+
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $randomString .= uniqid();
+
+        return substr(str_shuffle($randomString), 0, 5);
+
+    }
+
+
+
+
+
+
+// 2
+public function UpdateProductsAddedData($orderData, $whereCondition)
+{
+    $result = DB::table('products_added')
+        ->whereRaw($whereCondition)
+        ->update($orderData);
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+// 3
+public function synergyGetNextCardNumber($postParameters = array())
+{
+    $userName = $postParameters['userName'];
+    $password = $postParameters['password'];
+    $groupNumber = $postParameters['groupNumber'];
+    $ResponseFormat = $postParameters['ResponseFormat'];
+    $synergyServerLocation = $postParameters['synergyServerLocation'];
+
+    $postFieldData = <<<XML
+<?xml version='1.0' encoding='utf-8'?>
+<soap12:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap12='http://www.w3.org/2003/05/soap-envelope'>
+    <soap12:Header>
+        <UserCredentials xmlns='http://tempuri.org/'>
+            <userName>$userName</userName>
+            <password>$password</password>
+        </UserCredentials>
+    </soap12:Header>
+    <soap12:Body>
+        <GetNextCardNumberToSynergyServer xmlns='http://tempuri.org/'>
+            <GroupNumber>$groupNumber</GroupNumber>
+            <ResponseFormat>$ResponseFormat</ResponseFormat>
+            <SynergyServerLocation>$synergyServerLocation</SynergyServerLocation>
+        </GetNextCardNumberToSynergyServer>
+    </soap12:Body>
+</soap12:Envelope>
+XML;
+
+    $client = new Client();
+
+    $response = $client->post('http://synergywebservice.com/SynergyWebX.asmx', [
+        'headers' => ['Content-Type' => 'text/xml'],
+        'body' => $postFieldData,
+    ]);
+
+    $responseData = $response->getBody()->getContents();
+
+    // Now parse the XML response as needed
+    $dom = new \DOMDocument();
+    $dom->loadXML($responseData);
+    $responseArray = json_decode(json_encode(simplexml_import_dom($dom)), true);
+
+    return $responseArray;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// 4
+
+public function synergyLoadActivateGiftCard($postParameters = array())
+{
+    $userName = $postParameters['userName'];
+    $password = $postParameters['password'];
+    $merchantRockCommID = $postParameters['merchantRockCommID'];
+    $customerCardNumber = $postParameters['customerCardNumber'];
+    $numPoints = $postParameters['numPoints'];
+    $cardAction = $postParameters['cardAction'];
+    $clerkID = $postParameters['clerkID'];
+    $checkNumber = $postParameters['checkNumber'];
+    $accountType = $postParameters['accountType'];
+    $ResponseFormat = $postParameters['ResponseFormat'];
+    $synergyServerLocation = $postParameters['synergyServerLocation'];
+
+    $postFieldData = <<<XML
+<?xml version='1.0' encoding='utf-8'?>
+<soap12:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap12='http://www.w3.org/2003/05/soap-envelope'>
+    <soap12:Header>
+        <UserCredentials xmlns='http://tempuri.org/'>
+            <userName>$userName</userName>
+            <password>$password</password>
+        </UserCredentials>
+    </soap12:Header>
+    <soap12:Body>
+        <LoadActivateGiftCardToSynergyServer xmlns='http://tempuri.org/'>
+            <MerchantRockCommID>$merchantRockCommID</MerchantRockCommID>
+            <CustomerCardNumber>$customerCardNumber</CustomerCardNumber>
+            <NumPoints>$numPoints</NumPoints>
+            <CardAction>$cardAction</CardAction>
+            <ClerkID>$clerkID</ClerkID>
+            <CheckNumber>$checkNumber</CheckNumber>
+            <AccountType>$accountType</AccountType>
+            <ResponseFormat>$ResponseFormat</ResponseFormat>
+            <SynergyServerLocation>$synergyServerLocation</SynergyServerLocation>
+        </LoadActivateGiftCardToSynergyServer>
+    </soap12:Body>
+</soap12:Envelope>
+XML;
+
+    $client = new Client();
+
+    $response = $client->post('http://synergywebservice.com/SynergyWebX.asmx', [
+        'headers' => ['Content-Type' => 'text/xml'],
+        'body' => $postFieldData,
+    ]);
+
+    $responseData = $response->getBody()->getContents();
+
+    // Now parse the XML response as needed
+    $dom = new \DOMDocument();
+    $dom->loadXML($responseData);
+    $responseArray = json_decode(json_encode(simplexml_import_dom($dom)), true);
+
+    return $responseArray;
+}
+
+
+
+
+
+
+
+
+
+
+// 5
+public function GetAllProductsForGiftcard($transactionId, $customerId)
+    {
+        // dd($transactionId, $customerId);
+        $result = DB::table('products_added')
+            ->select('products_added.*', 'products.category_id', 'products.product_type_id', 'products.subcategory_id')
+            ->leftJoin('products', 'products.id', '=', 'products_added.product_id')
+            ->where('products_added.customer_Id', '=', $customerId)
+            ->where('products_added.order_id', '=', $transactionId)
+            ->where('products.category_id', '=', 208)
+            ->where('products.product_type_id', '=', 18)
+            ->orderByDesc('products_added.id')
+            ->get();
+
+        return $result;
+    }
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+// 6 
+    public function updateGiftCardRelatedCheckoutData($order_id, $customer_id)
+    {
+
+        // $admin_model_obj = new Admin_Model_Admin();
+        $GiftcardDetails = $this->GetAllProductsForGiftcard($order_id, $customer_id);
+        // dd($GiftcardDetails);
+
+
+        if (!empty($GiftcardDetails)) {
+            foreach ($GiftcardDetails as $gift) {
+
+                $UpdateId = $gift->id;
+                $itemSinglePrice = $gift->price;
+                $ProDVendorId = $gift->vendor_id;
+                $Reedemed_code = $this->createrandomstring();
+                $orderData = array("is_gift_card" => 1, "giftcard_redeemed_code" => $Reedemed_code);
+                $whereCond = 'id = ' . $UpdateId;
+                $this->UpdateProductsAddedData($orderData, $whereCond);
+
+                if ($ProDVendorId == 898) {
+                    $getNextCardNumberParameters = array();
+                    $getNextCardNumberParameters['userName'] = 'amplepoints';
+                    $getNextCardNumberParameters['password'] = '81qQPP472pn03svzH4';
+                    $getNextCardNumberParameters['groupNumber'] = '14974180';
+                    $getNextCardNumberParameters['ResponseFormat'] = 'Json';
+                    $getNextCardNumberParameters['synergyServerLocation'] = 'US';
+
+                    $cardResponseData = $this->synergyGetNextCardNumber($getNextCardNumberParameters);
+
+                    $synergy_card_no = '';
+                    $error_detail = '';
+                    $synergy_response = '';
+                    $synergy_response .= json_encode($cardResponseData);
+
+                    if (!empty($cardResponseData)) {
+                        if ($cardResponseData['xml']['Response']['@Status'] == 'Success') {
+                            $synergy_card_no = $cardResponseData['xml']['Response']['@NextCardNumber'];
+                        } else {
+                            $error_detail .= json_encode($cardResponseData);
+                        }
+                    }
+                    if (!empty($synergy_card_no)) {
+                        $loadActivateGiftCardPostParameters = array();
+                        $loadActivateGiftCardPostParameters['userName'] = 'amplepoints';
+                        $loadActivateGiftCardPostParameters['password'] = '81qQPP472pn03svzH4';
+                        $loadActivateGiftCardPostParameters['merchantRockCommID'] = 'GIFTTEST01';
+                        $loadActivateGiftCardPostParameters['customerCardNumber'] = $synergy_card_no;
+                        $loadActivateGiftCardPostParameters['numPoints'] = $itemSinglePrice;
+                        $loadActivateGiftCardPostParameters['cardAction'] = 'CardKeyed';
+                        $loadActivateGiftCardPostParameters['clerkID'] = '';
+                        $loadActivateGiftCardPostParameters['checkNumber'] = '';
+                        $loadActivateGiftCardPostParameters['accountType'] = 'CardNumber';
+                        $loadActivateGiftCardPostParameters['ResponseFormat'] = 'Json';
+                        $loadActivateGiftCardPostParameters['synergyServerLocation'] = 'US';
+
+                        $loadActivateGiftCardResponseData = $this->synergyLoadActivateGiftCard($loadActivateGiftCardPostParameters);
+                        $synergy_response .= json_encode($loadActivateGiftCardResponseData);
+
+                        if (!empty($loadActivateGiftCardResponseData)) {
+                            if ($loadActivateGiftCardResponseData['xml']['status'] == 'failure') {
+                                $error_detail .= $loadActivateGiftCardResponseData['xml']['error'];
+                            }
+                        }
+                    }
+
+                    $synergyOrderData = array("synergy_card_no" => $synergy_card_no, "synergy_response" => $synergy_response, 'error_detail' => $error_detail);
+                    $syWhereCond = 'id = ' . $UpdateId;
+                    $this->UpdateProductsAddedData($synergyOrderData, $syWhereCond);
+                }
+            }
+        }
+    } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 7
+public function getordercustomerdata($customer_id)
+{
+    $tableName = 'users';
+    $result = DB::table($tableName)
+        ->where('user_id', $customer_id)
+        ->get();
+    return $result->toArray();
+}
+
+
+
+
+
+
+
+
+//8
+public function GetUserOrderProductTotal($orderId)
+{
+    $result = DB::table('products_added')
+        ->select(DB::raw('SUM(amount) as totalpurchase'))
+        ->where('order_id', $orderId)
+        ->get();
+
+    return $result->toArray();
+}
+
+
+    
+
+
+
+//9
+public function GetUserRewardHistory($userId)
+{
+    $result = DB::table('tbl_reward_history')
+        ->whereMonth('month', now()->month)
+        ->whereYear('year', now()->year)
+        ->where('user_id', $userId)
+        ->orderBy('id', 'ASC')
+        ->get();
+
+    return $result->toArray();
+}
+
+
+
+
+
+//10
+public function GetUserRewardHistorySum($userId)
+{
+    $result = DB::table('tbl_reward_history')
+        ->select(
+            DB::raw('SUM(five_percent_total) as fivepercent_total'),
+            DB::raw('SUM(seven_percent_total) as sevenpercent_total'),
+            DB::raw('SUM(ten_percent_total) as tenpercent_total'),
+            DB::raw('SUM(fivepercent_amount) as fivepercent_amount'),
+            DB::raw('SUM(sevenpercent_amount) as sevenpercent_amount'),
+            DB::raw('SUM(tenpercent_amount) as tenpercent_amount')
+        )
+        ->whereMonth('month', now()->month)
+        ->whereYear('year', now()->year)
+        ->where('user_id', $userId)
+        ->get();
+
+    return $result->toArray();
+}
+
+
+
+
+
+//11
+public function InsertUserRewardHistory($values)
+{
+    $tableName = 'tbl_reward_history';
+
+    $insertedId = DB::table($tableName)->insertGetId($values);
+
+    return $insertedId;
+}
+
+
+
+
+
+//12
+public function updateAmplePoints($data, $usrcid)
+{
+    $tableName = 'users';
+
+    $whereClause = ['user_id' => $usrcid];
+
+    DB::table($tableName)->where($whereClause)->update($data);
+
+    return 1;
+}
+
+
+
+
+
+
+
+
+//13
+public function SelectOrderProductsAdded($order_id)
+{
+    $tableName = 'products_added';
+
+    $result = DB::table($tableName)
+        ->where('order_id', $order_id)
+        ->where('is_purchased', 1)
+        ->get();
+
+    return $result->toArray();
+}
+
+
+
+
+//14
+public function GetProductQuantity($product_id)
+{
+    $result = DB::table('products')
+        ->where('id', $product_id)
+        ->value('quantity');
+
+    return $result;
+}
+
+
+
+
+
+//15
+public function updateproductdata($values, $pid)
+{
+    $result = DB::table('products')
+        ->where('id', $pid)
+        ->update($values);
+
+    return $result;
+}
 
 
 

@@ -1208,46 +1208,39 @@ public function processcheckoutpayment($transaction_id,$user_id){
 
             $resultupdateuseramples = $admin_model_obj->updateuseramplesdata($customer_id, $order_id);
 
-
-
-
-
-
-
-
-
-
-
-            $this->updateGiftCardRelatedCheckoutData($order_id, $customer_id);
+            $admin_model_obj->updateGiftCardRelatedCheckoutData($order_id, $customer_id);
 
           
-            // $this->customerdermail($order_id, $customer_id);
-            // $this->ordermail($order_id, $customer_id);
 
-            $vendorData = $admin_model_obj->selectdistincOrderVendor($order_id);
+
+
+
+            // $this->customerdermail($order_id, $customer_id); //mail
+            // $this->ordermail($order_id, $customer_id); //mail
+
+            $vendorData = $admin_model_obj->selectdistincOrderVendor($order_id);  //done
 
             // foreach ($vendorData as $vdata) {
-            //     $this->vendorordermail($order_id, $customer_id, $vdata['vendor_id']);
+            //     $this->vendorordermail($order_id, $customer_id, $vdata['vendor_id']); //mail
             // }
 
-            // $this->sendmessegeTocustomer($order_id);
+            // $this->sendmessegeTocustomer($order_id); //mail
 
-            $giftCardToData = $admin_model_obj->getFullOrderDetailForGiftToUsers($order_id);
+            $giftCardToData = $admin_model_obj->getFullOrderDetailForGiftToUsers($order_id);  //done
 
             if (!empty($giftCardToData)) {
 
                 foreach ($giftCardToData as $orderInfo) {
 
-                    $gfOrderId = $orderInfo['orderid'];
-                    $gfuserId = $orderInfo['customer_Id'];
+                    $gfOrderId = $orderInfo->orderid;
+                    $gfuserId = $orderInfo->customer_Id;
 
-                    $this->gifrcardOrderEmail($gfOrderId, $orderInfo, $gfuserId);
-
-                    $this->sendGiftcardMsgTOUser($gfOrderId, $orderInfo);
+                    // $this->gifrcardOrderEmail($gfOrderId, $orderInfo, $gfuserId); //mail
+                    // $this->sendGiftcardMsgTOUser($gfOrderId, $orderInfo); //mail
                 }
             }
 
-            $this->addUserPurchaseReward($customer_id, $order_id);
+            $this->addUserPurchaseReward($customer_id, $order_id); //done
 
             $this->UpdateProductQuantity($order_id);
 
@@ -1264,17 +1257,449 @@ public function processcheckoutpayment($transaction_id,$user_id){
 
             $updateWhere = "user_id = $customer_id AND order_id = '$order_id'";
 
-            $admin_model_obj->UpdateAnyTableData('tbl_order', array('order_payment_status' => 1, 'order_payment_data' => json_encode($paymentDetail)), $updateWhere);
+            $admin_model_obj->UpdateAnyTableData('tbl_order', array('order_payment_status' => 1, 'order_payment_data' => json_encode($paymentDetail)), $updateWhere); //done
 
 
 
 
-            $this->_redirect("/ordersuccess/msg/1/order_id/$order_id/user_id/$customer_id");
+            // $this->_redirect("/ordersuccess/msg/1/order_id/$order_id/user_id/$customer_id");
+            // dd("Thanks for payment.");
+            return view('member.payment.thank_you');
 
         } else {
-            $this->_redirect("/ordersuccess/msg/2/order_id/$order_id/user_id/$customer_id");
+            // $this->_redirect("/ordersuccess/msg/2/order_id/$order_id/user_id/$customer_id");
+            dd("all done 2");
         }
 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function addUserPurchaseReward($userId, $orderId)
+    {
+        $admin_model_obj =  new \App\Models\AdminImpFunctionModel;
+        $customerinfo = $admin_model_obj->getordercustomerdata($userId);
+        $TotalPurchaseData = $admin_model_obj->GetUserOrderProductTotal($orderId);
+        // dd($TotalPurchaseData);
+
+        $PurchaseTotal = $TotalPurchaseData[0]->totalpurchase;
+        // dd($TotalPurchaseData,$PurchaseTotal);
+
+        //$PurchaseTotal = 200;
+        //echo "YOur Total Purchase => $PurchaseTotal";
+
+        $RewardHistory = $admin_model_obj->GetUserRewardHistory($userId);
+
+        //echo "<pre>";print_r($RewardHistory);
+        $FivePercentAmount = 0.00;
+        $SevenPercentAmount = 0.00;
+        $TenPercentAmount = 0.00;
+        $TotalFivePercentAmount = 0.00;
+        $TotalSevenPercentAmount = 0.00;
+        $TotalTenPercentAmount = 0.00;
+        $Myrewardtime = $customerinfo[0]->reward_time;
+
+        $CurrentTrewardtime = number_format($Myrewardtime, 2, '.', '');
+        $CrurrrewardFractional = explode('.', $CurrentTrewardtime);
+        $MyLeftDigit = $CrurrrewardFractional[0];
+        $MyRightDigit = $CrurrrewardFractional[1];
+        $FinalRewardsTime = $CurrentTrewardtime;
+
+        //echo "Your Current Reward Time => $CurrentTrewardtime </br>";
+
+        if (!empty($RewardHistory)) {
+
+            $RewardHistorySum = $admin_model_obj->GetUserRewardHistorySum($userId);
+
+            $fivepercent_total = $RewardHistorySum[0]['fivepercent_total'];
+            $sevenpercent_total = $RewardHistorySum[0]['sevenpercent_total'];
+            $tenpercent_total = $RewardHistorySum[0]['tenpercent_total'];
+            $fivepercent_amount = $RewardHistorySum[0]['fivepercent_amount'];
+            $sevenpercent_amount = $RewardHistorySum[0]['sevenpercent_amount'];
+            $tenpercent_amount = $RewardHistorySum[0]['tenpercent_amount'];
+
+            //echo "<pre>";print_r($RewardHistorySum);
+
+            if ($fivepercent_total >= 25) {
+
+                if ($sevenpercent_total >= 35) {
+
+                    $TenPercentAmount = (($PurchaseTotal * 10) / 100);
+
+                    $TotalTenPercentAmount = $PurchaseTotal;
+
+                } else {
+
+                    $checkSum = $sevenpercent_amount + $PurchaseTotal;
+
+                    if ($checkSum > 500) {
+
+                        $leftSevenPercent = 500 - $sevenpercent_amount;
+
+                        $SevenPercentAmount = (($leftSevenPercent * 7) / 100);
+
+                        $TotalSevenPercentAmount = $leftSevenPercent;
+
+                        $RestAmount = $PurchaseTotal - $leftSevenPercent;
+
+                        $TenPercentAmount = (($RestAmount * 10) / 100);
+
+                        $TotalTenPercentAmount = $RestAmount;
+
+                    } else {
+
+                        $SevenPercentAmount = (($PurchaseTotal * 7) / 100);
+
+                        $TotalSevenPercentAmount = $PurchaseTotal;
+
+                    }
+
+                }
+
+            } else {
+
+                $checkSum = $fivepercent_amount + $PurchaseTotal;
+
+                if ($checkSum > 500) {
+
+                    $leftFivePercent = 500 - $fivepercent_amount;
+
+                    $FivePercentAmount = (($leftFivePercent * 5) / 100);
+
+                    $TotalFivePercentAmount = $leftFivePercent;
+
+                    $RestAmount = $PurchaseTotal - $leftFivePercent;
+
+                    if ($RestAmount > 1000) {
+
+                        $leftabovesevenper = $RestAmount - 500;
+
+                        //echo "Total Five Percent => $FivePercentAmount </br>";
+
+                        $SevenPercentAmount = ((500 * 7) / 100);
+
+                        $TotalSevenPercentAmount = 500;
+
+                        //echo "Total Seven Percent => $SevenPercentAmount </br>";
+
+                        $TenPercentAmount = (($leftabovesevenper * 10) / 100);
+
+                        $TotalTenPercentAmount = $leftabovesevenper;
+
+                        //echo "Total Ten Percent => $TenPercentAmount </br>";
+
+                    } else {
+
+                        if ($RestAmount > 500) {
+
+                            $leftabovesevenper = $RestAmount - 500;
+
+                            //echo "Total Five Percent => $FivePercentAmount </br>";
+
+                            $SevenPercentAmount = ((500 * 7) / 100);
+
+                            $TotalSevenPercentAmount = 500;
+
+                            //echo "Total Seven Percent => $SevenPercentAmount </br>";
+
+                            $TenPercentAmount = (($leftabovesevenper * 10) / 100);
+
+                            $TotalTenPercentAmount = $leftabovesevenper;
+
+                            //echo "Total Ten Percent => $TenPercentAmount </br>";
+
+
+                        } else {
+
+                            $SevenPercentAmount = (($RestAmount * 7) / 100);
+
+                            $TotalSevenPercentAmount = $RestAmount;
+
+                        }
+
+                        //echo "Total Seven Percent => $SevenPercentAmount </br>";
+                    }
+
+                } else {
+
+                    $FivePercentAmount = (($PurchaseTotal * 5) / 100);
+
+                    $TotalFivePercentAmount = $PurchaseTotal;
+
+                }
+
+            }
+
+            $percentageAmount = ($FivePercentAmount + $SevenPercentAmount + $TenPercentAmount);
+
+            $percentageAmount = number_format($percentageAmount, 2, '.', '');
+
+            //echo "Apply % on $totalMonthAmount Percentage amount => $$percentageAmount </br>";
+
+            $rewardPoints = ($percentageAmount / 0.12);
+
+            $rewardPoints = number_format($rewardPoints, 2, '.', '');
+
+            //echo "Reward Point => $rewardPoints </br>";
+
+            $NewRewardsPoint = explode('.', $rewardPoints);
+
+            $MyNewLeftDigit = $NewRewardsPoint[0];
+            $MyNewRightDigit = $NewRewardsPoint[1];
+
+            $FinalLeftTotal = $MyLeftDigit + $MyNewLeftDigit;
+
+            //echo "Reward Left Total => $FinalLeftTotal </br>";
+
+            $FinalRightTotal = $MyRightDigit + $MyNewRightDigit;
+
+            //echo "Reward Right Total => $FinalRightTotal </br>";
+
+
+            if ($FinalRightTotal == 60) {
+
+                $FinalRewardsTime = $FinalLeftTotal + 1;
+
+                $FinalRewardsTime = number_format($FinalRewardsTime, 2, '.', '');
+
+            } else if ($FinalRightTotal > 60) {
+
+                $secondsAmple = $FinalRightTotal;
+                $iAmple = ($secondsAmple / 60) % 60;
+                $sAmple = $secondsAmple % 60;
+                $myMinuteAmple = $iAmple;
+                $mySecondAmple = sprintf("%02d", $sAmple);
+
+                $FinalLeftAmple = $FinalLeftTotal + $myMinuteAmple;
+
+                $calculateRightAmple = $mySecondAmple;
+
+                $calculateRightAmple = sprintf("%02d", $calculateRightAmple);
+
+                $FinalRewardsTime = $FinalLeftAmple . '.' . $calculateRightAmple;
+
+
+            } else {
+
+                $calculateRightAmple = sprintf("%02d", $FinalRightTotal);
+                $FinalRewardsTime = $FinalLeftTotal . '.' . $calculateRightAmple;
+            }
+
+            /* echo "your Five Percent Is => $FivePercentAmount </br>";
+            echo "your Total Five Percent Amount Is => $TotalFivePercentAmount </br>";
+            echo "your SevenPercent Is => $SevenPercentAmount </br>";
+            echo "your SevenPercent Amount Is => $TotalSevenPercentAmount </br>";
+            echo "your Ten Percent => $TenPercentAmount </br>";
+            echo "your Ten Percent Amount Is => $TotalTenPercentAmount </br>"; */
+
+
+            $insertArray = array('user_id' => $userId,
+                'order_id' => $orderId,
+                'order_amount' => $PurchaseTotal,
+                'month_total' => $PurchaseTotal,
+                'five_percent_total' => $FivePercentAmount,
+                'seven_percent_total' => $SevenPercentAmount,
+                'ten_percent_total' => $TenPercentAmount,
+                'fivepercent_amount' => $TotalFivePercentAmount,
+                'sevenpercent_amount' => $TotalSevenPercentAmount,
+                'tenpercent_amount' => $TotalTenPercentAmount,
+                'total_reward' => $rewardPoints,
+                'after_reward' => $FinalRewardsTime,
+                'previous_reward' => $customerinfo[0]['reward_time'],
+                'year' => date('Y'),
+                'month' => date('m'),
+                'day' => date('d'),
+            );
+
+            //echo "<pre>";print_r($insertArray);
+            $rewardid = $admin_model_obj->InsertUserRewardHistory($insertArray);
+            if ($rewardid > 0) {
+                $myres = $admin_model_obj->updateAmplePoints(array('reward_time' => $FinalRewardsTime), $userId);
+            }
+
+        } else {
+
+            $totalMonthAmount = $PurchaseTotal;
+            if ($totalMonthAmount > 0) {
+                if ($totalMonthAmount > 500) {
+                    if ($totalMonthAmount > 1000) {
+                        $leftabovesevenper = $totalMonthAmount - 1000;
+                        $FivePercentAmount = ((500 * 5) / 100);
+                        $TotalFivePercentAmount = 500;
+                        //echo "Total Five Percent => $FivePercentAmount </br>";
+                        $SevenPercentAmount = ((500 * 7) / 100);
+                        $TotalSevenPercentAmount = 500;
+                        //echo "Total Seven Percent => $SevenPercentAmount </br>";
+                        $TenPercentAmount = (($leftabovesevenper * 10) / 100);
+                        $TotalTenPercentAmount = $leftabovesevenper;
+                        //echo "Total Ten Percent => $TenPercentAmount </br>";
+                    } else {
+                        $leftabovefiveper = $totalMonthAmount - 500;
+                        $FivePercentAmount = ((500 * 5) / 100);
+                        $TotalFivePercentAmount = 500;
+                        //echo "Total Five Percent => $FivePercentAmount </br>";
+                        $SevenPercentAmount = (($leftabovefiveper * 7) / 100);
+                        $TotalSevenPercentAmount = $leftabovefiveper;
+                        //echo "Total Seven Percent => $SevenPercentAmount </br>";
+                    }
+
+
+                } else {
+
+                    $FivePercentAmount = (($totalMonthAmount * 5) / 100);
+                    $TotalFivePercentAmount = $totalMonthAmount;
+                }
+
+                $percentageAmount = ($FivePercentAmount + $SevenPercentAmount + $TenPercentAmount);
+                $percentageAmount = number_format($percentageAmount, 2, '.', '');
+                //echo "Apply % on $totalMonthAmount Percentage amount => $$percentageAmount </br>";
+                $rewardPoints = ($percentageAmount / 0.12);
+                $rewardPoints = number_format($rewardPoints, 2, '.', '');
+                //echo "Reward Point => $rewardPoints </br>";
+                $NewRewardsPoint = explode('.', $rewardPoints);
+                $MyNewLeftDigit = $NewRewardsPoint[0];
+                $MyNewRightDigit = $NewRewardsPoint[1];
+                $FinalLeftTotal = $MyLeftDigit + $MyNewLeftDigit;
+
+                //echo "Reward Left Total => $FinalLeftTotal </br>";
+
+                $FinalRightTotal = $MyRightDigit + $MyNewRightDigit;
+
+                //echo "Reward Right Total => $FinalRightTotal </br>";
+
+
+                if ($FinalRightTotal == 60) {
+
+                    $FinalRewardsTime = $FinalLeftTotal + 1;
+
+                    $FinalRewardsTime = number_format($FinalRewardsTime, 2, '.', '');
+
+                } else if ($FinalRightTotal > 60) {
+
+                    $secondsAmple = $FinalRightTotal;
+                    $iAmple = ($secondsAmple / 60) % 60;
+                    $sAmple = $secondsAmple % 60;
+                    $myMinuteAmple = $iAmple;
+                    $mySecondAmple = sprintf("%02d", $sAmple);
+
+                    $FinalLeftAmple = $FinalLeftTotal + $myMinuteAmple;
+
+                    $calculateRightAmple = $mySecondAmple;
+
+                    $calculateRightAmple = sprintf("%02d", $calculateRightAmple);
+
+                    $FinalRewardsTime = $FinalLeftAmple . '.' . $calculateRightAmple;
+
+
+                } else {
+
+                    $calculateRightAmple = sprintf("%02d", $FinalRightTotal);
+                    $FinalRewardsTime = $FinalLeftTotal . '.' . $calculateRightAmple;
+                }
+
+
+                $insertArray = array('user_id' => $userId,
+                    'order_id' => $orderId,
+                    'order_amount' => $PurchaseTotal,
+                    'month_total' => $PurchaseTotal,
+                    'five_percent_total' => $FivePercentAmount,
+                    'seven_percent_total' => $SevenPercentAmount,
+                    'ten_percent_total' => $TenPercentAmount,
+                    'fivepercent_amount' => $TotalFivePercentAmount,
+                    'sevenpercent_amount' => $TotalSevenPercentAmount,
+                    'tenpercent_amount' => $TotalTenPercentAmount,
+                    'total_reward' => $rewardPoints,
+                    'after_reward' => $FinalRewardsTime,
+                    'previous_reward' => $customerinfo[0]->reward_time,
+                    'year' => date('Y'),
+                    'month' => date('m'),
+                    'day' => date('d'),
+                );
+
+                //echo "<pre>";print_r($insertArray);
+
+                $rewardid = $admin_model_obj->InsertUserRewardHistory($insertArray);
+
+                if ($rewardid > 0) {
+
+                    $myres = $admin_model_obj->updateAmplePoints(array('reward_time' => $FinalRewardsTime), $userId);
+                }
+
+                //echo "<pre>";print_R($insertArray);die;
+
+                //echo "Your Final Reward Time => $FinalRewardsTime </br>";
+            }
+
+        }
+
+        //echo $PurchaseTotal;
+
+        // dd($PurchaseTotal);
+
+    }
+
+
+
+
+
+
+
+
+    public function UpdateProductQuantity($order_id)
+    {
+        $admin_model_obj = new \App\Models\AdminImpFunctionModel;
+        $OrderDetail = $admin_model_obj->SelectOrderProductsAdded($order_id);
+
+        if (!empty($OrderDetail)) {
+            foreach ($OrderDetail as $ordData) {
+                $pdata = array();
+                $product_id = $ordData->product_id;
+                $quantity = $ordData->quantity;
+                //echo "BY quentity => $quantity";
+                $ProductQuntity = $admin_model_obj->GetProductQuantity($product_id);
+
+                //echo "<pre>";print_r($ProductQuntity);
+                // dd($ProductQuntity->quantity);
+                $finalQuntitity = ($ProductQuntity - $quantity);
+                // dd($finalQuntitity);
+                //echo "final => $finalQuntitity";
+                $pdata['quantity'] = $finalQuntitity;
+                $updatedb = $admin_model_obj->updateproductdata($pdata, $product_id);
+
+            }
+        }
     }
 
 

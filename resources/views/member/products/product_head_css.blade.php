@@ -22,11 +22,11 @@
 	
 	<title>GUCCI Gray Gradient Cat Eye Ladies Sunglasses</title>
 
-	<link rel='shortcut icon' type='image/x-icon' href="https://amplepoints.com/images/favicon.ico" >
+	{{-- <link rel='shortcut icon' type='image/x-icon' href="https://amplepoints.com/images/favicon.ico" >
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto+Mono:300,400,500,700|Roboto:100,300,400,500,900" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/font-awesome/css/font-awesome.css" />
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/font-awesome/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/fonts/glyphicons-halflings-regular.ttf" />
+	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/fonts/glyphicons-halflings-regular.ttf" /> --}}
 
 
 
@@ -34,7 +34,7 @@
 	 @include("member.products.bootstrap_min")
 
 
-	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/main-style.css" />
+	{{-- <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/main-style.css" />
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/amplepoint-style.css" />
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/amples.css" />
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/replica.css" />
@@ -48,7 +48,7 @@
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/prodect-detail.css" >
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/jquery-ui.css" >
 	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/animate-login.css" >
-	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/shopping_cart/vasplus_programming_blog_shopping_cart_v4.css">
+	<link rel="stylesheet" type="text/css" href="https://amplepoints.com/shopping_cart/vasplus_programming_blog_shopping_cart_v4.css"> --}}
 	<style type="text/css">
 
 

@@ -9,7 +9,7 @@
 @endsection
 
 @include('includes.head')
-
+@include('includes.new_head')
 @include('member.products.product_head_css')
 
 

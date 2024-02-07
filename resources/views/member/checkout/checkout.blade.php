@@ -9,6 +9,7 @@
 @endsection
 
 @include('includes.head')
+@include('includes.new_head')
 @include('includes.header')
 @include('member.checkout.checkout_style')
 
