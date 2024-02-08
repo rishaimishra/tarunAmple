@@ -22,7 +22,7 @@
       <p class="lead">We appreciate your Choice.</p>
       <hr class="my-4">
       <p>Your order has been successfully placed.</p>
-      <a class="btn btn-primary btn-lg" href="#" role="button">Continue Shopping</a>
+      <a class="btn btn-primary btn-lg" href="{{url('/')}}" role="button">Continue Shopping</a>
     </div>
   </div>
 </body>
