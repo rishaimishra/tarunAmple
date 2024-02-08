@@ -150,7 +150,7 @@ $base_url = $protocol . '://' . $host . $project_path;
             //$('.video-player').css('display','none');
             // $('.main-wpappers').css('display','none');
             // $('.bonce').css('display','block');
-        }, 1000);
+        }, Bytime);
 
 
 
