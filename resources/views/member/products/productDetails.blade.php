@@ -1,4 +1,4 @@
-@extends('Layouts.app') --}}
+@extends('Layouts.app') 
 
 @section('meta')
     {{-- all meta tags --}}
@@ -133,8 +133,13 @@ if ($acpt) {
                     <!-- Left colunm -->
                     <div class="column col-xs-12 col-sm-3 detail_hide" id="left_column">
                         <!-- block best sellers -->
-                      @include('member.products.productDetails_part1')
-                      @include("member.products.productDetails_part2")
+                        {{-- image -> part4 --}}
+                        {{-- info -> part3 --}}
+                        {{-- checkout -> part1 --}}
+                        {{-- map -> part2 --}}
+                        
+                        @include('member.products.productDetails_part1')
+                        @include("member.products.productDetails_part2")
                       @include("member.products.productDetails_part3")
                       @include("member.products.productDetails_part4")
 

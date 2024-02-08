@@ -11,6 +11,7 @@
   <!-- css  -->
   <link rel="stylesheet" href="{{asset('public/assets/css/main.css')}}">
   <link rel="stylesheet" href="{{asset('public/assets/css/styles.css')}}">
+  <link rel="stylesheet" href="{{asset('public/assets/css/custom.css')}}">
 
   <!-- slick CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css" />
