@@ -123,7 +123,10 @@ $base_url = $protocol . '://' . $host . $project_path;
  
     <script>
         var mytimeout;
+        var count = 0;
+        var doit=0;
         var mytime = "<?=$row['length_video'];?>";
+         $('.duration').text(mytime);
         // console.log(mytime)
         var Bytime = mytime * 1000;
         mytimeout = setTimeout(function(){ 
@@ -156,118 +159,140 @@ $base_url = $protocol . '://' . $host . $project_path;
 
 
 
-var count = 0;
+doit=1;
 var player = this;
 
 var intervalId = setInterval(function() {
   // Increment the count by 1
+
+  if(doit === 1){
   count++;
 
   // Update the text content of the span with the new count value
   $('span.current-times').text(count);
+  $('.current-time').text(mytime-count)
 
   // Check if 30 seconds have passed, and if so, clear the interval
   if (count >= mytime) {
     clearInterval(intervalId);
   }
+  // console.log('ab',count,doit)
+}else{
+    clearInterval(intervalId);
+}
 }, 1000);
 
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script>
 
         //setTimeout(function() { disableMute(); }, 2000);
 
-        $(function(){
-            $('.current-time').countdowntimer({
-                seconds :<?=$row['length_video'];?>
-                // size : "lg"
-            });
-        });
+        // $(function(){
+        //     $('.current-time').countdowntimer({
+        //         seconds :<?=$row['length_video'];?>
+        //         // size : "lg"
+        //     });
+        // });
     </script>
 
     <script>
 
 
         //add some controls
-        $(function () {
-            //var current;
+        // $(function () {
+        //     //var current;
 
-            var player = this;
-            var getSetCurrentTime = createGetSetHandler(
+        //     var player = this;
+        //     var getSetCurrentTime = createGetSetHandler(
 
-            function () {
-                $('input.time-slider', player).prop('value', $.prop(this, 'currentTime'));
-            }, function () {
+        //     function () {
+        //         $('input.time-slider', player).prop('value', $.prop(this, 'currentTime'));
+        //     }, function () {
 
-            });
+        //     });
 
-            $('video, audio', this).bind('durationchange updateMediaState', function () {
-                var duration = $.prop(this, 'duration');
-                //alert(duration);
-                if (!duration) {
-                    return;
-                }
+        //     $('video, audio', this).bind('durationchange updateMediaState', function () {
+        //         var duration = $.prop(this, 'duration');
+        //         //alert(duration);
+        //         if (!duration) {
+        //             return;
+        //         }
 
-                $('span.duration', player).text(duration);
+        //         $('span.duration', player).text(duration);
 
-            }).bind('timeupdate', function () {
-                var durations = $.prop(this, 'duration');
-                var current = $.prop(this, 'currentTime');
-                //alert(durations);
-                var cr = Math.round(current);
-                var dr = Math.round(durations);
+        //     }).bind('timeupdate', function () {
+        //         var durations = $.prop(this, 'duration');
+        //         var current = $.prop(this, 'currentTime');
+        //         //alert(durations);
+        //         var cr = Math.round(current);
+        //         var dr = Math.round(durations);
 
-                /* if(cr == dr){
-                alert("Hello");
-                befor code here setTimeout function
-                } */
+        //         /* if(cr == dr){
+        //         alert("Hello");
+        //         befor code here setTimeout function
+        //         } */
 
-                var cur = $.prop(this, 'currentTime');
-                var c = Math.round(cur);
+        //         var cur = $.prop(this, 'currentTime');
+        //         var c = Math.round(cur);
 
-                //alert(c);
-                // $('span.current-times', player).text(c);
-
-
-            }).bind('timeupdate', getSetCurrentTime.get).bind('emptied', function () {
-                $('input.time-slider', player).prop('disabled', true);
-                $('span.duration', player).text('--');
-                $('span.current-times', player).text(0);
+        //         //alert(c);
+        //         // $('span.current-times', player).text(c);
 
 
-            })
-
-            $('input.play', player).bind('click', function () {
-
-                $('video, audio', player)[0].play();
-            });
-            $('input.pause', player).bind('click', function () {
-                $('video, audio', player)[0].pause();
-
-            });
+        //     }).bind('timeupdate', getSetCurrentTime.get).bind('emptied', function () {
+        //         $('input.time-slider', player).prop('disabled', true);
+        //         $('span.duration', player).text('--');
+        //         $('span.current-times', player).text(0);
 
 
-        });
-        function createGetSetHandler(get, set) {
+        //     })
 
-            return {
-                get: function () {
+        //     $('input.play', player).bind('click', function () {
 
-                    /* if (blocked) {
-                    return;
-                    }*/
-                    return get.apply(this, arguments);
-                },
+        //         $('video, audio', player)[0].play();
+        //     });
+        //     $('input.pause', player).bind('click', function () {
+        //         $('video, audio', player)[0].pause();
 
-            };
-        };
+        //     });
+
+
+        // });
+        // function createGetSetHandler(get, set) {
+
+        //     return {
+        //         get: function () {
+
+        //             /* if (blocked) {
+        //             return;
+        //             }*/
+        //             return get.apply(this, arguments);
+        //         },
+
+        //     };
+        // };
     </script>
     <script>
         $(document).ready(function () {
             //alert('hier');
             $('.clocse-my-video').click(function(){
                 //alert('hi');
+                count=0;
+                doit=0;
                 clearTimeout(mytimeout);
                 $('#member').html('');
                 $('#member').css('display','none');

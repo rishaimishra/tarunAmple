@@ -39,7 +39,7 @@ $admin_model_obj  =  new \App\Models\AdminImpFunctionModel;?>
         width: 378px !important;
     }
     .images-popsme {
-    	width: 350px;
+    	width: 387px;
         position: absolute;
         z-index: 99999999;
         cursor: pointer;
@@ -226,7 +226,7 @@ $amplesdatas=$amplesresult;
         </div>
         <div class="wpbs_handle blink">
 
-            <img src="https://amplepoints.com/newcss/img/af_1.jpg" alt="" style="display:none">
+            <img src="https://amplepoints.com/newcss/img/af_1.jpg" alt="" >
 
         </div>
     </div>
@@ -338,7 +338,7 @@ $amplesdatas=$amplesresult;
 
                                     ?>
 
-                                    <li id="addid_<?php echo $i; ?>" style="width: 100px;">
+                                    <li id="addid_<?php echo $i; ?>" >
                                         <div class="ads-setss">
                                             <div  id="dd_<?=$key->adver_id;?>"  class="main-logo"><img  
                                             	{{-- src="<?php echo $admin_model_obj->cdnUrl('adver_images/image/'.$key->adver_logo);?>" --}}
@@ -517,10 +517,11 @@ $amplesdatas=$amplesresult;
                             .done(function(data){
                                 $('#adverpro').css('display','block');
                                 $('.main-wpappers').css('display','none');
-                                $('#adverpro').html(data);
+                                // $('#adverpro').html(data);
 
                             })
                         }else{
+                            // console.log("a")
                             $.ajax({
                                 url: SITEROOT+'/category_filter/advervideo.php',
                                 cache:false,

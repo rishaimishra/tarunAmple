@@ -2,17 +2,25 @@
     /* File : ajax.php
     * Author : Manish Kumar Jangir
     */
+    include '../global.php';
+    global  $db_host;
+    global  $db_user;
+    global  $db_password;
+    global  $db_name;
+    global  $db_port;
+
+
     class AJAX {
 
         private $database = NULL;
         private $_query = NULL;
         private $_fields = array();
         public  $_index = NULL;
-        const DB_HOST = "localhost";
-        const DB_USER = "root";
-        const DB_PASSWORD = "";
-        const DB_NAME = "amplepoint_new";
-        const DB_PORT = "3307";
+        const DB_HOST = $db_host;
+        const DB_USER =  $db_user;
+        const DB_PASSWORD =  $db_password;
+        const DB_NAME =  $db_name;
+        const DB_PORT = $db_port;
 
 
         public function __construct(){

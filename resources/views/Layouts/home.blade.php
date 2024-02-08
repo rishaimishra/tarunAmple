@@ -3,8 +3,21 @@
 <title>Amplepoint</title>
 @endsection
 @include('includes.head')
+@include('includes.new_head')
 @include('includes.header')
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+    .modal-backdrop {
+    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust as needed */
+}
+
+/* Override Bootstrap's modal fade class */
+.fade {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+</style>
 <style>
 html,body{
 overflow-x: hidden;
