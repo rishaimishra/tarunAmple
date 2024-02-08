@@ -26,7 +26,7 @@ $password = $db_password;
 
 //////// Do not Edit below /////////
 try {
-$dbo = new PDO('mysql:host='.$dbhost_name.';port=3307;dbname='.$database, $username, $password);
+$dbo = new PDO('mysql:host='.$dbhost_name.';port='.$$db_port.';dbname='.$database, $username, $password);
 // Output the connection string
 // echo 'Connected using the following connection string: ' . $dbo->getAttribute(PDO::ATTR_CONNECTION_STATUS);
 
