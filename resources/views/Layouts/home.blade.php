@@ -3,7 +3,9 @@
 <title>Amplepoint</title>
 @endsection
 @include('includes.head')
+@if(@Auth::user()->user_id)
 @include('includes.new_head')
+@endif
 @include('includes.header')
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
