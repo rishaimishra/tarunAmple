@@ -62,8 +62,10 @@ Route::post('/member-login/post',[CustomerAuthController::class, 'memberLoginPos
 
 
 // store and category
-Route::get('/stores',[StoreCategoryController::class, 'StorePage'])->name('store.page');
+Route::any('/stores',[StoreCategoryController::class, 'StorePage'])->name('store.page');
 Route::get('/category',[StoreCategoryController::class, 'CategoryPage'])->name('category.page');
+Route::get('/categorybymall/{id}',[StoreCategoryController::class, 'categorybymall'])->name('categorybymall');
+Route::get('productbyseller/{vendorName1}/{tbl_vndr_id}',[StoreCategoryController::class, 'productbyseller'])->name('productbyseller');
 
 
 

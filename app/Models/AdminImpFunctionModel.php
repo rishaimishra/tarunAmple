@@ -9,6 +9,7 @@ use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Cookie;
 
 class AdminImpFunctionModel extends Model
 {
@@ -1907,6 +1908,162 @@ public function updateproductdata($values, $pid)
 
     return $result;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//========================================== store and cat pages =============================//
+
+public function getOptions($optionName)
+{
+    $optionValue = DB::table('tbl_options')
+        ->where('option_name', $optionName)
+        ->value('option_value');
+
+    return $optionValue;
+}
+
+
+public function getUserRemoteData()
+{
+    $countryCode = [];
+    $isCountryCheckEnable = $this->getOptions('is_country_enable');
+    $defaultCountry = $this->getOptions('default_country');
+    $myCode = '';
+    if ($isCountryCheckEnable) {
+        if (!Cookie::has('ample_user_country')) {
+            $ipaAddress = request()->ip();
+            $apiKey = 'deb3edadc6e5fb165a24eb79b0780ca5c67967f9e443865d3232bed729de2386';
+            $response = Http::get("https://api.ipinfodb.com/v3/ip-country/?key=$apiKey&ip=$ipaAddress&format=json");
+            if ($response->successful()) {
+                $userDetails = $response->json();
+                if (!empty($userDetails)) {
+                    $myCode = $userDetails['countryCode'] ?? $defaultCountry;
+                }
+            } else {
+                $myCode = $defaultCountry;
+            }
+            Cookie::queue('ample_user_country', $myCode, 30 * 24 * 60); // 30 days
+        } else {
+            $myCode = Cookie::get('ample_user_country');
+        }
+    }
+    $countryCode['country_code'] = $myCode;
+    $countryCode['is_enable'] = $isCountryCheckEnable;
+    return $countryCode;
+}
+
+
+
+
+
+
+public function FilterFrontVendorDataNew($letter)
+{
+    $countryCode = $this->getUserRemoteData();
+    // dd($countryCode);
+
+    $query = DB::table('tbl_admin')
+        ->select(
+            'tbl_admin.ufullname as vendor_name',
+            'tbl_admin.uemail as vendor_email',
+            'tbl_admin.ustatus as vendor_status',
+            'tbl_vendor.tbl_vndr_phone as vendor_phone',
+            'tbl_vendor.tbl_vndr_adr as vendor_address',
+            'tbl_vendor.tbl_vndr_city as vendor_city',
+            'tbl_vendor.tbl_vndr_state as vendor_state',
+            'tbl_vendor.tbl_vndr_country as vendor_country',
+            'tbl_vendor.tbl_vndr_comp as vendor_company',
+            'tbl_vendor.tbl_vndr_dispname as vendor_displayname',
+            'tbl_vendor_images.tbl_vndr_img_pro as vendor_profileimage',
+             'tbl_vendor.tbl_vndr_id as tbl_vndr_id',
+              'tbl_vendor.tbl_vndr_zip as tbl_vndr_zip',
+        )
+        ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_admin_uid', '=', 'tbl_admin.u_id')
+        ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_vendor.tbl_vndr_id')
+        ->where('tbl_admin.ustatus', '!=', 0)
+        ->where('tbl_admin.utype', '=', 2)
+        ->where('tbl_admin.isdeleted', '=', 0)
+        ->where('tbl_vendor.tbl_vndr_store_status', '=', 1)
+        ->where('tbl_vendor.store', '=', 1)
+        ->where('tbl_vndr_comp', 'LIKE', $letter . '%');
+
+    if (!empty($countryCode) && $countryCode['is_enable'] == 1) {
+        $codeCountry = $countryCode['country_code'];
+        $query->where('tbl_vendor.vendor_country', '=', $codeCountry);
+    }
+    $query->orderBy('tbl_vendor.tbl_vndr_fname');
+    $result = $query->get();
+    return $result;
+}
+
+
+
+
+
+
+public function getfrontvendorlistdata()
+{
+    $countryCode = $this->getUserRemoteData();
+
+    $query = DB::table('tbl_admin')
+        ->select('tbl_admin.ufullname as vendor_name', 'tbl_admin.uemail as vendor_email', 'tbl_admin.ustatus as vendor_status', 'tbl_vendor.tbl_vndr_phone as vendor_phone', 'tbl_vendor.tbl_vndr_adr as vendor_address', 'tbl_vendor.tbl_vndr_city as vendor_city', 'tbl_vendor.tbl_vndr_state as vendor_state', 'tbl_vendor.tbl_vndr_country as vendor_country', 'tbl_vendor.tbl_vndr_comp as vendor_company', 'tbl_vendor.tbl_vndr_dispname as vendor_displayname', 'tbl_vendor_images.tbl_vndr_img_pro as vendor_profileimage',
+             'tbl_vendor.tbl_vndr_id as tbl_vndr_id',
+              'tbl_vendor.tbl_vndr_zip as tbl_vndr_zip',
+         )
+        ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_admin_uid', '=', 'tbl_admin.u_id')
+        ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_vendor.tbl_vndr_id')
+        ->where('tbl_admin.ustatus', '!=', 0)
+        ->where('tbl_admin.utype', '=', 2)
+        ->where('tbl_admin.isdeleted', '=', 0)
+        ->where('tbl_vendor.tbl_vndr_store_status', '=', 1)
+        ->where('tbl_vendor.store', '=', 1);
+
+    if (!empty($countryCode) && $countryCode['is_enable'] == 1) {
+        $codeCountry = $countryCode['country_code'];
+        $query->where('tbl_vendor.vendor_country', $codeCountry);
+    }
+
+    $query->orderBy('tbl_vendor.tbl_vndr_fname');
+    $result = $query->get();
+    return $result;
+}
+
+
+
+
+
+
+public function getfrontmainmallalldata()
+{
+    $tableName = 'mall';
+    $countryCode = $this->getUserRemoteData();
+
+    $query = DB::table($tableName)
+        ->where('status', '!=', 0);
+
+    if (!empty($countryCode) && $countryCode['is_enable'] == 1) {
+        $query->where('mall_country', $countryCode['country_code']);
+    }
+
+    $result = $query->get();
+    return $result;
+}
+
+
+
+
 
 
 
