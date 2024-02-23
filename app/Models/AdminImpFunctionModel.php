@@ -2067,6 +2067,460 @@ public function getfrontmainmallalldata()
 
 
 
+public function getcategorybymall($mallid)
+{
+    return DB::table('mall')
+        ->where('venr_mall_id', $mallid)
+        ->get();
+}
+
+
+
+
+
+public function getonecategory($mallid)
+{
+    return DB::table('mall')
+        ->where('venr_mall_id', $mallid)
+        ->get();
+}
+
+
+
+
+
+
+public function getcatmallByMallId($MallId)
+{
+    return DB::table('mall_directory')
+        ->leftJoin('mall_dir_pro', 'mall_dir_pro.dir_id', '=', 'mall_directory.mall_direct_id')
+        ->where('mall_dir_pro.mall_id', $MallId)
+        ->orderByDesc('mall_directory.mall_direct_id')
+        ->get();
+}
+
+
+
+
+
+
+
+
+public function getvendorbymallIdAndCat($mallid, $cateID)
+{
+    $countryCoDe = $this->getUserRemoteData();
+
+    $query = DB::table('tbl_admin')
+        ->select('tbl_admin.ufullname as vendor_name', 'tbl_admin.uemail as vendor_email', 'tbl_admin.ustatus as vendor_status', 'tbl_vendor.tbl_vndr_phone as vendor_phone', 'tbl_vendor.tbl_vndr_adr as vendor_address', 'tbl_vendor.tbl_vndr_city as vendor_city', 'tbl_vendor.tbl_vndr_state as vendor_state', 'tbl_vendor.tbl_vndr_country as vendor_country', 'tbl_vendor.tbl_vndr_comp as vendor_company', 'tbl_vendor.tbl_vndr_dispname as vendor_displayname', 'tbl_vendor_images.tbl_vndr_img_pro as vendor_profileimage', 'tbl_vendor.tbl_vndr_id as tbl_vndr_id','tbl_vendor.tbl_vndr_zip as tbl_vndr_zip',)
+        ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_admin_uid', '=', 'tbl_admin.u_id')
+        ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_vendor.tbl_vndr_id')
+        ->where('tbl_admin.ustatus', '!=', 0)
+        ->where('tbl_admin.utype', 2)
+        ->where('tbl_admin.isdeleted', 0)
+        ->where('tbl_vendor.tbl_vndr_store_status', 1)
+        ->where('tbl_vendor.vendor_selected_malls', 'like', "%$mallid%")
+        ->where('tbl_vendor.vendor_selected_mall_cat', 'like', "%$cateID%");
+
+    if (!empty($countryCoDe) && $countryCoDe['is_enable'] == 1) {
+        $codeCountry = $countryCoDe['country_code'];
+        $query->where('tbl_vendor.vendor_country', $codeCountry);
+    }
+
+    $query->orderBy('tbl_vendor.tbl_vndr_id');
+
+    return $query->get();
+}
+
+
+
+
+
+
+
+public function GetVendorMeta($vendor_id)
+{
+    $result = DB::table('tbl_vendor')
+        ->select('meta_title', 'meta_description', 'meta_keyword')
+        ->where('tbl_vndr_id', $vendor_id)
+        ->first();
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+public function getvendorbykey($vendor_key)
+{
+    $result = DB::table('tbl_vendor')
+        ->select(
+            'tbl_vendor.tbl_vndr_id as vendorid',
+            'tbl_vendor.tbl_vndr_fname as vendor_fname',
+            'tbl_vendor.tbl_vndr_lname as vendor_lname',
+            'tbl_vendor.tbl_vndr_adr as vendor_address',
+            'tbl_vendor.tbl_vndr_city as vendor_city',
+            'tbl_vendor.tbl_vndr_state as vendor_state',
+            'tbl_vendor.tbl_vndr_country as vendor_country',
+            'tbl_vendor.tbl_vndr_zip as vendor_zipcode',
+            'tbl_vendor.tbl_vndr_dispname as vendor_displayname',
+            'tbl_vendor_images.tbl_vndr_img_pro as vendor_image',
+            'tbl_vendor_images.tbl_vndr_img_banr1 as vendor_background_image',
+            'tbl_vendor_images.tbl_vndr_img_banr2 as vendor_banner1',
+            'tbl_vendor_images.tbl_vndr_img_banr3 as vendor_banner2',
+            'tbl_vendor_images.tbl_vndr_img_banr4 as vendor_banner3',
+            'tbl_vendor_images.tbl_vndr_img_banr5 as vendor_banner4',
+            'tbl_vendor.tbl_vndr_store_status as storestatus',
+            'tbl_vendor.assign_user_id',
+            'tbl_vendor_images.tbl_vndr_uid'
+        )
+        ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_vendor.tbl_vndr_id')
+        ->where('tbl_vendor.tbl_vndr_id', $vendor_key)
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
+public function productbysellerNoamples($selllerid)
+{
+    $result = DB::table('products')
+        ->select(
+            'products.id as pid',
+            'products.vendor_uid as vendor_key',
+            'products.product_type_key',
+            'products.product_name as pname',
+            'products.single_price as pprice',
+            'image as img_name',
+            'products.prod_front_fromdate as pfrmdate',
+            'products.prod_front_todate as ptodate',
+            'products.stock_availability as pstock',
+            'quantity',
+            'products.min_order_quantity as pminqty',
+            'products.deal_type as pdltype',
+            'products.product_discount as pdiscount',
+            'products.no_of_amples as pamples',
+            'products.free_with_amples as pfwamples',
+            'products.supplier_name as pvendor',
+            'products.discount_price as pdiscountprice',
+            'products.is_without_ample',
+            'products.wholesel_without_ample',
+            'products.discount_without_ample',
+            'products.discount_price_without_ample'
+        )
+        ->where('products.status', 1)
+        ->where('products.vendor_uid', $selllerid)
+        ->where('products.is_without_ample', 1)
+        ->where('products.is_free_product', 0)
+        // ->groupBy('products.id')
+        // ->get();
+        ->paginate(25);
+
+    return $result;
+}
+
+
+
+
+
+
+
+public function ProductBySellerFreeProducts($selllerid)
+{
+    $result = DB::table('products')
+        ->select(
+            'products.id as pid',
+            'products.vendor_uid as vendor_key',
+            'products.product_type_key',
+            'products.product_name as pname',
+            'products.single_price as pprice',
+            'image as img_name',
+            'products.prod_front_fromdate as pfrmdate',
+            'products.prod_front_todate as ptodate',
+            'products.stock_availability as pstock',
+            'quantity',
+            'products.min_order_quantity as pminqty',
+            'products.deal_type as pdltype',
+            'products.product_discount as pdiscount',
+            'products.no_of_amples as pamples',
+            'products.free_with_amples as pfwamples',
+            'products.supplier_name as pvendor',
+            'products.discount_price as pdiscountprice',
+            'products.is_without_ample',
+            'products.wholesel_without_ample',
+            'products.discount_without_ample',
+            'products.discount_price_without_ample'
+        )
+        ->where('products.status', 1)
+        ->where('products.vendor_uid', $selllerid)
+        ->where('products.is_free_product', 1)
+        // ->groupBy('products.id')
+        // ->get();
+         ->paginate(25);
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+public function productbyseller($condition, $selllerid)
+{
+    $result = array();
+    $_name = 'products';
+    if ($condition == 'feature') {
+        $whr = "is_featured='1'";
+    } elseif ($condition == 'hotdeal') {
+        $whr = "is_featured='0'";
+    } else {
+        $whr = "deal_type='0'";
+    }
+
+    $result = DB::table($_name)
+        ->select(
+            'products.id as pid',
+            'products.vendor_uid as vendor_key',
+            'products.product_type_key',
+            'products.product_name as pname',
+            'products.single_price as pprice',
+            'image as img_name',
+            'products.prod_front_fromdate as pfrmdate',
+            'products.prod_front_todate as ptodate',
+            'products.stock_availability as pstock',
+            'quantity',
+            'products.min_order_quantity as pminqty',
+            'products.deal_type as pdltype',
+            'products.product_discount as pdiscount',
+            'products.no_of_amples as pamples',
+            'products.free_with_amples as pfwamples',
+            'products.supplier_name as pvendor',
+            'products.discount_price as pdiscountprice'
+        )
+        ->where('products.status', 1)
+        ->where('products.is_free_product', 0)
+        ->where('products.vendor_uid', $selllerid)
+        // ->groupBy('products.id')
+        // ->get();
+         ->paginate(25);
+        // dd($result,$condition,$selllerid);
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+
+public function getheadertitledata($condition)
+{
+    $tableName = 'tbl_header_title';
+    if ($condition == 'feature') {
+        $where = 'is_featured = 1';
+    } elseif ($condition == 'hotdeal') {
+        $where = 'is_featured = 0';
+    } else {
+        $where = 'deal_type = 0';
+    }
+
+    $result = DB::table($tableName)
+        ->where('tstatus', 1)
+        // ->whereRaw($where)
+        // ->groupBy('id')
+        ->get();
+
+    return $result->toArray();
+}
+
+
+
+
+
+
+public function getproductsubcat2Idlistbyseller($sellerId)
+{
+    $tableName = 'products';
+
+    $result = DB::table($tableName)
+        // ->select('subcategory_id')
+        ->where('status', '=', 1)
+        ->where('vendor_uid', '=', $sellerId)
+        // ->distinct()
+        ->get();
+
+    return $result->toArray();
+}
+
+
+
+
+
+
+
+
+public function getfilterproductcount($productsid = '', $catid = '', $subcateid = '', $vendorid = '', $pricerange = '')
+{
+    $ptcheck = $productsid;
+    $ctcheck = $catid;
+    $sbctcheck = $subcateid;
+    $price_range = $pricerange;
+    $selcheck = $vendorid;
+
+    $query = DB::table('products as t1')
+        ->select('t1.*')
+        ->leftJoin('tbl_vendor as tvdr', 't1.vendor_uid', '=', 'tvdr.tbl_vndr_id')
+        ->where('tvdr.tbl_vndr_store_status', 1)
+        ->where('t1.status', 1);
+
+    if (!empty($ptcheck)) {
+        $query->where('t1.product_type_id', $ptcheck);
+    }
+
+    if (!empty($selcheck)) {
+        $query->where('t1.vendor_uid', $selcheck);
+    }
+
+    if (!empty($ctcheck)) {
+        $query->where('t1.category_id', $ctcheck);
+    }
+
+    if (!empty($sbctcheck)) {
+        $query->where('t1.subcategory_id', $sbctcheck);
+    }
+
+    if (!empty($price_range)) {
+        $data3 = explode('-', $price_range);
+        $arrcount = count($data3) - 1;
+        $query->whereBetween('t1.single_price', [$data3[0], $data3[$arrcount]]);
+    }
+
+    $result = $query->distinct()->get();
+
+    return $result;
+}
+
+
+
+
+
+
+
+public function GetCoutForProductTable($conditions = [])
+{
+    $query = DB::table('products')->select(DB::raw('count(*) as total_count'));
+
+    if (!empty($conditions)) {
+        foreach ($conditions as $key => $value) {
+            $query->where($value);
+        }
+    }
+
+    $result = $query->first();
+
+    return $result->total_count ?? 0;
+}
+
+
+public function GetCoutForProductTable2($vid,$l1,$l2,$status)
+{
+    $query = DB::table('products')->select(DB::raw('count(*) as total_count'))
+    ->where('vendor_uid',$vid)->whereBetween('product_discount',[$l1,$l2])->where('status',$status)->first();
+
+    // dd($query->total_count);
+
+    return $query->total_count ?? 0;
+}
+
+
+
+
+
+
+
+
+
+public function getfiltersforfront($subcatId)
+{
+    $result = DB::table('vendor_main_fil')
+        ->select('vendor_main_fil.*', 'tbl_filter_type.*')
+        ->leftJoin('tbl_filter_type', 'tbl_filter_type.id', '=', 'vendor_main_fil.main_filter')
+        ->where('vid', $subcatId)
+        ->where('vendor_main_fil.status', 1)
+        ->orderBy('vendor_main_fil.vmfid')
+        ->get();
+
+    return $result;
+}
+
+
+
+
+public function getforfrontbysubcat2Id()
+{
+    $tableName = 'tbl_filters';
+    $result = DB::table($tableName)
+        ->leftJoin('tbl_filter_category', 'tbl_filter_category.ass_fill_id', '=', $tableName . '.ftype')
+        ->where('status', 1)
+        ->orderBy('id')
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+public function getsubfiltersforfront($catfilterkey)
+{
+    $tableName = 'tbl_subfilter';
+    $result = DB::table($tableName)
+        ->where('status', 1)
+        ->where('main_filtertype', $catfilterkey)
+        ->orderBy('id')
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
+public function GetContactMePriceDetail($ctm_product_id)
+{
+    $tableName = 'contact_me_price';
+    $result = DB::table($tableName)
+        ->where('ctm_product_id', $ctm_product_id)
+        ->first();
+
+    return $result;
+}
+
+
+
+
+
+
+
 
 
 

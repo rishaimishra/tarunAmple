@@ -26,7 +26,7 @@ $currentRoute = Route::currentRouteName();
                                     <div class="custom-dropdown-content">
                                         <a class="dropdown-item" href="#"> Brands</a>
                                         <hr class="m-0 p-0">
-                                        <a class="dropdown-item" href="#">Malls</a>
+                                        <a class="dropdown-item" href="{{route('mall.page')}}">Malls</a>
                                         <hr class="m-0 p-0">
                                         <a class="dropdown-item" href="#">Promotional Cards</a>
                                     </div>

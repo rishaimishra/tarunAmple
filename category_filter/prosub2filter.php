@@ -1,5 +1,17 @@
 <?php 
     $rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $script_path = $_SERVER['SCRIPT_NAME'];
+
+    // Extract the directory part from the script path
+    $project_path = dirname($script_path);
+    $base_url_full = $protocol . '://' . $host . $project_path;
+    // Remove "/category_filter"
+    $base_url = str_replace("/category_filter", "", $base_url_full);
+
+    
     require("db_config.php");
     session_start();
     //$main = $_GET['mainid'];
@@ -48,7 +60,7 @@
                 </div>    
 
                 <div class="left-block"> 
-                    <a href="<?php echo $rootUrl.'/productdetail/'.$key['pid'] ?>"><img class="img-responsive" alt="product" src="<?php echo $rootUrl.'/product_images/'.$key['pid'].'/'.$key["img_name"]; ?>" /></a>
+                    <a href="<?php echo $base_url.'/productdetail/'.$key['pid'] ?>"><img class="img-responsive" alt="product" src="<?php echo $base_url.'/product_images/'.$key['pid'].'/'.$key["img_name"]; ?>" /></a>
                     <div class="price_main">
                         <div class="price">
                             <div class="price2">
@@ -80,12 +92,12 @@
                     <div class="add-to-cart"> 
                         <?php if($key['product_type_key']=='0'){ ?>
 
-                            <?php /*  <a title="Add to Cart" <?php if($key['pdiscount'] >= 50){ ?> href="<?php echo $rootUrl.'/productdetail/'.$key['pid'];?>" <?php } else { ?> href="javascript:void(0);" onclick="vpb_add_to_cart('<?php echo $key['pname']; ?>','<?php echo $key['pid']; ?>','1','<?php echo $key['pprice']; ?>','<?php echo $key['pamples']; ?>','<?php  echo "0.00"; ?>','<?php echo $_SESSION['user_id']; ?>','<?php echo $key['vendor_key']; ?>','add');" <?php } ?>>Add to Cart</a> */?>
+                            <?php /*  <a title="Add to Cart" <?php if($key['pdiscount'] >= 50){ ?> href="<?php echo $base_url.'/productdetail/'.$key['pid'];?>" <?php } else { ?> href="javascript:void(0);" onclick="vpb_add_to_cart('<?php echo $key['pname']; ?>','<?php echo $key['pid']; ?>','1','<?php echo $key['pprice']; ?>','<?php echo $key['pamples']; ?>','<?php  echo "0.00"; ?>','<?php echo $_SESSION['user_id']; ?>','<?php echo $key['vendor_key']; ?>','add');" <?php } ?>>Add to Cart</a> */?>
 
-                            <a title="Add to Cart" href="<?php echo $rootUrl.'/productdetail/'.$key['pid'];?>">Add to Cart</a> 
+                            <a title="Add to Cart" href="<?php echo $base_url.'/productdetail/'.$key['pid'];?>">Add to Cart</a> 
 
                             <?php }else{?>
-                            <a title="Add to Cart" href="<?php echo $rootUrl.'/productdetail/'.$key['pid'];?>">  Contact Me</a> 
+                            <a title="Add to Cart" href="<?php echo $base_url.'/productdetail/'.$key['pid'];?>">  Contact Me</a> 
                             <?php } ?>
                     </div>
                 </div>    

@@ -1,5 +1,16 @@
 <?php 
     $rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+     
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $script_path = $_SERVER['SCRIPT_NAME'];
+
+    // Extract the directory part from the script path
+    $project_path = dirname($script_path);
+    $base_url_full = $protocol . '://' . $host . $project_path;
+    // Remove "/category_filter"
+    $base_url = str_replace("/category_filter", "", $base_url_full);
+
     require("db_config.php");
     session_start();
     $main = $_GET['mainid'];
@@ -26,66 +37,66 @@
 
                         if(!empty($vendor) && $vendor == 217) {   
 
-                            $DisplayPname = strip_tags(ucwords($key['pname']));
+                            $DisplayPname = strip_tags(ucwords($key->pname));
 
                         }else{
 
-                            $DisplayPname = strip_tags(ucwords(strtolower(substr($key['pname'],0,20))));  
+                            $DisplayPname = strip_tags(ucwords(strtolower(substr($key->pname,0,20))));  
                         }
 
                     ?>
                     <h5 class="Butter_aria"><?php echo $DisplayPname; ?></h5>
-                    <?php if($key['pdiscount'] >= 50){
+                    <?php if($key->pdiscount >= 50){
                             echo "<div class='content_price3'>
                             <h5> Free&nbsp;</h5>
                             <span>with&nbsp;</span>
-                            <h6>".$key['pfwamples']."</h6> 
+                            <h6>".$key->pfwamples."</h6> 
                             <span1> Amples</span1>
                             <div class='amp-logo'></div> 
                             </div>";  
                         } else { echo "<div class='price2'>
-                            <a href='#'>$".$key['pprice']."</a>
+                            <a href='#'>$".$key->pprice."</a>
                             </div>"; } ?>
                 </div>    
 
                 <div class="left-block"> 
-                    <a href="<?php echo $rootUrl.'/productdetail/'.$key['pid'] ?>">
-                        <img class="img-responsive" alt="product" src="<?php echo $rootUrl.'/product_images/'.$key['pid'].'/'.$key["img_name"]; ?>" /></a>
+                    <a href="<?php echo $base_url.'/productdetail/'.$key->pid ?>">
+                        <img class="img-responsive" alt="product" src="<?php echo $base_url.'/product_images/'.$key->pid.'/'.$key->img_name; ?>" /></a>
                     <div class="price_main">
                         <div class="price">
                             <div class="price2">
-                                <a href="#">$<?php echo $key['pprice']; ?></a>
+                                <a href="#">$<?php echo $key->pprice; ?></a>
                             </div>
                             <div class="content_price4">Buy & Earn
-                                <span> <?php echo $key['pamples']; ?> </span> 
+                                <span> <?php echo $key->pamples; ?> </span> 
                                 <span>Amples </span>
                             </div>
                             <div class="price7">
-                                Reward value&nbsp;<span>$<?php echo $key['pdiscountprice']; ?></span>
+                                Reward value&nbsp;<span>$<?php echo $key->pdiscountprice; ?></span>
                                 <br>
                             </div>
                             <div class="save5">You Earn&nbsp;
-                                <span><?php echo $key['pdiscount']; ?>%</span>
+                                <span><?php echo $key->pdiscount; ?>%</span>
                             </div>
                             <div class="by_aria"><h6>By:&nbsp;</h6>
-                                <a href="#"><?php echo $key['pvendor']; ?></a> 
+                                <a href="#"><?php echo $key->pvendor; ?></a> 
                             </div>
                         </div>
                     </div>
 
                     <div class="quick-view"> 
 
-                        <a title="Add to my wishlist" class="heart" <?php if(!empty($_SESSION['user_id'])) { ?> href="javascript:void(0);" onclick="wishlist_cart('<?php echo $key['pname']; ?>','<?php echo $key['pid']; ?>','1','<?php echo $key['pprice']; ?>','<?php echo $_SESSION['user_id'] ?>','add');"    <?php } else { ?>  id="modal_trigger" href="#modal" <?php } ?>></a> 
+                        <a title="Add to my wishlist" class="heart" <?php if(!empty($_SESSION['user_id'])) { ?> href="javascript:void(0);" onclick="wishlist_cart('<?php echo $key->pname; ?>','<?php echo $key->pid; ?>','1','<?php echo $key->pprice; ?>','<?php echo $_SESSION['user_id'] ?>','add');"    <?php } else { ?>  id="modal_trigger" href="#modal" <?php } ?>></a> 
                         <a title="Quick view" class="search" href="#"></a> 
 
                     </div>
                     <div class="add-to-cart"> 
-                        <?php if($key['product_type_key']=='0'){ ?>
+                        <?php if($key->product_type_key=='0'){ ?>
 
-                            <?php /*  <a title="Add to Cart" <?php if($key['pdiscount'] >= 50){ ?> href="<?php echo $rootUrl.'/productdetail/'.$key['pid'];?>" <?php } else { ?> href="javascript:void(0);" onclick="vpb_add_to_cart('<?php echo $key['pname']; ?>','<?php echo $key['pid']; ?>','1','<?php echo $key['pprice']; ?>','<?php echo $key['pamples']; ?>','<?php  echo "0.00"; ?>','<?php echo $_SESSION['user_id']; ?>','<?php echo $key['vendor_key']; ?>','add');" <?php } ?>>Add to Cart</a> */?>
-                            <a title="Add to Cart" href="<?php echo $rootUrl.'/productdetail/'.$key['pid'];?>">Add to Cart</a>
+                            <?php /*  <a title="Add to Cart" <?php if($key->pdiscount >= 50){ ?> href="<?php echo $base_url.'/productdetail/'.$key->pid;?>" <?php } else { ?> href="javascript:void(0);" onclick="vpb_add_to_cart('<?php echo $key->pname; ?>','<?php echo $key->pid; ?>','1','<?php echo $key->pprice; ?>','<?php echo $key->pamples; ?>','<?php  echo "0.00"; ?>','<?php echo $_SESSION['user_id']; ?>','<?php echo $key->vendor_key; ?>','add');" <?php } ?>>Add to Cart</a> */?>
+                            <a title="Add to Cart" href="<?php echo $base_url.'/productdetail/'.$key->pid;?>">Add to Cart</a>
                             <?php }else{?>
-                            <a title="Add to Cart" href="<?php echo $rootUrl.'/productdetail/'.$key['pid'];?>">  Contact Me</a> 
+                            <a title="Add to Cart" href="<?php echo $base_url.'/productdetail/'.$key->pid;?>">  Contact Me</a> 
                             <?php } ?>
                     </div>
                 </div>    

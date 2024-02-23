@@ -63,9 +63,12 @@ Route::post('/member-login/post',[CustomerAuthController::class, 'memberLoginPos
 
 // store and category
 Route::any('/stores',[StoreCategoryController::class, 'StorePage'])->name('store.page');
-Route::get('/category',[StoreCategoryController::class, 'CategoryPage'])->name('category.page');
-Route::get('/categorybymall/{id}',[StoreCategoryController::class, 'categorybymall'])->name('categorybymall');
-Route::get('productbyseller/{vendorName1}/{tbl_vndr_id}',[StoreCategoryController::class, 'productbyseller'])->name('productbyseller');
+Route::any('/category',[StoreCategoryController::class, 'CategoryPage'])->name('category.page');
+Route::any('/categorybymall/{id}',[StoreCategoryController::class, 'categorybymall'])->name('categorybymall');
+Route::any('productbyseller/{vendorName1}/{tbl_vndr_id}',[StoreCategoryController::class, 'productbyseller'])->name('productbyseller');
+Route::post('checksynergybalance',[StoreCategoryController::class, 'checksynergybalance'])->name('checksynergybalance');
+Route::post('sendcontactmereqtovendor',[StoreCategoryController::class, 'sendcontactmereqtovendor'])->name('sendcontactmereqtovendor');
+Route::any('/malls',[StoreCategoryController::class, 'mall_page'])->name('mall.page');
 
 
 
