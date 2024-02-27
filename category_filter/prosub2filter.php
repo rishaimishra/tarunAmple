@@ -109,7 +109,7 @@
         <?php }
     }else{
         echo "<div align='center'>
-        <h2 style='font-family:Arial Black, Gadget, sans-serif;font-size:30px;color:#0099FF;'>No Products Found.</h2></div>";
+        <h2 style='font-family:Arial Black, Gadget, sans-serif;font-size:30px;color:#0099FF;'>No Productsjj Found.</h2></div>";
 
     }
 

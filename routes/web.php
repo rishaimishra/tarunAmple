@@ -69,6 +69,7 @@ Route::any('productbyseller/{vendorName1}/{tbl_vndr_id}',[StoreCategoryControlle
 Route::post('checksynergybalance',[StoreCategoryController::class, 'checksynergybalance'])->name('checksynergybalance');
 Route::post('sendcontactmereqtovendor',[StoreCategoryController::class, 'sendcontactmereqtovendor'])->name('sendcontactmereqtovendor');
 Route::any('/malls',[StoreCategoryController::class, 'mall_page'])->name('mall.page');
+Route::any('/brands',[StoreCategoryController::class, 'brands'])->name('brands.page');
 
 
 

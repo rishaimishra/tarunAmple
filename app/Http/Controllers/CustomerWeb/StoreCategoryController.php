@@ -442,6 +442,66 @@ public function sendcontactmereqtovendor(Request $request){
 
 
 
+public function brands(Request $request){
+
+    $user_id = @Auth::user()->user_id;
+    $admin_model_obj = new \App\Models\AdminImpFunctionModel;
+
+    if (!empty($user_id)) {
+        $cartdetail['user_id'] = $user_id;
+    } else {
+         $cartdetail['username'] = session('REMOTE_ADDR');
+    }
+   
+        if (!empty($user_id)) {
+            $result = User::where('user_id',$user_id)->first();
+            $data['record'] = $result;
+            $amplesresult = $admin_model_obj->all_amples_data();
+            $data['amplesdatas'] = $amplesresult;
+            $data['myno'] = $user_id;
+            $data['usrmakey'] = $user_id;
+            $data['displaySideAdd'] = true;
+            /*required for display side adevertisment End*/
+        }
+
+        //$report = $admin_model_obj->getcatproducts($ptid);
+        $totaldata = $admin_model_obj->cart_total_amount($cartdetail);
+        $totalcartdata = $admin_model_obj->select_cart_numericdata($cartdetail);
+        $wishlistshow = $admin_model_obj->wishlist_cart($cartdetail);
+        $wishlisttotaldata = count($wishlistshow);
+
+        //$data['data = $report;
+        $data['cartdata'] = $totaldata;
+        $data['totalcartdata'] = $totalcartdata;
+        $data['wishlistcartdata'] = $wishlisttotaldata;
+        $data['wishcartdata'] = $wishlistshow;
+        $resultdatapro = $admin_model_obj->gethomcatdata();
+        $data['retdata'] = $resultdatapro;
+        $resultdataspro = $admin_model_obj->gethomsubcatdata();
+        $data['retsdata'] = $resultdataspro;
+
+        $allvendorslist = $admin_model_obj->getfrontvendorlistbranddata();
+        $data['allvendorslist'] = $allvendorslist;
+
+        $letter = @$request->input('filt');
+
+        if (!empty($letter)) {
+            $allvendorslistbyname = $admin_model_obj->getcatfilterdatabyletter($letter);
+            //print_r($allvendorslistbyname);die;
+            $data['allvendorslistbyname'] = $allvendorslistbyname;
+        }
+        // dd($data);
+
+    return view('member.storeAndCategory.brands')->with($data);
+}
+
+
+
+
+
+
+
+
 
 
 

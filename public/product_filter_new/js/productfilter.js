@@ -186,12 +186,23 @@ $(document).ready(function() {
         main_string = main_string.substring(1, main_string.length)
         //alert(main_string);
 
-        var base_url = window.location.origin;
-        alert(1);
+        function getBaseUrl() {
+    var baseUrl = window.location.origin;
+    var pathParts = window.location.pathname.split('/');
+    if (pathParts.length >= 2) {
+        baseUrl += '/' + pathParts[1]; // Assuming 'tarunAmple' is at index 1
+    }
+    return baseUrl;
+}
+
+// Example usage
+var baseUrl = getBaseUrl();
+console.log("Base URL:", baseUrl);
+        // console.log(baseUrl)
 
         $.ajax({
             type: "POST",
-            url: base_url+"/product_filter/filter_products.php",
+            url: baseUrl+"/category_filter/filter_products.php",
             data: main_string, 
             cache: false,
             success: function(html){

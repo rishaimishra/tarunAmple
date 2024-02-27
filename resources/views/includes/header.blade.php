@@ -24,7 +24,7 @@ $currentRoute = Route::currentRouteName();
                                 <li class="nav-item custom-dropdown">
                                     <a class="nav-link" href="{{route('store.page')}}">Stores</a>
                                     <div class="custom-dropdown-content">
-                                        <a class="dropdown-item" href="#"> Brands</a>
+                                        <a class="dropdown-item" href="{{route('brands.page')}}"> Brands</a>
                                         <hr class="m-0 p-0">
                                         <a class="dropdown-item" href="{{route('mall.page')}}">Malls</a>
                                         <hr class="m-0 p-0">

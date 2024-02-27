@@ -10,6 +10,42 @@
 @include('includes.header')
 @include('member.storeAndCategory.productBySallerCss')
 
+{{--  <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/font-awesome/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/fonts/glyphicons-halflings-regular.ttf" />
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/main-style.css" />
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/amplepoint-style.css" />
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/amples.css" />
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/replica.css" />
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/variables.css" >
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/prodect-a.css" >
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/prodect-b.css" >
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/search-header.css" />
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/POPUP.css" >
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/responsive.css" >
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/flyPanels.css" >
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/prodect-detail.css" >
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/jquery-ui.css" >
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/animate-login.css" >
+
+ <script type="text/javascript" src="https://amplepoints.com/newcss/js/jquery.flexslider.js"></script>
+ <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/newtiles.css"/>
+
+     <script type="text/javascript" language="javascript" src="https://amplepoints.com/newcss/js/animation-style.js"></script>
+    <script type="text/javascript" language="javascript" src="https://amplepoints.com/newcss/js/select2.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://amplepoints.com/newcss/js/theme-script.js"></script>
+    <script type="text/javascript" language="javascript" src="https://amplepoints.com/newcss/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://amplepoints.com/newcss/js/jquery-ui/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="https://amplepoints.com/newcss/js/jquery.leanModal.min.js"></script>
+
+        <script type="text/javascript" language="javascript" src="https://amplepoints.com/newcss/js/bootstrap.min.js"></script>
+    <!--<script src="https://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>-->
+    <script type='text/javascript' src='https://amplepoints.com/newcss/js/gmaps.js'></script>
+ --}}
+
 
 
 
@@ -239,7 +275,7 @@ mysqli_select_db($con, $db_database_name);
 											<input type="hidden" name="mysellid" id="myselid"
 											value="<?php echo $vendordata[0]->tbl_vndr_uid; ?>">
 											<div class="layered_subtitle">price</div>
-											<div class="layered-content slider-range">
+											{{-- <div class="layered-content slider-range">
 												<div data-label-reasult="Range:" data-min="0" data-max="1000" data-unit="$"
 													id="slider-range-price-filter" class="slider-range-price"
 												data-value-min="0" data-value-max="250"></div>
@@ -249,7 +285,17 @@ mysqli_select_db($con, $db_database_name);
 												</div>
 												<input type="hidden" name="amount-price-complete-amount"
 												id="amount-price-complete-amount" class="amount-price-complete-range"
-												value=""/>
+												value=""/> --}}
+
+												<div class="layered-content slider-range">
+    <div id="slider-range-price-filter" class="slider-range-price"></div>
+    <div class="amount-range-price" id="product-price-complete-range">
+        Range: $<span id="price-min">0</span> - $<span id="price-max">250</span>
+    </div>
+    <input type="hidden" name="amount-price-complete-amount" id="amount-price-complete-amount" class="amount-price-complete-range" value=""/>
+</div>
+
+
 												<ul class="check-box-list">
 													<li>
 														<input type="checkbox" id="p1" value="0-50" name="price_range"/>
@@ -610,48 +656,47 @@ $proddata1[] = $prodrowy1;
 
 
 
-
-{{-- part-7 --}}
-<!-- SPECIAL -->
 <?php if (isset($proddata1) && !empty($proddata1)) { ?>
 <div class="block left-module nvn-one spproduct">
 	<p class="title_block">PROMOTIONAL PRODUCT</p>
 	<?php foreach ($proddata1 as $rowtest) {
-	$productId = $rowtest->product_id;
+	$productId = $rowtest['product_id'];
 	$slectproduct = mysqli_query($con, "SELECT * FROM `products` WHERE id = $productId");
 	$proddatarowy1 = mysqli_fetch_array($slectproduct);
+	//dd($proddatarowy1,$productId);
+	//die();
 	                                    //echo "<pre>";print_r($proddatarowy1);die;
 		                                    $contactMePriceSP = $admin_model_obj->GetContactMePriceDetail($productId);
-		                                    $vendorKey = $proddatarowy1->vendor_uid;
+		                                    $vendorKey = $proddatarowy1['vendor_uid'];
 		                                    $vendorAddres = $admin_model_obj->ExecuteRowQuery("SELECT tbl_vndr_adr,retailer_type FROM `tbl_vendor` WHERE `tbl_vndr_id` = $vendorKey");
 		                                    $buy_and_earn = 0.00;
 		                                    $reward_value = 0.00;
 		                                    $you_earn = 0.00;
 		                                    $free_with_ample = 0.00;
 		                                    $display_free_with = 0;
-		                                    if ($proddatarowy1->product_type_key == '0') {
-		                                        $buy_and_earn = $admin_model_obj->FormatPricingValues($proddatarowy1->no_of_amples);
-		                                        $reward_value = $currencySymbol . '' . $admin_model_obj->FormatPricingValues($proddatarowy1->discount_price);
-		                                        $you_earn = (int)$proddatarowy1->product_discount;
+		                                    if ($proddatarowy1['product_type_key'] == '0') {
+		                                        $buy_and_earn = $admin_model_obj->FormatPricingValues($proddatarowy1['no_of_amples']);
+		                                        $reward_value = $currencySymbol . '' . $admin_model_obj->FormatPricingValues($proddatarowy1['discount_price']);
+		                                        $you_earn = (int)$proddatarowy1['product_discount'];
 		                                    } else {
 		                                        if (isset($contactMePriceSP) && !empty($contactMePriceSP)) {
 		                                            $buy_and_earn = $admin_model_obj->FormatPricingValues($contactMePriceSP->ctm_no_of_amples);
 		                                            $reward_value = $currencySymbol . '' . $admin_model_obj->FormatPricingValues($contactMePriceSP->ctm_discount_price);
 		                                        } else {
-		                                            $buy_and_earn = $admin_model_obj->FormatPricingValues($proddatarowy1->no_of_amples);
-		                                            $reward_value = $currencySymbol . '' . $admin_model_obj->FormatPricingValues($proddatarowy1->discount_price);
-		                                            $you_earn = (int)$proddatarowy1->product_discount;
+		                                            $buy_and_earn = $admin_model_obj->FormatPricingValues($proddatarowy1['no_of_amples']);
+		                                            $reward_value = $currencySymbol . '' . $admin_model_obj->FormatPricingValues($proddatarowy1['discount_price']);
+		                                            $you_earn = (int)$proddatarowy1['product_discount'];
 		                                        }
 		                                    }
-		                                    if ($proddatarowy1->product_discount >= 50) {
-		                                        if ($proddatarowy1->product_type_key == '0') {
-		                                            $free_with_ample = $admin_model_obj->FormatPricingValues($proddatarowy1->free_with_amples);
+		                                    if ($proddatarowy1['product_discount'] >= 50) {
+		                                        if ($proddatarowy1['product_type_key'] == '0') {
+		                                            $free_with_ample = $admin_model_obj->FormatPricingValues($proddatarowy1['free_with_amples']);
 		                                            $display_free_with = 1;
 		                                        } else {
 		                                            if (isset($contactMePriceSP) && !empty($contactMePriceSP)) {
 		                                                $display_free_with = 0;
 		                                            } else {
-		                                                $free_with_ample = $admin_model_obj->FormatPricingValues($proddatarowy1->free_with_amples);
+		                                                $free_with_ample = $admin_model_obj->FormatPricingValues($proddatarowy1['free_with_amples']);
 		                                                $display_free_with = 1;
 		                                            }
 		                                        }
@@ -665,13 +710,13 @@ $proddata1[] = $prodrowy1;
                                             <div class="filter-data">
                                                 <div class="pro_head">
 	                                                <?php
-	                                                    if ($proddatarowy1->vendor_uid == 217) {
+	                                                    if ($proddatarowy1['vendor_uid'] == 217) {
 	                                                        //$DisplayPname = strip_tags(ucwords($key->pname));
-	                                                        $DisplayPnameSS = strip_tags(ucwords($proddatarowy1->product_name));
+	                                                        $DisplayPnameSS = strip_tags(ucwords($proddatarowy1['product_name']));
 	                                                        //$DisplayPname = strip_tags(ucwords(strtolower(substr($key->pname,0,80))));
 	                                                    } else {
 	                                                        //$DisplayPname = strip_tags(ucwords(strtolower(substr($key->pname,0,20))));
-	                                                        $DisplayPnameSS = strip_tags(ucwords($proddatarowy1->product_name));
+	                                                        $DisplayPnameSS = strip_tags(ucwords($proddatarowy1['product_name']));
 	                                                        //$DisplayPname = strip_tags(ucwords(strtolower(substr($key['pname'],0,65))));
 	                                                    }
 	                                               ?>
@@ -699,13 +744,13 @@ $proddata1[] = $prodrowy1;
 								
 
 								<div class="pro_image" style="padding:0px;">
-								<a href="{{route('member.product.details.page',$proddatarowy1->id)}}">
+								<a href="{{route('member.product.details.page',$proddatarowy1['id'])}}">
 									<img class="img-responsive" alt="product"
-									src="<?php echo $admin_model_obj->OnlyCdnUrl('product_images/' . $proddatarowy1->id . '/' . $proddatarowy1->image); ?>"/>
+									src="<?php echo $admin_model_obj->OnlyCdnUrl('product_images/' . $proddatarowy1['id'] . '/' . $proddatarowy1['image']); ?>"/>
 								</a>
 								</div>
 								<div class="vendor_info">
-								<h5 class="vdr_name"><?php echo $proddatarowy1->supplier_name; ?></h5>
+								<h5 class="vdr_name"><?php echo $proddatarowy1['supplier_name']; ?></h5>
 								<?php if ($vendorAddres->retailer_type != 2) { ?>
 								<p class="vdr_address"><?php echo $vendorAddres->tbl_vndr_adr; ?></p>
 								<?php } else { ?>
@@ -714,7 +759,7 @@ $proddata1[] = $prodrowy1;
 								</div>
 								<div class="ap_price_area">
 								<div class="ap_display_price">
-									<span><?php echo $currencySymbol; ?><?php echo $admin_model_obj->FormatPricingValues($proddatarowy1->single_price); ?></span>
+									<span><?php echo $currencySymbol; ?><?php echo $admin_model_obj->FormatPricingValues($proddatarowy1['single_price']); ?></span>
 								</div>
 								<div class="ap_display_percentage">
 									<span><?php echo $you_earn; ?>% Back</span>
@@ -744,19 +789,19 @@ $proddata1[] = $prodrowy1;
 
 								<div class="pro_price">
 								<div class="quick-view"><a title="Add to my wishlist"
-								class="heart" <?php if (!empty($usrmakey)) { ?> href="javascript:void(0);" onclick="wishlist_cart('<?php echo $proddatarowy1->product_name; ?>','<?php echo $proddatarowy1->id; ?>','1','<?php echo $proddatarowy1->single_price; ?>','<?php echo $usrmakey; ?>','add');"    <?php } else { ?>  id="modal_trigger" href="#modal" <?php } ?>></a>
+								class="heart" <?php if (!empty($usrmakey)) { ?> href="javascript:void(0);" onclick="wishlist_cart('<?php echo $proddatarowy1['product_name']; ?>','<?php echo $proddatarowy1->id; ?>','1','<?php echo $proddatarowy1['single_price']; ?>','<?php echo $usrmakey; ?>','add');"    <?php } else { ?>  id="modal_trigger" href="#modal" <?php } ?>></a>
 
 
 								<!--  <a title="Quick view" class="search" href="#"></a> -->
 								</div>
 								<div class="add-to-cart">
-								<?php if ($proddatarowy1->product_type_key == '0') { ?>
+								<?php if ($proddatarowy1['product_type_key'] == '0') { ?>
 								<a title="Add to Cart"
-								href="{{route('member.product.details.page',$proddatarowy1->id)}}">Add
+								href="{{route('member.product.details.page',$proddatarowy1['id'])}}">Add
 								to Cart</a>
 								<?php } else { ?>
 								<a title="Add to Cart"
-								href="{{route('member.product.details.page',$proddatarowy1->id)}}">
+								href="{{route('member.product.details.page',$proddatarowy1['id'])}}">
 								Contact Me</a>
 								<?php } ?>
 								</div>
@@ -908,7 +953,7 @@ $proddata1[] = $prodrowy1;
 <!-- ./subcategories -->
 <!-- view-product-list-->
 <input type="hidden" id="phatonpen" value="<?php echo $usrmakey; ?>">
-                        <input type="hidden" id="targeton"value="<?php echo $record->total_ample; ?>">
+                        <input type="hidden" id="targeton"value="<?php echo @$record->total_ample; ?>">
                         <div id="view-product-list" class="view-product-list">
                             <h2 class="page-heading hidden-xs">
                              <span class="page-heading-title"><?php echo $vendordata[0]->vendor_displayname; ?></span>
@@ -1248,6 +1293,23 @@ $proddata1[] = $prodrowy1;
 
  @include('includes.footer')
  @include('includes.script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript" src="{{url('/')}}/public/product_filter_new/js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="{{url('/')}}/public/product_filter_new/js/productfilter.js"></script>
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<!-- jQuery library -->
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+<!-- jQuery UI library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
 <script>
     $("form#synergy_balance_popup_form").submit(function () {
         var formData = new FormData(this);
@@ -1554,4 +1616,19 @@ accordion('.filter-item', '.filter-item-inner-heading', '.filter-attribute-list'
                 }
             });
         });
+
+
+    $(function() {
+    $("#slider-range-price-filter").slider({
+        range: true,
+        min: 0,
+        max: 1000,
+        values: [0, 250],
+        slide: function(event, ui) {
+            $("#price-min").text(ui.values[0]);
+            $("#price-max").text(ui.values[1]);
+            $("#amount-price-complete-amount").val(ui.values[0] + " - " + ui.values[1]);
+        }
+    });
+});
 </script>

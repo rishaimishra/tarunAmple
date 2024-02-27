@@ -404,7 +404,7 @@ width: 168px;
                                         <?php $vendorName2 = strtolower(preg_replace('/\s+/', '', $keyss->vendor_displayname)); ?>
 
                                         <div class="vendor-div-box">
-                                            <a href="{{url('/')}}/public/productbyseller/{{$vendorName2}}/{{$keyss->tbl_vndr_id}}">
+                                            <a href="{{url('/')}}/productbyseller/{{$vendorName2}}/{{$keyss->tbl_vndr_id}}">
                                                 <div class="vendor-divimg">
                                                    
 
