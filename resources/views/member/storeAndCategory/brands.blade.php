@@ -101,12 +101,12 @@
                                 <?php foreach($frontallmalldata as $keymall) { 
 
                                     ?>
-                                    <div class="vendor-div">
+                                    <div class="vendor-div maxxvendor-detail">
 
-                                        <div class="vendor-div-box" style=" width: 100px !important; height:100px !important">
+                                        <div class="vendor-div-box">
                                             <a href="{{route('categorybymall',$keymall->venr_mall_id)}}">
-                                                <div class="vendor-divimg">
-                                                	<img src="https://amplepoints.com/mall/logo/{{$keymall->logo_image}}" alt="<?php echo $keymall->logo_image; ?>"/>
+                                                <div class="">
+                                                	<img style="height: 190px;" src="https://amplepoints.com/mall/logo/{{$keymall->logo_image}}" alt="<?php echo $keymall->logo_image; ?>"/>
 
                                                     {{-- <img src="<?php echo $admin_model_obj->cdnUrl('mall/logo/'.$keymall['logo_image']);  ?>" alt="<?php echo $keymall['logo_image']; ?>" /> --}}
                                                 </div>
@@ -166,73 +166,54 @@
 
                             <div class="content2" id="productContainer">
 
-                                <?PHP if(!empty($allvendorslistbyname)){ ?>
-
-                                    <?php 
-                                        foreach($allvendorslistbyname as $key) {
-                                            //print_r($key);
-
-                                            $vendorName1 = strtolower(preg_replace('/\s+/', '', $key->vendor_displayname));
+                                <?php if(!empty($allvendorslistbyname)): ?>
+                            
+                                    <?php foreach($allvendorslistbyname as $key): ?>
+                                        <?php
+                                        $vendorName1 = strtolower(preg_replace('/\s+/', '', $key->vendor_displayname));
                                         ?>
-
-                                        <a href="{{ !empty($key->tbl_vndr_id) ? route('productbyseller', ['vendorName1' => @$vendorName1, 'tbl_vndr_id' => @$key->tbl_vndr_id]) : '#' }}">
-
-                                            <div class="vendor-div">
-                                                <div class="vendor-div-box" style=" width: 100px !important; height:100px !important">
-                                                    <div class="vendor-divimg">
-                                                       {{--  <img src="<?php if(!empty($key['vendor_profileimage'])) { echo $admin_model_obj->cdnUrl('vendor-data/'.$key['tbl_vndr_id'].'/profile/'.$key['vendor_profileimage']); } else { echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); } ?>" alt="<?php echo $key['vendor_displayname']; ?>" /> --}}
-
-                                                        <img src="<?php if(!empty($key->vendor_profileimage)) { echo $admin_model_obj->cdnUrl('vendor-data/'.$key->tbl_vndr_id.'/profile/'.$key->vendor_profileimage); } else { echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); } ?>" alt="<?php echo $key->vendor_displayname; ?>" />
-
+                                        <a href="<?= !empty($key->tbl_vndr_id) ? route('productbyseller', ['vendorName1' => $vendorName1, 'tbl_vndr_id' => $key->tbl_vndr_id]) : '#' ?>">
+                                            <div class="vendor-div maxxvendor-detail">
+                                                <div class="vendor-div-box">
+                                                    <div class="">
+                                                        <img style="height: 190px;" src="<?= !empty($key->vendor_profileimage) ? $admin_model_obj->cdnUrl('vendor-data/'.$key->tbl_vndr_id.'/profile/'.$key->vendor_profileimage) : $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); ?>" alt="<?= $key->vendor_displayname; ?>" />
                                                     </div>
                                                     <div class="vendor-detail">
-                                                        <h4><span><i class="fa fa-user"></i></span>
-                                                        <?php echo substr($key->vendor_displayname, 0, 17); ?> </h4>
-                                                        <h3><span><i class="fa fa-map-marker"></i></span>
-                                                            <?php echo $key->vendor_city; ?>
-                                                        </h3>
-                                                        <h5><span><i class="fa fa-thumb-tack"></i></span>
-                                                            <?php echo $key->tbl_vndr_zip; ?>
-                                                        </h5>
+                                                        <h4><span><i class="fa fa-user"></i></span><?= substr($key->vendor_displayname, 0, 17); ?></h4>
+                                                        <h3><span><i class="fa fa-map-marker"></i></span><?= $key->vendor_city; ?></h3>
+                                                        <h5><span><i class="fa fa-thumb-tack"></i></span><?= $key->tbl_vndr_zip; ?></h5>
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
-                                        <?php } }else{?>
-
-                                    <?php 
-                                        foreach($allvendorslist as $key) {
-                                            //print_r($key);
-
-                                            $vendorName1 = strtolower(preg_replace('/\s+/', '', $key->vendor_displayname));  
+                                    <?php endforeach; ?>
+                            
+                                <?php else: ?>
+                            
+                                    <?php foreach($allvendorslist as $key): ?>
+                                        <?php
+                                        $vendorName1 = strtolower(preg_replace('/\s+/', '', $key->vendor_displayname));
                                         ?>
-                                        	<a href="{{ !empty($key->tbl_vndr_id) ? route('productbyseller', ['vendorName1' => @$vendorName1, 'tbl_vndr_id' => @$key->tbl_vndr_id]) : '#' }}">
-
-
-                                            <div class="vendor-div">
-                                                <div class="vendor-div-box" style=" width: 100px !important; height:100px !important">
-                                                    <div class="vendor-divimg">
-                                                        <{{-- img src="<?php if(!empty($key['vendor_profileimage'])) { echo $admin_model_obj->cdnUrl('vendor-data/'.$key['tbl_vndr_id'].'/profile/'.$key['vendor_profileimage']); } else { echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); } ?>" alt="<?php echo $key['vendor_displayname']; ?>" /> --}}
-
-                                                       <img src="<?php if(!empty($key->vendor_profileimage)) { echo $admin_model_obj->cdnUrl('vendor-data/'.$key->tbl_vndr_id.'/profile/'.$key->vendor_profileimage); } else { echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); } ?>" alt="<?php echo $key->vendor_displayname; ?>" />
+                                        <a href="<?= !empty($key->tbl_vndr_id) ? route('productbyseller', ['vendorName1' => $vendorName1, 'tbl_vndr_id' => $key->tbl_vndr_id]) : '#' ?>">
+                                            <div class="vendor-div maxxvendor-detail">
+                                                <div class="vendor-div-box">
+                                                    <div class="">
+                                                        <img style="height: 190px;" src="<?= !empty($key->vendor_profileimage) ? $admin_model_obj->cdnUrl('vendor-data/'.$key->tbl_vndr_id.'/profile/'.$key->vendor_profileimage) : $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); ?>" alt="<?= $key->vendor_displayname; ?>" />
                                                     </div>
                                                     <div class="vendor-detail">
-                                                        <h4><span><i class="fa fa-user"></i></span>
-                                                        <?php echo substr($key->vendor_displayname, 0, 17); ?> </h4>
-                                                        <h3><span><i class="fa fa-map-marker"></i></span>
-                                                            <?php echo $key->vendor_city; ?>
-                                                        </h3>
-                                                        <h5><span><i class="fa fa-thumb-tack"></i></span>
-                                                            <?php echo $key->tbl_vndr_zip; ?>
-                                                        </h5>
+                                                        <h4><span><i class="fa fa-user"></i></span><?= substr($key->vendor_displayname, 0, 17); ?></h4>
+                                                        <h3><span><i class="fa fa-map-marker"></i></span><?= $key->vendor_city; ?></h3>
+                                                        <h5><span><i class="fa fa-thumb-tack"></i></span><?= $key->tbl_vndr_zip; ?></h5>
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
-                                        <?php } ?>
-
-                                    <?php }?>
+                                    <?php endforeach; ?>
+                            
+                                <?php endif; ?>
+                            
                             </div>
+                            
 
                         </div>
 

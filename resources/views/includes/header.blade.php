@@ -25,9 +25,9 @@ $currentRoute = Route::currentRouteName();
                                     <a class="nav-link" href="{{route('store.page')}}">Stores</a>
                                     <div class="custom-dropdown-content">
                                         <a class="dropdown-item" href="{{route('brands.page')}}"> Brands</a>
-                                        <hr class="m-0 p-0">
+    
                                         <a class="dropdown-item" href="{{route('mall.page')}}">Malls</a>
-                                        <hr class="m-0 p-0">
+    
                                         <a class="dropdown-item" href="#">Promotional Cards</a>
                                     </div>
                                 </li>
@@ -52,9 +52,9 @@ $currentRoute = Route::currentRouteName();
                                     <a class="nav-link" href="#">Travel</a>
                                     <div class="custom-dropdown-content">
                                         <a class="dropdown-item" href="#">Hotel Booking</a>
-                                        <hr class="m-0 p-0">
+    
                                         <a class="dropdown-item" href="#">Flight Booking</a>
-                                        <hr class="m-0 p-0">
+    
                                         <a class="dropdown-item" href="#">Group Booking</a>
                                     </div>
                                 </li>
@@ -124,9 +124,7 @@ $currentRoute = Route::currentRouteName();
                             <a class="nav-link" href="{{route('store.page')}}">Stores</a>
                             <div class="custom-dropdown-content">
                                 <a class="dropdown-item" href="#"> Brands</a>
-                                <hr class="m-0 p-0">
                                 <a class="dropdown-item" href="#">Malls</a>
-                                <hr class="m-0 p-0">
                                 <a class="dropdown-item" href="#">Promotional Cards</a>
                             </div>
                         </li>
@@ -146,9 +144,7 @@ $currentRoute = Route::currentRouteName();
                             <a class="nav-link" href="#">Travel</a>
                             <div class="custom-dropdown-content">
                                 <a class="dropdown-item" href="#">Hotel Booking</a>
-                                <hr class="m-0 p-0">
                                 <a class="dropdown-item" href="#">Flight Booking</a>
-                                <hr class="m-0 p-0">
                                 <a class="dropdown-item" href="#">Group Booking</a>
                             </div>
                         </li>

@@ -110,7 +110,7 @@ li {
 }
 
 .custom-dropdown-content .dropdown-item {
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .custom-dropdown-content a {
@@ -118,11 +118,14 @@ li {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  background: gray;
+  background: rgb(179, 179, 179);
+  border-bottom: 1px solid black;
 }
 
 .custom-dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: #d6d6d6;
+  text-decoration: underline;
+  border-bottom: 1px solid #F75D00;
 }
 
 .custom-dropdown:hover .custom-dropdown-content {
@@ -133,7 +136,7 @@ li {
   background: rgba(255, 255, 255, .6);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   height: 60px;
-    border-bottom: 5px solid rgba(255,67,1, .6);
+  border-bottom: 5px solid rgba(255, 67, 1, .6);
 }
 
 .navbar-brand img {
@@ -211,7 +214,8 @@ li {
 
 .nav-item:hover {
   color: var(--bs-red) !important;
-  visibility: visible; /* shows sub-menu */
+  visibility: visible;
+  /* shows sub-menu */
   opacity: 1;
   z-index: 1;
   transform: translateY(0%);
@@ -222,7 +226,7 @@ li {
 .dropdown-item:hover,
 .nav-link:focus {
   color: var(--bs-red) !important;
-  
+
 }
 
 .search-form {
@@ -690,7 +694,61 @@ input.searching:focus-visible {
     justify-content: center;
   }
 }
-.header-icons span{
+
+.header-icons span {
   font-weight: 800;
   font-size: 13px;
+}
+
+.subscribe_btn {
+  background: #f75d00;
+  color: white;
+  border-radius: 0;
+  border: none;
+  margin-left: 3px;
+}
+
+.subscribe_input {
+  border: none;
+  border-radius: 0px;
+}
+
+#parallex-div-div-a .top-banner-img-a {
+  height: 83% !important;
+}
+
+.btn-group-vertical>.btn-group:after,
+.btn-group-vertical>.btn-group:before,
+.btn-toolbar:after,
+.btn-toolbar:before,
+.clearfix:after,
+.clearfix:before,
+.container-fluid:after,
+.container-fluid:before,
+.container:after,
+.container:before,
+.dl-horizontal dd:after,
+.dl-horizontal dd:before,
+.form-horizontal .form-group:after,
+.form-horizontal .form-group:before,
+.modal-footer:after,
+.modal-footer:before,
+.modal-header:after,
+.modal-header:before,
+.nav:after,
+.nav:before,
+.navbar-collapse:after,
+.navbar-collapse:before,
+.navbar-header:after,
+.navbar-header:before,
+.navbar:after,
+.navbar:before,
+.pager:after,
+.pager:before,
+.panel-body:after,
+.panel-body:before,
+.row:after,
+.row:before {
+  display: table;
+  content: " ";
 }

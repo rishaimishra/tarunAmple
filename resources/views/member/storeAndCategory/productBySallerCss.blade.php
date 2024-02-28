@@ -1,34 +1,39 @@
-
 <style type="text/css">
-                                #grid:hover {
-                                    color: #f75d00 !important;
-                                }
-                                #grid:hover span {
-                                    color: #f75d00 !important;
-                                }
-                                @media only screen and (max-width: 500px) {
-                                    .well.well-sm {
-                                        display: block;
-                                        padding: 5px;
-                                    }
-                                }
-                                #synergy_balance_check {
-                                    width: auto;
-                                    float: right;
-                                }
-                                @media only screen and (max-width: 768px) {
-                                    #synergy_balance_check {
-                                        width: 100%;
-                                        float: none;
-                                        margin: 15px 0px 15px 0px;
-                                    }
-                                }
-                                #synergy_balance_check:hover {
-                                    color: #f75d00 !important;
-                                }
-                                #synergy_balance_check:hover span {
-                                    color: #f75d00 !important;
-                                }
+    #grid:hover {
+        color: #f75d00 !important;
+    }
+
+    #grid:hover span {
+        color: #f75d00 !important;
+    }
+
+    @media only screen and (max-width: 500px) {
+        .well.well-sm {
+            display: block;
+            padding: 5px;
+        }
+    }
+
+    #synergy_balance_check {
+        width: auto;
+        float: right;
+    }
+
+    @media only screen and (max-width: 768px) {
+        #synergy_balance_check {
+            width: 100%;
+            float: none;
+            margin: 15px 0px 15px 0px;
+        }
+    }
+
+    #synergy_balance_check:hover {
+        color: #f75d00 !important;
+    }
+
+    #synergy_balance_check:hover span {
+        color: #f75d00 !important;
+    }
 </style>
 
 <style>
@@ -46,16 +51,13 @@
     }
 
     <?php if($vdrid == 217) { ?>
-
     /* .pro_image img {
     height: auto;
     width: auto;
     margin: auto;
     }*/
 
-    <?php } ?>
-
-    @media (min-width: 1280px) {
+    <?php } ?> @media (min-width: 1280px) {
         .nvslider #carousel-example-generic.vendor-section-bnr .carousel-inner .item {
             background-size: 100% !important;
             margin: 0 !important;
@@ -89,8 +91,7 @@
             box-shadow: 0 3px 5px 1px #565656;
             display: block;
             float: right;
-            height: 170px !important
-            left: 0;
+            height: 170px !important left: 0;
             margin: 40px 0 -70px 0px !important;
             padding: 5px;
             position: static;
@@ -231,13 +232,11 @@
         border-radius: 5px;
         text-align: center;
     }
-
 </style>
 
 <!-- NEW CSS FOR TILES -->
 
 <style>
-
     @media only screen and (min-width: 768px) {
         .product_new_container {
             height: 545px;
@@ -326,9 +325,7 @@
         margin-left: 5px;
     }
 
-    .ap_display_percentage span {
-
-    }
+    .ap_display_percentage span {}
 
     .ap_display_ample {
         color: #000;
@@ -363,156 +360,153 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
 </style>
 
 
 
 
 <style>
+    .cf:before,
+    .cf:after {
+        content: " ";
+        display: table;
+    }
 
-                                        .cf:before,
-                                        .cf:after {
-                                            content: " ";
-                                            display: table;
-                                        }
+    .cf:after {
+        clear: both;
+    }
 
-                                        .cf:after {
-                                            clear: both;
-                                        }
-
-                                        .cf {
-                                            *zoom: 1;
-                                        }
-
-
-                                        /* inline block */
-
-                                        .ib {
-                                            display: -moz-inline-stack;
-                                            display: inline-block;
-                                            zoom: 1;
-                                            *display: inline;
-                                            vertical-align: top;
-                                        }
-
-                                        .ib-m {
-                                            display: -moz-inline-stack;
-                                            display: inline-block;
-                                            zoom: 1;
-                                            *display: inline;
-                                            vertical-align: middle;
-                                        }
+    .cf {
+        *zoom: 1;
+    }
 
 
-                                        /* ul-reset */
+    /* inline block */
 
-                                        .ul-reset {
-                                            padding-left: 0;
-                                            margin-top: 0;
-                                            margin-bottom: 0;
-                                            list-style: none;
-                                        }
+    .ib {
+        display: -moz-inline-stack;
+        display: inline-block;
+        zoom: 1;
+        *display: inline;
+        vertical-align: top;
+    }
 
-                                        .main-filetr-ul:last-child {
-                                            border-bottom: 1px solid #ff4500;
-
-                                        }
-
-
-                                        /* styles */
-                                        .filter-item {
-
-                                            /*border-top: 1px solid rgb(136, 136, 136);*/
-                                            border-bottom: 1px solid #ff4500;
-                                        }
-
-                                        .add-border-top {
-                                            border-top: 1px solid #ff4500;
-                                        }
-
-                                        .filter-item-inner {
-                                            /* border-bottom: 1px solid #eee; */
-                                        }
-
-                                        .filter-item-inner-heading {
-                                            position: relative;
-                                            padding: 10px;
-                                            padding-right: 30px;
-                                            margin-top: 0;
-                                            margin-bottom: 0;
-                                            font-size: 1.2em;
-                                            cursor: pointer;
-                                        }
-
-                                        .filter-item-inner-heading.minus:after,
-                                        .filter-item-inner-heading.plus:after {
-                                            position: absolute;
-                                            top: 33%;
-                                            right: 7.5%;
-                                            font-size: .6em;
-                                        }
-
-                                        .filter-item-inner-heading.minus:after {
-                                            content: "▲";
-                                        }
-
-                                        .filter-item-inner-heading.plus:after {
-                                            content: "▼";
-                                        }
-
-                                        .filter-attribute-list {
-                                            overflow: hidden;
-                                            display: none;
-                                        }
-
-                                        .filter-attribute-list-inner {
-                                            padding: 0 10px 15px;
-                                        }
-
-                                        .filter-attribute-item {
-                                            padding-left: 0px;
-                                            margin-top: 5px;
-                                            /*border-bottom: 1px solid #ff4500;*/
-                                            /*padding: 10px 0px 5px 0px;*/
-                                            padding: 2px 0px 0px 0px;
-                                        }
-
-                                        .sub2item {
-                                            padding: 0px;
-                                        }
+    .ib-m {
+        display: -moz-inline-stack;
+        display: inline-block;
+        zoom: 1;
+        *display: inline;
+        vertical-align: middle;
+    }
 
 
-                                        .filter-attribute-item:first-child {
-                                            margin-top: 0;
-                                            /*border-top: 1px solid #ff4500;*/
-                                        }
+    /* ul-reset */
 
-                                        label.filter-attribute-label.ib-m {
-                                            line-height: 20px;
-                                            font-size: 15px;
-                                        }
+    .ul-reset {
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
 
-                                        label.filter-attribute-label.ib-m.sub-filter-lable {
-                                            line-height: 24px;
-                                            font-size: 15px;
-                                        }
+    .main-filetr-ul:last-child {
+        border-bottom: 1px solid #ff4500;
 
-                                        .main-filter-lable {
-                                            font-weight: 700;
-                                        }
+    }
 
-                                        .sub-filter-lable {
-                                            font-weight: 500;
-                                        }
 
-                                        .filter-item-inner-nosub-fileter {
-                                            position: relative;
-                                            padding: 10px;
-                                            padding-right: 30px;
-                                            margin-top: 0;
-                                            margin-bottom: 0;
-                                            font-size: 1.2em;
-                                        }
+    /* styles */
+    .filter-item {
 
-                                    </style>
+        /*border-top: 1px solid rgb(136, 136, 136);*/
+        border-bottom: 1px solid #ff4500;
+    }
+
+    .add-border-top {
+        border-top: 1px solid #ff4500;
+    }
+
+    .filter-item-inner {
+        /* border-bottom: 1px solid #eee; */
+    }
+
+    .filter-item-inner-heading {
+        position: relative;
+        padding: 10px;
+        padding-right: 30px;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+
+    .filter-item-inner-heading.minus:after,
+    .filter-item-inner-heading.plus:after {
+        position: absolute;
+        top: 33%;
+        right: 7.5%;
+        font-size: .6em;
+    }
+
+    .filter-item-inner-heading.minus:after {
+        content: "▲";
+    }
+
+    .filter-item-inner-heading.plus:after {
+        content: "▼";
+    }
+
+    .filter-attribute-list {
+        overflow: hidden;
+        display: none;
+    }
+
+    .filter-attribute-list-inner {
+        padding: 0 10px 15px;
+    }
+
+    .filter-attribute-item {
+        padding-left: 0px;
+        margin-top: 5px;
+        /*border-bottom: 1px solid #ff4500;*/
+        /*padding: 10px 0px 5px 0px;*/
+        padding: 2px 0px 0px 0px;
+    }
+
+    .sub2item {
+        padding: 0px;
+    }
+
+
+    .filter-attribute-item:first-child {
+        margin-top: 0;
+        /*border-top: 1px solid #ff4500;*/
+    }
+
+    label.filter-attribute-label.ib-m {
+        line-height: 20px;
+        font-size: 15px;
+    }
+
+    label.filter-attribute-label.ib-m.sub-filter-lable {
+        line-height: 24px;
+        font-size: 15px;
+    }
+
+    .main-filter-lable {
+        font-weight: 700;
+    }
+
+    .sub-filter-lable {
+        font-weight: 500;
+    }
+
+    .filter-item-inner-nosub-fileter {
+        position: relative;
+        padding: 10px;
+        padding-right: 30px;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1.2em;
+    }
+</style>

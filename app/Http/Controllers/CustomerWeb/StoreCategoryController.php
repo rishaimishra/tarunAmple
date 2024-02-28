@@ -487,7 +487,7 @@ public function brands(Request $request){
 
         if (!empty($letter)) {
             $allvendorslistbyname = $admin_model_obj->getcatfilterdatabyletter($letter);
-            //print_r($allvendorslistbyname);die;
+            // print_r($allvendorslistbyname);die;
             $data['allvendorslistbyname'] = $allvendorslistbyname;
         }
         // dd($data);

@@ -19,27 +19,27 @@
           <div class="social-icons">
             <div class="social-icon">
               <a href="#">
-                <i class="fab fa-facebook-f"></i>
+                <i class="fa fa-facebook-f"></i>
               </a>
             </div>
             <div class="social-icon">
               <a href="#">
-                <i class="fab fa-twitter"></i>
+                <i class="fa fa-twitter"></i>
               </a>
             </div>
             <div class="social-icon">
               <a href="#">
-                <i class="fab fa-instagram"></i>
+                <i class="fa fa-instagram"></i>
               </a>
             </div>
             <div class="social-icon">
               <a href="#">
-                <i class="fab fa-pinterest-p"></i>
+                <i class="fa fa-pinterest-p"></i>
               </a>
             </div>
             <div class="social-icon">
               <a href="#">
-                <i class="fab fa-youtube"></i>
+                <i class="fa fa-youtube"></i>
               </a>
             </div>
           </div>
@@ -79,7 +79,14 @@
         <div class="footer-logo">
           <img src="{{url('/')}}/public/assets/images/footer/footer_logo.png" alt="" class="img-fluid">
         </div>
-       
+        <label for="" class="mb-2 widget-title">NEWSLETTER</label>
+        <div class="input-group mb-3">
+          
+          <input type="text" class="form-control subscribe_input" placeholder="Email ID" aria-label="Email Id" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <span class="input-group-text subscribe_btn" id="basic-addon2">Subscribe</span>
+          </div>
+        </div>
       
         <div class="widget mt-4">
           <h3 class="widget-title">AMPLEPOINTS ACCEPTS</h3>
