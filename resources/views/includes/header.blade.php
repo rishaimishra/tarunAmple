@@ -7,11 +7,11 @@ $currentRoute = Route::currentRouteName();
 
 
 <!-- -- start header --  -->
-<nav class="navbar navbar-expand-lg navbar-light py-3 fixed-top">
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
         <div class="row w-100">
             <div class="col-md-12">
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-md-2">
                         <a class="navbar-brand" href="{{ route('index.page') }}">
                             <img src="{{ asset('public/assets/images/header/ampdesktop.png') }}" alt="">
@@ -36,6 +36,9 @@ $currentRoute = Route::currentRouteName();
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Social</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Ample Theater</a>
                                 </li>
                                 @if(@Auth::user()->user_id)
                                 <li class="nav-item custom-dropdown">
@@ -66,11 +69,11 @@ $currentRoute = Route::currentRouteName();
                         @if(!@Auth::user()->user_id)
                         <a href="#" class="open-menu-login-account" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
-                            <i class="far fa-user"></i> <span>Sign Up</span>
+                            <i class="fa fa-user-plus"></i> <span>Sign Up</span>
                         </a>
                         <a href="#" class="open-menu-login-account" data-bs-toggle="modal"
                             data-bs-target="#vendorModal">
-                            <i class="far fa-user"></i> <span>Login</span>
+                            <i class="fa fa-sign-in"></i> <span>Login</span>
                         </a>
                         @else
                         
