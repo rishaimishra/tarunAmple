@@ -142,7 +142,8 @@ class CustomerAuthController extends Controller
                      $user = Auth::guard('web')->user();
                       $user2 = Auth::user();
                 // dd('successful Customer Login done',$userDataEmail,$user,$user2);
-                 return redirect()->route('index.page');
+                 // return redirect()->route('index.page');
+                    return redirect()->route('member.dashboard');
             }else{
                  return back()->with("error","Customer Credential is wrong.");
             }
@@ -400,6 +401,187 @@ public function userUniqueNo($len = 5)
     $findUser=User::where('user_id',$id)->update(['verification_link' => null]);
     return redirect()->route('index.page')->with('success', 'Verfication Successfully done.');
 
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   public function dashboard(){
+    // dd(Auth::user());
+        if (@Auth::user()->user_id) {
+            $user_id=@Auth::user()->user_id;
+            $session_data['user_id'] = $user_id;
+            $cartdetail['user_id'] = $user_id;
+        } else {
+            $session_data['user_name'] = session('REMOTE_ADDR');
+            $cartdetail['username'] = session('REMOTE_ADDR');
+        }
+
+        $user_email = @Auth::user()->email;
+        $data['useremail'] = $user_email;
+
+
+
+        if (@Auth::user()->user_type != 'User') {
+            return back();
+        } else {
+           
+            $admin_model_obj = new \App\Models\AdminImpFunctionModel;
+            $data['myadminobj'] = $admin_model_obj;
+
+            $result = User::where('user_id',$user_id)->first();
+            $data['record'] = $result;
+
+            $amplesresult = $admin_model_obj->all_amples_data();
+            $data['amplesdatas'] = $amplesresult;
+
+          
+
+            $totaldata = $admin_model_obj->cart_total_amount($cartdetail);
+            $totalcartdata = $admin_model_obj->select_cart_numericdata($cartdetail);
+
+            $wishlistshow = $admin_model_obj->wishlist_cart($cartdetail);
+            $wishlisttotaldata = count($wishlistshow);
+
+
+            $data['cartdata'] = $totaldata;
+            $data['totalcartdata'] = $totalcartdata;
+            $data['wishlistcartdata'] = $wishlisttotaldata;
+            $data['wishcartdata'] = $wishlistshow;
+            $resultdatapro = $admin_model_obj->gethomcatdata();
+            $data['retdata'] = $resultdatapro;
+            $resultdataspro = $admin_model_obj->gethomsubcatdata();
+            $data['retsdata'] = $resultdataspro;
+
+            $progressresult = $admin_model_obj->user_profile_progressdata($user_id);
+            $data['progressdata'] = $progressresult;
+
+            // dd($data['progressdata'] );
+        
+            $gethistorylist = $admin_model_obj->Dashboardgethistorylist($user_id, 0, 5);
+            $data['gethistorylist'] = $gethistorylist;
+
+            $i = 0;
+            // dd($progressresult);
+            foreach ($progressresult as $keydata) {
+                // dd($progressresult,$keydata);
+                if ($keydata != '') {
+                    $nonemptydatacount = count(array_filter((array)$keydata));
+                }
+                $i++;
+            }
+            $data['nonemptydatacount'] = $nonemptydatacount;
+
+
+
+            $maincatdata = $admin_model_obj->getmaincatdata();
+            $data['maincatdata'] = $maincatdata;
+
+            $followerdata = $admin_model_obj->getfollowersdata($user_email);
+            $data['followerdata'] = $followerdata;
+
+
+            $followingdata = $admin_model_obj->getfollowingdata($user_email);
+            $data['followingdata'] = $followingdata;
+
+            $data['usrmakey'] = $user_id;
+
+            /* $userblog = $admin_model_obj->getuserblogdata($user_id);
+                $this->view->userblog = $userblog;*/
+
+            //$userblog = $admin_model_obj->getsocialmediauserblogs($user_id);
+            //$this->view->userblog = $userblog;
+
+            //$userphoto = $admin_model_obj->getsocialmediauserphotos($user_id);
+            //$this->view->userphotos = $userphoto;
+
+            /*$uservideo = $admin_model_obj->getuservideodata($user_id);
+                $this->view->uservideo = $uservideo;*/
+
+            //$uservideo = $admin_model_obj->getsocialmediauservideo($user_id);
+            //$this->view->uservideo = $uservideo;
+
+            /* $uservideotv = $admin_model_obj->getuservideotvdata($user_id);
+                $this->view->uservideotv = $uservideotv;*/
+
+            //$uservideotv = $admin_model_obj->getsocialmediausermovietv($user_id);
+            //$this->view->uservideotv = $uservideotv;
+
+
+            $headertitle = $admin_model_obj->getheadertitledata($cartdetail);
+            $data['headtitle'] = $headertitle;
+
+            $country = $admin_model_obj->country_list();
+            $data['countrylist'] = $country;
+
+            $resultcravingdata = $admin_model_obj->getcravingdata($user_id);
+            $data['cravingdatalist'] = $resultcravingdata;
+
+            //$resultuserpurchased =  $admin_model_obj->getusersAllLatestOrderDetail($user_id,0,5);
+            //$this->view->userpurchased = $resultuserpurchased;
+
+            //$LocalPurchase =  $admin_model_obj->UsersLatestLocalPurchaseData($user_id,0,5);
+            //$this->view->LocalPurchased = $LocalPurchase;
+
+            //$checkoutorders =  $admin_model_obj->ApiUsersLatestOrders($user_id,0,5);
+            //$this->view->checkoutwithample = $checkoutorders;
+
+            $userTotalPurchase = $admin_model_obj->custgetcustomertotalpurchase($user_id);
+
+            if (!empty($userTotalPurchase)) {
+
+                $TotalAmount = $userTotalPurchase[0]->totalpurchase;
+
+                if ($TotalAmount >= 1 && $TotalAmount <= 500) {
+
+                    $admin_model_obj->updateAmplePoints(array('member_status' => 'silver'), $user_id);
+
+                } else if ($TotalAmount >= 501 && $TotalAmount <= 1000) {
+
+                    $admin_model_obj->updateAmplePoints(array('member_status' => 'gold'), $user_id);
+
+                } else if ($TotalAmount >= 1001) {
+
+                    $admin_model_obj->updateAmplePoints(array('member_status' => 'platinum'), $user_id);
+
+                }
+            }
+
+            $data['setOgUrl'] = True;
+            //$this->view->ogUrl  = 'https://amplepoints.com/productdetail/'.$productid;
+            $data['ogType'] = 'article';
+            //$this->view->ogTitle  = $report[0]['product_name'];
+
+            $OGDesc = '';
+            $OGTitle = 'Registration - amplepoints.com';
+            if (!empty($result->invite_text)) {
+
+                $OGDesc = $result->invite_text;
+                $OGTitle = $result->invite_text;
+            } else {
+                $OGDesc = "Today with online shopping, everything you need is right at your fingertips. On Ample Points you can shop the hottest brands, book hotels, find local deals, restaurants, properties and so much more. We reward our members for shopping, sharing and watching your favorite ads. Use your points at checkout towards free products and every time you shop you earn extra benefits. With Ample Points you can always rest assured about the quality of the products you are buying online at our website. Together with our trusted partners we promise to deliver only original and brand-new products.";
+
+            }
+            $data['ogDescription'] = $OGDesc;
+            $data['ogTitle'] = $OGTitle;
+            $data['ogImage'] = 'https://amplepoints.com/home_banners/AmplePoints_First_Banner.jpg';
+
+        }
+
+    return view('member.dashboard.dashboard')->with($data);
    }
 
 

@@ -250,13 +250,17 @@
                                             <div class="vendor-divimg">
                                                 {{-- <img src="<?php if(!empty($key->vendor_profileimage)) { echo $admin_model_obj->cdnUrl('vendor-data/'.$key->tbl_vndr_id.'/profile/'.$key->vendor_profileimage); } else { echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); } ?>" alt="<?php echo $key->vendor_displayname; ?>" /> --}}
 
-                                                <img src="<?php if(!empty($key->vendor_profileimage)) { echo $admin_model_obj->cdnUrl('vendor-data/'.$key->tbl_vndr_id.'/profile/'.$key->vendor_profileimage); } else { echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); } ?>" alt="<?php echo $key->vendor_displayname; ?>" />
+                                                 <img src="<?php if(!empty($key->vendor_profileimage)) { echo $admin_model_obj->cdnUrl('vendor-data/'.$key->tbl_vndr_id.'/profile/'.$key->vendor_profileimage); } else { echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); } ?>" alt="<?php echo $key->vendor_displayname; ?>" />
                                             </div>
-                                            <div class="vendor-detail">
-                                                <?php /* <h4><span><i class="fa fa-user"></i></span> <?php echo substr($key->vendor_displayname, 0, 11); ?> </h4> */?>
-                                                <h4><span><i class="fa fa-user"></i></span> <?php echo substr($key->vendor_displayname, 0, 17); ?> </h4>
-                                                <h3><span><i class=vendor_city"fa fa-map-marker"></i></span> <?php echo $key->; ?></h3>
-                                                <h5><span><i class="fa fa-thumb-tack"></i></span> <?php echo $key->tbl_vndr_zip; ?></h5>
+                                          <div class="vendor-detail">
+                                                <h4><span><i class="fa fa-user"></i></span>
+                                                <?php echo substr($key->vendor_displayname, 0, 17); ?> </h4>
+                                                <h3><span><i class="fa fa-map-marker"></i></span>
+                                                <?php echo $key->vendor_city; ?>
+                                                </h3>
+                                                <h5><span><i class="fa fa-thumb-tack"></i></span>
+                                                <?php echo $key->tbl_vndr_zip; ?>
+                                                </h5>
                                             </div>
                                         </div>
                                 </div> </a>

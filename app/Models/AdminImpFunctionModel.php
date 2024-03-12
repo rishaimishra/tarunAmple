@@ -2615,4 +2615,113 @@ public function getcatfilterdatabyletter($letter)
 
 
 
+
+
+public function user_profile_progressdata($user_id)
+{
+    $result = DB::table('users')
+        ->select('tag_desc', 'first_name', 'last_name', 'email', 'user_city', 'user_state', 'user_country', 'mobile', 'address', 'zip_code', 'birthday', 'education', 'income', 'employment', 'user_image', 'user_banner', 'reward_time')
+        ->where('user_id', '=', $user_id)
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+public function Dashboardgethistorylist($uid, $limitfrom, $rowperrpage)
+{
+    $result = DB::table('tbl_history')
+        ->where('user_id', $uid)
+        ->orderBy('id', 'DESC')
+        ->offset($limitfrom)
+        ->limit($rowperrpage)
+        ->get();
+
+    return $result;
+}
+
+
+
+
+public function getfollowersdata($user_email)
+{
+    $result = DB::table('tbl_follow_unfollow')
+        ->join('users', 'users.email', '=', 'tbl_follow_unfollow.page_owners_emails')
+        ->where('followers_emails', $user_email)
+        ->where('users.email', '!=', '')
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+public function getfollowingdata($user_email)
+{
+    $result = DB::table('tbl_follow_unfollow')
+        ->leftJoin('users', 'users.email', '=', 'tbl_follow_unfollow.followers_emails')
+        ->where('page_owners_emails', $user_email)
+        ->where('users.email', '!=', '')
+        ->get();
+
+    return $result;
+}
+
+
+
+
+public function country_list()
+{
+    $result = DB::table('tbl_countries')
+        ->select('name', 'id', 'sortname')
+        ->orderBy('name', 'ASC')
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+public function getcravingdata($cstId)
+{
+    $result = DB::table('tbl_customer_craving')
+        ->where('craving_cst_id', $cstId)
+        ->where('craving_status', 1)
+        ->orderByDesc('craving_id')
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+public function custgetcustomertotalpurchase($customerid)
+{
+    $result = DB::table('products_added')
+        ->select(DB::raw('ROUND(SUM(amount), 2) as totalpurchase'))
+        ->where('customer_Id', $customerid)
+        ->whereNotNull('order_id')
+        ->where('is_purchased', 1)
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
 }

@@ -101,6 +101,10 @@ Route::get('/processcheckoutpayment/{transaction_id}/{user_id}',[ProductsControl
 Route::post('/createstrippayment',[ProductsController::class, 'createstrippayment'])->name('createstrippayment');
 
 Route::any('/stripeorderstatus/{order_id}/{customer_id}',[ProductsController::class, 'stripeorderstatus'])->name('stripeorderstatus');
+
+
+//dashboard
+Route::get('/dashboard',[CustomerAuthController::class, 'dashboard'])->name('member.dashboard');
 // =========================== Customer Routes End =============================================//
 
 
