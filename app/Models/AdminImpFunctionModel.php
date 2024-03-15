@@ -2719,6 +2719,126 @@ public function custgetcustomertotalpurchase($customerid)
 
 
 
+public function dashboardRecentgivewaydata($userid)
+{
+    $result = DB::table('tbl_customer_giveawaysdata')
+        ->select('tbl_customer_giveawaysdata.*', 'tbl_giveaways.*')
+        ->leftJoin('tbl_giveaways', 'tbl_giveaways.id', '=', 'tbl_customer_giveawaysdata.tcg_gw_id')
+        ->where('tcg_cst_id', $userid)
+        ->where('expire_date', '>=', DB::raw('NOW()'))
+        // ->groupBy('tbl_customer_giveawaysdata.tcg_gw_id')
+        ->orderBy('tcg_id', 'DESC')
+        ->limit(5)
+        ->get();
+
+    return $result;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+public function GetCustomerNotification($customerkey)
+{
+    $result = DB::table('tbl_user_notification')
+        ->select('tbl_user_notification.*', 'tbl_vendor.tbl_vndr_fname', 'tbl_vendor.tbl_vndr_lname', 'tbl_vendor.tbl_vndr_dispname', 'tbl_vendor_images.tbl_vndr_img_pro as vendor_image')
+        ->leftJoin('tbl_vendor', 'tbl_vendor.tbl_vndr_id', '=', 'tbl_user_notification.from_user')
+        ->leftJoin('tbl_vendor_images', 'tbl_vendor_images.tbl_vndr_uid', '=', 'tbl_user_notification.from_user')
+        ->where('to_user', $customerkey)
+        ->where('to_user_type', 'user')
+        ->where(function ($query) {
+            $query->where('end_date', '>=', DB::raw('NOW()'))
+                ->orWhereNull('end_date')
+                ->orWhere('end_date', '0000-00-00 00:00:00');
+        })
+        ->orderBy('tbl_user_notification.id', 'DESC')
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+
+public function GetSingle_Product_Data($product_id)
+{
+    $result = DB::table('products')
+        ->where('id', $product_id)
+        ->first();
+
+    return $result;
+}
+
+
+
+
+
+
+
+public function countproducttotalpurchase($productId)
+{
+    $result = DB::table('products_added')
+        ->where('product_id', $productId)
+        ->where('product_order_status', '!=', 'Cancelled')
+        ->where('is_purchased', 1)
+        ->count();
+
+    return $result;
+}
+
+
+
+
+
+
+function secondsToWords($seconds)
+{
+    $ret = "";
+
+    /*** get the days ***/
+    $days = intval(intval($seconds) / (3600 * 24));
+    if ($days > 0) {
+        $ret .= "$days days ";
+    }
+
+    /*** get the hours ***/
+    $hours = (intval($seconds) / 3600) % 24;
+    if ($hours > 0) {
+        $ret .= "$hours hours ";
+    }
+
+    /*** get the minutes ***/
+    $minutes = (intval($seconds) / 60) % 60;
+    if ($minutes > 0) {
+        if ($days <= 0) {
+            $ret .= "$minutes minutes ";
+        }
+    }
+
+    /*** get the seconds ***/
+    $seconds = intval($seconds) % 60;
+    if ($seconds > 0) {
+        //$ret .= "$seconds seconds";
+    }
+
+    return $ret;
+}
+
 
 
 
