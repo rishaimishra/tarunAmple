@@ -177,7 +177,7 @@ mysqli_select_db($con, $db_database_name);
 							<?php if ($vendordata[0]->assign_user_id > 0) { ?>
 							<div class="channe_left">
 								<?php if (!empty($usrmakey)) { ?>
-								<a href="<?php echo $this->baseUrl("portfolioview/pfv/" . $vendordata[0]->assign_user_id . '/' . $portfolilink); ?>"
+								<a href="{{-- <?php echo $this->baseUrl("portfolioview/pfv/" . $vendordata[0]->assign_user_id . '/' . $portfolilink); ?> --}}"
 								class="btn btn-primary" style="float: right;width: auto;">MY CHANNEL</a>
 								<?php }else{ ?>
 								<script>
