@@ -9,12 +9,13 @@
 @include('includes.new_head')
 @include('includes.header')
 @include('member.storeAndCategory.productBySallerCss')
-
+<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/newtiles.css"/>
 {{--  <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/font-awesome/css/font-awesome.min.css" />
 
     <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/fonts/glyphicons-halflings-regular.ttf" />
-    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/bootstrap.min.css" />
+   
     <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/main-style.css" />
     <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/amplepoint-style.css" />
     <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/amples.css" />
@@ -31,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/animate-login.css" >
 
  <script type="text/javascript" src="https://amplepoints.com/newcss/js/jquery.flexslider.js"></script>
- <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/newtiles.css"/>
+ 
 
      <script type="text/javascript" language="javascript" src="https://amplepoints.com/newcss/js/animation-style.js"></script>
     <script type="text/javascript" language="javascript" src="https://amplepoints.com/newcss/js/select2.min.js"></script>
@@ -46,7 +47,19 @@
     <script type='text/javascript' src='https://amplepoints.com/newcss/js/gmaps.js'></script>
  --}}
 
-
+<style>
+	.parallax-img-a{
+		float: right !important;
+	}
+	.input-group .form-control{
+		width: 75%;
+		margin-right: 2px;
+	}
+	.input-group-text{
+		font-size: 1.4rem;
+	}
+	
+</style>
 
 
 <!-- page wapper-->
@@ -123,24 +136,26 @@ mysqli_select_db($con, $db_database_name);
 
 
 
-
+{{-- 
 				<div id="parallex-div-div">
 					<div class="container">
 						<div class="col-lg-3 img-parallax-img-img" style="width: auto;">
 							<div class="img-parallax">
-								<div class="top-banner-img-a"><img
-									src="<?php if ($vendordata[0]->vendor_image) {
+								<div class="top-banner-img-a">
+									<img src="<?php if ($vendordata[0]->vendor_image) {
 									echo $admin_model_obj->OnlyCdnUrl('vendor-data/' . $vdrid . '/profile/' . $vendordata[0]->vendor_image);
 									} else {
 									echo $admin_model_obj->OnlyCdnUrl('images/img/user2.jpg');
-								} ?>" class="imgrounded"></div>
+								} ?>" class="imgrounded">
+								<img src="https://amplepoints.com/vendor-data/291/profile/1581149418_t_hakk01.jpg" class="imgrounded">
+								</div>
 								<div class="top-banner-text-a">
 									<h6><?php echo $vendordata[0]->vendor_displayname; ?></h6>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 
 
 
@@ -174,7 +189,7 @@ mysqli_select_db($con, $db_database_name);
 							<li><a href="{{-- <?php echo $this->baseUrl('/social'); ?> --}}">Social</a></li>
 						</ul>
 						<div class="button_byseller">
-							<?php if ($vendordata[0]->assign_user_id > 0) { ?>
+							<?php if ($vendordata[0]->assign_user_id < 0) { ?>
 							<div class="channe_left">
 								<?php if (!empty($usrmakey)) { ?>
 								<a href="{{url('/')}}/portfolioview/pfv/{{$vendordata[0]->assign_user_id}}/{{$portfolilink}}"
@@ -195,19 +210,22 @@ mysqli_select_db($con, $db_database_name);
 
 
 
-							<div class="col-lg-3 img-parallax-img-img  parallax-img-a ">
+							<div class="col-lg-2 img-parallax-img-img  parallax-img-a ">
 								<div class="img-parallax">
 									<?php /*
 									<div class="top-banner-text-a">
 										<h6><?php echo $this->vendordata[0]['vendor_displayname']; ?></h6>
 									</div>
 									*/ ?>
-									<div class="top-banner-img-a"><img
+									<div class="top-banner-img-a">
+										{{-- <img
 										src="<?php if ($vendordata[0]->vendor_image) {
 										echo $admin_model_obj->OnlyCdnUrl('vendor-data/' . $vdrid . '/profile/' . $vendordata[0]->vendor_image);
 										} else {
 										echo $admin_model_obj->OnlyCdnUrl('images/img/user2.jpg');
-									} ?>" class="imgrounded"></div>
+									} ?>" class="imgrounded"> --}}
+									<img src="https://amplepoints.com/vendor-data/291/profile/1581149418_t_hakk01.jpg" class="imgrounded">
+									</div>
 								</div>
 							</div>
 						</div>
@@ -580,7 +598,7 @@ $inccfl++;
 </div>
 <!-- ./layered -->
 </div>
-</div>
+
 <!-- ./block filter  -->
 <!-- left silide -->
 
@@ -745,8 +763,9 @@ $proddata1[] = $prodrowy1;
 
 								<div class="pro_image" style="padding:0px;">
 								<a href="{{route('member.product.details.page',$proddatarowy1['id'])}}">
-									<img class="img-responsive" alt="product"
-									src="<?php echo $admin_model_obj->OnlyCdnUrl('product_images/' . $proddatarowy1['id'] . '/' . $proddatarowy1['image']); ?>"/>
+									{{-- <img class="img-responsive" alt="product"
+									src="<?php echo $admin_model_obj->OnlyCdnUrl('product_images/' . $proddatarowy1['id'] . '/' . $proddatarowy1['image']); ?>"/> --}}
+									<img class="img-responsive" alt="product" src="https://amplepoints.com/product_images/58098/gifd_700x850.jpg">
 								</a>
 								</div>
 								<div class="vendor_info">
@@ -1124,8 +1143,10 @@ $proddata1[] = $prodrowy1;
 									</div>
 									<div class="pro_image" style="padding:0px;"><a
 									href="{{route('member.product.details.page',$key->pid)}}">
-									<img class="img-responsive" alt="product"
-									src="<?php echo $admin_model_obj->OnlyCdnUrl('product_images/' . $key->pid . '/' . $key->img_name); ?>"/></a>
+									{{-- <img class="img-responsive" alt="product"
+									src="<?php echo $admin_model_obj->OnlyCdnUrl('product_images/' . $key->pid . '/' . $key->img_name); ?>"/> --}}
+									<img class="img-responsive" alt="product" src="https://amplepoints.com/product_images/58098/gifd_700x850.jpg">
+								</a>
 									</div>
 									<div class="vendor_info">
 									<h5 class="vdr_name"><?php echo $key->pvendor; ?></h5>
