@@ -2742,6 +2742,38 @@ public function dashboardRecentgivewaydata($userid)
 
 
 
+public function getSingleOrderRow($orderId)
+{
+    $tableName = 'tbl_order';
+    $result = DB::table($tableName)
+        ->where('order_id', $orderId)
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
+
+
+public function get_advertisenew($uid)
+{
+    $tableName = 'tbl_advertises';
+    $result = DB::table($tableName)
+        ->where('adver_id', $uid)
+        ->get();
+
+    return $result;
+}
+
+
+
+
+
+
 
 
 

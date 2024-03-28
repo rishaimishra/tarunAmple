@@ -60,6 +60,7 @@
     });
 
     function openprofiletab() {
+        alert(1)
         $("#myprofile-tab").trigger("click");
     }
 
@@ -121,7 +122,7 @@
                         url: '<?php echo $baseUrl; ?>/default/index/changerefferalcode/',
                         data: {
                             referral_no: referral_no,
-                            user_id: "<?php echo $this->record['data'][0]['user_id']; ?>",
+                            user_id: "<?php echo $record->user_id; ?>",
                         },
                         beforeSend: function () {
                             $('.ajax-loader').show();
@@ -878,9 +879,8 @@
             var width = window.innerWidth * 0.66;
             // define the height in
             var height = width * window.innerHeight / window.innerWidth;
-            // Ratio the hight to the width as the user screen ratio
-            //window.open("<?PHP echo $this->baseUrl('popupadds'); ?>" , 'newwindow','newwindow','width=' + 380 + ', height=' + 343 + ', top=' + ((window.innerHeight - height) / 2) + ', left=' + ((window.innerWidth - width) / 2));
-            window.open("<?PHP echo $this->baseUrl('popout'); ?>", 'newwindow', 'width=376,height=345,left=0,top=0');
+            
+            window.open("{{url('/')}}/popout", 'newwindow', 'width=376,height=345,left=0,top=0');
             return false;
 
         });
@@ -897,7 +897,7 @@
                             var incadd = 1;
                             var from_row = 3;
                             var totalAdds = '<?php echo $toatalAdds - 1; ?>';
-                            var UserIdAdd = '<?php echo $this->usrmakey; ?>';
+                            var UserIdAdd = '<?php echo $usrmakey; ?>';
                             var rotationaddInterval;
 
                             function startAddRotation() {
@@ -973,7 +973,7 @@
 
                                 stopAddRotation();
                                 var ID = $(this).attr('id');
-                                var total_ample_present = '<?php echo (int)($this->record['data'][0]['total_ample']); ?>';
+                                var total_ample_present = '<?php echo (int)($record->total_ample); ?>';
                                 var total_reward_time = '<?php if (!empty($reward_minutes)) {
                                     echo round($reward_minutes);
                                 } else {
@@ -1085,7 +1085,7 @@
                                                 var vendor = button.data('vendor');
                                                 var fullmsg = button.data('fullmsg');
                                                 var vendorid = button.data('vendorid');
-                                                var vendorLink = "<?php echo $this->BaseUrl('/productbyseller/'); ?>" + vendorid;
+                                                var vendorLink = "{{url('/')}}/productbyseller/" + vendorid;
                                                 var hreflink = '<a href="' + vendorLink + '" target="_blank">' + vendor + '</a>';
                                                 var modal = $(this);
                                                 modal.find('.modal-title').html('Special Offer From ' + hreflink);
@@ -1368,7 +1368,7 @@
             function openGifcarddetailPopup(product_id, productadded_id) {
 
                 $.ajax({
-                    url: "<?php echo $this->baseUrl('index/getgiftcarddetail') ?>",
+                    url: "{{url('/')}}/index/getgiftcarddetail",
                     type: 'post',
                     data: {product_id: product_id, productadded_id: productadded_id},
                     beforeSend: function () {
@@ -1455,7 +1455,7 @@
 
 
                 $.ajax({
-                    url: "<?php echo $this->baseUrl('index/savemessegedata') ?>",
+                    url: "{{url('/')}}/index/savemessegedata",
                     type: 'POST',
                     data: formData,
                     async: false,
@@ -1484,7 +1484,7 @@
 
 
                 $.ajax({
-                    url: "<?php echo $this->baseUrl('index/reedemorder') ?>",
+                    url: "{{url('/')}}/index/reedemorder",
                     type: 'POST',
                     data: formData,
                     async: false,
@@ -1941,4 +1941,10 @@ $('#file-4').on('filebrowse', function() {
     });
 
 </script>
+
+
+
+
+
+
 

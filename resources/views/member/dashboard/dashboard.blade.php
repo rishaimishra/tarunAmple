@@ -8,20 +8,10 @@
     <title>Amplepoints | Checkout</title>
 @endsection
 
-@include('includes.head')
+{{-- @include('includes.head') --}}
 @include('includes.new_head')
-@include('includes.header')
-@include('includes.script')
+    <link rel="stylesheet" type="text/css" href="https://amplepoints.com/newcss/css/bootstrap.min.css" />
 
-
-
-
-
-
-
-
-
-{{-- part-1 --}}
 
 <?php error_reporting(0); ?>
 <?php $InviteActive = (isset($_GET['invitetab']) ? $_GET['invitetab'] : 0); ?>
@@ -31,11 +21,29 @@ $baseUrl = url('/');
 $admin_model_obj = new \App\Models\AdminImpFunctionModel;
 ?>
 
+
+@include('includes.header')
+@include('includes.script')
+
+{{-- part-1 --}}
+
 @include('member.dashboard.dashboard_css')
 {{-- @include('member.dashboard.dashboard_script') --}}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="ajax-loader" style="display: none;">
     <img src="<?php echo $baseUrl; ?>/img/img-amples-win.gif" alt="" width="100" height="100">
@@ -174,8 +182,8 @@ mysqli_select_db($dbcon, $db_database_name);
                                     $i = 1;
                                     foreach ($adverise as $key) {
 
-                                    	//dd($key->adver_id);
-                                    	//die;
+                                        //dd($key->adver_id);
+                                        //die;
                                         if ($i == 5) {
                                             break;
                                         } else {
@@ -367,11 +375,13 @@ mysqli_select_db($dbcon, $db_database_name);
                 <div class="user-profile-tabs">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#dashboard" class="text-center"><i
-                                        class="fa fa-bolt"></i> <span>DashBoard</span></a></li>
+                             class="fa fa-bolt"></i> <span>DashBoard0</span></a>
+                        </li>
+
                         <li><a data-toggle="tab" id="myprofile-tab" href="#profile" class="text-center"><i
-                                        class="fa fa-user"></i> <span>Profile</span></a></li>
+                                        class="fa fa-user"></i> <span>Profile0</span></a></li>
                         <li><a data-toggle="tab" href="#purchase" class="text-center"
-                               onclick="LoadDashboardContent('my_purchases');"><i class="fa fa-cart-plus"></i> <span>My Purchases</span></a>
+                               onclick="LoadDashboardContent('my_purchases');"><i class="fa fa-cart-plus"></i> <span>My Purchases0</span></a>
                         </li>
                         <li><a data-toggle="tab" href="#local_purchase" class="text-center"
                                onclick="LoadDashboardContent('my_local_purchase');"><i class="fa fa-truck"></i> <span>My Local Purchases</span></a>
@@ -422,8 +432,52 @@ mysqli_select_db($dbcon, $db_database_name);
                         </li>
                     </ul>
                 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    
+});
+
+ $('.nav-tabs li').click(function(){
+        // Remove active class from all li elements
+        $('.nav-tabs li').removeClass('active');
+        
+        // Add active class to the clicked li element
+        $(this).addClass('active');
+         var hrefValue = $(this).find('a').attr('href');
+        console.log( hrefValue);
+        $('.tab-pane').removeClass('active');
+
+        $(hrefValue).addClass('active');
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div align="justify" class="tb_contnt">
                     <div class="tab-content cus-dash-board res-tab">
+
+
+
+
+
+
+
+
+
                         <div id="dashboard" class="tab-pane fade in active">
                             <div class="col-md-6">
                                 <div class="brief-info">
@@ -479,20 +533,6 @@ mysqli_select_db($dbcon, $db_database_name);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- part-5 --}}
                                     <div class="clearfix"></div>
                                     <div style="max-height: 630px;overflow-y: auto;">
                                         <?php
@@ -638,37 +678,37 @@ mysqli_select_db($dbcon, $db_database_name);
                                                         <div class="descreption_container">
                                                             <p class="noti_vendor_descreption"><?php echo $notification->subject; ?>
                                                                 <span>-@php
-															    $datetime=$notification->date_added;       
-															    $full = false;                                 	
-															    $now = new DateTime;
-															    $ago = new DateTime($datetime);
-															    $diff = $now->diff($ago);
+                                                                $datetime=$notification->date_added;       
+                                                                $full = false;                                  
+                                                                $now = new DateTime;
+                                                                $ago = new DateTime($datetime);
+                                                                $diff = $now->diff($ago);
 
-															    $diff->w = floor($diff->d / 7);
-															    $diff->d -= $diff->w * 7;
+                                                                $diff->w = floor($diff->d / 7);
+                                                                $diff->d -= $diff->w * 7;
 
-															    $string = array(
-															        'y' => 'year',
-															        'm' => 'month',
-															        'w' => 'week',
-															        'd' => 'day',
-															        'h' => 'hour',
-															        'i' => 'minute',
-															        's' => 'second',
-															    );
-															    foreach ($string as $k => &$v) {
-															        if ($diff->$k) {
-															            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-															        } else {
-															            unset($string[$k]);
-															        }
-															    }
+                                                                $string = array(
+                                                                    'y' => 'year',
+                                                                    'm' => 'month',
+                                                                    'w' => 'week',
+                                                                    'd' => 'day',
+                                                                    'h' => 'hour',
+                                                                    'i' => 'minute',
+                                                                    's' => 'second',
+                                                                );
+                                                                foreach ($string as $k => &$v) {
+                                                                    if ($diff->$k) {
+                                                                        $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+                                                                    } else {
+                                                                        unset($string[$k]);
+                                                                    }
+                                                                }
 
-															    if (!$full) $string = array_slice($string, 0, 1);
-															    echo $string ? implode(', ', $string) . ' ago' : 'just now';
-															    @endphp
+                                                                if (!$full) $string = array_slice($string, 0, 1);
+                                                                echo $string ? implode(', ', $string) . ' ago' : 'just now';
+                                                                @endphp
 
-                                                                	<?php echo time_elapsed_string($notification->date_added); ?></span>
+                                                                    <?php echo time_elapsed_string($notification->date_added); ?></span>
                                                                 
 
 
@@ -695,12 +735,6 @@ mysqli_select_db($dbcon, $db_database_name);
 
 
 
-
-
-
-
-
-{{-- part - 6 --}}
                                                         <div class="offer_btn_cnt">
                                                             <a class="btn btn-primary offer_btn_cls"
                                                                href="{{url('/')}}/specialofferdetail/msgid/{{$notification->id}} ?>"
@@ -749,6 +783,30 @@ mysqli_select_db($dbcon, $db_database_name);
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="profile" class="tab-pane fade in">
                             <div class="col-md-12">
                                 <h4 class="accurate_info"
@@ -1160,23 +1218,6 @@ mysqli_select_db($dbcon, $db_database_name);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- part-7 --}}
                             <div class="clearfix"></div>
                             <div class="col-md-12 col-sm-12">
                                 <hr>
@@ -1215,10 +1256,18 @@ mysqli_select_db($dbcon, $db_database_name);
                                     </div>
                                 </div>
 
-@php
-die();
-@endphp
+
                             </div>
+
+
+
+
+
+
+
+
+
+
                             <div class="col-md-6">
                                 <div class="user-change-password">
                                     <h4>Change Your Referral Code</h4>
@@ -1228,7 +1277,7 @@ die();
                                             <div class="col-md-12">
                                                 <label>Your Referral Code</label>
                                                 <input type="text" class="form-control"
-                                                       value="<?php echo $this->record['data'][0]['referral_no']; ?>"
+                                                       value="<?php echo $record->referral_no; ?>"
                                                        id="referral_no" name="referral_no">
                                                 <p id="referral_no_err" style="color:#D8000C; display:none;"></p>
                                                 <p id="referral_no_suc"
@@ -1246,7 +1295,41 @@ die();
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="updatednew"></div>
+                        
+
+
+
+
+
+
+
+
+
+
+
                         <div id="purchase" class="tab-pane fade in">
                             <div class="col-md-3 col-sm-3 col-xs-6">
                                 <form>
@@ -1280,12 +1363,34 @@ die();
 
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <a href="<?php echo $this->baseUrl('/purchase'); ?>" class="btn btn-default"
+                                    <a href="{{url('/')}}/purchase" class="btn btn-default"
                                        style="width: auto;height: auto;padding: 15px;margin: 10px 0px 10px 0px;background: #f75d00;color: #fff;">View
                                         All Orders</a>
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="local_purchase" class="tab-pane fade in">
                             <div class="col-md-3 col-sm-3 col-xs-6">
                                 <form>
@@ -1319,12 +1424,30 @@ die();
 
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <a href="<?php echo $this->baseUrl('/localpurchase'); ?>" class="btn btn-default"
+                                    <a href="{{url('/')}}/localpurchase" class="btn btn-default"
                                        style="width: auto;height: auto;padding: 15px;margin: 10px 0px 10px 0px;background: #f75d00;color: #fff;">View
                                         All Orders</a>
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="checkoutwithamples" class="tab-pane fade in">
                             <div class="col-md-12">
                                 <div class="item-content-a table-responsive replace_checkout_with_amples"
@@ -1333,13 +1456,34 @@ die();
                                 </div>
 
                                 <div class="col-md-12 text-center">
-                                    <a href="<?php echo $this->baseUrl('/amplecheckoutpurchase'); ?>"
+                                    <a href="{{url('/')}}/amplecheckoutpurchase"
                                        class="btn btn-default"
                                        style="width: auto;height: auto;padding: 15px;margin: 10px 0px 10px 0px;background: #f75d00;color: #fff;">View
                                         All Orders</a>
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="bookingswithamples" class="tab-pane fade in">
                             <div class="col-md-12">
                                 <div class="item-content-a table-responsive replace_bookings_with_amples"
@@ -1350,6 +1494,22 @@ die();
 
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="wishlist" class="tab-pane fade in">
                             <div class="col-md-12">
                                 <div class="item-content-a table-responsive">
@@ -1364,33 +1524,36 @@ die();
                                             <th class="th-a">Total</th>
                                             <th class="action th-a">Action</th>
                                         </tr>
-                                        <?php if ($this->wishcartdata > 0) {
-                                            foreach ($this->wishcartdata as $wishlistdatakey) { ?>
+                                        <?php if (count($wishcartdata) > 0) {
+                                            foreach ($wishcartdata as $wishlistdatakey) { ?>
                                                 <tbody>
                                                 <tr>
                                                     <td class="cart_product"><a
-                                                                href="<?php echo $this->baseUrl('/productdetail/' . $wishlistdatakey['product_id']); ?>"><img
-                                                                    src="<?php echo $admin_model_obj->cdnUrl('product_images/' . $wishlistdatakey['product_id'] . '/' . $wishlistdatakey['image_name']); ?>"
-                                                                    alt="Product"></a></td>
+                                                                href="{{url('/')}}/productdetail/{{$wishlistdatakey->product_id}}">
+
+                                                                <img
+                                                                    src="<?php echo $admin_model_obj->cdnUrl('product_images/' . $wishlistdatakey->product_id . '/' . $wishlistdatakey->image_name); ?>"
+                                                                    alt="Product"></a>
+
+                                                    </td>
                                                     <td class="cart_description"><p class="product-name"><a
-                                                                    href="#"><?php echo $wishlistdatakey['product_name']; ?> </a>
+                                                                    href="#"><?php echo $wishlistdatakey->product_name; ?> </a>
                                                         </p>
                                                         <small class="cart_ref">SKU :
-                                                            #<?php echo $wishlistdatakey['product_sku']; ?></small>
+                                                            #<?php echo $wishlistdatakey->product_sku; ?></small>
                                                         <br></td>
                                                     <td class="price">
-                                                        <span><?php echo $wishlistdatakey['supplier_name']; ?></span>
+                                                        <span><?php echo $wishlistdatakey->supplier_name; ?></span>
                                                     </td>
                                                     <td class="qty"><input class="form-control input-sm" value="1"
                                                                            type="text"></td>
                                                     <td class="price">
-                                                        <span><?php echo $wishlistdatakey['single_price']; ?></span>
+                                                        <span><?php echo $wishlistdatakey->single_price; ?></span>
                                                     </td>
                                                     <td>
                                                         <div class="item-footer-a"><a
-                                                                    href="<?php echo $this->baseUrl('/productdetail/') . $this->escape($wishlistdatakey['product_id']); ?>">Buy
-                                                                Now</a> <a href="javascript:void(0);"
-                                                                           onclick="remove_wishlist_item('<?php echo strip_tags($wishlistdatakey['product_id']); ?>','<?php echo $this->usrmakey; ?>');">Remove</a>
+                                                                    href="{{url('/')}}/productdetail/{{$wishlistdatakey->product_id}}">Buy Now</a> <a href="javascript:void(0);"
+                                                                           onclick="remove_wishlist_item('<?php echo strip_tags($wishlistdatakey->product_id); ?>','<?php echo $usrmakey; ?>');">Remove</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1402,72 +1565,39 @@ die();
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
                         <!--Edited  -->
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
                         <div id="ample-reward" class="tab-pane fade in">
                             <?php
 
-                            foreach ($this->progressdata as $progressdatarow) {
-
+                            foreach ($rogressdata as $progressdatarow) {
                                 //print_r($progressdatarow);
-                                $reward_timeuser = $progressdatarow['reward_time'];
-
+                                $reward_timeuser = $progressdatarow->reward_time;
                             }
 
-                            /*
-                        if(count($this->rewardorder)> 0) {
-
-                        $totalspent= $reward_timeuser;
-                        // $totalspent= 0;
-                        //echo"</br>";
-                        foreach($this->rewardorder as $row) {
-
-                        //print_r($row);
-                        $totalspent += $row['total_price'];
-                        }
-
-
-                        }
-                        //$totalspent;
-
-                        //die;
-
-                        $reward_time=0;
-                        $reward_minutes=0;
-                        if(!empty($totalspent)){
-                        if($totalspent <= 500 ){
-
-                        //echo "Ample silver";
-
-                        $totalspent;
-                        //echo "</br>";
-                        $reward_time= $totalspent*5/100;
-
-                        //    echo "</br>";
-
-                        $reward_minutes= $reward_time*100/12;
-                        //    echo "</br>";
-
-                        }else if($totalspent <= 1000){
-
-                        //    echo "Ample Gold";
-                        $reward_time= $totalspent*7/100;
-                        $reward_minutes= $reward_time*100/12;
-
-
-                        }else if($totalspent >= 1000){
-
-                        //echo "Ample Platinum";
-                        $reward_time= $totalspent*10/100;
-                        $reward_minutes= $reward_time*100/12;
-                        }
-                        }
-
-                        //$admin_model_obj    = new Admin_Model_Admin();
-                        // $userkeyid= $this->usrmakey;
-                        // $updaterewardevery = $admin_model_obj->updaterewardevery($reward_minutes, $userkeyid);
-                        */
-
                             ?>
+
                             <div class="col-md-7">
                                 <div class="top-amples-detail">
                                     <div>
@@ -1523,28 +1653,28 @@ die();
                             <h3>You purchased Lady Lioness Bracelet on for 135 points.(12/22/12)</h3>
                             <h3>You received 500points for being a valued customer!(08/14/12) </h3>
 
-                            <?php if ($this->userpurchased > 0) {
-                                        foreach ($this->userpurchased as $userpurchasedkey) { ?>
+                            <?php if (count(@$userpurchased) > 0) {
+                                        foreach ($userpurchased as $userpurchasedkey) { ?>
 
                                     <div class="order-no">
                                     <div>
-                                    <div class="order-amples"><h2>Order No. <span><a href="#" class="order-a" style="font-size:11px;"><?php echo substr($userpurchasedkey['order_id'], 0, 7); ?></a></span></h2> </div>
+                                    <div class="order-amples"><h2>Order No. <span><a href="#" class="order-a" style="font-size:11px;"><?php echo substr($userpurchasedkey->order_id, 0, 7); ?></a></span></h2> </div>
 
                                     <div class="order-amples"><h2>Date:
-                                    <span><?php echo date('m/d/Y', strtotime($userpurchasedkey['date'])); ?></span></h2>
+                                    <span><?php echo date('m/d/Y', strtotime($userpurchasedkey->date)); ?></span></h2>
                                     </div>
                                     </div>
                                     <div class="produect-name">
-                                    <h2><span>Product Name </span> <?php echo substr($userpurchasedkey['product_name'], 0, 20); ?></h2>
+                                    <h2><span>Product Name </span> <?php echo substr($userpurchasedkey->product_name, 0, 20); ?></h2>
                                     </div>
                                     <div class="produect-name">
-                                    <h2><span>Price </span> $<?php echo $userpurchasedkey['amount']; ?></td></h2>
+                                    <h2><span>Price </span> $<?php echo $userpurchasedkey->amount; ?></td></h2>
                                     </div>
                                     <div class="produect-name">
-                                    <h2><span>Amples Earn </span> <?php echo (int)$userpurchasedkey['earned_amples']; ?> &nbsp;<img src="<?php echo $this->baseUrl('img/amples-sall.png'); ?>"/></h2>
+                                    <h2><span>Amples Earn </span> <?php echo (int)$userpurchasedkey->earned_amples; ?> &nbsp;<img src="{{url('/')}}/img/amples-sall.png"/></h2>
                                     </div>
                                     <div class="produect-name">
-                                    <h2><span>Amples Redeem </span> <?php echo (int)$userpurchasedkey['apply_amples']; ?> &nbsp;<img src="<?php echo $this->baseUrl('img/amples-sall.png'); ?>"/></h2>
+                                    <h2><span>Amples Redeem </span> <?php echo (int)$userpurchasedkey->apply_amples; ?> &nbsp;<img src="{{url('/')}}/img/amples-sall.png"/></h2>
                                     </div>
                                     </div>
 
@@ -1553,6 +1683,19 @@ die();
                             </div>-->
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <div class="col-lg-12">
                                 <div class="what-are-amples" style="background-color: #f6f6fc;">
                                     <div class="col-lg-12">
@@ -1569,9 +1712,10 @@ die();
                                                 Get Reward Time by Signing Up as a Member, Shopping and Inviting
                                                 Friends!</p>
                                         </div>
-                                        <!--<div class="star-a"> <img src="<?php echo $this->baseUrl('img/social-icon/shopping-icon.png'); ?>" />
-                                <h2>GO SHOPPING</h2>
-                                <p>Use Your Amples to Get your purchase for free or at a discountsof your choice !</p></div>-->
+                                      
+
+
+
                                         <div class="star-a" style="margin: 40px;"><img
                                                     src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/new-sublogo2.png'); ?>"/>
                                             <h2 style="color:#5fceb9;font-weight:bold;font-size:18px;border-bottom:none;width: 234px;">
@@ -1589,8 +1733,9 @@ die();
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="ample-icon">
-                                    <!--<p>*Amples can be used towards products with the Ample icon <img src="<?php echo $this->baseUrl('img/amples-sall.png'); ?>"/></p>-->
                                 </div>
                                 <div class="col-md-12 sectn increas-points">
                                     <div class="section-two"
@@ -1618,15 +1763,7 @@ die();
                                         <div class="watch-adsss">Watch Advertisements and Earn Reward Time <span>coming soon...</span>
                                         </div>
                                     </div>
-                                    <!-- <div class="box-three" style="background-color: #f3fbf3;float: left;margin-top: 13px;width: 48%;height: 94px; clear: both; margin-left: 10px; margin-bottom: 20px;">
-                            <i class="fa fa-users" style="background-color: #1d695e;border-radius: 10em;color: #ffffff;font-size: 23px;padding: 2px 0;height: 37px;text-align: center;width: 37px;margin: 24px 20px;"aria-hidden="true"></i>
-                            <h2 style=" bottom: 79px; color:#2a966d;font-size: 18px;font-weight:700;left:67px; position: relative;">Invite friends to join<br>AmplePoints</h2>
-                            <p style="float: right;margin: 0;position: relative;right: 68px;font-weight: bold;color: #026242;bottom: 144px;">Earn</p>
-                            <h3 style="bottom: 142px;color: #696969;float: right;font-weight: bold;position: relative;right: 19px;">60s<img src="/img/social-icon/mini-logo.png" alt="" height="22" width="28"></h3></div>
-                            <div class="box-four" style="background-color: #f3fbf3;width: 48%;height: 94px;;float: right;margin-top: 13px; margin-right: 10px;">
-                            <i class="fa fa-shopping-cart" style="background-color: #ff0c38;border-radius: 10em;color: #ffffff;font-size: 24px;padding: 2px 0;height: 37px;text-align: center;width: 37px;margin: 24px 20px;" aria-hidden="true"></i>
-                            <h2 style="bottom: 71px;color:#2a966d;font-size: 20px;font-weight: 600;left: 72px;position: relative;">Purchase Products</h2>
-                            <p style="float: right;margin: 0;position: relative;right: 68px;font-weight: bold;color: #026242;bottom: 122px;">Earn<br><img width="71" height="80" style="bottom: 28px;padding: 10px 0;position: relative;" src="/img/social-icon/mini-logo2.png" alt=""></p></div>-->
+                                   
                                 </div>
                                 <div class="col-md-12 sectn2 packegeses" style="background-color:#fff; margin: 10px 0;">
                                     <h1 style="color: #006a42;font-size: 20px;font-weight: 700;padding: 2px 31px;">
@@ -1668,10 +1805,10 @@ die();
                                             $('#getdays').click(function () {
                                                 var startnew = $('#datepickerfrom').val();
                                                 var endnew = $('#datepickerto').val();
-                                                var usrid = '<?php echo $this->usrmakey; ?>';
+                                                var usrid = '<?php echo $usrmakey; ?>';
                                                 if (startnew != '' && endnew != '') {
                                                     $.ajax({
-                                                        url: '<?php echo $baseUrl; ?>/category_filter/getuserewardhistory.php',
+                                                        url: '{{url('/')}}/category_filter/getuserewardhistory.php',
                                                         data: {rewardstart: startnew, rewardend: endnew, usrid: usrid},
                                                         type: 'POST'
                                                     })
@@ -1689,12 +1826,14 @@ die();
                                     </script>
                                 </div>
 
+
+
+
+
+
+
                                 <!-- Reward time table -->
 
-                                <style>
-
-
-                                </style>
                                 <div class="panel panel-primary filterable">
                                     <div class="panel-heading"></div>
                                     <table class="table">
@@ -1710,26 +1849,26 @@ die();
                                         </tr>
                                         </thead>
                                         <tbody id="rewarddata">
-                                        <?php $RewardHistory = $admin_model_obj->GetUserRewardHistory($this->record['data'][0]['user_id']); ?>
+                                        <?php $RewardHistory = $admin_model_obj->GetUserRewardHistory($record->user_id); ?>
                                         <?php if (!empty($RewardHistory)) {
 
                                             foreach ($RewardHistory as $rhistory) {
 
-                                                $totalPercent = ($rhistory['five_percent_total'] + $rhistory['seven_percent_total'] + $rhistory['ten_percent_total']);
+                                                $totalPercent = ($rhistory->five_percent_total + $rhistory->seven_percent_total + $rhistory->ten_percent_total);
                                                 ?>
                                                 <tr>
-                                                    <td style="text-align: center;"><?php echo date('d M Y', strtotime($rhistory['date_added'])); ?></td>
+                                                    <td style="text-align: center;"><?php echo date('d M Y', strtotime($rhistory->date_added)); ?></td>
                                                     <td style="text-align: center;">
-                                                        $<?php echo number_format($rhistory['order_amount'], 2); ?></td>
+                                                        $<?php echo number_format($rhistory->order_amount, 2); ?></td>
                                                     <td style="text-align: center;">
-                                                        $<?php echo number_format($rhistory['five_percent_total'], 2); ?></td>
+                                                        $<?php echo number_format($rhistory->five_percent_total, 2); ?></td>
                                                     <td style="text-align: center;">
-                                                        $<?php echo number_format($rhistory['seven_percent_total'], 2); ?></td>
+                                                        $<?php echo number_format($rhistory->seven_percent_total, 2); ?></td>
                                                     <td style="text-align: center;">
-                                                        $<?php echo number_format($rhistory['ten_percent_total'], 2); ?></td>
+                                                        $<?php echo number_format($rhistory->ten_percent_total, 2); ?></td>
                                                     <td style="text-align: center;">
                                                         $<?php echo number_format($totalPercent, 2); ?></td>
-                                                    <td style="text-align: center;"><?php echo str_replace('.', ':', number_format($rhistory['total_reward'], 2, '.', '')); ?></td>
+                                                    <td style="text-align: center;"><?php echo str_replace('.', ':', number_format($rhistory->total_reward, 2, '.', '')); ?></td>
                                                 </tr>
                                             <?php }
                                         } else { ?>
@@ -1745,6 +1884,31 @@ die();
                             </div>
                             <div class="col-lg-12"></div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         <!--Edited  -->
 
@@ -1772,8 +1936,8 @@ die();
                                         <div class="Your-amples-a"><img
                                                     src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/logo-a.png'); ?>"/>
                                             <p>
-                                                <?php if ($this->record['data'][0]['total_ample']) {
-                                                    echo (int)($this->record['data'][0]['total_ample']);
+                                                <?php if ($record->total_ample) {
+                                                    echo (int)($record->total_ample);
                                                 } else {
                                                     echo "0";
                                                 } ?>
@@ -1782,6 +1946,15 @@ die();
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
                             <div class="col-lg-5 main-historyss">
                                 <ul class="main-historyss-ul">
                                     <li>
@@ -1800,18 +1973,18 @@ die();
                                 <h3>You purchased Lady Lioness Bracelet on for 135 points.(12/22/12)</h3>
                                 <h3>You received 500points for being a valued customer!(08/14/12) </h3>-->
 
-                                        <?php if ($this->userpurchased > 0) {
-                                            foreach ($this->userpurchased as $userpurchasedkey) {
+                                        <?php if (count($userpurchased) > 0) {
+                                            foreach ($userpurchased as $userpurchasedkey) {
 
-                                                $SingleOrdrRow = $admin_model_obj->getSingleOrderRow($userpurchasedkey['order_id']);
+                                                $SingleOrdrRow = $admin_model_obj->getSingleOrderRow($userpurchasedkey->order_id);
 
-                                                if (isset($SingleOrdrRow[0]['order_date']) && !empty($SingleOrdrRow[0]['order_date'])) {
+                                                if (isset($SingleOrdrRow[0]->order_date) && !empty($SingleOrdrRow[0]->order_date)) {
 
-                                                    $timestamp = strtotime($SingleOrdrRow[0]['order_date']);
+                                                    $timestamp = strtotime($SingleOrdrRow[0]->order_date);
 
                                                 } else {
 
-                                                    $timestamp = strtotime($userpurchasedkey['updated_date']);
+                                                    $timestamp = strtotime($userpurchasedkey->updated_date);
                                                 }
 
 
@@ -1820,7 +1993,7 @@ die();
                                                     <div>
                                                         <div class="order-amples">
                                                             <h2>Order No. <span><a href="#" class="order-a"
-                                                                                   style="font-size:11px;"><?php echo substr($userpurchasedkey['order_id'], 0, 7); ?></a></span>
+                                                                                   style="font-size:11px;"><?php echo substr($userpurchasedkey->order_id, 0, 7); ?></a></span>
                                                             </h2>
                                                         </div>
                                                         <div class="order-amples">
@@ -1831,25 +2004,25 @@ die();
                                                     </div>
                                                     <div class="produect-name">
                                                         <h2>
-                                                            <span>Product Name </span> <?php echo substr($userpurchasedkey['product_name'], 0, 20); ?>
+                                                            <span>Product Name </span> <?php echo substr($userpurchasedkey->product_name, 0, 20); ?>
                                                         </h2>
                                                     </div>
                                                     <div class="produect-name">
                                                         <h2><span>Price </span>
-                                                            $<?php echo $userpurchasedkey['amount']; ?>
+                                                            $<?php echo $userpurchasedkey->amount; ?>
                                                             </td>
                                                         </h2>
                                                     </div>
                                                     <div class="produect-name">
                                                         <h2>
-                                                            <span>Amples Earn </span> <?php echo (int)$userpurchasedkey['earned_amples']; ?>
+                                                            <span>Amples Earn </span> <?php echo (int)$userpurchasedkey->earned_amples; ?>
                                                             &nbsp;<img
                                                                     src="<?php echo $admin_model_obj->cdnUrl('img/amples-sall.png'); ?>"/>
                                                         </h2>
                                                     </div>
                                                     <div class="produect-name">
                                                         <h2>
-                                                            <span>Amples Redeem </span> <?php echo (int)$userpurchasedkey['apply_amples']; ?>
+                                                            <span>Amples Redeem </span> <?php echo (int)$userpurchasedkey->apply_amples; ?>
                                                             &nbsp;<img
                                                                     src="<?php echo $admin_model_obj->cdnUrl('img/amples-sall.png'); ?>"/>
                                                         </h2>
@@ -1858,19 +2031,21 @@ die();
                                             <?php }
                                         } ?>
                                     </div>
+
+
                                     <div class="col-md-12 text-center">
-                                        <a href="<?php echo $this->baseUrl('/purchase'); ?>" class="btn btn-default"
+                                        <a href="{{url('/')}}/purchase" class="btn btn-default"
                                            style="width: auto;height: auto;margin: 10px 0px 10px 0px;background: #f75d00;color: #fff;">View
                                             All Details</a>
                                     </div>
                                 </div>
                                 <div class="fhistory" style="display:none">
                                     <?php
-                                    if ($this->gethistorylist > 0) {
-                                        foreach ($this->gethistorylist as $gethistorys) {
+                                    if (count($gethistorylist) > 0) {
+                                        foreach ($gethistorylist as $gethistorys) {
                                             //    print_r($gethistorys);
-                                            $adnewid = $gethistorys['adver_id'];
-                                            $Responds = $gethistorys['respond'];
+                                            $adnewid = $gethistorys->adver_id;
+                                            $Responds = $gethistorys->respond;
                                             ?>
                                             <div class="hisno"> <?php echo $adnewid ?> </div>
                                             <?php
@@ -1880,11 +2055,11 @@ die();
                                                 echo "<li>Respond : $Responds</li>";
                                                 //echo"<li>buynow</li>";
                                                 // echo "<li><p>'".$histrysety['campagine_name']."'</li>";
-                                                echo "<li class='earn-a'>Earned Amples<p>" . $histrysety['length_video'] . "</p></li>";
+                                                echo "<li class='earn-a'>Earned Amples<p>" . $histrysety->length_video . "</p></li>";
                                                 ?>
                                                 <li>
                                                     <p>
-                                                        <img src="<?php echo $admin_model_obj->cdnUrl('adver_images/image/' . $histrysety['adver_logo']); ?>"/>
+                                                        <img src="<?php echo $admin_model_obj->cdnUrl('adver_images/image/' . $histrysety->adver_logo); ?>"/>
                                                     </p>
                                                 </li>
                                                 <?php
@@ -1897,13 +2072,19 @@ die();
                                     }
 
                                     ?>
+
+
+
+
                                     <div class="col-md-12 text-center">
-                                        <a href="<?php echo $this->baseUrl('/adverhistory'); ?>" class="btn btn-default"
+                                        <a href="{{url('/')}}/adverhistory" class="btn btn-default"
                                            style="width: auto;height: auto;margin: 10px 0px 10px 0px;background: #f75d00;color: #fff;">View
                                             All Details</a>
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="col-lg-12">
                                 <div class="what-are-amples">
                                     <div class="col-lg-3">
@@ -1918,8 +2099,7 @@ die();
                                         <div class="arrow-amples-a"><i class="fa fa-arrow-right"></i></div>
                                         <div class="arrow-amples-b">or</div>
                                         <div class="arrow-amples-c"><i class="fa fa-arrow-right"></i></div>
-                                        <div class="star-a"><img
-                                                    src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/star.png'); ?>"/>
+                                        <div class="star-a"><img src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/star.png'); ?>"/>
                                             <h2>EARN AMPLES</h2>
                                             <p>Get Amples every time you make a purchase, share link, and invite your
                                                 friends.</p>
@@ -1948,6 +2128,12 @@ die();
                                     </p>
                                 </div>
                             </div>
+
+
+
+
+
+
                             <div class="col-lg-12">
                                 <div class="ready-to">
                                     <h2>READY TO SPEND YOURS AMPLES !</h2>
@@ -1967,6 +2153,9 @@ die();
                                     </div>
                                 </div>
                             </div>
+
+
+
                             <div class="col-lg-12">
                                 <div class="earn-amples">
                                     <h2>HOW TO EARN AMPLES !</h2>
@@ -1975,24 +2164,21 @@ die();
                                     <div class="col-lg-12 no-space">
                                         <div class="row rowcls">
                                             <div class="cplo  cplo-a">
-                                                <div class="share-images-amples"><img class="img-share-amples-a"
-                                                                                      src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/invite.png'); ?>"/>
+                                                <div class="share-images-amples"><img class="img-share-amples-a" src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/invite.png'); ?>"/>
                                                     <h2>Invite Friends to Join Amplepoints</h2>
                                                     <p><span>Earn</span> <samp>1 Ample</samp></p>
                                                     <img src="<?php echo $admin_model_obj->cdnUrl('img/dashboard/amples-sall.png'); ?>"/>
                                                 </div>
                                             </div>
                                             <div class="cplo">
-                                                <div class="share-images-amples"><img class="img-share-amples-a"
-                                                                                      src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/Tumb.png'); ?>"/>
+                                                <div class="share-images-amples"><img class="img-share-amples-a" src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/Tumb.png'); ?>"/>
                                                     <h2>Share something from our site to your Tumbler</h2>
                                                     <p><span>Earn</span> <samp>1 Ample</samp></p>
                                                     <img src="<?php echo $admin_model_obj->cdnUrl('img/dashboard/amples-sall.png'); ?>"/>
                                                 </div>
                                             </div>
                                             <div class="cplo">
-                                                <div class="share-images-amples"><img class="img-share-amples-a"
-                                                                                      src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/google-pluse-icon.png'); ?>"/>
+                                                <div class="share-images-amples"><img class="img-share-amples-a" src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/google-pluse-icon.png'); ?>"/>
                                                     <h2>Share something from our site to your Google+</h2>
                                                     <p><span>Earn</span> <samp>1 Ample</samp></p>
                                                     <img src="<?php echo $admin_model_obj->cdnUrl('img/dashboard/amples-sall.png'); ?>"/>
@@ -2001,40 +2187,39 @@ die();
                                         </div>
                                         <div class="row rowcls">
                                             <div class="cplo cplo-b">
-                                                <div class="share-images-amples"><img class="img-share-amples-a"
-                                                                                      src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/chack.png'); ?>"/>
+                                                <div class="share-images-amples"><img class="img-share-amples-a" src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/chack.png'); ?>"/>
                                                     <h3>Become a Member</h3>
                                                     <p><span>Earn</span> <samp>42 Amples</samp></p>
                                                     <img src="<?php echo $admin_model_obj->cdnUrl('img/dashboard/amples-sall.png'); ?>"/>
                                                 </div>
                                             </div>
+
                                             <div class="cplo">
-                                                <div class="share-images-amples"><img class="img-share-amples-a"
-                                                                                      src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/p.png'); ?>"/>
+                                                <div class="share-images-amples"><img class="img-share-amples-a" src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/p.png'); ?>"/>
                                                     <h2>Pin something from our site to your pintrest Board</h2>
                                                     <p><span>Earn</span> <samp>1 Ample</samp></p>
                                                     <img src="<?php echo $admin_model_obj->cdnUrl('img/dashboard/amples-sall.png'); ?>"/>
                                                 </div>
                                             </div>
+
                                             <div class="cplo">
-                                                <div class="share-images-amples"><img class="img-share-amples-a"
-                                                                                      src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/Facebook-amples.png'); ?>"/>
+                                                <div class="share-images-amples"><img class="img-share-amples-a" src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/Facebook-amples.png'); ?>"/>
                                                     <h2>Share something from our site to your Facebook</h2>
                                                     <p><span>Earn</span> <samp>1 Ample</samp></p>
                                                     <img src="<?php echo $admin_model_obj->cdnUrl('img/dashboard/amples-sall.png'); ?>"/>
                                                 </div>
                                             </div>
+
                                             <div class="cplo">
-                                                <div class="share-images-amples"><img class="img-share-amples-a"
-                                                                                      src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/linked-icon.png'); ?>"/>
+                                                <div class="share-images-amples"><img class="img-share-amples-a" src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/linked-icon.png'); ?>"/>
                                                     <h2>Tweet something from our site to your Twitter</h2>
                                                     <p><span>Earn</span> <samp>1 Ample</samp></p>
                                                     <img src="<?php echo $admin_model_obj->cdnUrl('img/dashboard/amples-sall.png'); ?>"/>
                                                 </div>
                                             </div>
+
                                             <div class="cplo cplo-c">
-                                                <div class="share-images-amples"><img class="img-share-amples-a"
-                                                                                      src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/shopping-icon-amples.png'); ?>"/>
+                                                <div class="share-images-amples"><img class="img-share-amples-a" src="<?php echo $admin_model_obj->cdnUrl('img/social-icon/shopping-icon-amples.png'); ?>"/>
                                                     <h2>Purchase an Ample Eligible Product</h2>
                                                     <p><span>Earn</span> <samp>more Ample</samp></p>
                                                     <img src="<?php echo $admin_model_obj->cdnUrl('img/dashboard/amples-sall.png'); ?>"/>
@@ -2045,20 +2230,15 @@ die();
                                 </div>
                                 <!-- Ample point table -->
 
-                                <style>
-
-
-                                </style>
+                 
                                 <?php
 
-                                $igd = $this->record['data'][0]['user_id'];
-
+                                $igd = $record->user_id;
                                 $restablet = mysqli_query($dbcon, "SELECT  user_id,amply_point,month,year FROM `userearn_info` where user_id ='$igd'");
 
                                 while ($rowyttt = mysqli_fetch_array($restablet)) {
                                     $datattt[] = $rowyttt;
                                 }
-
                                 ?>
                                 <div class="panel panel-primary filterable">
                                     <div class="panel-heading">
@@ -2078,14 +2258,12 @@ die();
                                         <tbody>
                                         <?php foreach ($datattt as $rowtt) {
 
-                                            $monthy = $rowtt['month'];
-
-
+                                            $monthy = $rowtt->month;
                                             ?>
                                             <tr>
                                                 <td><?php echo date('M', strtotime(date('Y-' . $monthy . '-d'))); ?></td>
-                                                <td><?php echo $rowtt['year']; ?></td>
-                                                <td><?php echo $rowtt['amply_point']; ?></td>
+                                                <td><?php echo $rowtt->year; ?></td>
+                                                <td><?php echo $rowtt->amply_point; ?></td>
                                             </tr>
                                         <?php } ?>
                                         </tbody>
@@ -2094,6 +2272,36 @@ die();
                                 <!-- END of Ample points table -->
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="interests" class="tab-pane fade in">
                             <div class="col-md-12">
                                 <div class="recent-complaint">
@@ -2104,42 +2312,44 @@ die();
                                         <div class="row">
                                             <div class="wmg-container my-grid">
                                                 <?php
-                                                if (!empty($this->maincatdata)) {
-                                                    $myuserkey = $this->usrmakey;
+                                                if (!empty($maincatdata)) {
+                                                    $myuserkey = $usrmakey;
                                                     //print_r($this->maincatdata);
-                                                    foreach ($this->maincatdata as $maincatdata) {
-                                                        $ctid = $maincatdata['id'];
+                                                    foreach ($maincatdata as $maincatdata) {
+                                                        $ctid = $maincatdata->id;
                                                         $chbox = mysqli_query($dbcon, "SELECT  * FROM `tbl_user_interest` where customerId = '$myuserkey' and umaincatId = '$ctid' ");
                                                         $rowchbox = mysqli_fetch_row($chbox);
                                                         //print_r($rowchbox);
-
                                                         ?>
+
+
                                                         <div class="wmg-item">
                                                             <input type="hidden" name="user" id="cuuser"
                                                                    value="<?php echo $myuserkey; ?>">
                                                             <?php if ($rowchbox[5] == 1) { ?>
                                                                 <input type="checkbox" class="checkboxin"
                                                                        id="checkboxin"
-                                                                       name="<?php echo ucwords(strtolower(substr($maincatdata['category_name'], 0, 25))); ?>"
-                                                                       value="<?php echo $maincatdata['id']; ?>"
+                                                                       name="<?php echo ucwords(strtolower(substr($maincatdata->category_name, 0, 25))); ?>"
+                                                                       value="<?php echo $maincatdata->id; ?>"
                                                                        onclick="myFunction(<?php echo $myuserkey; ?>,<?php echo $ctid ?>,'unchecked')"
                                                                        checked>
                                                             <?php } else { ?>
                                                                 <input type="checkbox" class="checkboxin"
                                                                        id="checkboxin"
-                                                                       name="<?php echo ucwords(strtolower(substr($maincatdata['category_name'], 0, 25))); ?>"
-                                                                       value="<?php echo $maincatdata['id']; ?>"
+                                                                       name="<?php echo ucwords(strtolower(substr($maincatdata->category_name, 0, 25))); ?>"
+                                                                       value="<?php echo $maincatdata->id; ?>"
                                                                        onclick="myFunction(<?php echo $myuserkey; ?>,<?php echo $ctid ?>,'checked')">
                                                             <?php } ?>
                                                             <div class="wmg-thumbnail">
                                                                 <div class="wmg-thumbnail-content">
                                                                     <div class="avatar"><img
-                                                                                src="<?php echo $admin_model_obj->cdnUrl('category_images/' . $maincatdata['id'] . '/' . $maincatdata['cat_mainimage']); ?>"
+                                                                                src="<?php echo $admin_model_obj->cdnUrl('category_images/' . $maincatdata->id . '/' . $maincatdata->cat_mainimage); ?>"
                                                                                 alt=""></div>
+
                                                                     <div class="text-chackbox">
                                                                         <div class="col-lg-11 col-pad">
                                                                             <p>
-                                                                                <span><?php echo ucwords(strtolower(substr($maincatdata['category_name'], 0, 25))); ?></span>
+                                                                                <span><?php echo ucwords(strtolower(substr($maincatdata->category_name, 0, 25))); ?></span>
                                                                             </p>
                                                                         </div>
                                                                         <div class="col-lg-1 col-padding-right">
@@ -2196,6 +2406,24 @@ die();
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="craving" class="tab-pane fade in">
                             <div class="col-md-7">
                                 <div class="user-personal-info">
@@ -2210,11 +2438,11 @@ die();
                                     <div class="user-notification Latest-Craving">
                                         <h4>Latest Craving</h4>
                                         <div class="notification-body">
-                                            <?php if ($this->cravingdatalist > 0) {
-                                                foreach ($this->cravingdatalist as $cravkey) { ?>
+                                            <?php if (count($cravingdatalist) > 0) {
+                                                foreach ($cravingdatalist as $cravkey) { ?>
                                                     <div class="notification-entry">
                                                         <p>
-                                                            <i class="fa fa-support"></i> <?php echo $cravkey['craving_msg']; ?>
+                                                            <i class="fa fa-support"></i> <?php echo $cravkey->craving_msg; ?>
                                                         </p>
                                                     </div>
                                                 <?php }
@@ -2226,19 +2454,33 @@ die();
                         </div>
 
 
-                        <div id="invite" class="tab-pane fade in">
 
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div id="invite" class="tab-pane fade in">
                             <style>
                                 .st-btn {
                                     display: inline-block !important;
                                 }
                             </style>
 
+
+
                             <div class="col-md-12">
 
                                 <div class="user-personal-info">
                                     <h4>Invite Friends</h4>
-                                    <?php if ($this->record['data'][0]['is_driver'] == 1) { ?>
+                                    <?php if ($record->is_driver == 1) { ?>
                                         <span style="color: #07253F;font-size: 13px;text-transform: uppercase;font-weight: bold;margin-left: 3px;">Invite your friends and receive $10 when they shop their first $100.</span>
                                     <?php } else { ?>
                                         <div class="col-md-12 newinvitetxt">
@@ -2251,210 +2493,62 @@ die();
                                     <div class="clearfix"></div>
                                     <div class="col-md-12" style="padding-left: 0px;margin: 5px 0px 0px 3px;">
                                         <span style="font-weight: 700;">Invite Your Friends Via Link:  <span
-                                                    style="color: #f75d00;"><?php echo 'https://www.amplepoints.com/signupbyfriend/' . preg_replace('/\s+/', '', $this->record['data'][0]['first_name'] . $this->record['data'][0]['last_name']) . '/' . $this->record['data'][0]['user_id']; ?></span></span>
+                                                    style="color: #f75d00;"><?php echo 'https://www.amplepoints.com/signupbyfriend/' . preg_replace('/\s+/', '', $record->first_name . $record->last_name) . '/' . $record->user_id; ?></span></span>
                                     </div>
+
                                     <div class="clearfix"></div>
                                     <div class="share-link">
                                         <span class="social-invite">Invite Your Friends Via Sharing Link On Social Media:</span>
                                         <div class="social-share">
 
                                             <div class="sharethis-inline-share-buttons"
-                                                 data-url="<?php echo 'https://www.amplepoints.com/signupbyfriend/' . trim($this->record['data'][0]['first_name'] . $this->record['data'][0]['last_name']) . '/' . $this->record['data'][0]['user_id']; ?>"
+                                                 data-url="<?php echo 'https://www.amplepoints.com/signupbyfriend/' . trim($record->first_name . $record->last_name) . '/' . $record->user_id; ?>"
                                                  data-title="Registration - amplepoints.com"
-                                                 data-image="<?php echo $this->ogImage; ?>"
+                                                 data-image="<?php echo $ogImage; ?>"
                                                  data-description="Today with online shopping, everything you need is right at your fingertips. On Ample Points you can shop the hottest brands, book hotels, find local deals, restaurants, properties and so much more. We reward our members for shopping, sharing and watching your favorite ads. Use your points at checkout towards free products and every time you shop you earn extra benefits. With Ample Points you can always rest assured about the quality of the products you are buying online at our website. Together with our trusted partners we promise to deliver only original and brand-new products.">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="clearfix"></div>
-                                    <span class="refno">Your Referral Code: <?php echo $this->record['data'][0]['referral_no']; ?></span>
-
+                                    <span class="refno">Your Referral Code: <?php echo $record->referral_no; ?></span>
                                     <div class="replace_my_invite_friend"></div>
-
-
                                 </div>
                             </div>
 
                         </div>
 
-                        <?php /*
 
-                    <div id="invite" class="tab-pane fade in">
-                    <div class="col-md-12">
-                    <div class="user-personal-info">
-                    <style type="text/css">
 
-                    </style>
-                    <h4>Invite Uber / Lyft Friend</h4>
-                    <?php if($this->record['data'][0]['is_driver'] == 1){ ?>
-                    <span style="color: #07253F;font-size: 13px;text-transform: uppercase;font-weight: bold;margin-left: 3px;">Invite your friends and receive $10 when they shop their first $100.</span>
-                    <?php }else{ ?>
-                    <span style="color: #07253F;font-size: 13px;text-transform: uppercase;font-weight: bold;margin-left: 3px;">Invite your friends and receive 84 AmplePoints (valued $10) when they shop their first $100.</span>
-                    <?php } ?>
-                    <span class="refno">Your Referral Code: <?php echo $this->record['data'][0]['referral_no']; ?></span>
-                    <div class='row'>
-                    <div class="col-lg-5">
-                    <div class='form-group'>
-                    <form name="invitefriend" action="" method="post" enctype="multipart/form-data">
-                    <div class="col-lg-12">
-                    <h4 for='example_emailBS'>Email/Phone</h4>
-                    <input type="text" name="invitemail" id="my_input" placeholder="Email OR Phone" class="form-control" required>
-                    <span id="sendsuccess"></span> </div>
-                    <div class="email-button"> <a href="javascript:void(0);" onclick="sendinvitation();">Send Invitation</a> </div>
-                    </form>
-                    </div>
-                    </div>
-                    <div class="col-lg-7 invitefrd">
-                    <table class="table table-hover">
-                    <thead>
-                    <tr class="headings">
-                    <th>Sn. </th>
-                    <th>Friend Email</th>
-                    <th>Status</th>
-                    <th>Sent Date </th>
-                    <th>Is Registered </th>
-                    </tr>
-                    </thead>
-                    <tbody id="invitefrdlist">
-                    <?php if(!empty($this->invite) && $this->invite > 0) {
-                    foreach($this->invite as $key) { ?>
-                    <tr class="even pointer">
-                    <td class=" "><?php echo $this->escape($key['id']); ?></td>
-                    <td class=" "><?php echo $this->escape($key['friend_email']); ?></td>
-                    <td class=" last"><a class=" btn-success btn-xs" type="button">
-                    <?php if($key['isinvited'] == 1) { echo 'Sent'; } else if($key['isinvited'] == 0) { echo 'Not Sent'; }  ?>
-                    </a></td>
-                    <td class=" "><?php $sentdate = $this->escape($key['invitedate']); $expdate= explode(' ', $sentdate); echo $expdate[0]; ?></td>
-                    <td class=" "><?php $isregister = $key['isregistered']; if($isregister == 1) { echo "Yes"; } else { echo "No"; } ?></td>
-                    </tr>
-                    <?php }
 
-                    } ?>
-                    </tbody>
-                    </table>
-                    <div class="recp">
-                    <p>
-                    <?php if(empty($this->invite)) { echo "There is no recipient/friend invited by you."; } ?>
-                    </p>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="col-md-12 invitefrd1" style="margin-top: 10px;">
-                    <h4>My Chain</h4>
-                    <br/>
-                    <style>
 
-                    .invitefrd1{
-                    width: 100%;
-                    background: #eeeeee none repeat scroll 0 0;
-                    clear: both;
-                    overflow-y: scroll;
-                    overflow: auto;
-                    padding: 8px 0;
-                    }
-                    table.increrewad {
-                    font-family: arial;
-                    font-size: 12px;
-                    width: 100%;
-                    }
-                    table.increrewad td, table.increrewad th {
-                    border: 1px solid #e5e5e5;
-                    padding: 6px 7px 0;
-                    position: relative;
-                    text-align: left;
-                    vertical-align: middle;
-                    text-align: center;
-                    }
-                    table.increrewad th {
-                    background: none;
-                    border: 1px solid #e5e5e5;
-                    padding: 6px 5px;
-                    }
-                    </style>
-                    <table class="increrewad">
-                    <tr>
-                    <th>ID</th>
-                    <th style="width: 20%;">PROFILE IMAGE</th>
-                    <th>NAME</th>
-                    <th>CITY</th>
-                    <th>ZIP CODE</th>
-                    <th>AMOUNT SPENT</th>
-                    <th>PENDING</th>
-                    <th>PAID</th>
-                    <?php if($this->record['data'][0]['is_driver'] != 1){?>
-                    <th>EARN AMPLES</th>
-                    <?php } ?>
-                    <?php if($this->record['data'][0]['is_driver'] == 1){?>
-                    <th>EARN AMOUNT</th>
-                    <?php } ?>
-                    <th>DATE</th>
-                    </tr>
-                    <?php
 
-                    $invitedata = $admin_model_obj->getuserchaindataforcustomers($this->record['data'][0]['email']);
-                    if(!empty($invitedata)){
-                    foreach($invitedata as $useinvite){
 
-                    $amountspenddata = $admin_model_obj->custgetcustomertotalpurchase($useinvite['user_id']);
-                    $Existpaid = $admin_model_obj->getpaidchaindata($useinvite['user_id']);
-                    //echo "<pre>";print_R($Existpaid);
-                    $amountspend = $amountspenddata[0]['totalpurchase'];
-                    $pendingstatus = 'Pending';
-                    $paidstatus = 'Un Paid';
-                    $displaypaybutton = 0;
-                    $paidamount = 0.00;
-                    $paidearnamount = 0.00;
-                    $paiddate = '-';
 
-                    if($amountspend > 100){
 
-                    $pendingstatus = "Qualified";
 
-                    $amountspend = 100.00;
 
-                    $displaypaybutton = 1;
 
-                    if(!empty($Existpaid)){
 
-                    $paidstatus = "Paid";
-                    $displaypaybutton = 0;
-                    $paidamount = $Existpaid[0]['added_ample'];
-                    $paidearnamount = $Existpaid[0]['added_amount'];
-                    $paiddate = date('d/m/Y',strtotime($Existpaid[0]['date_added']));
 
-                    }
 
-                    }
 
-                    ?>
-                    <tr>
-                    <td><?php echo $useinvite['user_id']; ?></td>
-                    <td><img width="30%" src="<?php if(!empty($useinvite['user_image'])) { echo $admin_model_obj->cdnUrl('user_images/'.$useinvite['user_id'].'/profile_image/'.$useinvite['user_image']); } else { echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); } ?>"></td>
-                    <td><?php echo $useinvite['first_name']." ".$useinvite['last_name'];  ?></td>
-                    <td><?php echo $useinvite['user_city']; ?></td>
-                    <td><?php echo $useinvite['zip_code']; ?></td>
-                    <td><?php echo $amountspend; ?></td>
-                    <td><?php echo $pendingstatus; ?></td>
-                    <td><?php echo $paidstatus; ?></td>
-                    <?php if($this->record['data'][0]['is_driver'] != 1){?>
-                    <td><?php echo $paidamount; ?></td>
-                    <?php } ?>
-                    <?php if($this->record['data'][0]['is_driver'] == 1){?>
-                    <td>$<?php echo $paidearnamount; ?></td>
-                    <?php } ?>
-                    <td><?php echo $paiddate; ?></td>
-                    </tr>
-                    <?php } } ?>
-                    </table>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
 
-                */ ?>
 
-                        <?php if ($this->record['data'][0]['is_driver'] == 1) { ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <?php if ($record->is_driver == 1) { ?>
 
                             <style type="text/css">
                                 .refno {
@@ -2511,6 +2605,30 @@ die();
 
                         </style>
 
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="invite_business" class="tab-pane fade in">
                             <style>
                                 .st-btn {
@@ -2526,22 +2644,24 @@ die();
                                     <div class="clearfix"></div>
                                     <div class="col-md-12" style="padding-left: 0px;margin: 5px 0px 0px 15px;">
                                         <span style="font-weight: 700;">Invite Your Friends Via Link:  <span
-                                                    style="color: #f75d00;"><?php echo 'https://www.amplepoints.com/businesssignupbyuser/' . preg_replace('/\s+/', '', $this->record['data'][0]['first_name'] . $this->record['data'][0]['last_name']) . '/' . $this->record['data'][0]['user_id']; ?></span></span>
+                                                    style="color: #f75d00;"><?php echo 'https://www.amplepoints.com/businesssignupbyuser/' . preg_replace('/\s+/', '', $record->first_name . $record->last_name) . '/' . $record->user_id; ?></span></span>
                                     </div>
+
+
                                     <div class="clearfix"></div>
                                     <div class="share-link" style="margin: 10px 0px 0px 15px;">
                                         <span class="social-invite">Invite Your Friends Via Sharing Link On Social Media:</span>
                                         <div class="social-share">
                                             <div class="sharethis-inline-share-buttons"
-                                                 data-url="<?php echo 'https://www.amplepoints.com/businesssignupbyuser/' . preg_replace('/\s+/', '', $this->record['data'][0]['first_name'] . $this->record['data'][0]['last_name']) . '/' . $this->record['data'][0]['user_id']; ?>"
+                                                 data-url="<?php echo 'https://www.amplepoints.com/businesssignupbyuser/' . preg_replace('/\s+/', '', $record->first_name . $record->last_name) . '/' . $record->user_id; ?>"
                                                  data-title="Registration - amplepoints.com"
-                                                 data-image="<?php echo $this->ogImage; ?>"
+                                                 data-image="<?php echo $ogImage; ?>"
                                                  data-description="Today with online shopping, everything you need is right at your fingertips. On Ample Points you can shop the hottest brands, book hotels, find local deals, restaurants, properties and so much more. We reward our members for shopping, sharing and watching your favorite ads. Use your points at checkout towards free products and every time you shop you earn extra benefits. With Ample Points you can always rest assured about the quality of the products you are buying online at our website. Together with our trusted partners we promise to deliver only original and brand-new products.">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <span class="refno">Your Referral Code: <?php echo $this->record['data'][0]['referral_no']; ?></span>
+                                    <span class="refno">Your Referral Code: <?php echo $record->referral_no; ?></span>
 
                                     <div class="replace_my_invite_business">
 
@@ -2551,13 +2671,30 @@ die();
                             </div>
                         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="blog-l" class="tab-pane fade in">
                             <div class="col-lg-7">
                                 <div class="user-personal-info">
                                     <h4>Upload Blog</h4>
                                     <div class="">
                                         <div class="user-info-body">
-                                            <form action="<?php echo $this->baseUrl('default/index/socialblogbyuser'); ?>"
+                                            <form action="{{url('/')}}/default/index/socialblogbyuser"
                                                   method="post" enctype="multipart/form-data">
                                                 <div class="col-sm-12">
                                                     <label>Category</label>
@@ -2707,13 +2844,30 @@ die();
 
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="photo" class="tab-pane fade in">
                             <div class="col-lg-7">
                                 <div class="user-personal-info">
                                     <h4>Upload Photo</h4>
                                     <div class="">
                                         <div class="user-info-body">
-                                            <form action="<?php echo $this->baseUrl('default/index/socialphotosbyuser'); ?>"
+                                            <form action="{{url('/')}}/default/index/socialphotosbyuser"
                                                   method="post" enctype="multipart/form-data">
                                                 <div class="col-sm-12">
                                                     <label>Category</label>
@@ -2805,6 +2959,23 @@ die();
                             <div class="col-lg-5 replace_my_photos">
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div id="video" class="tab-pane fade in">
                             <div class="col-lg-7">
                                 <div class="user-personal-info">
@@ -2813,7 +2984,7 @@ die();
                                     </style>
                                     <div class="">
                                         <div class="user-info-body">
-                                            <form action="<?php echo $this->baseUrl('default/index/socialvideobyuser'); ?>"
+                                            <form action="{{url('/')}}/default/index/socialvideobyuser"
                                                   method="post" enctype="multipart/form-data">
                                                 <div class="col-sm-12">
                                                     <label>Category</label>
@@ -2979,6 +3150,17 @@ die();
 
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
                         <div id="Movies-TV" class="tab-pane fade in">
                             <style>
                                 #mtv_loadiframe iframe {
@@ -2986,12 +3168,13 @@ die();
                                     height: 300px;
                                 }
                             </style>
+
                             <div class="col-lg-7">
                                 <div class="user-personal-info">
                                     <h4>Upload Movies & TV</h4>
                                     <div class="">
                                         <div class="user-info-body">
-                                            <form action="<?php echo $this->baseUrl('default/index/socialmovietvbyuser'); ?>"
+                                            <form action="{{url('/')}}/default/index/socialmovietvbyuser"
                                                   method="post" enctype="multipart/form-data">
                                                 <div class="col-sm-12">
                                                     <label>Category</label>
@@ -3105,10 +3288,57 @@ die();
                             <div class="col-lg-5 replace_my_movie_tv">
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content popup-h">
@@ -3351,10 +3581,23 @@ die();
         </div>
         <!-- /.modal -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="modal fade" id="changeprofile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              style="top: 130px;z-index: 9999;">
             <div class="modal-dialog" role="document">
-                <form id="changeprofileform" action="<?php echo $this->baseUrl('default/index/changeprofileimage'); ?>"
+                <form id="changeprofileform" action="{{url('/')}}/default/index/changeprofileimage"
                       method="post" enctype="multipart/form-data">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -3410,7 +3653,7 @@ die();
                         </div>
                         <div class="modal-body">
                             <input type="hidden" id="msgproductid" name="msgproductid" value="">
-                            <input type="hidden" id="msguserid" name="msguserid" value="<?php echo $this->usrmakey; ?>">
+                            <input type="hidden" id="msguserid" name="msguserid" value="<?php echo $usrmakey; ?>">
                             <input type="hidden" id="msgvendorid" name="msgvendorid" value="">
                             <div class="form-group">
                                 <label for="msgsubject">Subject:</label>
@@ -3456,7 +3699,7 @@ die();
                         <div class="modal-body">
                             <input type="hidden" id="productadded_id" name="productadded_id" value="">
                             <input type="hidden" id="order_user_id" name="order_user_id"
-                                   value="<?php echo $this->usrmakey; ?>">
+                                   value="<?php echo $usrmakey; ?>">
                             <div class="form-group">
                                 <label for="msgsubject">Enter Reedem Code:</label>
                                 <input type="text" id="order_confirm_vendor_id" name="order_confirm_vendor_id" value=""

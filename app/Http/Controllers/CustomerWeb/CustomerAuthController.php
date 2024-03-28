@@ -13,6 +13,8 @@ use App\Models\HomeBrandSliderModel;
 use App\Models\AdminModel;
 use App\Models\VendorModel;
 use DB;
+use GuzzleHttp\Client;
+
 
 class CustomerAuthController extends Controller
 {
@@ -343,6 +345,10 @@ public function userUniqueNo($len = 5)
                 ]);
 
                $user->save();
+               $user['pass']=$password;
+
+               $res=$this->registerTravelUser($user);
+               // dd($res);
 
 
 
@@ -371,6 +377,7 @@ public function userUniqueNo($len = 5)
                      
                      // sms sent
                     // $this->sendCustomerSignUpMsg($first_name, $email, $mobile, $password, $verificationLink);
+                   dd($res);
 
                   return redirect()->route('index.page')->with('success', 'Registration Done Successfully, Kindly Verify the link given to email.');
 
@@ -381,6 +388,107 @@ public function userUniqueNo($len = 5)
                 }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+    public function registerTravelUser($user)
+    {
+        //this code is for register user from amplepoint project ==> to travel project user tbale using php core code
+
+        // Specify API endpoint
+        $url = 'http://127.0.0.1:8000/api/userInserFromAmplepoint';
+
+        // Specify payload for POST request
+        $payload = json_encode($user);
+
+        // Initialize cURL session
+        $ch = curl_init();
+
+        // Set cURL options
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $url,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $payload,
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/json',
+            ],
+            CURLOPT_RETURNTRANSFER => true,
+        ]);
+
+        // Execute cURL request
+        $response = curl_exec($ch);
+
+        // Check for cURL error
+        if ($error = curl_error($ch)) {
+            // Handle cURL error
+            return response()->json(['error' => $error], 500);
+        }
+
+        // Close cURL session
+        curl_close($ch);
+
+        // Handle the response as needed
+        return response()->json(['response' => $response]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+    // public function registerTravelUser($user)
+//     {
+//         //this code is for register user from amplepoint project to travel project user tbale using php core code
+//         // Database credentials
+// $servername = "127.0.0.1";
+// $username = "root";
+// $password = "";
+// $database = "ampletravel_travel";
+// $db_port = 3007;
+
+// // Create connection
+// $conn =mysqli_connect($servername, $username, $password, $database,$db_port);
+
+// // Check connection
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
+
+// // SQL query to select data from the users table
+// $sql = "SELECT * FROM users";
+
+// // Execute the query
+// $result = $conn->query($sql);
+
+// // Check if there are any results
+// if ($result->num_rows > 0) {
+//     // Output data of each row
+//     while ($row = $result->fetch_assoc()) {
+//         echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - Email: " . $row["email"] . "<br>";
+//     }
+// } else {
+//     echo "0 results";
+// }
+
+// // Close the connection
+// $conn->close();
+        
+//     }
+
+
 
 
    
@@ -530,6 +638,8 @@ public function userUniqueNo($len = 5)
             $resultcravingdata = $admin_model_obj->getcravingdata($user_id);
             $data['cravingdatalist'] = $resultcravingdata;
 
+            $data['userpurchased'] = [];
+
             //$resultuserpurchased =  $admin_model_obj->getusersAllLatestOrderDetail($user_id,0,5);
             //$this->view->userpurchased = $resultuserpurchased;
 
@@ -586,6 +696,187 @@ public function userUniqueNo($len = 5)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function regFromTravel(Request $request){
+  // return $request->all();
+   //insert user data comming from travel project -> to ample point project
+
+
+         // dd($request->all());
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        //check Email
+        // $chk=User::where('email',$request->email)->first();
+        // if($chk){
+        //      return back()->with('error','Email already exists');
+        // }
+
+       
+
+            $first_name = $request->first_name;
+            $last_name = $request->last_name;
+            $mobile = $request->phone;
+            $email = $request->email;
+            $password = $request->password;
+            $image = '';
+            $zip_code = '';
+            $birthdays = '';
+            $educations = '';
+            $incomes = '';
+            $interestss = '';
+            $cfollow = @$request->referral_no;
+            $vendor_ref = @$request->store_referral_no;
+            $user = 'User';
+
+
+                // $ustatus = 1;
+
+            $fulname = $request->first_name . $request->last_name;
+            $n_ample = !empty($fulname) ? 5 : 0;
+            $m_ample = !empty($mobile) ? 4 : 0;
+            $e_ample = !empty($email) ? 0 : 0; 
+            $i_ample = !empty($image) ? 4 : 0;
+            $zip_ample = !empty($zip_code) ? 5 : 0;
+            $b_ample = !empty($birthdays) ? 5 : 0;
+            $edu_ample = !empty($educations) ? 5 : 0;
+            $in_ample = !empty($incomes) ? 4 : 0;
+            $intest_ample = !empty($interestss) ? 5 : 0;
+
+            $default_ample = ($n_ample + $m_ample + $e_ample + $i_ample + $zip_ample + $b_ample + $edu_ample + $in_ample + $intest_ample);
+
+            $rewardtime = 10.00;
+
+            $is_driver = 0;
+            $refer_by_code = '';
+
+                if (!empty($cfollow)) {
+
+                    $cfollow = trim($cfollow);
+
+                    $checkCfollow = strtolower($cfollow);
+
+                    $the_substringuber = 'uber';
+                    $the_substringfyft = 'lyft';
+
+                    if (strpos($checkCfollow, $the_substringuber) !== false || strpos($checkCfollow, $the_substringfyft) !== false) {
+
+                        $is_driver = 1;
+
+                        $cfollow = '';
+
+                    } else {
+                        $Custdata = User::where('referral_no', $cfollow)->where('status', '!=', '0')->get();
+
+                        if (!empty($Custdata)) {
+                            $cfollow = $Custdata[0]['email'];
+                        } else {
+                            $cfollow = '';
+                        }
+                    }
+
+                }
+
+                $reffralNo = $this->userUniqueNo(6);
+
+                $follow_vendor = 0;
+
+
+                if (!empty($vendor_ref)) {
+
+                    $vendor_ref = trim($vendor_ref);
+
+                    $vendorData =  $result = DB::table('tbl_vendor')->where('vendor_ref_code', $vendor_ref)->get();
+
+                    if (!empty($vendorData)) {
+
+                        $follow_vendor = $vendorData[0]['tbl_vndr_id'];
+                    }
+                }
+
+
+              // now insert code in user table
+
+               $user = new User([
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'email' => $email,
+                    'password' => Hash::make($password),
+                    'mobile' => $mobile,
+                    'reward_time' => $rewardtime,
+                    'follower_keyword' => $cfollow,
+                    'status' => 1,
+                    'added_date' => date('Y-m-d H:i:s'),
+                    'register_date' => date('Y-m-d H:i:s'),
+                    'user_type' => 'User',
+                    'total_ample' => $default_ample,
+                    'referral_no' => $reffralNo,
+                    'is_driver' => $is_driver,
+                    'ref_vendor_id' => $follow_vendor,
+                ]);
+
+               $user->save();
+               
+
+
+
+                $insertId = $user->user_id;
+                // dd($user);
+
+                if ($insertId > 0) {
+
+                    $verificationLink = $this->CreateVerificationLink();
+
+                    // update verification_link on that userId
+                    $updateUserVerifyLink=User::where('user_id',$insertId)->update(['verification_link' => $verificationLink]);
+
+                    $latestUser=User::where('user_id',$insertId)->first();
+
+                   
+                    // dd($latestUser);
+                   // mail sent
+                    $mailData = [
+                        'title' => 'Mail from Amplepoint',
+                        'body' => 'Verify to login in amplepoint.',
+                        'userObject' =>$latestUser
+                    ];
+
+                   Mail::to($request->email)->send(new EmpRegisterMail($mailData));
+                     
+                     // sms sent
+                    // $this->sendCustomerSignUpMsg($first_name, $email, $mobile, $password, $verificationLink);
+                  // dd($res);
+                   return "Resgistraion to amplepoint project is successfull";
+
+
+                } 
+                else {
+                    return "Resgistraion to amplepoint project is not successfull";
+
+                   // dd(1);
+                  //return redirect()->route('index.page')->with('error', 'Registration process gone wrong.');
+                }
+
+
+
+}
 
 
 

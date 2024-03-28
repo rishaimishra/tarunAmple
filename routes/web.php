@@ -257,3 +257,6 @@ Route::get('admin/deletedatewiseproduct/{id}', [ProductController::class, 'delet
 Route::get('admin/deleteproductdetailimage/{id}', [ProductController::class, 'deleteproductdetailimage'])->name('deleteproductdetailimage');
 
 // =========================== Admin Routes End =============================================//
+
+
+Route::post('regFromTravel', [CustomerAuthController::class, 'regFromTravel'])->name('regFromTravel');
