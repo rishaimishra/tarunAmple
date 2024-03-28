@@ -13,7 +13,7 @@ $currentRoute = Route::currentRouteName();
             <div class="col-md-12">
                 <div class="row align-items-center">
                     <div class="col-md-2">
-                        <a class="navbar-brand" href="{{ route('index.page') }}">
+                        <a class="" href="{{ route('index.page') }}">
                             <img src="{{ asset('public/assets/images/header/ampdesktop.png') }}" alt="">
                         </a>
                     </div>

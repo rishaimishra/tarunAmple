@@ -129,13 +129,13 @@
                             <?php foreach($frontallmalldata as $keymall) { 
 
                                 ?>
-                                <div class="vendor-div">
+                                <div class="vendor-div maxxvendor-detail">
 
-                                    <div class="vendor-div-box" style="width: 200px !important; height: 200px !important; margin-bottom: 20px !important;">
+                                    <div class="vendor-div-box" style="width: 200px !important;">
                                       
 
                                           <a href="{{route('categorybymall',$keymall->venr_mall_id)}}">
-                                            <div class="vendor-divimg" style="width:70px !important">
+                                            <div class="vendor-divimg">
                                                {{--  <img src="<?php echo $admin_model_obj->cdnUrl('mall/logo/'.$keymall->logo_image);  ?>" alt="<?php echo $keymall->logo_image; ?>" /> --}}
                                                <img src="https://amplepoints.com/mall/logo/{{$keymall->logo_image}}" alt="<?php echo $keymall->logo_image; ?>" /> 
                                             </div>
@@ -245,8 +245,8 @@
 
 
 
-                                    <div class="vendor-div">
-                                        <div class="vendor-div-box" style=" width: 100px !important; height:100px !important">
+                                    <div class="vendor-div maxxvendor-detail">
+                                        <div class="vendor-div-box">
                                             <div class="vendor-divimg">
                                                 {{-- <img src="<?php if(!empty($key->vendor_profileimage)) { echo $admin_model_obj->cdnUrl('vendor-data/'.$key->tbl_vndr_id.'/profile/'.$key->vendor_profileimage); } else { echo $admin_model_obj->cdnUrl('img/profile-img/avtar.jpg'); } ?>" alt="<?php echo $key->vendor_displayname; ?>" /> --}}
 
@@ -266,10 +266,13 @@
                                 </div> </a>
                                 <?php } ?>
                         </div>
-                          <div class="pagination" id='page_navigation'></div>
+                          
 
                 </div>
-
+                <div class="col-md-12">
+                    <div class="pagination justify-content-end" id='page_navigation'></div>
+                </div>
+                
             </div>
         </div>
         <div style="clear:both"></div>
