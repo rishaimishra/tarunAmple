@@ -14,6 +14,8 @@ use App\Models\AdminModel;
 use App\Models\VendorModel;
 use DB;
 use GuzzleHttp\Client;
+use Config;
+use Illuminate\Support\Facades\Artisan;
 
 
 class CustomerAuthController extends Controller
@@ -377,7 +379,7 @@ public function userUniqueNo($len = 5)
                      
                      // sms sent
                     // $this->sendCustomerSignUpMsg($first_name, $email, $mobile, $password, $verificationLink);
-                   dd($res);
+                   // dd($res);
 
                   return redirect()->route('index.page')->with('success', 'Registration Done Successfully, Kindly Verify the link given to email.');
 
@@ -713,6 +715,24 @@ public function regFromTravel(Request $request){
   // return $request->all();
    //insert user data comming from travel project -> to ample point project
 
+     \Artisan::call('config:clear');
+     \Artisan::call('config:cache');
+    
+      Config::set('database.connections.mysql', [
+            'driver' => 'mysql',
+            'host' =>  env('DB_HOST'),
+            'port' =>  env('DB_PORT'),
+            'database' =>  'amplepoint_new',
+            'username' =>   env('DB_USERNAME'),
+            'password' =>'',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,              
+        ]);
+
+
 
          // dd($request->all());
         $request->validate([
@@ -831,8 +851,16 @@ public function regFromTravel(Request $request){
                     'is_driver' => $is_driver,
                     'ref_vendor_id' => $follow_vendor,
                 ]);
-
+               // return $request->all();
                $user->save();
+               
+//                $dbName = Config::get('database.connections.mysql');
+//                return $dbName;
+// dd($dbName);
+
+               
+
+
                
 
 
@@ -858,11 +886,28 @@ public function regFromTravel(Request $request){
                         'userObject' =>$latestUser
                     ];
 
-                   Mail::to($request->email)->send(new EmpRegisterMail($mailData));
+                  //   Mail::to($request->email)->send(new EmpRegisterMail($mailData));
                      
                      // sms sent
                     // $this->sendCustomerSignUpMsg($first_name, $email, $mobile, $password, $verificationLink);
                   // dd($res);
+
+                    \Artisan::call('cache:clear'); // ok
+                    $data['cache'] = Artisan::output();
+
+                    // \Artisan::call('config:clear', ['--force' => true, '--no-interaction' => true]); // ok
+                    \Artisan::call('config:clear'); // ok
+                    $data['config'] = Artisan::output();
+
+                    // \Artisan::call('route:clear', ['--force' => true, '--no-interaction' => true]); // ok
+                    \Artisan::call('route:clear'); // ok
+                    $data['route'] = Artisan::output();
+
+                    // \Artisan::call('view:clear', ['--force' => true, '--no-interaction' => true]); // ok
+                    \Artisan::call('view:clear'); // ok
+                    $data['view'] = Artisan::output();
+
+
                    return "Resgistraion to amplepoint project is successfull";
 
 
@@ -878,6 +923,55 @@ public function regFromTravel(Request $request){
 
 }
 
+
+
+
+
+
+
+
+public function cronJobForUpdateAmplePoint(){
+     \Artisan::call('config:clear');
+     \Artisan::call('config:cache');
+    
+      Config::set('database.connections.mysql', [
+            'driver' => 'mysql',
+            'host' =>  env('DB_HOST'),
+            'port' =>  env('DB_PORT'),
+            'database' =>  'amplepoint_new',
+            'username' =>   env('DB_USERNAME'),
+            'password' =>'',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,              
+        ]);
+    $AllUserDetails=User::orderBy('user_id','asc')->select('user_id','total_ample','email')->get();
+    $arr=[];
+    foreach($AllUserDetails as $key=> $val){
+        $arr[$key]['id']=$val->user_id;
+        $arr[$key]['amplepoint']=$val->total_ample;
+        $arr[$key]['email']=$val->email;
+    }
+
+    \Artisan::call('cache:clear'); // ok
+    $data['cache'] = Artisan::output();
+
+    // \Artisan::call('config:clear', ['--force' => true, '--no-interaction' => true]); // ok
+    \Artisan::call('config:clear'); // ok
+    $data['config'] = Artisan::output();
+
+    // \Artisan::call('route:clear', ['--force' => true, '--no-interaction' => true]); // ok
+    \Artisan::call('route:clear'); // ok
+    $data['route'] = Artisan::output();
+
+    // \Artisan::call('view:clear', ['--force' => true, '--no-interaction' => true]); // ok
+    \Artisan::call('view:clear'); // ok
+    $data['view'] = Artisan::output();
+
+    return response()->json($arr);
+}
 
 
   

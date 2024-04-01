@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('regFromTravel', [CustomerAuthController::class, 'regFromTravel'])->name('regFromTravel');
+Route::get('cronJobForUpdateAmplePoint', [CustomerAuthController::class, 'cronJobForUpdateAmplePoint'])->name('cronJobForUpdateAmplePoint');
+

@@ -259,4 +259,29 @@ Route::get('admin/deleteproductdetailimage/{id}', [ProductController::class, 'de
 // =========================== Admin Routes End =============================================//
 
 
-Route::post('regFromTravel', [CustomerAuthController::class, 'regFromTravel'])->name('regFromTravel');
+
+
+Route::get('/clear', function () {
+
+    // \Artisan::call('cache:clear', ['--force' => true, '--no-interaction' => true]); // ok
+    \Artisan::call('cache:clear'); // ok
+    $data['cache'] = Artisan::output();
+
+    // \Artisan::call('config:clear', ['--force' => true, '--no-interaction' => true]); // ok
+    \Artisan::call('config:clear'); // ok
+    $data['config'] = Artisan::output();
+
+    // \Artisan::call('route:clear', ['--force' => true, '--no-interaction' => true]); // ok
+    \Artisan::call('route:clear'); // ok
+    $data['route'] = Artisan::output();
+
+    // \Artisan::call('view:clear', ['--force' => true, '--no-interaction' => true]); // ok
+    \Artisan::call('view:clear'); // ok
+    $data['view'] = Artisan::output();
+
+    // \Artisan::call('migrate', ['--force' => true, '--no-interaction' => true]); // ok
+    // \Artisan::call('migrate'); // ok
+    // $data['migrate'] = Artisan::output();
+
+     return "Cache cleared successfully!";
+});
